@@ -34,7 +34,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
       role="navigation"
       aria-label={intl.formatMessage({ id: 'progress.label' })}
     >
-      <div className="max-w-7xl mx-auto px-4 py-4 sm:py-5">
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
         <div className="flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage, index);
@@ -71,19 +71,34 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     </div>
                   </button>
                   
-                  <span 
-                    className={`
-                      text-xs sm:text-sm font-medium text-center whitespace-nowrap transition-colors duration-200
-                      ${isCurrent 
-                        ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400' 
-                        : isCompleted
-                        ? 'text-cyan-400'
-                        : 'text-slate-500'
-                      }
-                    `}
-                  >
-                    <FormattedMessage id={`progress.${stage}.title`} />
-                  </span>
+                  <div className="flex flex-col items-center gap-0.5 text-center max-w-[80px] sm:max-w-[100px]">
+                    <span 
+                      className={`
+                        text-xs sm:text-sm font-medium whitespace-nowrap transition-colors duration-200
+                        ${isCurrent 
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400' 
+                          : isCompleted
+                          ? 'text-cyan-400'
+                          : 'text-slate-500'
+                        }
+                      `}
+                    >
+                      <FormattedMessage id={`progress.${stage}.title`} />
+                    </span>
+                    <span 
+                      className={`
+                        text-[10px] sm:text-xs font-normal transition-colors duration-200 leading-tight
+                        ${isCurrent 
+                          ? 'text-cyan-300' 
+                          : isCompleted
+                          ? 'text-cyan-500/70'
+                          : 'text-slate-600'
+                        }
+                      `}
+                    >
+                      <FormattedMessage id={`progress.${stage}.subtitle`} />
+                    </span>
+                  </div>
                 </div>
                 
                 {index < STAGES.length - 1 && (

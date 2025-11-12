@@ -690,5 +690,33 @@
   "progress.summary.label": "Navigate to Summary and Results",
   "@progress.summary.label": {
     "description": "ARIA label for summary navigation button"
+  },
+  "progress.introduction.subtitle": "Getting Started",
+  "@progress.introduction.subtitle": {
+    "description": "Subtitle shown under the Intro progress stage"
+  },
+  "progress.part1.subtitle": "Foundations",
+  "@progress.part1.subtitle": {
+    "description": "Subtitle shown under the Part 1 progress stage - about cloud computing basics"
+  },
+  "progress.part2.subtitle": "Service Models",
+  "@progress.part2.subtitle": {
+    "description": "Subtitle shown under the Part 2 progress stage - about IaaS, PaaS, SaaS"
+  },
+  "progress.part3.subtitle": "Deployment Models",
+  "@progress.part3.subtitle": {
+    "description": "Subtitle shown under the Part 3 progress stage - about Public, Private, Hybrid"
+  },
+  "progress.part4.subtitle": "Perspective Matters",
+  "@progress.part4.subtitle": {
+    "description": "Subtitle shown under the Part 4 progress stage - about Netflix case study"
+  },
+  "progress.part5.subtitle": "Cloud Designer",
+  "@progress.part5.subtitle": {
+    "description": "Subtitle shown under the Part 5 progress stage - about applying knowledge to scenarios"
+  },
+  "progress.summary.subtitle": "Your Results",
+  "@progress.summary.subtitle": {
+    "description": "Subtitle shown under the Summary progress stage - final score and recap"
   }
 }

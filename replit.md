@@ -74,13 +74,14 @@ The app runs on port 5000 with Vite's dev server configured to:
 ## Recent Changes
 - **2025-11-12**: Interactive progress navigation bar with free roaming
   - **Stepper Design**: 7-stage progress bar (Intro → Part 1-5 → Summary) with circular nodes and connecting lines
-  - **Visual States**: Current (gradient + pulse), Completed (checkmark), Upcoming (gray outline)
+  - **Visual States**: Current (gradient), Completed (checkmark), Upcoming (gray outline)
+  - **Two-Line Labels**: Stage number + descriptive subtitle (e.g., "Part 1" / "Foundations")
   - **Free Navigation**: Click any stage to jump directly - always unrestricted access
   - **Smart State Management**: Derives completion from position (stages before current show as completed)
-  - **Mobile-First**: Responsive sizing, horizontal scroll, touch-friendly 44px targets
+  - **Mobile-First**: Responsive sizing, horizontal scroll, touch-friendly 44px targets, scale-105 on current
   - **Accessibility**: Full ARIA navigation landmarks, aria-current tracking, keyboard navigable
-  - **i18n**: 15 new locale keys with translator context for all stage names and labels
-  - Fixed bottom positioning with glassmorphism backdrop blur
+  - **i18n**: 22 new locale keys (titles, labels, and subtitles) with translator context
+  - Fixed bottom positioning with glassmorphism backdrop blur and sufficient internal padding
 
 - **2025-11-12**: Award-caliber visual refresh of Part 4: Perspective Matters
   - **Design System Approach**: Implemented consistent design tokens for spacing, typography, and colors
