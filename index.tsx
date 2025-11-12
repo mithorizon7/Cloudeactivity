@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { I18nProvider } from './i18n';
+import { IntlProvider } from './i18n';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -11,8 +11,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <I18nProvider>
+    <IntlProvider>
       <App />
-    </I18nProvider>
+    </IntlProvider>
   </React.StrictMode>
 );
