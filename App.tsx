@@ -12,34 +12,55 @@ type Stage = 'introduction' | 'part1' | 'part2' | 'part3' | 'part4' | 'part5' | 
 
 const App: React.FC = () => {
   const [currentStage, setCurrentStage] = useState<Stage>('introduction');
-  const [completedStages, setCompletedStages] = useState<Set<Stage>>(new Set());
+  const [furthestStage, setFurthestStage] = useState<Stage>('introduction');
   const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
+
+  const stageOrder: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
+  
+  const getCompletedStages = (): Set<Stage> => {
+    const currentIndex = stageOrder.indexOf(currentStage);
+    const completed = new Set<Stage>();
+    for (let i = 0; i < currentIndex; i++) {
+      completed.add(stageOrder[i]);
+    }
+    return completed;
+  };
 
   const handleNext = (part: string, score: number) => {
     setScores(prev => ({ ...prev, [part]: score }));
-    setCompletedStages(prev => new Set(prev).add(currentStage));
     
-    const stageOrder: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
     const currentIndex = stageOrder.indexOf(currentStage);
     if (currentIndex < stageOrder.length - 1) {
-      setCurrentStage(stageOrder[currentIndex + 1]);
+      const nextStage = stageOrder[currentIndex + 1];
+      setCurrentStage(nextStage);
+      
+      const nextIndex = stageOrder.indexOf(nextStage);
+      const furthestIndex = stageOrder.indexOf(furthestStage);
+      if (nextIndex > furthestIndex) {
+        setFurthestStage(nextStage);
+      }
     }
   };
   
   const handleStart = () => {
     setScores({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
-    setCompletedStages(prev => new Set(prev).add('introduction'));
     setCurrentStage('part1');
+    setFurthestStage('part1');
   };
 
   const handleNavigate = (stage: Stage) => {
     setCurrentStage(stage);
+    const stageIndex = stageOrder.indexOf(stage);
+    const furthestIndex = stageOrder.indexOf(furthestStage);
+    if (stageIndex > furthestIndex) {
+      setFurthestStage(stage);
+    }
   };
 
   const handleRestart = () => {
     setScores({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
-    setCompletedStages(new Set());
     setCurrentStage('introduction');
+    setFurthestStage('introduction');
   };
 
   const renderStage = () => {
@@ -73,7 +94,7 @@ const App: React.FC = () => {
       </div>
       <ProgressBar 
         currentStage={currentStage} 
-        completedStages={completedStages}
+        completedStages={getCompletedStages()}
         onNavigate={handleNavigate}
       />
     </div>

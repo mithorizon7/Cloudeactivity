@@ -23,8 +23,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
   const currentIndex = STAGES.indexOf(currentStage);
   
   const getStageStatus = (stage: Stage, index: number): 'completed' | 'current' | 'upcoming' => {
-    if (completedStages.has(stage)) return 'completed';
     if (stage === currentStage) return 'current';
+    if (completedStages.has(stage)) return 'completed';
     return 'upcoming';
   };
 

@@ -72,6 +72,16 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-12**: Interactive progress navigation bar with free roaming
+  - **Stepper Design**: 7-stage progress bar (Intro → Part 1-5 → Summary) with circular nodes and connecting lines
+  - **Visual States**: Current (gradient + pulse), Completed (checkmark), Upcoming (gray outline)
+  - **Free Navigation**: Click any stage to jump directly - always unrestricted access
+  - **Smart State Management**: Derives completion from position (stages before current show as completed)
+  - **Mobile-First**: Responsive sizing, horizontal scroll, touch-friendly 44px targets
+  - **Accessibility**: Full ARIA navigation landmarks, aria-current tracking, keyboard navigable
+  - **i18n**: 15 new locale keys with translator context for all stage names and labels
+  - Fixed bottom positioning with glassmorphism backdrop blur
+
 - **2025-11-12**: Award-caliber visual refresh of Part 4: Perspective Matters
   - **Design System Approach**: Implemented consistent design tokens for spacing, typography, and colors
   - **Visual Hierarchy**: Segmented control (iOS-style), card-based layout, icon system (8 custom SVG icons)
