@@ -61,6 +61,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
   });
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<{ type: 'correct' | 'incorrect', message: string, messageKey: string } | null>(null);
+  const [selectedExample, setSelectedExample] = useState<ServiceExample | null>(null);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, example: ServiceExample) => {
     e.dataTransfer.setData('exampleId', example.id);
@@ -76,6 +77,10 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
     const example = examples.find(ex => ex.id === exampleId);
 
     if (example) {
+      if (selectedExample?.id === example.id) {
+        setSelectedExample(null);
+      }
+      
       if (example.model === targetModel) {
         setScore(s => s + (10 / SERVICE_MODEL_EXAMPLES.length));
         setFeedback({ type: 'correct', message: intl.formatMessage({ id: example.explanationKey }), messageKey: example.explanationKey });
@@ -88,6 +93,29 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
         const hintKey = example.hintKeys[targetModel] || "part2.hint.default";
         setFeedback({ type: 'incorrect', message: intl.formatMessage({ id: hintKey }), messageKey: hintKey });
       }
+    }
+  };
+
+  const handleCardClick = (example: ServiceExample) => {
+    setSelectedExample(selectedExample?.id === example.id ? null : example);
+  };
+
+  const handleCategoryClick = (targetModel: ServiceModel) => {
+    if (!selectedExample) return;
+    
+    if (selectedExample.model === targetModel) {
+      setScore(s => s + (10 / SERVICE_MODEL_EXAMPLES.length));
+      setFeedback({ type: 'correct', message: intl.formatMessage({ id: selectedExample.explanationKey }), messageKey: selectedExample.explanationKey });
+      setSelectedExample(null);
+    } else {
+      const el = document.getElementById(selectedExample.id);
+      if (el) {
+        el.classList.add('animate-shake');
+        setTimeout(() => el.classList.remove('animate-shake'), 500);
+      }
+      const hintKey = selectedExample.hintKeys[targetModel] || "part2.hint.default";
+      setFeedback({ type: 'incorrect', message: intl.formatMessage({ id: hintKey }), messageKey: hintKey });
+      setSelectedExample(null);
     }
   };
 
@@ -141,11 +169,21 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               key={model}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, model)}
-              className="bg-slate-900/50 p-4 rounded-lg flex flex-col items-center min-h-[200px] border-2 border-dashed border-slate-600 transition-colors hover:border-cyan-400"
+              onClick={() => handleCategoryClick(model)}
+              className={`bg-slate-900/50 p-4 rounded-lg flex flex-col items-center min-h-[200px] border-2 border-dashed transition-all ${
+                selectedExample 
+                  ? 'border-cyan-400 cursor-pointer hover:bg-slate-800/50 hover:scale-105' 
+                  : 'border-slate-600 hover:border-cyan-400'
+              }`}
             >
               <h3 className="font-bold text-lg mb-4 text-center text-violet-400">
                 <FormattedMessage id={getServiceModelKey(model)} />
               </h3>
+              {selectedExample && (
+                <p className="text-xs text-cyan-300 mb-2 text-center">
+                  <FormattedMessage id="part2.tap.place" />
+                </p>
+              )}
               <div className="space-y-2 w-full">
                 {dropped[model].map(ex => (
                   <div key={ex.id} className="bg-green-600/30 text-green-200 text-sm p-2 rounded flex items-center gap-2 animate-fade-in">
@@ -168,7 +206,12 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
                   id={ex.id}
                   draggable
                   onDragStart={(e) => handleDragStart(e, ex)}
-                  className="bg-slate-700 p-3 rounded-md cursor-grab active:cursor-grabbing hover:bg-slate-600 transition-colors"
+                  onClick={() => handleCardClick(ex)}
+                  className={`p-3 rounded-md cursor-pointer transition-all ${
+                    selectedExample?.id === ex.id
+                      ? 'bg-cyan-600 ring-2 ring-cyan-300 scale-105 shadow-lg'
+                      : 'bg-slate-700 hover:bg-slate-600 md:cursor-grab md:active:cursor-grabbing'
+                  }`}
                 >
                   <FormattedMessage id={ex.textKey} />
                 </div>

@@ -215,6 +215,10 @@
   "@part2.hint.default": {
     "description": "Generic fallback hint for any incorrect categorization"
   },
+  "part2.tap.place": "Tap here to place",
+  "@part2.tap.place": {
+    "description": "Instruction shown in category boxes when a card is selected (for touch/mobile users)"
+  },
   "part3.title": "Part 3: Deployment Models",
   "@part3.title": {
     "description": "Header for the deployment models scenario section"
