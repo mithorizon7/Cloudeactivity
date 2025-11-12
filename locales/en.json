@@ -630,5 +630,65 @@
   "part5.feedback.default": "That's an interesting choice. Think about the scenario's key requirements: security needs, cost constraints, and how usage might change over time.",
   "@part5.feedback.default": {
     "description": "Generic feedback for suboptimal solution choices"
+  },
+  "progress.label": "Learning journey navigation",
+  "@progress.label": {
+    "description": "ARIA label for the progress navigation bar"
+  },
+  "progress.introduction.title": "Intro",
+  "@progress.introduction.title": {
+    "description": "Short title for introduction stage in progress bar"
+  },
+  "progress.introduction.label": "Navigate to Introduction",
+  "@progress.introduction.label": {
+    "description": "ARIA label for introduction navigation button"
+  },
+  "progress.part1.title": "Part 1",
+  "@progress.part1.title": {
+    "description": "Short title for Part 1: Foundations in progress bar"
+  },
+  "progress.part1.label": "Navigate to Part 1: Foundations",
+  "@progress.part1.label": {
+    "description": "ARIA label for Part 1 navigation button"
+  },
+  "progress.part2.title": "Part 2",
+  "@progress.part2.title": {
+    "description": "Short title for Part 2: Service Models in progress bar"
+  },
+  "progress.part2.label": "Navigate to Part 2: Service Models",
+  "@progress.part2.label": {
+    "description": "ARIA label for Part 2 navigation button"
+  },
+  "progress.part3.title": "Part 3",
+  "@progress.part3.title": {
+    "description": "Short title for Part 3: Deployment Models in progress bar"
+  },
+  "progress.part3.label": "Navigate to Part 3: Deployment Models",
+  "@progress.part3.label": {
+    "description": "ARIA label for Part 3 navigation button"
+  },
+  "progress.part4.title": "Part 4",
+  "@progress.part4.title": {
+    "description": "Short title for Part 4: Perspective Matters in progress bar"
+  },
+  "progress.part4.label": "Navigate to Part 4: Perspective Matters",
+  "@progress.part4.label": {
+    "description": "ARIA label for Part 4 navigation button"
+  },
+  "progress.part5.title": "Part 5",
+  "@progress.part5.title": {
+    "description": "Short title for Part 5: Cloud Designer in progress bar"
+  },
+  "progress.part5.label": "Navigate to Part 5: Cloud Solution Designer",
+  "@progress.part5.label": {
+    "description": "ARIA label for Part 5 navigation button"
+  },
+  "progress.summary.title": "Summary",
+  "@progress.summary.title": {
+    "description": "Short title for summary/results stage in progress bar"
+  },
+  "progress.summary.label": "Navigate to Summary and Results",
+  "@progress.summary.label": {
+    "description": "ARIA label for summary navigation button"
   }
 }

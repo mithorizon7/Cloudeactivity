@@ -8,64 +8,74 @@ import Part5CloudDesigner from './components/Part5CloudDesigner';
 import Summary from './components/Summary';
 import ProgressBar from './components/ProgressBar';
 
-export enum ActivityStep {
-  Intro,
-  Part1,
-  Part2,
-  Part3,
-  Part4,
-  Part5,
-  Summary,
-}
+type Stage = 'introduction' | 'part1' | 'part2' | 'part3' | 'part4' | 'part5' | 'summary';
 
 const App: React.FC = () => {
-  const [step, setStep] = useState<ActivityStep>(ActivityStep.Intro);
+  const [currentStage, setCurrentStage] = useState<Stage>('introduction');
+  const [completedStages, setCompletedStages] = useState<Set<Stage>>(new Set());
   const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
-
-  const totalSteps = Object.keys(ActivityStep).length / 2 - 1; // Subtract Intro
 
   const handleNext = (part: string, score: number) => {
     setScores(prev => ({ ...prev, [part]: score }));
-    setStep(prev => prev + 1);
+    setCompletedStages(prev => new Set(prev).add(currentStage));
+    
+    const stageOrder: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
+    const currentIndex = stageOrder.indexOf(currentStage);
+    if (currentIndex < stageOrder.length - 1) {
+      setCurrentStage(stageOrder[currentIndex + 1]);
+    }
   };
   
   const handleStart = () => {
     setScores({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
-    setStep(ActivityStep.Part1);
+    setCompletedStages(prev => new Set(prev).add('introduction'));
+    setCurrentStage('part1');
   };
 
-  const renderStep = () => {
-    switch (step) {
-      case ActivityStep.Intro:
+  const handleNavigate = (stage: Stage) => {
+    setCurrentStage(stage);
+  };
+
+  const handleRestart = () => {
+    setScores({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
+    setCompletedStages(new Set());
+    setCurrentStage('introduction');
+  };
+
+  const renderStage = () => {
+    switch (currentStage) {
+      case 'introduction':
         return <Introduction onStart={handleStart} />;
-      case ActivityStep.Part1:
+      case 'part1':
         return <Part1Foundations onComplete={(score) => handleNext('part1', score)} />;
-      case ActivityStep.Part2:
+      case 'part2':
         return <Part2ServiceModels onComplete={(score) => handleNext('part2', score)} />;
-      case ActivityStep.Part3:
+      case 'part3':
         return <Part3DeploymentModels onComplete={(score) => handleNext('part3', score)} />;
-      case ActivityStep.Part4:
+      case 'part4':
         return <Part4Netflix onComplete={(score) => handleNext('part4', score)} />;
-      case ActivityStep.Part5:
+      case 'part5':
         return <Part5CloudDesigner onComplete={(score) => handleNext('part5', score)} />;
-      case ActivityStep.Summary:
-        return <Summary scores={scores} onRestart={handleStart} />;
+      case 'summary':
+        return <Summary scores={scores} onRestart={handleRestart} />;
       default:
         return <Introduction onStart={handleStart} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 font-sans relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 font-sans relative overflow-hidden pb-24 sm:pb-28">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-slate-700/[0.2] [mask-image:linear-gradient(to_bottom,white_20%,transparent_100%)]"></div>
       <div className="w-full max-w-4xl mx-auto z-10">
-        {step > ActivityStep.Intro && step < ActivityStep.Summary && (
-          <ProgressBar currentStep={step} totalSteps={totalSteps} />
-        )}
         <div className="mt-8">
-           {renderStep()}
+           {renderStage()}
         </div>
       </div>
+      <ProgressBar 
+        currentStage={currentStage} 
+        completedStages={completedStages}
+        onNavigate={handleNavigate}
+      />
     </div>
   );
 };
