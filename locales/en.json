@@ -503,133 +503,297 @@
   "@part4.button.continue": {
     "description": "Button to proceed to Part 5"
   },
-  "part5.title": "Part 5: Design Your Cloud Solution",
+  "part5.title": "Cloud Design Activity",
   "@part5.title": {
-    "description": "Header for the cloud solution designer section"
+    "description": "Header for the interactive cloud solution designer section where learners apply their knowledge"
   },
-  "part5.subtitle": "Apply what you've learned to solve real business challenges.",
-  "@part5.subtitle": {
-    "description": "Instructions for applying knowledge"
+  "part5.description": "Choose a service model and a deployment model for each scenario. Adjust the users to see trade‑offs. Then evaluate your pick.",
+  "@part5.description": {
+    "description": "Instructions explaining the interactive activity: select models, adjust scale, and evaluate choices"
   },
-  "part5.scenario.label": "Scenario:",
+  "part5.scenario.label": "Scenario {current, number} of {total, number}",
   "@part5.scenario.label": {
-    "description": "Label for scenario description"
+    "description": "Progress indicator showing which scenario learner is on. current and total are numeric values"
   },
-  "part5.scenario1.title": "Mobile Gaming Startup",
+  "part5.scenario.pill.users": "Users: {count, number}",
+  "@part5.scenario.pill.users": {
+    "description": "Pill badge showing current user count. count is a numeric value that should be formatted with thousands separators"
+  },
+  "part5.scenario.pill.weights": "Weights → Cost {cost, number}%, Perf {perf, number}%, Compliance {compliance, number}%, Effort {effort, number}%",
+  "@part5.scenario.pill.weights": {
+    "description": "Pill badge showing scenario weight distribution across evaluation criteria. All values are percentages. Perf is short for Performance"
+  },
+  "part5.scenario1.title": "Viral Mobile App Launch",
   "@part5.scenario1.title": {
-    "description": "Title for gaming startup scenario"
+    "description": "Title for first scenario: a startup launching a consumer mobile app with uncertain growth"
   },
-  "part5.scenario1.text": "You're launching a mobile game. You expect 1,000 players at launch, but it could grow to 100,000+ if it goes viral. You need to control costs but scale quickly if needed.",
-  "@part5.scenario1.text": {
-    "description": "Business scenario for mobile gaming startup with scaling needs"
+  "part5.scenario1.description": "You're a small team launching a new consumer app. User growth is uncertain and potentially spiky. You need to ship fast and keep costs sensible at low/medium scale.",
+  "@part5.scenario1.description": {
+    "description": "Business scenario description for mobile app startup emphasizing speed to market, uncertain scaling, and cost consciousness"
   },
-  "part5.scenario2.title": "Healthcare Records System",
+  "part5.scenario2.title": "Hospital Patient Portal (PHI)",
   "@part5.scenario2.title": {
-    "description": "Title for healthcare scenario"
+    "description": "Title for second scenario: healthcare system with strict security requirements. PHI is an acronym for Protected Health Information - a regulatory term"
   },
-  "part5.scenario2.text": "A hospital needs to store patient records with strict security requirements. They have 5,000 patients with steady, predictable usage. Data cannot be shared with other organizations.",
-  "@part5.scenario2.text": {
-    "description": "Business scenario for healthcare with security and privacy requirements"
+  "part5.scenario2.description": "A healthcare provider needs to store and process PHI. Compliance and control matter most, but the portal must still scale during seasonal surges.",
+  "@part5.scenario2.description": {
+    "description": "Business scenario description for healthcare emphasizing regulatory compliance, security, and controlled scaling. PHI (Protected Health Information) is sensitive medical data"
   },
-  "part5.scenario3.title": "E-commerce Platform",
+  "part5.scenario3.title": "Internal CRM for a Sales Team",
   "@part5.scenario3.title": {
-    "description": "Title for e-commerce scenario"
+    "description": "Title for third scenario: internal business system for sales team. CRM is an acronym for Customer Relationship Management"
   },
-  "part5.scenario3.text": "An online store needs to handle normal traffic most of the year, but expects massive spikes during holiday sales. They want flexibility without paying for unused capacity.",
-  "@part5.scenario3.text": {
-    "description": "Business scenario for e-commerce with seasonal traffic variation"
+  "part5.scenario3.description": "You need CRM functionality for ~500–5,000 employees. Time‑to‑value and reliability are key; deep customization is less important than getting a proven system.",
+  "@part5.scenario3.description": {
+    "description": "Business scenario description for internal CRM emphasizing quick deployment and proven reliability over customization. CRM = Customer Relationship Management software"
   },
-  "part5.choose.service": "1. Choose a Service Model:",
-  "@part5.choose.service": {
-    "description": "Step 1 instruction for choosing service model"
+  "part5.service.heading": "1) Choose a Service Model",
+  "@part5.service.heading": {
+    "description": "Step 1 heading for service model selection (IaaS/PaaS/SaaS)"
   },
-  "part5.choose.deployment": "2. Choose a Deployment Model:",
-  "@part5.choose.deployment": {
-    "description": "Step 2 instruction for choosing deployment model"
+  "part5.service.iaas.label": "IaaS (build & run VMs/containers)",
+  "@part5.service.iaas.label": {
+    "description": "Label for Infrastructure as a Service option. IaaS is a technical acronym - translate the words but keep IaaS. VMs = Virtual Machines (do not translate). Containers refers to containerized applications"
   },
-  "part5.adjust.scale": "3. Adjust Expected Users:",
-  "@part5.adjust.scale": {
-    "description": "Step 3 instruction for adjusting user scale"
+  "part5.service.iaas.blurb": "You manage OS/runtime and scaling. Highest control and flexibility; slower to ship; more ops work.",
+  "@part5.service.iaas.blurb": {
+    "description": "Description of IaaS: emphasizes user responsibility for management, high control/flexibility, longer time to market, and increased operational overhead. OS = Operating System, ops = operations"
   },
-  "part5.users.current": "Current Users: {count, number}",
-  "@part5.users.current": {
-    "description": "Display of current user count from slider. count is a numeric value"
+  "part5.service.paas.label": "PaaS (managed app platform)",
+  "@part5.service.paas.label": {
+    "description": "Label for Platform as a Service option. PaaS is a technical acronym - translate the words but keep PaaS"
   },
-  "part5.cost.title": "Estimated Monthly Cost:",
-  "@part5.cost.title": {
-    "description": "Header for cost estimation display"
+  "part5.service.paas.blurb": "You push code; platform handles runtime, scaling, and much of ops. Good balance of speed and control.",
+  "@part5.service.paas.blurb": {
+    "description": "Description of PaaS: emphasizes developer convenience, automatic scaling, and balanced trade-offs. ops = operations"
   },
-  "part5.cost.amount": "${amount, number}",
-  "@part5.cost.amount": {
-    "description": "Cost display with currency. amount is a numeric value"
+  "part5.service.saas.label": "SaaS (use an existing product)",
+  "@part5.service.saas.label": {
+    "description": "Label for Software as a Service option. SaaS is a technical acronym - translate the words but keep SaaS"
   },
-  "part5.performance.title": "Performance:",
-  "@part5.performance.title": {
-    "description": "Header for performance indicator"
+  "part5.service.saas.blurb": "You subscribe to software someone else runs. Fastest time‑to‑value; least control/customization.",
+  "@part5.service.saas.blurb": {
+    "description": "Description of SaaS: emphasizes subscription model, quickest deployment, minimal control and customization options"
   },
-  "part5.performance.excellent": "Excellent",
-  "@part5.performance.excellent": {
-    "description": "Performance rating - excellent"
+  "part5.service.pill.ops": "Ops overhead: {cost}",
+  "@part5.service.pill.ops": {
+    "description": "Pill badge showing operational overhead cost. cost is already formatted as currency (e.g., '$6,000/mo'). ops = operations"
   },
-  "part5.performance.good": "Good",
-  "@part5.performance.good": {
-    "description": "Performance rating - good"
+  "part5.service.pill.lockin": "Lock‑in: {risk}",
+  "@part5.service.pill.lockin": {
+    "description": "Pill badge showing vendor lock-in risk level. risk will be 'low', 'med', or 'high'. Lock-in refers to difficulty switching providers"
   },
-  "part5.performance.adequate": "Adequate",
-  "@part5.performance.adequate": {
-    "description": "Performance rating - adequate"
+  "part5.deployment.heading": "2) Choose a Deployment Model",
+  "@part5.deployment.heading": {
+    "description": "Step 2 heading for deployment model selection (Public/Private/Hybrid)"
   },
-  "part5.performance.poor": "Poor",
-  "@part5.performance.poor": {
-    "description": "Performance rating - poor"
+  "part5.deployment.public.label": "Public Cloud",
+  "@part5.deployment.public.label": {
+    "description": "Label for Public Cloud deployment option - shared infrastructure accessible over internet"
   },
-  "part5.button.evaluate": "Evaluate My Solution",
+  "part5.deployment.public.blurb": "Elastic capacity with pay‑as‑you‑go. Great for spiky workloads and faster global reach.",
+  "@part5.deployment.public.blurb": {
+    "description": "Description of Public Cloud: emphasizes scalability, usage-based pricing, handling traffic spikes, and worldwide availability"
+  },
+  "part5.deployment.private.label": "Private Cloud / On‑Prem",
+  "@part5.deployment.private.label": {
+    "description": "Label for Private Cloud deployment option. On‑Prem is short for On-Premises - infrastructure in your own data center"
+  },
+  "part5.deployment.private.blurb": "Dedicated resources and higher control. Good for strict compliance; capacity must be planned.",
+  "@part5.deployment.private.blurb": {
+    "description": "Description of Private Cloud: emphasizes dedicated infrastructure, security/compliance benefits, and need for capacity planning"
+  },
+  "part5.deployment.hybrid.label": "Hybrid",
+  "@part5.deployment.hybrid.label": {
+    "description": "Label for Hybrid Cloud deployment option - combination of public and private infrastructure"
+  },
+  "part5.deployment.hybrid.blurb": "Mix of private plus public burst. Strikes a balance: control where needed, elasticity for peaks.",
+  "@part5.deployment.hybrid.blurb": {
+    "description": "Description of Hybrid Cloud: emphasizes combining private infrastructure for baseline with public cloud for peak demand"
+  },
+  "part5.deployment.pill.fixed": "Fixed: {cost}",
+  "@part5.deployment.pill.fixed": {
+    "description": "Pill badge showing fixed infrastructure costs. cost is already formatted as currency (e.g., '$12,000/mo')"
+  },
+  "part5.deployment.pill.variable": "+ ${cost}/1k users",
+  "@part5.deployment.pill.variable": {
+    "description": "Pill badge showing variable cost per thousand users. cost is a number that should be formatted (e.g., '180' becomes '+ $180/1k users')"
+  },
+  "part5.deployment.pill.elasticity": "Elasticity {score}/100",
+  "@part5.deployment.pill.elasticity": {
+    "description": "Pill badge showing elasticity score (ability to scale dynamically). score is a number from 0-100, higher is better"
+  },
+  "part5.scale.heading": "3) Adjust Scale",
+  "@part5.scale.heading": {
+    "description": "Step 3 heading for user count slider control"
+  },
+  "part5.scale.users": "Active users: {count, number}",
+  "@part5.scale.users": {
+    "description": "Label showing selected user count. count is a numeric value that should be formatted with thousands separators"
+  },
+  "part5.tradeoffs.heading": "4) See Trade‑offs",
+  "@part5.tradeoffs.heading": {
+    "description": "Step 4 heading for metrics and comparison section"
+  },
+  "part5.tradeoffs.button.hide": "Hide compare‑all table",
+  "@part5.tradeoffs.button.hide": {
+    "description": "Button text to hide the comparison table showing all 9 service/deployment combinations"
+  },
+  "part5.tradeoffs.button.show": "Show compare‑all table",
+  "@part5.tradeoffs.button.show": {
+    "description": "Button text to show the comparison table showing all 9 service/deployment combinations"
+  },
+  "part5.tradeoffs.selection.label": "Your selection:",
+  "@part5.tradeoffs.selection.label": {
+    "description": "Label introducing the learner's selected service and deployment combination"
+  },
+  "part5.tradeoffs.cost.label": "Estimated monthly cost:",
+  "@part5.tradeoffs.cost.label": {
+    "description": "Label for estimated monthly cost display"
+  },
+  "part5.tradeoffs.metric.performance": "Scale & Performance",
+  "@part5.tradeoffs.metric.performance": {
+    "description": "Label for performance/scalability metric bar - measures ability to handle user load and growth"
+  },
+  "part5.tradeoffs.metric.compliance": "Compliance & Control",
+  "@part5.tradeoffs.metric.compliance": {
+    "description": "Label for compliance/control metric bar - measures security, regulatory compliance, and organizational control"
+  },
+  "part5.tradeoffs.metric.ease": "Ease of Operations",
+  "@part5.tradeoffs.metric.ease": {
+    "description": "Label for operational ease metric bar - measures how much effort is required to manage and maintain the solution"
+  },
+  "part5.tradeoffs.explain.heading": "Why it scores this way:",
+  "@part5.tradeoffs.explain.heading": {
+    "description": "Heading for explanatory bullet points that break down how metrics are calculated"
+  },
+  "part5.tradeoffs.fit.label": "Fit Score (weighted for this scenario):",
+  "@part5.tradeoffs.fit.label": {
+    "description": "Label for overall fit score - a weighted combination of all metrics based on scenario priorities"
+  },
+  "part5.tradeoffs.noselection": "Choose a service model and a deployment model to see detailed trade‑offs.",
+  "@part5.tradeoffs.noselection": {
+    "description": "Placeholder message shown when no service/deployment combination is selected yet"
+  },
+  "part5.top.heading": "Top recommended option",
+  "@part5.top.heading": {
+    "description": "Heading for the panel showing the highest-ranked solution for the current scenario"
+  },
+  "part5.top.badge": "Highest Fit Score",
+  "@part5.top.badge": {
+    "description": "Badge text indicating this is the top-ranked option based on fit score"
+  },
+  "part5.top.cost.label": "Cost:",
+  "@part5.top.cost.label": {
+    "description": "Label for cost in the top recommendation panel (shortened for space)"
+  },
+  "part5.top.fit.label": "Fit:",
+  "@part5.top.fit.label": {
+    "description": "Label for fit score in the top recommendation panel (shortened for space)"
+  },
+  "part5.table.rank": "Rank",
+  "@part5.table.rank": {
+    "description": "Table header for ranking column (1st, 2nd, 3rd, etc.)"
+  },
+  "part5.table.option": "Option",
+  "@part5.table.option": {
+    "description": "Table header for service/deployment combination column"
+  },
+  "part5.table.cost": "Cost",
+  "@part5.table.cost": {
+    "description": "Table header for monthly cost column"
+  },
+  "part5.table.perf": "Perf",
+  "@part5.table.perf": {
+    "description": "Table header for performance metric column. Short for Performance to save space"
+  },
+  "part5.table.compliance": "Compliance",
+  "@part5.table.compliance": {
+    "description": "Table header for compliance/control metric column"
+  },
+  "part5.table.ease": "Ease",
+  "@part5.table.ease": {
+    "description": "Table header for operational ease metric column"
+  },
+  "part5.table.fit": "Fit",
+  "@part5.table.fit": {
+    "description": "Table header for overall fit score column"
+  },
+  "part5.table.note": "Fit = weighted combination of affordability (cheaper is better), performance, compliance/control, and ease of operations, using scenario weights above.",
+  "@part5.table.note": {
+    "description": "Explanatory note below comparison table explaining how the fit score is calculated from weighted metrics"
+  },
+  "part5.button.evaluate": "Evaluate my choice",
   "@part5.button.evaluate": {
-    "description": "Button to check if solution is appropriate"
+    "description": "Button to submit selection and receive feedback on how well it fits the scenario"
   },
-  "part5.button.next": "Next Scenario",
+  "part5.button.next": "Next scenario",
   "@part5.button.next": {
-    "description": "Button to move to next business scenario"
+    "description": "Button to proceed to next business scenario after evaluation"
   },
-  "part5.button.finish": "Complete Activity",
+  "part5.button.finish": "Finish",
   "@part5.button.finish": {
-    "description": "Button to finish Part 5 and see summary"
+    "description": "Button to complete Part 5 and view final summary after last scenario"
   },
-  "part5.feedback.scenario1.ideal": "Perfect! PaaS with Public Cloud is ideal for a startup that needs to scale quickly without managing servers. You can grow from thousands to millions of users while only paying for what you use.",
-  "@part5.feedback.scenario1.ideal": {
-    "description": "Ideal solution feedback for gaming startup scenario - PaaS + Public"
+  "part5.feedback.excellent": "✅ Excellent — you chose the top‑ranked option for this scenario.",
+  "@part5.feedback.excellent": {
+    "description": "Positive feedback when learner selects the #1 ranked option with highest fit score"
   },
-  "part5.feedback.scenario1.expensive": "This works, but Private Cloud is expensive for a startup. You're paying for dedicated infrastructure even when you have few users. Consider Public Cloud to reduce costs.",
-  "@part5.feedback.scenario1.expensive": {
-    "description": "Feedback for gaming startup with unnecessarily expensive choice"
+  "part5.feedback.solid": "👍 Solid — your pick is among the top three for this scenario.",
+  "@part5.feedback.solid": {
+    "description": "Positive feedback when learner selects one of the top 3 ranked options"
   },
-  "part5.feedback.scenario1.complex": "This works but might be overkill. Hybrid Cloud adds complexity. For a simple mobile game, Public Cloud alone is usually sufficient and easier to manage.",
-  "@part5.feedback.scenario1.complex": {
-    "description": "Feedback for gaming startup with unnecessarily complex choice"
+  "part5.feedback.reasonable": "💡 Reasonable, but there are options that fit better for this scenario.",
+  "@part5.feedback.reasonable": {
+    "description": "Constructive feedback when learner selects a lower-ranked option that could be improved"
   },
-  "part5.feedback.scenario2.ideal": "Excellent choice! Private Cloud gives you the security and control required for sensitive healthcare data. The steady, predictable usage makes the fixed costs worthwhile.",
-  "@part5.feedback.scenario2.ideal": {
-    "description": "Ideal solution feedback for healthcare scenario - Private"
+  "part5.feedback.details": "Your Fit Score: {yourFit, number}/100. Top option: {topService} + {topDeployment} ({topFit, number}/100).",
+  "@part5.feedback.details": {
+    "description": "Detailed feedback showing learner's fit score compared to the top option. yourFit and topFit are numeric scores, topService and topDeployment are text like 'PaaS' and 'Public Cloud'"
   },
-  "part5.feedback.scenario2.security": "This could work, but Public Cloud may not meet strict healthcare security requirements. Patient data often requires Private or Hybrid Cloud for compliance and isolation.",
-  "@part5.feedback.scenario2.security": {
-    "description": "Feedback for healthcare with insufficient security consideration"
+  "part5.feedback.helping.label": "Factors helping your choice:",
+  "@part5.feedback.helping.label": {
+    "description": "Label for list of strengths in the selected solution"
   },
-  "part5.feedback.scenario3.ideal": "Great thinking! Hybrid Cloud lets you use Private for baseline traffic and burst to Public during holiday spikes. You avoid paying for peak capacity year-round.",
-  "@part5.feedback.scenario3.ideal": {
-    "description": "Ideal solution feedback for e-commerce scenario - Hybrid"
+  "part5.feedback.helping.none": "none highlighted",
+  "@part5.feedback.helping.none": {
+    "description": "Text shown when no specific factors are strong enough to highlight as helping"
   },
-  "part5.feedback.scenario3.waste": "This works, but you're paying for peak capacity all year when you only need it seasonally. Hybrid Cloud would let you scale up and down more cost-effectively.",
-  "@part5.feedback.scenario3.waste": {
-    "description": "Feedback for e-commerce with wasteful capacity planning"
+  "part5.feedback.helping.performance": "performance",
+  "@part5.feedback.helping.performance": {
+    "description": "Factor name: performance/scalability is a strength of this choice (used in comma-separated list)"
   },
-  "part5.feedback.scenario3.public": "Good choice! Public Cloud's auto-scaling handles traffic spikes well. Just make sure you set up auto-scaling properly to handle those holiday rushes.",
-  "@part5.feedback.scenario3.public": {
-    "description": "Feedback for e-commerce with public cloud - good alternative"
+  "part5.feedback.helping.compliance": "compliance",
+  "@part5.feedback.helping.compliance": {
+    "description": "Factor name: compliance/control is a strength of this choice (used in comma-separated list)"
   },
-  "part5.feedback.default": "That's an interesting choice. Think about the scenario's key requirements: security needs, cost constraints, and how usage might change over time.",
-  "@part5.feedback.default": {
-    "description": "Generic feedback for suboptimal solution choices"
+  "part5.feedback.helping.effort": "low ops effort",
+  "@part5.feedback.helping.effort": {
+    "description": "Factor name: low operational effort is a strength of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.feedback.hurting.label": "Factors hurting your choice:",
+  "@part5.feedback.hurting.label": {
+    "description": "Label for list of weaknesses in the selected solution"
+  },
+  "part5.feedback.hurting.none": "none highlighted",
+  "@part5.feedback.hurting.none": {
+    "description": "Text shown when no specific factors are weak enough to highlight as hurting"
+  },
+  "part5.feedback.hurting.performance": "performance",
+  "@part5.feedback.hurting.performance": {
+    "description": "Factor name: performance/scalability is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.compliance": "compliance",
+  "@part5.feedback.hurting.compliance": {
+    "description": "Factor name: compliance/control is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.effort": "ops effort",
+  "@part5.feedback.hurting.effort": {
+    "description": "Factor name: high operational effort is a weakness of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.tip": "Tip for teachers: Encourage learners to toggle \"Compare‑all\" and move the user slider to see how rankings change as scale grows. Ask: \"When would you pick Hybrid over Public? Why is SaaS ideal for internal CRM?\"",
+  "@part5.tip": {
+    "description": "Pedagogical tip for educators on how to facilitate deeper learning. CRM = Customer Relationship Management. This tip encourages exploration and critical thinking questions"
   },
   "progress.label": "Learning journey navigation",
   "@progress.label": {
