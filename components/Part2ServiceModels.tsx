@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SERVICE_MODEL_EXAMPLES } from '../constants';
 import { ServiceModel, ServiceExample } from '../types';
 import { CheckCircleIcon, XCircleIcon } from './icons/Icons';
-import { useTranslation } from '../i18n';
+import { useIntl, FormattedMessage } from '../i18n';
 
 interface FeedbackModalProps {
   type: 'correct' | 'incorrect';
@@ -11,7 +11,7 @@ interface FeedbackModalProps {
 }
 
 const FeedbackModal: React.FC<FeedbackModalProps> = ({ type, message, onClose }) => {
-  const { t } = useTranslation();
+  const intl = useIntl();
   const isCorrect = type === 'correct';
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
@@ -19,22 +19,26 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ type, message, onClose })
         className="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-md animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`p-6 rounded-t-2xl ${isCorrect ? 'bg-green-500/20' : 'bg-red-500/20'} flex items-center space-x-4`}>
+        <div className={`p-6 rounded-t-2xl ${isCorrect ? 'bg-green-500/20' : 'bg-red-500/20'} flex items-center gap-4`}>
           <div className={`flex-shrink-0 ${isCorrect ? 'text-green-400' : 'text-red-400'}`}>
             {isCorrect ? <CheckCircleIcon size={32} /> : <XCircleIcon size={32} />}
           </div>
           <div>
             <h3 className={`text-2xl font-bold ${isCorrect ? 'text-green-300' : 'text-red-300'}`}>
-              {isCorrect ? t('part2.correctFeedbackTitle') : t('part2.incorrectFeedbackTitle')}
+              <FormattedMessage id={isCorrect ? 'part2.feedback.correct.title' : 'part2.feedback.incorrect.title'} />
             </h3>
           </div>
         </div>
         <div className="p-6">
-            <p className="text-slate-300 text-lg">{message}</p>
+            <p className="text-slate-300 text-lg" dir="auto"><bdi>{message}</bdi></p>
         </div>
-        <div className="p-4 bg-slate-900/50 rounded-b-2xl text-right">
-             <button onClick={onClose} className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-cyan-300/50">
-                {t('part2.feedbackGotItButton')}
+        <div className="p-4 bg-slate-900/50 rounded-b-2xl text-end">
+             <button 
+               onClick={onClose} 
+               className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-cyan-300/50"
+               aria-label={intl.formatMessage({ id: 'part2.feedback.button.gotit' })}
+             >
+                <FormattedMessage id="part2.feedback.button.gotit" />
              </button>
         </div>
       </div>
@@ -48,7 +52,7 @@ interface Part2ServiceModelsProps {
 }
 
 const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) => {
-  const { t } = useTranslation();
+  const intl = useIntl();
   const [examples, setExamples] = useState<ServiceExample[]>(SERVICE_MODEL_EXAMPLES);
   const [dropped, setDropped] = useState<Record<ServiceModel, ServiceExample[]>>({
     [ServiceModel.IaaS]: [],
@@ -74,15 +78,15 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
     if (example) {
       if (example.model === targetModel) {
         setScore(s => s + 1);
-        setFeedback({ type: 'correct', message: t(example.explanationKey), messageKey: example.explanationKey });
+        setFeedback({ type: 'correct', message: intl.formatMessage({ id: example.explanationKey }), messageKey: example.explanationKey });
       } else {
         const el = document.getElementById(example.id);
         if (el) {
           el.classList.add('animate-shake');
           setTimeout(() => el.classList.remove('animate-shake'), 500);
         }
-        const hintKey = example.hintKeys[targetModel] || "part2.examples.default_hint";
-        setFeedback({ type: 'incorrect', message: t(hintKey), messageKey: hintKey });
+        const hintKey = example.hintKeys[targetModel] || "part2.hint.default";
+        setFeedback({ type: 'incorrect', message: intl.formatMessage({ id: hintKey }), messageKey: hintKey });
       }
     }
   };
@@ -106,6 +110,14 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
   
   const allCorrect = examples.length === 0;
 
+  const getServiceModelKey = (model: ServiceModel): string => {
+    switch(model) {
+      case ServiceModel.IaaS: return 'servicemodel.iaas';
+      case ServiceModel.PaaS: return 'servicemodel.paas';
+      case ServiceModel.SaaS: return 'servicemodel.saas';
+    }
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto p-6 md:p-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
        {feedback && (
@@ -115,8 +127,12 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
           onClose={handleCloseFeedback}
         />
       )}
-      <h2 className="text-2xl font-bold text-cyan-400 mb-2">{t('part2.title')}</h2>
-      <p className="text-slate-400 mb-6">{t('part2.subtitle')}</p>
+      <h2 className="text-2xl font-bold text-cyan-400 mb-2">
+        <FormattedMessage id="part2.title" />
+      </h2>
+      <p className="text-slate-400 mb-6">
+        <FormattedMessage id="part2.subtitle" />
+      </p>
 
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -127,11 +143,13 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               onDrop={(e) => handleDrop(e, model)}
               className="bg-slate-900/50 p-4 rounded-lg flex flex-col items-center min-h-[200px] border-2 border-dashed border-slate-600 transition-colors hover:border-cyan-400"
             >
-              <h3 className="font-bold text-lg mb-4 text-center text-violet-400">{t(`serviceModels.${model}` as any)}</h3>
+              <h3 className="font-bold text-lg mb-4 text-center text-violet-400">
+                <FormattedMessage id={getServiceModelKey(model)} />
+              </h3>
               <div className="space-y-2 w-full">
                 {dropped[model].map(ex => (
                   <div key={ex.id} className="bg-green-600/30 text-green-200 text-sm p-2 rounded flex items-center gap-2 animate-fade-in">
-                    <CheckCircleIcon /> {t(ex.textKey)}
+                    <CheckCircleIcon /> <FormattedMessage id={ex.textKey} />
                   </div>
                 ))}
               </div>
@@ -140,7 +158,9 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
         </div>
 
         <div className="w-full lg:w-1/3 bg-slate-900/50 p-4 rounded-lg border border-slate-700">
-            <h3 className="font-bold text-lg mb-4 text-center">{t('part2.examplesTitle')}</h3>
+            <h3 className="font-bold text-lg mb-4 text-center">
+              <FormattedMessage id="part2.examples.title" />
+            </h3>
             <div className="space-y-3">
               {examples.map(ex => (
                 <div
@@ -150,18 +170,24 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
                   onDragStart={(e) => handleDragStart(e, ex)}
                   className="bg-slate-700 p-3 rounded-md cursor-grab active:cursor-grabbing hover:bg-slate-600 transition-colors"
                 >
-                  {t(ex.textKey)}
+                  <FormattedMessage id={ex.textKey} />
                 </div>
               ))}
               {allCorrect && (
-                  <div className="text-center text-green-400 p-4 animate-fade-in">{t('part2.allSortedMessage')}</div>
+                  <div className="text-center text-green-400 p-4 animate-fade-in">
+                    <FormattedMessage id="part2.allsorted.message" />
+                  </div>
               )}
             </div>
         </div>
       </div>
        {allCorrect && (
-          <button onClick={() => onComplete(score)} className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold py-3 px-4 rounded-full hover:scale-105 transform transition-transform animate-fade-in">
-            {t('part2.continueButton')}
+          <button 
+            onClick={() => onComplete(score)} 
+            className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold py-3 px-4 rounded-full hover:scale-105 transform transition-transform animate-fade-in"
+            aria-label={intl.formatMessage({ id: 'part2.button.continue' })}
+          >
+            <FormattedMessage id="part2.button.continue" />
           </button>
         )}
         <style>{`
