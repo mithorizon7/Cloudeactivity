@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-
-/** ---------- Types ---------- */
+import { FormattedMessage, useIntl, FormattedNumber } from "react-intl";
 
 type ServiceModel = "iaas" | "paas" | "saas";
 type DeploymentModel = "public" | "private" | "hybrid";
@@ -11,120 +10,29 @@ interface Part5CloudDesignerProps {
 
 interface Scenario {
   id: number;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   minUsers: number;
   maxUsers: number;
   defaultUsers: number;
 
-  /** Relative importance of each dimension (weights must sum ~1) */
   weights: {
     cost: number;
-    performance: number;   // scale/elasticity
-    compliance: number;    // compliance/control
-    effort: number;        // ease of operations (lower effort = better)
+    performance: number;
+    compliance: number;
+    effort: number;
   };
 
-  /**
-   * The combinations we expect to be particularly strong for teaching purposes.
-   * Used to award points (but learners will also see the transparent ranking).
-   */
   idealCombos: Array<{ service: ServiceModel; deployment: DeploymentModel }>;
 
-  /** Optional: if SaaS is conceptually "not applicable" for the scenario. */
   saasApplicable?: boolean;
 }
 
-/** ---------- Model metadata (simple but more faithful) ---------- */
-
-const SERVICE_META: Record<
-  ServiceModel,
-  {
-    label: string;
-    blurb: string;
-    monthlyOpsOverhead: number; // simple proxy for platform/ops cost
-    controlBonus: number;       // influences compliance/control
-    lockInRisk: "low" | "med" | "high";
-    effortScore: number;        // 0..100 (higher = more effort); we invert to get "ease"
-  }
-> = {
-  iaas: {
-    label: "IaaS (build & run VMs/containers)",
-    blurb:
-      "You manage OS/runtime and scaling. Highest control and flexibility; slower to ship; more ops work.",
-    monthlyOpsOverhead: 6000,
-    controlBonus: +8,
-    lockInRisk: "low",
-    effortScore: 75,
-  },
-  paas: {
-    label: "PaaS (managed app platform)",
-    blurb:
-      "You push code; platform handles runtime, scaling, and much of ops. Good balance of speed and control.",
-    monthlyOpsOverhead: 2500,
-    controlBonus: +2,
-    lockInRisk: "med",
-    effortScore: 45,
-  },
-  saas: {
-    label: "SaaS (use an existing product)",
-    blurb:
-      "You subscribe to software someone else runs. Fastest time‑to‑value; least control/customization.",
-    monthlyOpsOverhead: 800, // admin/config, integrations
-    controlBonus: -6,
-    lockInRisk: "high",
-    effortScore: 20,
-  },
-};
-
-const DEPLOYMENT_META: Record<
-  DeploymentModel,
-  {
-    label: string;
-    blurb: string;
-    fixedInfra: number;        // base monthly infra (e.g., private DC amortized)
-    variablePerKUsers: number; // $ per 1,000 users per month
-    elasticity: number;        // 0..100 (scale burstiness)
-    baseCompliance: number;    // 0..100 (control/compliance posture)
-  }
-> = {
-  public: {
-    label: "Public Cloud",
-    blurb:
-      "Elastic capacity with pay‑as‑you‑go. Great for spiky workloads and faster global reach.",
-    fixedInfra: 0,
-    variablePerKUsers: 180,
-    elasticity: 90,
-    baseCompliance: 70,
-  },
-  private: {
-    label: "Private Cloud / On‑Prem",
-    blurb:
-      "Dedicated resources and higher control. Good for strict compliance; capacity must be planned.",
-    fixedInfra: 12000,
-    variablePerKUsers: 60,
-    elasticity: 55,
-    baseCompliance: 90,
-  },
-  hybrid: {
-    label: "Hybrid",
-    blurb:
-      "Mix of private plus public burst. Strikes a balance: control where needed, elasticity for peaks.",
-    fixedInfra: 4000,
-    variablePerKUsers: 110,
-    elasticity: 80,
-    baseCompliance: 85,
-  },
-};
-
-/** ---------- Scenarios (beginner friendly) ---------- */
-
-const SCENARIOS: Scenario[] = [
+const BASE_SCENARIOS: Scenario[] = [
   {
     id: 1,
-    title: "Viral Mobile App Launch",
-    description:
-      "You’re a small team launching a new consumer app. User growth is uncertain and potentially spiky. You need to ship fast and keep costs sensible at low/medium scale.",
+    titleKey: "part5.scenario1.title",
+    descriptionKey: "part5.scenario1.description",
     minUsers: 1_000,
     maxUsers: 200_000,
     defaultUsers: 15_000,
@@ -142,9 +50,8 @@ const SCENARIOS: Scenario[] = [
   },
   {
     id: 2,
-    title: "Hospital Patient Portal (PHI)",
-    description:
-      "A healthcare provider needs to store and process PHI. Compliance and control matter most, but the portal must still scale during seasonal surges.",
+    titleKey: "part5.scenario2.title",
+    descriptionKey: "part5.scenario2.description",
     minUsers: 5_000,
     maxUsers: 100_000,
     defaultUsers: 25_000,
@@ -163,9 +70,8 @@ const SCENARIOS: Scenario[] = [
   },
   {
     id: 3,
-    title: "Internal CRM for a Sales Team",
-    description:
-      "You need CRM functionality for ~500–5,000 employees. Time‑to‑value and reliability are key; deep customization is less important than getting a proven system.",
+    titleKey: "part5.scenario3.title",
+    descriptionKey: "part5.scenario3.description",
     minUsers: 500,
     maxUsers: 10_000,
     defaultUsers: 3_000,
@@ -180,8 +86,6 @@ const SCENARIOS: Scenario[] = [
   },
 ];
 
-/** ---------- Helpers ---------- */
-
 function clamp(n: number, lo: number, hi: number) {
   return Math.max(lo, Math.min(hi, n));
 }
@@ -193,49 +97,43 @@ function dollars(n: number) {
 function normalizeTo0_100(values: number[], value: number) {
   const min = Math.min(...values);
   const max = Math.max(...values);
-  if (Math.abs(max - min) < 1e-6) return 50; // avoid divide-by-zero: flat field
-  return clamp(((max - value) / (max - min)) * 100, 0, 100); // lower $ => higher score
+  if (Math.abs(max - min) < 1e-6) return 50;
+  return clamp(((max - value) / (max - min)) * 100, 0, 100);
 }
 
 type Metrics = {
-  cost: number;         // $/mo
-  performance: number;  // 0..100
-  compliance: number;   // 0..100
-  ease: number;         // 0..100 (higher = less effort)
-  fit: number;          // 0..100 weighted by scenario
-  explain: string[];    // bullet points explaining the result
+  cost: number;
+  performance: number;
+  compliance: number;
+  ease: number;
+  fit: number;
+  explain: string[];
 };
 
 function computeMetrics(
   service: ServiceModel,
   deployment: DeploymentModel,
   users: number,
-  scenario: Scenario
+  scenario: Scenario,
+  serviceMeta: any,
+  deploymentMeta: any
 ): Metrics {
-  const s = SERVICE_META[service];
-  const d = DEPLOYMENT_META[deployment];
+  const s = serviceMeta[service];
+  const d = deploymentMeta[deployment];
 
-  // --- Cost model (infra + platform/ops) ---
   const infraCost = d.fixedInfra + (users / 1000) * d.variablePerKUsers;
   const platformOpsCost = s.monthlyOpsOverhead;
   const cost = infraCost + platformOpsCost;
 
-  // --- Performance / Scale (based on elasticity & load vs "headroom") ---
-  // Treat scenario.maxUsers as "peak planning horizon" learners can imagine.
-  // Private clouds lose performance if you push close to that ceiling; public handles spikes better.
   const loadFactor = clamp(users / scenario.maxUsers, 0, 1);
   let perf = d.elasticity - (deployment === "private" ? loadFactor * 25 : loadFactor * 8);
-  // PaaS tends to add autoscaling and platform tuning benefits
   if (service === "paas") perf += 5;
   perf = clamp(perf, 25, 98);
 
-  // --- Compliance & Control (deployment posture + service control bonus) ---
   let compliance = d.baseCompliance + s.controlBonus;
-  // SaaS reduces customization/control; in PHI-like scenarios, highlight that subtly
   if (service === "saas" && !scenario.saasApplicable) compliance -= 10;
   compliance = clamp(compliance, 40, 98);
 
-  // --- Operational effort (invert the service effort score; hybrid adds some integration tax) ---
   let ease = clamp(100 - s.effortScore - (deployment === "hybrid" ? 6 : 0), 10, 95);
 
   const explain: string[] = [
@@ -253,7 +151,7 @@ function weightedFit(
   peerCosts: number[],
   weights: Scenario["weights"]
 ): { fit: number; affordability: number } {
-  const affordability = normalizeTo0_100(peerCosts, m.cost); // 100 is cheapest
+  const affordability = normalizeTo0_100(peerCosts, m.cost);
   const fit =
     weights.cost * affordability +
     weights.performance * m.performance +
@@ -263,18 +161,71 @@ function weightedFit(
   return { fit: Math.round(fit), affordability: Math.round(affordability) };
 }
 
-/** ---------- Main Component ---------- */
-
-export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerProps) {
+export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerProps) {
+  const intl = useIntl();
   const [scenarioIdx, setScenarioIdx] = useState(0);
   const [service, setService] = useState<ServiceModel | null>(null);
   const [deployment, setDeployment] = useState<DeploymentModel | null>(null);
-  const [users, setUsers] = useState(SCENARIOS[0].defaultUsers);
+  const [users, setUsers] = useState(BASE_SCENARIOS[0].defaultUsers);
   const [evaluated, setEvaluated] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [showCompare, setShowCompare] = useState(true);
 
-  const scenario = SCENARIOS[scenarioIdx];
+  const scenario = BASE_SCENARIOS[scenarioIdx];
+
+  const serviceMeta = useMemo(() => ({
+    iaas: {
+      label: intl.formatMessage({ id: "part5.service.iaas.label" }),
+      blurb: intl.formatMessage({ id: "part5.service.iaas.blurb" }),
+      monthlyOpsOverhead: 6000,
+      controlBonus: +8,
+      lockInRisk: "low" as const,
+      effortScore: 75,
+    },
+    paas: {
+      label: intl.formatMessage({ id: "part5.service.paas.label" }),
+      blurb: intl.formatMessage({ id: "part5.service.paas.blurb" }),
+      monthlyOpsOverhead: 2500,
+      controlBonus: +2,
+      lockInRisk: "med" as const,
+      effortScore: 45,
+    },
+    saas: {
+      label: intl.formatMessage({ id: "part5.service.saas.label" }),
+      blurb: intl.formatMessage({ id: "part5.service.saas.blurb" }),
+      monthlyOpsOverhead: 800,
+      controlBonus: -6,
+      lockInRisk: "high" as const,
+      effortScore: 20,
+    },
+  }), [intl]);
+
+  const deploymentMeta = useMemo(() => ({
+    public: {
+      label: intl.formatMessage({ id: "part5.deployment.public.label" }),
+      blurb: intl.formatMessage({ id: "part5.deployment.public.blurb" }),
+      fixedInfra: 0,
+      variablePerKUsers: 180,
+      elasticity: 90,
+      baseCompliance: 70,
+    },
+    private: {
+      label: intl.formatMessage({ id: "part5.deployment.private.label" }),
+      blurb: intl.formatMessage({ id: "part5.deployment.private.blurb" }),
+      fixedInfra: 12000,
+      variablePerKUsers: 60,
+      elasticity: 55,
+      baseCompliance: 90,
+    },
+    hybrid: {
+      label: intl.formatMessage({ id: "part5.deployment.hybrid.label" }),
+      blurb: intl.formatMessage({ id: "part5.deployment.hybrid.blurb" }),
+      fixedInfra: 4000,
+      variablePerKUsers: 110,
+      elasticity: 80,
+      baseCompliance: 85,
+    },
+  }), [intl]);
 
   useEffect(() => {
     setService(null);
@@ -284,7 +235,6 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
     setShowCompare(true);
   }, [scenarioIdx, scenario.defaultUsers]);
 
-  // Pre-compute all combos for comparison
   const allCombos = useMemo(() => {
     const services: ServiceModel[] = ["iaas", "paas", "saas"];
     const deployments: DeploymentModel[] = ["public", "private", "hybrid"];
@@ -293,7 +243,7 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
       deployments.map((d) => ({
         service: s,
         deployment: d,
-        metrics: computeMetrics(s, d, users, scenario),
+        metrics: computeMetrics(s, d, users, scenario, serviceMeta, deploymentMeta),
       }))
     );
 
@@ -303,10 +253,9 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
       return { ...c, metrics: { ...c.metrics, fit, explain: c.metrics.explain } as Metrics, affordability };
     });
 
-    // Sort by fit descending
     withFit.sort((a, b) => b.metrics.fit - a.metrics.fit);
     return withFit;
-  }, [users, scenario]);
+  }, [users, scenario, serviceMeta, deploymentMeta]);
 
   const selected =
     service && deployment
@@ -319,13 +268,11 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
     if (!selected) return;
     setEvaluated(true);
 
-    // Award points: exact top = +7, within top 3 = +5, else +3
     const rank = allCombos.findIndex(
       (c) => c.service === selected.service && c.deployment === selected.deployment
     );
     const basePoints = rank === 0 ? 7 : rank <= 2 ? 5 : 3;
 
-    // Bonus if the selection matches one of the scenario's pedagogical "ideal" combos
     const matchesIdeal = scenario.idealCombos.some(
       (x) => x.service === selected.service && x.deployment === selected.deployment
     );
@@ -335,17 +282,21 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
   };
 
   const handleNext = () => {
-    if (scenarioIdx < SCENARIOS.length - 1) {
+    if (scenarioIdx < BASE_SCENARIOS.length - 1) {
       setScenarioIdx((i) => i + 1);
     } else {
       onComplete(totalScore);
     }
   };
 
-  // Helpers for UI
   const Bar = ({ value, label }: { value: number; label: string }) => (
     <div className="mb-3">
-      <div className="flex justify-between text-sm text-slate-300"><span>{label}</span><span>{Math.round(value)}/100</span></div>
+      <div className="flex justify-between text-sm text-slate-300">
+        <span>{label}</span>
+        <span>
+          <FormattedNumber value={Math.round(value)} />/100
+        </span>
+      </div>
       <div className="w-full h-2 bg-slate-700 rounded">
         <div className="h-2 rounded bg-cyan-500" style={{ width: `${clamp(value, 0, 100)}%` }} />
       </div>
@@ -356,35 +307,137 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
     <span className="text-xs bg-slate-700 text-slate-200 px-2 py-1 rounded-full border border-slate-600">{text}</span>
   );
 
+  const getFeedback = () => {
+    if (!selected) return null;
+    
+    const rank = allCombos.findIndex(
+      (c) => c.service === selected.service && c.deployment === selected.deployment
+    );
+
+    let feedbackKey: string;
+    if (rank === 0) {
+      feedbackKey = "part5.feedback.excellent";
+    } else if (rank <= 2) {
+      feedbackKey = "part5.feedback.solid";
+    } else {
+      feedbackKey = "part5.feedback.reasonable";
+    }
+
+    const helping: string[] = [];
+    const hurting: string[] = [];
+
+    if (selected.metrics.performance >= 75) {
+      helping.push(intl.formatMessage({ id: "part5.feedback.helping.performance" }));
+    } else if (selected.metrics.performance < 60) {
+      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.performance" }));
+    }
+
+    if (selected.metrics.compliance >= 80) {
+      helping.push(intl.formatMessage({ id: "part5.feedback.helping.compliance" }));
+    } else if (selected.metrics.compliance < 65) {
+      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.compliance" }));
+    }
+
+    if (selected.metrics.ease >= 70) {
+      helping.push(intl.formatMessage({ id: "part5.feedback.helping.effort" }));
+    } else if (selected.metrics.ease < 50) {
+      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.effort" }));
+    }
+
+    return (
+      <div className="bg-slate-900/50 rounded-xl p-5 mb-4 border border-cyan-500/30">
+        <div className="text-white font-semibold text-lg mb-2">
+          <FormattedMessage id={feedbackKey} />
+        </div>
+        <p className="text-slate-300 mb-3">
+          <FormattedMessage
+            id="part5.feedback.details"
+            values={{
+              yourFit: selected.metrics.fit,
+              topService: serviceMeta[topFit.service].label,
+              topDeployment: deploymentMeta[topFit.deployment].label,
+              topFit: topFit.metrics.fit,
+            }}
+          />
+        </p>
+        <div className="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <div className="text-emerald-300 font-semibold mb-1">
+              <FormattedMessage id="part5.feedback.helping.label" />
+            </div>
+            <div className="text-slate-300">
+              {helping.length > 0 ? helping.join(", ") : intl.formatMessage({ id: "part5.feedback.helping.none" })}
+            </div>
+          </div>
+          <div>
+            <div className="text-orange-300 font-semibold mb-1">
+              <FormattedMessage id="part5.feedback.hurting.label" />
+            </div>
+            <div className="text-slate-300">
+              {hurting.length > 0 ? hurting.join(", ") : intl.formatMessage({ id: "part5.feedback.hurting.none" })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 flex items-center justify-center p-4">
       <div className="max-w-6xl w-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border border-indigo-500/20">
-        {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">Cloud Design Activity</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
+          <FormattedMessage id="part5.title" />
+        </h1>
         <p className="text-slate-300 text-center mb-6">
-          Choose a <b>service model</b> and a <b>deployment model</b> for each scenario. Adjust the users to see trade‑offs. Then evaluate your pick.
+          <FormattedMessage id="part5.description" />
         </p>
 
-        {/* Scenario card */}
         <div className="bg-slate-900/50 rounded-xl p-5 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <p className="text-cyan-400 font-semibold">Scenario {scenarioIdx + 1} of {SCENARIOS.length}</p>
+            <p className="text-cyan-400 font-semibold">
+              <FormattedMessage
+                id="part5.scenario.label"
+                values={{
+                  current: scenarioIdx + 1,
+                  total: BASE_SCENARIOS.length,
+                }}
+              />
+            </p>
             <div className="flex gap-2">
-              <Pill text={`Users: ${users.toLocaleString()}`} />
-              <Pill text={`Weights → Cost ${Math.round(scenario.weights.cost*100)}%, Perf ${Math.round(scenario.weights.performance*100)}%, Compliance ${Math.round(scenario.weights.compliance*100)}%, Effort ${Math.round(scenario.weights.effort*100)}%`} />
+              <Pill
+                text={intl.formatMessage(
+                  { id: "part5.scenario.pill.users" },
+                  { count: users }
+                )}
+              />
+              <Pill
+                text={intl.formatMessage(
+                  { id: "part5.scenario.pill.weights" },
+                  {
+                    cost: Math.round(scenario.weights.cost * 100),
+                    perf: Math.round(scenario.weights.performance * 100),
+                    compliance: Math.round(scenario.weights.compliance * 100),
+                    effort: Math.round(scenario.weights.effort * 100),
+                  }
+                )}
+              />
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-white mb-1">{scenario.title}</h2>
-          <p className="text-slate-300">{scenario.description}</p>
+          <h2 className="text-2xl font-bold text-white mb-1">
+            <FormattedMessage id={scenario.titleKey} />
+          </h2>
+          <p className="text-slate-300">
+            <FormattedMessage id={scenario.descriptionKey} />
+          </p>
         </div>
 
-        {/* Controls */}
         <div className="grid md:grid-cols-3 gap-6 mb-6">
-          {/* Service selection */}
           <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">1) Choose a Service Model</p>
+            <p className="text-white font-semibold mb-3">
+              <FormattedMessage id="part5.service.heading" />
+            </p>
             {(["iaas", "paas", "saas"] as ServiceModel[]).map((m) => {
-              const meta = SERVICE_META[m];
+              const meta = serviceMeta[m];
               const disabled = m === "saas" && scenario.saasApplicable === false;
               return (
                 <button
@@ -400,19 +453,30 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
                   <div className="text-slate-100 font-semibold">{meta.label}</div>
                   <div className="text-slate-400 text-sm">{meta.blurb}</div>
                   <div className="flex gap-2 mt-2">
-                    <Pill text={`Ops overhead: ${dollars(meta.monthlyOpsOverhead)}`} />
-                    <Pill text={`Lock‑in: ${meta.lockInRisk}`} />
+                    <Pill
+                      text={intl.formatMessage(
+                        { id: "part5.service.pill.ops" },
+                        { cost: dollars(meta.monthlyOpsOverhead) }
+                      )}
+                    />
+                    <Pill
+                      text={intl.formatMessage(
+                        { id: "part5.service.pill.lockin" },
+                        { risk: meta.lockInRisk }
+                      )}
+                    />
                   </div>
                 </button>
               );
             })}
           </div>
 
-          {/* Deployment selection */}
           <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">2) Choose a Deployment Model</p>
+            <p className="text-white font-semibold mb-3">
+              <FormattedMessage id="part5.deployment.heading" />
+            </p>
             {(["public", "private", "hybrid"] as DeploymentModel[]).map((m) => {
-              const meta = DEPLOYMENT_META[m];
+              const meta = deploymentMeta[m];
               return (
                 <button
                   key={m}
@@ -425,19 +489,37 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
                   <div className="text-slate-100 font-semibold">{meta.label}</div>
                   <div className="text-slate-400 text-sm">{meta.blurb}</div>
                   <div className="flex gap-2 mt-2">
-                    <Pill text={`Fixed: ${dollars(meta.fixedInfra)}`} />
-                    <Pill text={`+ $${meta.variablePerKUsers}/1k users`} />
-                    <Pill text={`Elasticity ${meta.elasticity}/100`} />
+                    <Pill
+                      text={intl.formatMessage(
+                        { id: "part5.deployment.pill.fixed" },
+                        { cost: dollars(meta.fixedInfra) }
+                      )}
+                    />
+                    <Pill
+                      text={intl.formatMessage(
+                        { id: "part5.deployment.pill.variable" },
+                        { cost: meta.variablePerKUsers }
+                      )}
+                    />
+                    <Pill
+                      text={intl.formatMessage(
+                        { id: "part5.deployment.pill.elasticity" },
+                        { score: meta.elasticity }
+                      )}
+                    />
                   </div>
                 </button>
               );
             })}
           </div>
 
-          {/* Users slider */}
           <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">3) Adjust Scale</p>
-            <div className="text-slate-300 mb-2">Active users: <b>{users.toLocaleString()}</b></div>
+            <p className="text-white font-semibold mb-3">
+              <FormattedMessage id="part5.scale.heading" />
+            </p>
+            <div className="text-slate-300 mb-2">
+              <FormattedMessage id="part5.scale.users" values={{ count: users }} />
+            </div>
             <input
               type="range"
               min={scenario.minUsers}
@@ -446,44 +528,61 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
               value={users}
               onChange={(e) => setUsers(Number(e.target.value))}
               className="w-full h-2 bg-slate-700 rounded-lg appearance-none accent-cyan-500"
-              aria-label="Active users"
+              aria-label={intl.formatMessage({ id: "part5.scale.users" }, { count: users })}
             />
             <div className="flex justify-between text-slate-400 text-xs mt-1">
-              <span>{scenario.minUsers.toLocaleString()}</span>
-              <span>{scenario.maxUsers.toLocaleString()}</span>
+              <span>
+                <FormattedNumber value={scenario.minUsers} />
+              </span>
+              <span>
+                <FormattedNumber value={scenario.maxUsers} />
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Metrics panel */}
         <div className="bg-slate-900/50 rounded-xl p-5 mb-4">
           <div className="flex items-center justify-between gap-2 mb-3">
-            <p className="text-white font-semibold">4) See Trade‑offs</p>
+            <p className="text-white font-semibold">
+              <FormattedMessage id="part5.tradeoffs.heading" />
+            </p>
             <button
               className="text-xs px-3 py-1 rounded border border-slate-600 text-slate-200 hover:bg-slate-800"
               onClick={() => setShowCompare((s) => !s)}
             >
-              {showCompare ? "Hide" : "Show"} compare‑all table
+              <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
             </button>
           </div>
 
           {selected ? (
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Selected metrics */}
               <div>
                 <div className="text-slate-200 font-semibold mb-1">
-                  Your selection: <span className="text-cyan-300">{SERVICE_META[selected.service].label}</span> +{" "}
-                  <span className="text-blue-300">{DEPLOYMENT_META[selected.deployment].label}</span>
+                  <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
+                  <span className="text-cyan-300">{serviceMeta[selected.service].label}</span> +{" "}
+                  <span className="text-blue-300">{deploymentMeta[selected.deployment].label}</span>
                 </div>
                 <div className="text-slate-400 text-sm mb-2">
-                  Estimated monthly cost: <b className="text-cyan-300">{dollars(selected.metrics.cost)}</b>
+                  <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
+                  <b className="text-cyan-300">{dollars(selected.metrics.cost)}</b>
                 </div>
-                <Bar value={selected.metrics.performance} label="Scale & Performance" />
-                <Bar value={selected.metrics.compliance} label="Compliance & Control" />
-                <Bar value={selected.metrics.ease} label="Ease of Operations" />
+                <Bar
+                  value={selected.metrics.performance}
+                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.performance" })}
+                />
+                <Bar
+                  value={selected.metrics.compliance}
+                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.compliance" })}
+                />
+                <Bar
+                  value={selected.metrics.ease}
+                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.ease" })}
+                />
 
                 <div className="mt-3 text-slate-300 text-sm">
-                  <div className="font-semibold mb-1">Why it scores this way:</div>
+                  <div className="font-semibold mb-1">
+                    <FormattedMessage id="part5.tradeoffs.explain.heading" />
+                  </div>
                   <ul className="list-disc ml-5 space-y-1">
                     {selected.metrics.explain.map((x, i) => (
                       <li key={i}>{x}</li>
@@ -492,53 +591,84 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
                 </div>
 
                 <div className="mt-4 text-slate-200">
-                  <span className="mr-2">Fit Score (weighted for this scenario):</span>
-                  <span className="text-xl font-bold text-emerald-400">{selected.metrics.fit}/100</span>
+                  <FormattedMessage id="part5.tradeoffs.fit.label" />{" "}
+                  <span className="text-xl font-bold text-emerald-400">
+                    <FormattedNumber value={selected.metrics.fit} />/100
+                  </span>
                 </div>
               </div>
 
-              {/* Top recommendation */}
               <div className="bg-slate-800/40 rounded-lg p-4 border border-emerald-500/30">
                 <div className="flex items-center justify-between">
-                  <div className="text-slate-200 font-semibold">Top recommended option</div>
+                  <div className="text-slate-200 font-semibold">
+                    <FormattedMessage id="part5.top.heading" />
+                  </div>
                   <span className="text-xs text-emerald-300 bg-emerald-900/30 border border-emerald-700 px-2 py-0.5 rounded">
-                    Highest Fit Score
+                    <FormattedMessage id="part5.top.badge" />
                   </span>
                 </div>
                 <div className="mt-2 text-slate-200">
                   <div>
-                    <span className="text-emerald-300">{SERVICE_META[topFit.service].label}</span> +{" "}
-                    <span className="text-emerald-300">{DEPLOYMENT_META[topFit.deployment].label}</span>
+                    <span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> +{" "}
+                    <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span>
                   </div>
                   <div className="text-slate-400 text-sm">
-                    Cost: <b className="text-cyan-300">{dollars(topFit.metrics.cost)}</b> · Fit:{" "}
-                    <b className="text-emerald-300">{topFit.metrics.fit}/100</b>
+                    <FormattedMessage id="part5.top.cost.label" />{" "}
+                    <b className="text-cyan-300">{dollars(topFit.metrics.cost)}</b> ·{" "}
+                    <FormattedMessage id="part5.top.fit.label" />{" "}
+                    <b className="text-emerald-300">
+                      <FormattedNumber value={topFit.metrics.fit} />/100
+                    </b>
                   </div>
                   <div className="mt-2">
-                    <Bar value={topFit.metrics.performance} label="Scale & Performance" />
-                    <Bar value={topFit.metrics.compliance} label="Compliance & Control" />
-                    <Bar value={topFit.metrics.ease} label="Ease of Operations" />
+                    <Bar
+                      value={topFit.metrics.performance}
+                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.performance" })}
+                    />
+                    <Bar
+                      value={topFit.metrics.compliance}
+                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.compliance" })}
+                    />
+                    <Bar
+                      value={topFit.metrics.ease}
+                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.ease" })}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           ) : (
-            <p className="text-slate-300">Choose a service model and a deployment model to see detailed trade‑offs.</p>
+            <p className="text-slate-300">
+              <FormattedMessage id="part5.tradeoffs.noselection" />
+            </p>
           )}
 
-          {/* Compare-all table */}
           {showCompare && (
             <div className="mt-6 overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="text-slate-300">
                   <tr className="text-left">
-                    <th className="py-2 pr-3">Rank</th>
-                    <th className="py-2 pr-3">Option</th>
-                    <th className="py-2 pr-3">Cost</th>
-                    <th className="py-2 pr-3">Perf</th>
-                    <th className="py-2 pr-3">Compliance</th>
-                    <th className="py-2 pr-3">Ease</th>
-                    <th className="py-2 pr-3">Fit</th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.rank" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.option" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.cost" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.perf" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.compliance" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.ease" />
+                    </th>
+                    <th className="py-2 pr-3">
+                      <FormattedMessage id="part5.table.fit" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="text-slate-200">
@@ -549,92 +679,67 @@ export default function Part5CloudDesignerV2({ onComplete }: Part5CloudDesignerP
                     >
                       <td className="py-2 pr-3 text-slate-400">{i + 1}</td>
                       <td className="py-2 pr-3">
-                        <div className="font-medium">{SERVICE_META[c.service].label}</div>
-                        <div className="text-slate-400 text-xs">{DEPLOYMENT_META[c.deployment].label}</div>
+                        <div className="font-medium">{serviceMeta[c.service].label}</div>
+                        <div className="text-slate-400 text-xs">{deploymentMeta[c.deployment].label}</div>
                       </td>
                       <td className="py-2 pr-3">{dollars(c.metrics.cost)}</td>
-                      <td className="py-2 pr-3">{Math.round(c.metrics.performance)}</td>
-                      <td className="py-2 pr-3">{Math.round(c.metrics.compliance)}</td>
-                      <td className="py-2 pr-3">{Math.round(c.metrics.ease)}</td>
-                      <td className="py-2 pr-3 font-semibold">{c.metrics.fit}</td>
+                      <td className="py-2 pr-3">
+                        <FormattedNumber value={Math.round(c.metrics.performance)} />
+                      </td>
+                      <td className="py-2 pr-3">
+                        <FormattedNumber value={Math.round(c.metrics.compliance)} />
+                      </td>
+                      <td className="py-2 pr-3">
+                        <FormattedNumber value={Math.round(c.metrics.ease)} />
+                      </td>
+                      <td className="py-2 pr-3 font-semibold">
+                        <FormattedNumber value={c.metrics.fit} />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <div className="text-xs text-slate-400 mt-2">
-                Fit = weighted combination of affordability (cheaper is better), performance, compliance/control, and ease of operations, using scenario weights above.
+                <FormattedMessage id="part5.table.note" />
               </div>
             </div>
           )}
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-col items-center gap-3">
-          {!evaluated && selected && (
-            <button
-              onClick={handleEvaluate}
-              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-lg font-bold hover:from-green-700 hover:to-emerald-700 transition shadow-lg hover:shadow-xl"
-            >
-              Evaluate my choice
-            </button>
-          )}
+        {evaluated && getFeedback()}
 
-          {evaluated && selected && (
-            <div className="w-full bg-slate-900/50 rounded-xl p-4 border border-slate-700">
-              {/* Feedback logic */}
-              <div className="text-slate-200 text-lg mb-1">
-                {selected.metrics.fit === topFit.metrics.fit
-                  ? "✅ Excellent — you chose the top‑ranked option for this scenario."
-                  : allCombos.findIndex((c) => c.service === selected.service && c.deployment === selected.deployment) <= 2
-                  ? "👍 Solid — your pick is among the top three for this scenario."
-                  : "💡 Reasonable, but there are options that fit better for this scenario."}
-              </div>
-              <div className="text-slate-300 text-sm">
-                Your Fit Score: <b className="text-emerald-300">{selected.metrics.fit}/100</b>. Top option:{" "}
-                <b className="text-emerald-300">
-                  {SERVICE_META[topFit.service].label} + {DEPLOYMENT_META[topFit.deployment].label} ({topFit.metrics.fit}/100)
-                </b>.
-              </div>
-              <div className="mt-2 text-slate-400 text-sm">
-                Factors helping your choice:{" "}
-                <b>
-                  {[
-                    selected.metrics.performance >= 80 ? "performance" : null,
-                    selected.metrics.compliance >= 80 ? "compliance" : null,
-                    selected.metrics.ease >= 70 ? "low ops effort" : null,
-                  ]
-                    .filter(Boolean)
-                    .join(", ") || "none highlighted"}
-                </b>
-                . Factors hurting your choice:{" "}
-                <b>
-                  {[
-                    selected.metrics.performance < 60 ? "performance" : null,
-                    selected.metrics.compliance < 60 ? "compliance" : null,
-                    selected.metrics.ease < 50 ? "ops effort" : null,
-                  ]
-                    .filter(Boolean)
-                    .join(", ") || "none highlighted"}
-                </b>
-                .
-              </div>
-            </div>
-          )}
+        <div className="flex justify-between items-center gap-4">
+          <button
+            onClick={handleEvaluate}
+            disabled={!service || !deployment || evaluated}
+            className={`px-6 py-3 rounded-lg font-semibold transition ${
+              service && deployment && !evaluated
+                ? "bg-cyan-600 hover:bg-cyan-700 text-white"
+                : "bg-slate-700 text-slate-400 cursor-not-allowed"
+            }`}
+          >
+            <FormattedMessage id="part5.button.evaluate" />
+          </button>
 
-          {evaluated && (
-            <button
-              onClick={handleNext}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:from-purple-700 hover:to-indigo-700 transition shadow-lg hover:shadow-xl"
-            >
-              {scenarioIdx < SCENARIOS.length - 1 ? "Next scenario" : "Finish"}
-            </button>
-          )}
+          <button
+            onClick={handleNext}
+            disabled={!evaluated}
+            className={`px-6 py-3 rounded-lg font-semibold transition ${
+              evaluated
+                ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                : "bg-slate-700 text-slate-400 cursor-not-allowed"
+            }`}
+          >
+            <FormattedMessage
+              id={scenarioIdx < BASE_SCENARIOS.length - 1 ? "part5.button.next" : "part5.button.finish"}
+            />
+          </button>
         </div>
 
-        {/* Footer helper */}
-        <div className="mt-6 text-xs text-slate-500">
-          Tip for teachers: Encourage learners to toggle “Compare‑all” and move the user slider to see how rankings
-          change as scale grows. Ask: “When would you pick Hybrid over Public? Why is SaaS ideal for internal CRM?”
+        <div className="mt-6 p-4 bg-slate-900/30 rounded-lg border border-slate-700">
+          <p className="text-slate-400 text-sm italic">
+            <FormattedMessage id="part5.tip" />
+          </p>
         </div>
       </div>
     </div>
