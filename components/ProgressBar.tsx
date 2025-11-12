@@ -34,7 +34,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
       role="navigation"
       aria-label={intl.formatMessage({ id: 'progress.label' })}
     >
-      <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4">
+      <div className="max-w-7xl mx-auto px-4 py-4 sm:py-5">
         <div className="flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage, index);
