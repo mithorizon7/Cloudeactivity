@@ -150,7 +150,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     setEvaluated(true);
     
     if (isIdeal) {
-      setTotalScore(prev => prev + 10);
+      const points = scenario.id === 3 ? 6 : 7;
+      setTotalScore(prev => prev + points);
     }
   };
 

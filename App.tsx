@@ -45,7 +45,7 @@ const App: React.FC = () => {
       case ActivityStep.Part3:
         return <Part3DeploymentModels onComplete={(score) => handleNext('part3', score)} />;
       case ActivityStep.Part4:
-        return <Part4Netflix onComplete={() => handleNext('part4', 0)} />;
+        return <Part4Netflix onComplete={(score) => handleNext('part4', score)} />;
       case ActivityStep.Part5:
         return <Part5CloudDesigner onComplete={(score) => handleNext('part5', score)} />;
       case ActivityStep.Summary:

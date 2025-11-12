@@ -21,7 +21,8 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
     setSelectedAnswer(answerIndex);
     setShowFeedback(true);
     if (answerIndex === question.correctAnswer) {
-      setScore(s => s + 1);
+      const points = currentQuestionIndex === 2 ? 4 : 3;
+      setScore(s => s + points);
     }
   };
 

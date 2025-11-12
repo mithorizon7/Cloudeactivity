@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 interface Part4NetflixProps {
-  onComplete: () => void;
+  onComplete: (score: number) => void;
 }
 
 export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const [view, setView] = useState<'netflix' | 'subscriber'>('netflix');
+  const [viewedNetflix, setViewedNetflix] = useState(true);
+  const [viewedSubscriber, setViewedSubscriber] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
@@ -24,7 +26,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
 
         <div className="flex gap-4 mb-8 justify-center">
           <button
-            onClick={() => setView('netflix')}
+            onClick={() => {
+              setView('netflix');
+              setViewedNetflix(true);
+            }}
             className={`px-6 py-3 rounded-lg font-semibold transition-all transform ${
               view === 'netflix'
                 ? 'bg-red-600 text-white scale-105 shadow-lg'
@@ -35,7 +40,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
             <FormattedMessage id="part4.button.netflix" />
           </button>
           <button
-            onClick={() => setView('subscriber')}
+            onClick={() => {
+              setView('subscriber');
+              setViewedSubscriber(true);
+            }}
             className={`px-6 py-3 rounded-lg font-semibold transition-all transform ${
               view === 'subscriber'
                 ? 'bg-blue-600 text-white scale-105 shadow-lg'
@@ -143,7 +151,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
 
         <div className="text-center">
           <button
-            onClick={onComplete}
+            onClick={() => {
+              const score = viewedNetflix && viewedSubscriber ? 5 : 0;
+              onComplete(score);
+            }}
             className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-purple-700 hover:to-cyan-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             <FormattedMessage id="part4.button.continue" />

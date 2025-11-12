@@ -8,9 +8,9 @@ interface SummaryProps {
 
 const Summary: React.FC<SummaryProps> = ({ scores, onRestart }) => {
   const intl = useIntl();
-  const totalQuestions = { part1: 2, part2: 6, part3: 3, part5: 30 };
-  const totalScore = scores.part1 + scores.part2 + scores.part3 + scores.part5;
-  const maxScore = totalQuestions.part1 + totalQuestions.part2 + totalQuestions.part3 + totalQuestions.part5;
+  const maxScores = { part1: 5, part2: 10, part3: 10, part4: 5, part5: 20 };
+  const totalScore = scores.part1 + scores.part2 + scores.part3 + scores.part4 + scores.part5;
+  const maxScore = maxScores.part1 + maxScores.part2 + maxScores.part3 + maxScores.part4 + maxScores.part5;
 
   return (
     <div className="text-center bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">

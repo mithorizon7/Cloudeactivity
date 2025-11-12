@@ -21,7 +21,8 @@ const Part1Foundations: React.FC<Part1FoundationsProps> = ({ onComplete }) => {
     setSelectedAnswer(answer);
     setShowFeedback(true);
     if (answer === question.isTrue) {
-      setScore(s => s + 1);
+      const points = currentQuestionIndex === 0 ? 2 : 3;
+      setScore(s => s + points);
     }
   };
 

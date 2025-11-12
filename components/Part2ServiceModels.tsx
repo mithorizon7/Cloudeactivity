@@ -77,7 +77,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
 
     if (example) {
       if (example.model === targetModel) {
-        setScore(s => s + 1);
+        setScore(s => s + (10 / SERVICE_MODEL_EXAMPLES.length));
         setFeedback({ type: 'correct', message: intl.formatMessage({ id: example.explanationKey }), messageKey: example.explanationKey });
       } else {
         const el = document.getElementById(example.id);
@@ -183,7 +183,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
       </div>
        {allCorrect && (
           <button 
-            onClick={() => onComplete(score)} 
+            onClick={() => onComplete(Math.round(score))} 
             className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold py-3 px-4 rounded-full hover:scale-105 transform transition-transform animate-fade-in"
             aria-label={intl.formatMessage({ id: 'part2.button.continue' })}
           >
