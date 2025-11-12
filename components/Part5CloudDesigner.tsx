@@ -116,7 +116,8 @@ function computeMetrics(
   users: number,
   scenario: Scenario,
   serviceMeta: any,
-  deploymentMeta: any
+  deploymentMeta: any,
+  intl: any
 ): Metrics {
   const s = serviceMeta[service];
   const d = deploymentMeta[deployment];
@@ -137,10 +138,40 @@ function computeMetrics(
   let ease = clamp(100 - s.effortScore - (deployment === "hybrid" ? 6 : 0), 10, 95);
 
   const explain: string[] = [
-    `Cost combines ${d.label.toLowerCase()} infra ${dollars(infraCost)} + ${s.label.split(" ")[0]} platform/ops ${dollars(platformOpsCost)}.`,
-    `${d.label} elasticity (${d.elasticity}/100) ${deployment === "private" ? "drops more near peak without capacity planning" : "handles spikes better"}, so at ${Math.round(loadFactor * 100)}% of peak your performance score is ${Math.round(perf)}.`,
-    `Compliance/control is influenced by ${d.label} (${d.baseCompliance}/100) and ${s.label.split(" ")[0]} control bonus (${s.controlBonus >= 0 ? "+" : ""}${s.controlBonus}).`,
-    `Operational effort is mostly driven by the service model; ${s.label.split(" ")[0]} implies ${100 - ease}/100 effort (lower ease).${deployment === "hybrid" ? " Hybrid adds some integration overhead." : ""}`,
+    intl.formatMessage(
+      { id: "part5.explanation.cost" },
+      {
+        deploymentLabel: d.shortLabel,
+        infraCost: dollars(infraCost),
+        serviceLabel: s.shortLabel,
+        platformCost: dollars(platformOpsCost),
+      }
+    ),
+    intl.formatMessage(
+      { id: deployment === "private" ? "part5.explanation.performance.private" : "part5.explanation.performance.public" },
+      {
+        deploymentLabel: d.label,
+        elasticity: d.elasticity,
+        loadPercent: Math.round(loadFactor * 100),
+        perfScore: Math.round(perf),
+      }
+    ),
+    intl.formatMessage(
+      { id: "part5.explanation.compliance" },
+      {
+        deploymentLabel: d.label,
+        baseCompliance: d.baseCompliance,
+        serviceLabel: s.shortLabel,
+        controlBonus: (s.controlBonus >= 0 ? "+" : "") + s.controlBonus,
+      }
+    ),
+    intl.formatMessage(
+      { id: "part5.explanation.effort" },
+      {
+        serviceLabel: s.shortLabel,
+        effortScore: 100 - ease,
+      }
+    ) + (deployment === "hybrid" ? intl.formatMessage({ id: "part5.explanation.effort.hybrid" }) : ""),
   ];
 
   return { cost, performance: perf, compliance, ease, fit: 0, explain };
@@ -176,6 +207,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const serviceMeta = useMemo(() => ({
     iaas: {
       label: intl.formatMessage({ id: "part5.service.iaas.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.service.iaas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.iaas.blurb" }),
       monthlyOpsOverhead: 6000,
       controlBonus: +8,
@@ -184,6 +216,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     },
     paas: {
       label: intl.formatMessage({ id: "part5.service.paas.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.service.paas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.paas.blurb" }),
       monthlyOpsOverhead: 2500,
       controlBonus: +2,
@@ -192,6 +225,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     },
     saas: {
       label: intl.formatMessage({ id: "part5.service.saas.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.service.saas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.saas.blurb" }),
       monthlyOpsOverhead: 800,
       controlBonus: -6,
@@ -203,6 +237,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const deploymentMeta = useMemo(() => ({
     public: {
       label: intl.formatMessage({ id: "part5.deployment.public.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.deployment.public.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.public.blurb" }),
       fixedInfra: 0,
       variablePerKUsers: 180,
@@ -211,6 +246,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     },
     private: {
       label: intl.formatMessage({ id: "part5.deployment.private.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.deployment.private.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.private.blurb" }),
       fixedInfra: 12000,
       variablePerKUsers: 60,
@@ -219,6 +255,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     },
     hybrid: {
       label: intl.formatMessage({ id: "part5.deployment.hybrid.label" }),
+      shortLabel: intl.formatMessage({ id: "part5.deployment.hybrid.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.hybrid.blurb" }),
       fixedInfra: 4000,
       variablePerKUsers: 110,
@@ -243,7 +280,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
       deployments.map((d) => ({
         service: s,
         deployment: d,
-        metrics: computeMetrics(s, d, users, scenario, serviceMeta, deploymentMeta),
+        metrics: computeMetrics(s, d, users, scenario, serviceMeta, deploymentMeta, intl),
       }))
     );
 
@@ -255,7 +292,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
 
     withFit.sort((a, b) => b.metrics.fit - a.metrics.fit);
     return withFit;
-  }, [users, scenario, serviceMeta, deploymentMeta]);
+  }, [users, scenario, serviceMeta, deploymentMeta, intl]);
 
   const selected =
     service && deployment

@@ -72,6 +72,15 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-12**: Critical i18n fix for Part 5 explanation bullets
+  - **Problem**: Used English-specific `.split(" ")[0]` and `.toLowerCase()` string manipulation in explanation text generation
+  - **Solution**: Added 6 new shortLabel locale keys for services and deployments
+    - `part5.service.*.shortLabel` (IaaS, PaaS, SaaS)
+    - `part5.deployment.*.shortLabel` (public cloud, private cloud, hybrid cloud)
+  - **Impact**: Translators now have full control over short-form labels used in explanations across all languages
+  - **Verification**: Architect confirmed 100% i18n compliance with no language-specific hacks remaining
+  - Now fully translation-ready with zero English assumptions in dynamic text generation
+
 - **2025-11-12**: Interactive progress navigation bar with free roaming
   - **Stepper Design**: 7-stage progress bar (Intro → Part 1-5 → Summary) with circular nodes and connecting lines
   - **Visual States**: Current (gradient), Completed (checkmark), Upcoming (gray outline)

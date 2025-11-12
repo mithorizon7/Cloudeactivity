@@ -559,6 +559,10 @@
   "@part5.service.iaas.blurb": {
     "description": "Description of IaaS: emphasizes user responsibility for management, high control/flexibility, longer time to market, and increased operational overhead. OS = Operating System, ops = operations"
   },
+  "part5.service.iaas.shortLabel": "IaaS",
+  "@part5.service.iaas.shortLabel": {
+    "description": "Short label for IaaS used in explanations and comparisons. Keep as IaaS (the acronym)"
+  },
   "part5.service.paas.label": "PaaS (managed app platform)",
   "@part5.service.paas.label": {
     "description": "Label for Platform as a Service option. PaaS is a technical acronym - translate the words but keep PaaS"
@@ -567,6 +571,10 @@
   "@part5.service.paas.blurb": {
     "description": "Description of PaaS: emphasizes developer convenience, automatic scaling, and balanced trade-offs. ops = operations"
   },
+  "part5.service.paas.shortLabel": "PaaS",
+  "@part5.service.paas.shortLabel": {
+    "description": "Short label for PaaS used in explanations and comparisons. Keep as PaaS (the acronym)"
+  },
   "part5.service.saas.label": "SaaS (use an existing product)",
   "@part5.service.saas.label": {
     "description": "Label for Software as a Service option. SaaS is a technical acronym - translate the words but keep SaaS"
@@ -574,6 +582,10 @@
   "part5.service.saas.blurb": "You subscribe to software someone else runs. Fastest time‑to‑value; least control/customization.",
   "@part5.service.saas.blurb": {
     "description": "Description of SaaS: emphasizes subscription model, quickest deployment, minimal control and customization options"
+  },
+  "part5.service.saas.shortLabel": "SaaS",
+  "@part5.service.saas.shortLabel": {
+    "description": "Short label for SaaS used in explanations and comparisons. Keep as SaaS (the acronym)"
   },
   "part5.service.pill.ops": "Ops overhead: {cost}",
   "@part5.service.pill.ops": {
@@ -595,6 +607,10 @@
   "@part5.deployment.public.blurb": {
     "description": "Description of Public Cloud: emphasizes scalability, usage-based pricing, handling traffic spikes, and worldwide availability"
   },
+  "part5.deployment.public.shortLabel": "public cloud",
+  "@part5.deployment.public.shortLabel": {
+    "description": "Short lowercase label for Public Cloud used in explanations. Translate to lowercase form appropriate for your language"
+  },
   "part5.deployment.private.label": "Private Cloud / On‑Prem",
   "@part5.deployment.private.label": {
     "description": "Label for Private Cloud deployment option. On‑Prem is short for On-Premises - infrastructure in your own data center"
@@ -603,6 +619,10 @@
   "@part5.deployment.private.blurb": {
     "description": "Description of Private Cloud: emphasizes dedicated infrastructure, security/compliance benefits, and need for capacity planning"
   },
+  "part5.deployment.private.shortLabel": "private cloud",
+  "@part5.deployment.private.shortLabel": {
+    "description": "Short lowercase label for Private Cloud used in explanations. Translate to lowercase form appropriate for your language"
+  },
   "part5.deployment.hybrid.label": "Hybrid",
   "@part5.deployment.hybrid.label": {
     "description": "Label for Hybrid Cloud deployment option - combination of public and private infrastructure"
@@ -610,6 +630,10 @@
   "part5.deployment.hybrid.blurb": "Mix of private plus public burst. Strikes a balance: control where needed, elasticity for peaks.",
   "@part5.deployment.hybrid.blurb": {
     "description": "Description of Hybrid Cloud: emphasizes combining private infrastructure for baseline with public cloud for peak demand"
+  },
+  "part5.deployment.hybrid.shortLabel": "hybrid cloud",
+  "@part5.deployment.hybrid.shortLabel": {
+    "description": "Short lowercase label for Hybrid Cloud used in explanations. Translate to lowercase form appropriate for your language"
   },
   "part5.deployment.pill.fixed": "Fixed: {cost}",
   "@part5.deployment.pill.fixed": {
@@ -734,6 +758,30 @@
   "part5.button.finish": "Finish",
   "@part5.button.finish": {
     "description": "Button to complete Part 5 and view final summary after last scenario"
+  },
+  "part5.explanation.cost": "Cost combines {deploymentLabel} infra {infraCost} + {serviceLabel} platform/ops {platformCost}.",
+  "@part5.explanation.cost": {
+    "description": "Explanation of how total cost is calculated from infrastructure and platform/ops costs. deploymentLabel=deployment type, infraCost=monthly infra cost, serviceLabel=service type, platformCost=monthly ops cost"
+  },
+  "part5.explanation.performance.private": "{deploymentLabel} elasticity ({elasticity}/100) drops more near peak without capacity planning, so at {loadPercent}% of peak your performance score is {perfScore}.",
+  "@part5.explanation.performance.private": {
+    "description": "Explanation of performance score for Private cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.performance.public": "{deploymentLabel} elasticity ({elasticity}/100) handles spikes better, so at {loadPercent}% of peak your performance score is {perfScore}.",
+  "@part5.explanation.performance.public": {
+    "description": "Explanation of performance score for Public/Hybrid cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.compliance": "Compliance/control is influenced by {deploymentLabel} ({baseCompliance}/100) and {serviceLabel} control bonus ({controlBonus}).",
+  "@part5.explanation.compliance": {
+    "description": "Explanation of compliance/control score calculation. deploymentLabel=deployment type, baseCompliance=base compliance rating, serviceLabel=service type, controlBonus=control bonus with +/- sign"
+  },
+  "part5.explanation.effort": "Operational effort is mostly driven by the service model; {serviceLabel} implies {effortScore}/100 effort (lower ease).",
+  "@part5.explanation.effort": {
+    "description": "Explanation of operational effort score. serviceLabel=service type, effortScore=effort level"
+  },
+  "part5.explanation.effort.hybrid": " Hybrid adds some integration overhead.",
+  "@part5.explanation.effort.hybrid": {
+    "description": "Additional text appended to effort explanation when deployment is Hybrid to note integration complexity"
   },
   "part5.feedback.excellent": "✅ Excellent — you chose the top‑ranked option for this scenario.",
   "@part5.feedback.excellent": {
