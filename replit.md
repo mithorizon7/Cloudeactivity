@@ -72,8 +72,25 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-12**: Award-caliber visual refresh of Part 4: Perspective Matters
+  - **Design System Approach**: Implemented consistent design tokens for spacing, typography, and colors
+  - **Visual Hierarchy**: Segmented control (iOS-style), card-based layout, icon system (8 custom SVG icons)
+  - **Micro-interactions**: Smooth 150ms transitions, animated service badges, progress tracker with green dots
+  - **Accessibility**: Full WCAG 2.2 AA compliance with proper ARIA roles (tablist, tabpanel), focus rings, semantic HTML
+  - **Responsiveness**: Mobile-first fluid typography, stacking grids, touch-friendly targets
+  - **Polish**: Glassmorphism refinement, disabled states, check badges on viewed perspectives
+  - **i18n**: Added 3 new locale keys (part4.insight.label, part4.progress.label, part4.progress.viewed) with translator context
+  - All emoji replaced with icon components for proper i18n support
+
+- **2025-11-12**: Mobile accessibility and balanced scoring improvements
+  - Rebalanced scoring system: 5/10/10/5/20 (total 50 points) for sustained engagement
+  - Fixed Part 2 mobile accessibility: added dual-mode interaction (drag-and-drop + tap-to-select)
+  - Touch-friendly visual feedback: cyan highlights, "Tap here to place" instructions
+  - Part 4 now awards 5 engagement points for viewing both perspectives
+  - Fixed duplicate scoring exploit in Part 2 drag-and-drop
+
 - **2025-11-12**: Added advanced interactive learning components (Parts 4-5)
-  - **Part 4: Netflix Perspective Challenge** - Interactive toggle showing how Netflix uses PaaS while subscribers use SaaS for the same infrastructure
+  - **Part 4: Netflix Perspective Challenge** - Interactive perspective switcher showing how Netflix uses PaaS while subscribers use SaaS for the same infrastructure
   - **Part 5: Cloud Solution Designer** - Three business scenarios (gaming startup, healthcare, e-commerce) where students:
     - Choose service model (IaaS/PaaS/SaaS) and deployment model (Public/Private/Hybrid)
     - Adjust user count with interactive slider (1K-100K users)

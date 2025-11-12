@@ -487,6 +487,18 @@
   "@part4.insight": {
     "description": "Educational insight explaining the dual perspective"
   },
+  "part4.insight.label": "Key Insight",
+  "@part4.insight.label": {
+    "description": "Label for the educational insight callout box"
+  },
+  "part4.progress.label": "Explore both perspectives",
+  "@part4.progress.label": {
+    "description": "Instruction to view both Netflix and Subscriber perspectives"
+  },
+  "part4.progress.viewed": "Viewed: {count} of 2",
+  "@part4.progress.viewed": {
+    "description": "Progress counter showing how many perspectives have been explored. {count} is a number (1 or 2)"
+  },
   "part4.button.continue": "Continue to Cloud Designer",
   "@part4.button.continue": {
     "description": "Button to proceed to Part 5"
