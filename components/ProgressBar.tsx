@@ -35,7 +35,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
       aria-label={intl.formatMessage({ id: 'progress.label' })}
     >
       <div className="max-w-7xl mx-auto px-4 py-4 sm:py-5">
-        <div className="flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[60px] sm:min-h-[70px]">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage, index);
             const isCompleted = status === 'completed';
@@ -51,10 +51,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       relative rounded-full transition-all duration-300 transform
                       focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-slate-900
                       ${isCurrent 
-                        ? 'w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-purple-500/50 scale-110 focus:ring-purple-500/50' 
+                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-purple-500/50 scale-105 focus:ring-purple-500/50' 
                         : isCompleted
-                        ? 'w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 shadow-md hover:scale-110 focus:ring-cyan-500/50'
-                        : 'w-8 h-8 sm:w-10 sm:h-10 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
+                        ? 'w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-cyan-400 to-cyan-600 shadow-md hover:scale-105 focus:ring-cyan-500/50'
+                        : 'w-10 h-10 sm:w-11 sm:h-11 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
                       }
                     `}
                     aria-label={intl.formatMessage({ id: `progress.${stage}.label` })}
