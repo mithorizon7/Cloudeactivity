@@ -8,9 +8,9 @@ interface SummaryProps {
 
 const Summary: React.FC<SummaryProps> = ({ scores, onRestart }) => {
   const intl = useIntl();
-  const totalQuestions = { part1: 2, part2: 6, part3: 3 };
-  const totalScore = scores.part1 + scores.part2 + scores.part3;
-  const maxScore = totalQuestions.part1 + totalQuestions.part2 + totalQuestions.part3;
+  const totalQuestions = { part1: 2, part2: 6, part3: 3, part5: 30 };
+  const totalScore = scores.part1 + scores.part2 + scores.part3 + scores.part5;
+  const maxScore = totalQuestions.part1 + totalQuestions.part2 + totalQuestions.part3 + totalQuestions.part5;
 
   return (
     <div className="text-center bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
@@ -49,6 +49,14 @@ const Summary: React.FC<SummaryProps> = ({ scores, onRestart }) => {
           <span className="block" style={{ marginInlineStart: '1rem' }}>
             <FormattedMessage id="summary.recap.hybrid" />
           </span>
+        </p>
+        <p className="text-slate-300">
+          <strong className="text-cyan-400"><FormattedMessage id="summary.recap.perspective.title" /></strong>{' '}
+          <FormattedMessage id="summary.recap.perspective.text" />
+        </p>
+        <p className="text-slate-300">
+          <strong className="text-cyan-400"><FormattedMessage id="summary.recap.application.title" /></strong>{' '}
+          <FormattedMessage id="summary.recap.application.text" />
         </p>
       </div>
 

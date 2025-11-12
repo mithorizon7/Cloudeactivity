@@ -315,6 +315,22 @@
   "@summary.recap.hybrid": {
     "description": "Full recap item for Hybrid cloud including bullet marker"
   },
+  "summary.recap.perspective.title": "Perspective Matters:",
+  "@summary.recap.perspective.title": {
+    "description": "Section header for perspective insight recap"
+  },
+  "summary.recap.perspective.text": "The same infrastructure can be different service models depending on your role (Netflix uses PaaS, subscribers use SaaS).",
+  "@summary.recap.perspective.text": {
+    "description": "Summary of the perspective insight from Part 4"
+  },
+  "summary.recap.application.title": "Real-World Application:",
+  "@summary.recap.application.title": {
+    "description": "Section header for application skills recap"
+  },
+  "summary.recap.application.text": "When designing cloud solutions, consider security needs, cost constraints, and how usage might change over time.",
+  "@summary.recap.application.text": {
+    "description": "Summary of practical application skills from Part 5"
+  },
   "summary.score": "Your Score: {totalScore, number} / {maxScore, number}",
   "@summary.score": {
     "description": "Display of user's total score. totalScore and maxScore are numeric values showing points earned out of total possible"
@@ -346,5 +362,257 @@
   "deploymentmodel.hybrid": "Hybrid Cloud",
   "@deploymentmodel.hybrid": {
     "description": "Name of hybrid cloud deployment model"
+  },
+  "part4.title": "Part 4: Perspective Matters",
+  "@part4.title": {
+    "description": "Header for the Netflix perspective-switching section"
+  },
+  "part4.subtitle": "The same cloud infrastructure can be different service models depending on your role.",
+  "@part4.subtitle": {
+    "description": "Educational explanation of perspective in service models"
+  },
+  "part4.instructions": "Click the buttons below to switch between Netflix's perspective and a subscriber's perspective:",
+  "@part4.instructions": {
+    "description": "Instructions for the interactive perspective switcher"
+  },
+  "part4.button.netflix": "Netflix's View",
+  "@part4.button.netflix": {
+    "description": "Button to switch to Netflix company perspective"
+  },
+  "part4.button.subscriber": "Subscriber's View",
+  "@part4.button.subscriber": {
+    "description": "Button to switch to subscriber/user perspective"
+  },
+  "part4.netflix.role": "Role: Content Provider",
+  "@part4.netflix.role": {
+    "description": "Label showing Netflix's business role"
+  },
+  "part4.netflix.service": "Service Model: Platform as a Service (PaaS)",
+  "@part4.netflix.service": {
+    "description": "Service model from Netflix company's perspective - PaaS"
+  },
+  "part4.netflix.pays": "Netflix Pays For:",
+  "@part4.netflix.pays": {
+    "description": "Header for what Netflix company pays for"
+  },
+  "part4.netflix.pay1": "Hosting their streaming application",
+  "@part4.netflix.pay1": {
+    "description": "First item Netflix pays for - application hosting"
+  },
+  "part4.netflix.pay2": "Storage for their video library",
+  "@part4.netflix.pay2": {
+    "description": "Second item Netflix pays for - content storage"
+  },
+  "part4.netflix.pay3": "Bandwidth for streaming to millions",
+  "@part4.netflix.pay3": {
+    "description": "Third item Netflix pays for - network bandwidth"
+  },
+  "part4.netflix.manages": "Netflix Manages:",
+  "@part4.netflix.manages": {
+    "description": "Header for what Netflix company manages"
+  },
+  "part4.netflix.manage1": "Their streaming software",
+  "@part4.netflix.manage1": {
+    "description": "First item Netflix manages - their own software"
+  },
+  "part4.netflix.manage2": "Content library and recommendations",
+  "@part4.netflix.manage2": {
+    "description": "Second item Netflix manages - content and algorithms"
+  },
+  "part4.netflix.manage3": "User accounts and billing",
+  "@part4.netflix.manage3": {
+    "description": "Third item Netflix manages - user management"
+  },
+  "part4.netflix.provider": "Cloud Provider Manages:",
+  "@part4.netflix.provider": {
+    "description": "Header for what cloud provider manages for Netflix"
+  },
+  "part4.netflix.provider1": "Servers and infrastructure",
+  "@part4.netflix.provider1": {
+    "description": "First item cloud provider manages - servers"
+  },
+  "part4.netflix.provider2": "Security and updates",
+  "@part4.netflix.provider2": {
+    "description": "Second item cloud provider manages - security"
+  },
+  "part4.subscriber.role": "Role: End User",
+  "@part4.subscriber.role": {
+    "description": "Label showing subscriber's role as end user"
+  },
+  "part4.subscriber.service": "Service Model: Software as a Service (SaaS)",
+  "@part4.subscriber.service": {
+    "description": "Service model from subscriber's perspective - SaaS"
+  },
+  "part4.subscriber.pays": "You Pay For:",
+  "@part4.subscriber.pays": {
+    "description": "Header for what subscriber pays for"
+  },
+  "part4.subscriber.pay1": "Monthly subscription to access Netflix",
+  "@part4.subscriber.pay1": {
+    "description": "What subscriber pays for - subscription access"
+  },
+  "part4.subscriber.gets": "You Get:",
+  "@part4.subscriber.gets": {
+    "description": "Header for what subscriber receives"
+  },
+  "part4.subscriber.get1": "Instant access to stream content",
+  "@part4.subscriber.get1": {
+    "description": "First benefit - instant streaming"
+  },
+  "part4.subscriber.get2": "No software to install or maintain",
+  "@part4.subscriber.get2": {
+    "description": "Second benefit - no installation needed"
+  },
+  "part4.subscriber.get3": "Works on any device with internet",
+  "@part4.subscriber.get3": {
+    "description": "Third benefit - multi-device access"
+  },
+  "part4.subscriber.notneed": "You Don't Need to Know About:",
+  "@part4.subscriber.notneed": {
+    "description": "Header for complexity hidden from subscriber"
+  },
+  "part4.subscriber.notneed1": "Where the servers are located",
+  "@part4.subscriber.notneed1": {
+    "description": "First hidden complexity - server location"
+  },
+  "part4.subscriber.notneed2": "How the infrastructure works",
+  "@part4.subscriber.notneed2": {
+    "description": "Second hidden complexity - infrastructure details"
+  },
+  "part4.insight": "Key Insight: Netflix uses PaaS to run their business, but provides SaaS to you. The same infrastructure serves different purposes!",
+  "@part4.insight": {
+    "description": "Educational insight explaining the dual perspective"
+  },
+  "part4.button.continue": "Continue to Cloud Designer",
+  "@part4.button.continue": {
+    "description": "Button to proceed to Part 5"
+  },
+  "part5.title": "Part 5: Design Your Cloud Solution",
+  "@part5.title": {
+    "description": "Header for the cloud solution designer section"
+  },
+  "part5.subtitle": "Apply what you've learned to solve real business challenges.",
+  "@part5.subtitle": {
+    "description": "Instructions for applying knowledge"
+  },
+  "part5.scenario.label": "Scenario:",
+  "@part5.scenario.label": {
+    "description": "Label for scenario description"
+  },
+  "part5.scenario1.title": "Mobile Gaming Startup",
+  "@part5.scenario1.title": {
+    "description": "Title for gaming startup scenario"
+  },
+  "part5.scenario1.text": "You're launching a mobile game. You expect 1,000 players at launch, but it could grow to 100,000+ if it goes viral. You need to control costs but scale quickly if needed.",
+  "@part5.scenario1.text": {
+    "description": "Business scenario for mobile gaming startup with scaling needs"
+  },
+  "part5.scenario2.title": "Healthcare Records System",
+  "@part5.scenario2.title": {
+    "description": "Title for healthcare scenario"
+  },
+  "part5.scenario2.text": "A hospital needs to store patient records with strict security requirements. They have 5,000 patients with steady, predictable usage. Data cannot be shared with other organizations.",
+  "@part5.scenario2.text": {
+    "description": "Business scenario for healthcare with security and privacy requirements"
+  },
+  "part5.scenario3.title": "E-commerce Platform",
+  "@part5.scenario3.title": {
+    "description": "Title for e-commerce scenario"
+  },
+  "part5.scenario3.text": "An online store needs to handle normal traffic most of the year, but expects massive spikes during holiday sales. They want flexibility without paying for unused capacity.",
+  "@part5.scenario3.text": {
+    "description": "Business scenario for e-commerce with seasonal traffic variation"
+  },
+  "part5.choose.service": "1. Choose a Service Model:",
+  "@part5.choose.service": {
+    "description": "Step 1 instruction for choosing service model"
+  },
+  "part5.choose.deployment": "2. Choose a Deployment Model:",
+  "@part5.choose.deployment": {
+    "description": "Step 2 instruction for choosing deployment model"
+  },
+  "part5.adjust.scale": "3. Adjust Expected Users:",
+  "@part5.adjust.scale": {
+    "description": "Step 3 instruction for adjusting user scale"
+  },
+  "part5.users.current": "Current Users: {count, number}",
+  "@part5.users.current": {
+    "description": "Display of current user count from slider. count is a numeric value"
+  },
+  "part5.cost.title": "Estimated Monthly Cost:",
+  "@part5.cost.title": {
+    "description": "Header for cost estimation display"
+  },
+  "part5.cost.amount": "${amount, number}",
+  "@part5.cost.amount": {
+    "description": "Cost display with currency. amount is a numeric value"
+  },
+  "part5.performance.title": "Performance:",
+  "@part5.performance.title": {
+    "description": "Header for performance indicator"
+  },
+  "part5.performance.excellent": "Excellent",
+  "@part5.performance.excellent": {
+    "description": "Performance rating - excellent"
+  },
+  "part5.performance.good": "Good",
+  "@part5.performance.good": {
+    "description": "Performance rating - good"
+  },
+  "part5.performance.adequate": "Adequate",
+  "@part5.performance.adequate": {
+    "description": "Performance rating - adequate"
+  },
+  "part5.performance.poor": "Poor",
+  "@part5.performance.poor": {
+    "description": "Performance rating - poor"
+  },
+  "part5.button.evaluate": "Evaluate My Solution",
+  "@part5.button.evaluate": {
+    "description": "Button to check if solution is appropriate"
+  },
+  "part5.button.next": "Next Scenario",
+  "@part5.button.next": {
+    "description": "Button to move to next business scenario"
+  },
+  "part5.button.finish": "Complete Activity",
+  "@part5.button.finish": {
+    "description": "Button to finish Part 5 and see summary"
+  },
+  "part5.feedback.scenario1.ideal": "Perfect! PaaS with Public Cloud is ideal for a startup that needs to scale quickly without managing servers. You can grow from thousands to millions of users while only paying for what you use.",
+  "@part5.feedback.scenario1.ideal": {
+    "description": "Ideal solution feedback for gaming startup scenario - PaaS + Public"
+  },
+  "part5.feedback.scenario1.expensive": "This works, but Private Cloud is expensive for a startup. You're paying for dedicated infrastructure even when you have few users. Consider Public Cloud to reduce costs.",
+  "@part5.feedback.scenario1.expensive": {
+    "description": "Feedback for gaming startup with unnecessarily expensive choice"
+  },
+  "part5.feedback.scenario1.complex": "This works but might be overkill. Hybrid Cloud adds complexity. For a simple mobile game, Public Cloud alone is usually sufficient and easier to manage.",
+  "@part5.feedback.scenario1.complex": {
+    "description": "Feedback for gaming startup with unnecessarily complex choice"
+  },
+  "part5.feedback.scenario2.ideal": "Excellent choice! Private Cloud gives you the security and control required for sensitive healthcare data. The steady, predictable usage makes the fixed costs worthwhile.",
+  "@part5.feedback.scenario2.ideal": {
+    "description": "Ideal solution feedback for healthcare scenario - Private"
+  },
+  "part5.feedback.scenario2.security": "This could work, but Public Cloud may not meet strict healthcare security requirements. Patient data often requires Private or Hybrid Cloud for compliance and isolation.",
+  "@part5.feedback.scenario2.security": {
+    "description": "Feedback for healthcare with insufficient security consideration"
+  },
+  "part5.feedback.scenario3.ideal": "Great thinking! Hybrid Cloud lets you use Private for baseline traffic and burst to Public during holiday spikes. You avoid paying for peak capacity year-round.",
+  "@part5.feedback.scenario3.ideal": {
+    "description": "Ideal solution feedback for e-commerce scenario - Hybrid"
+  },
+  "part5.feedback.scenario3.waste": "This works, but you're paying for peak capacity all year when you only need it seasonally. Hybrid Cloud would let you scale up and down more cost-effectively.",
+  "@part5.feedback.scenario3.waste": {
+    "description": "Feedback for e-commerce with wasteful capacity planning"
+  },
+  "part5.feedback.scenario3.public": "Good choice! Public Cloud's auto-scaling handles traffic spikes well. Just make sure you set up auto-scaling properly to handle those holiday rushes.",
+  "@part5.feedback.scenario3.public": {
+    "description": "Feedback for e-commerce with public cloud - good alternative"
+  },
+  "part5.feedback.default": "That's an interesting choice. Think about the scenario's key requirements: security needs, cost constraints, and how usage might change over time.",
+  "@part5.feedback.default": {
+    "description": "Generic feedback for suboptimal solution choices"
   }
 }

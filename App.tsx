@@ -3,6 +3,8 @@ import Introduction from './components/Introduction';
 import Part1Foundations from './components/Part1Foundations';
 import Part2ServiceModels from './components/Part2ServiceModels';
 import Part3DeploymentModels from './components/Part3DeploymentModels';
+import Part4Netflix from './components/Part4Netflix';
+import Part5CloudDesigner from './components/Part5CloudDesigner';
 import Summary from './components/Summary';
 import ProgressBar from './components/ProgressBar';
 
@@ -11,12 +13,14 @@ export enum ActivityStep {
   Part1,
   Part2,
   Part3,
+  Part4,
+  Part5,
   Summary,
 }
 
 const App: React.FC = () => {
   const [step, setStep] = useState<ActivityStep>(ActivityStep.Intro);
-  const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0 });
+  const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
 
   const totalSteps = Object.keys(ActivityStep).length / 2 - 1; // Subtract Intro
 
@@ -26,7 +30,7 @@ const App: React.FC = () => {
   };
   
   const handleStart = () => {
-    setScores({ part1: 0, part2: 0, part3: 0 });
+    setScores({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
     setStep(ActivityStep.Part1);
   };
 
@@ -40,6 +44,10 @@ const App: React.FC = () => {
         return <Part2ServiceModels onComplete={(score) => handleNext('part2', score)} />;
       case ActivityStep.Part3:
         return <Part3DeploymentModels onComplete={(score) => handleNext('part3', score)} />;
+      case ActivityStep.Part4:
+        return <Part4Netflix onComplete={() => handleNext('part4', 0)} />;
+      case ActivityStep.Part5:
+        return <Part5CloudDesigner onComplete={(score) => handleNext('part5', score)} />;
       case ActivityStep.Summary:
         return <Summary scores={scores} onRestart={handleStart} />;
       default:
