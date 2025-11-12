@@ -1,0 +1,5 @@
+{
+  "name": "Cloud Computing Interactive Intro",
+  "description": "A 5-10 minute interactive activity to teach the core principles of cloud computing. The experience is broken into three parts: a 'Myth vs. Fact' quiz on cloud foundations, a drag-and-drop game for service models (IaaS, PaaS, SaaS), and a scenario-based quiz for deployment models (Public, Private, Hybrid).",
+  "requestFramePermissions": []
+}

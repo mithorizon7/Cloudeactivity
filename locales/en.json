@@ -1,0 +1,109 @@
+{
+  "introduction": {
+    "title": "How Cloud Computing Works",
+    "description": "This short, interactive activity will guide you through the methods and techniques of the cloud, from its foundations to its deployment.",
+    "part1Title": "Part 1: Foundations.",
+    "part1Desc": "Tackle 'Myth vs. Fact' questions about what the cloud really is.",
+    "part2Title": "Part 2: Service Models.",
+    "part2Desc": "Play a drag-and-drop game to sort IaaS, PaaS, and SaaS.",
+    "part3Title": "Part 3: Deployment Models.",
+    "part3Desc": "Solve real-world scenarios to understand Public, Private, and Hybrid clouds.",
+    "startButton": "Let's Get Started"
+  },
+  "part1": {
+    "title": "Part 1: The Foundation",
+    "subtitle": "Is the following statement a myth or a fact?",
+    "factButton": "Fact",
+    "mythButton": "Myth",
+    "correctFeedbackTitle": "Correct!",
+    "incorrectFeedbackTitle": "Not Quite!",
+    "nextButton": "Next Question",
+    "continueButton": "Continue",
+    "questions": {
+      "q1_statement": "The foundations of cloud computing are high-powered computers called servers, located in facilities called data centers.",
+      "q1_explanation": "That's right! The cloud's central innovation is placing large numbers of servers in data centers, typically located far from the individuals and organizations that access them.",
+      "q2_statement": "Cloud computing requires organizations to buy and operate their own computer equipment on-premises.",
+      "q2_explanation": "Exactly. Historically, organizations operated their own on-premises equipment. Cloud computing allows them to access resources remotely from a cloud provider instead."
+    }
+  },
+  "part2": {
+    "title": "Part 2: Service Models",
+    "subtitle": "Drag each example to the correct service model category.",
+    "examplesTitle": "Examples",
+    "correctFeedbackTitle": "Correct!",
+    "incorrectFeedbackTitle": "Not Quite...",
+    "feedbackGotItButton": "Got it",
+    "allSortedMessage": "All items sorted correctly!",
+    "continueButton": "Continue",
+    "examples": {
+      "ex1_text": "Paying for storage space that automatically scales to match the amount of data in use.",
+      "ex1_explanation": "You got it. Scalable storage is a core component of infrastructure that you rent from a provider. This is a classic IaaS offering.",
+      "ex1_hint_paas": "While a PaaS application would *use* storage, the storage service itself is a more fundamental building block. It's part of the core infrastructure.",
+      "ex1_hint_saas": "This isn't a complete application, but a raw component you'd use to build one. Which model provides these fundamental building blocks?",
+      "ex2_text": "Using Zoom for video calls or Slack for messaging.",
+      "ex2_explanation": "That's it! These are examples of complete software products that you access, typically by paying a subscription. This is Software as a Service.",
+      "ex2_hint_iaas": "With Zoom or Slack, are you managing servers or just using an app? IaaS is about renting the servers themselves. This is a level above that.",
+      "ex2_hint_paas": "PaaS is a platform for developers to *create* apps. Zoom is an app that has already been created for you to use. Which model fits that description?",
+      "ex3_text": "Operating your own software in the cloud while a provider handles and maintains the servers.",
+      "ex3_explanation": "Perfect! With PaaS, you focus on your application code, while the provider handles the underlying infrastructure and technical responsibilities, like server maintenance.",
+      "ex3_hint_iaas": "You're getting warmer! IaaS would give you the server, but you would be responsible for maintaining it. This service handles that maintenance for you.",
+      "ex3_hint_saas": "This is a model for *running* your own software, not for *using* someone else's. Which category provides that kind of platform?",
+      "ex4_text": "Accessing a file sharing service to collaborate with a team.",
+      "ex4_explanation": "Correct! A file sharing service is a ready-to-use application provided for end-users, which is the definition of SaaS.",
+      "ex4_hint_iaas": "File sharing is a feature of a complete software product. IaaS would be renting the raw storage where those files are kept.",
+      "ex4_hint_paas": "You are *using* a finished service, not *building* one. PaaS is the environment for building. What's the model for using?",
+      "ex5_text": "Using a provider's infrastructure for large-scale data processing and analytics.",
+      "ex5_explanation": "Exactly! You are renting the provider's fundamental computing resources (their infrastructure) to perform complex tasks. This is IaaS.",
+      "ex5_hint_paas": "PaaS provides a managed platform, but when you're directly utilizing raw processing power and storage for custom analytics, you're using the underlying infrastructure.",
+      "ex5_hint_saas": "This describes using core computing power, not a specific, pre-built software application. Which model is about renting raw resources?",
+      "ex6_text": "Hosting your company's custom application and its business analytics tools.",
+      "ex6_explanation": "That's right. When you deploy and run your own software and tools on a managed environment from a cloud provider, that's Platform as a Service.",
+      "ex6_hint_iaas": "You could do this with IaaS, but you'd also have to manage the operating systems and servers. PaaS handles that for you so you can focus on your app.",
+      "ex6_hint_saas": "This is about running your *own* custom application, not subscribing to one made by someone else. Which model provides a platform for your own software?",
+      "default_hint": "That doesn't seem to be the right fit. Think about the level of management provided by the service."
+    }
+  },
+  "part3": {
+    "title": "Part 3: Deployment Models",
+    "subtitle": "Read the scenario and choose the most appropriate cloud model.",
+    "correctFeedbackTitle": "Correct!",
+    "incorrectFeedbackTitle": "Good Try!",
+    "nextButton": "Next Scenario",
+    "finishButton": "Finish Activity",
+    "scenarios": {
+      "q1_scenario": "A financial firm needs to store proprietary research with greater security, requiring an encrypted VPN connection for its employees to access it.",
+      "q1_explanation": "A Private Cloud is ideal here. It offers the greatest security by imposing more restrictions on access, making it suitable for sensitive information like financial records or proprietary research.",
+      "q2_scenario": "A software company wants to deploy its app for nearly any customer to use, with easy access over standard internet connections and lower costs.",
+      "q2_explanation": "A Public Cloud is the perfect choice. They are called 'public' because nearly any customer can pay to use their servers, making them cheaper and offering easy access.",
+      "q3_scenario": "A company runs its videoconferencing software on a public cloud but stores its sensitive customer service records in a separate, more secure environment.",
+      "q3_explanation": "This is a classic Hybrid Cloud. This model involves splitting data and applications across public and private clouds to combine the benefits of both.",
+      "default_explanation": "That's a good thought, but there's a better fit. Consider the key requirements of the scenario."
+    }
+  },
+  "summary": {
+    "title": "Great Job!",
+    "description": "You've completed the introduction to how cloud computing works. Here's a quick recap of what you learned.",
+    "recapFoundationsTitle": "Foundations:",
+    "recapFoundationsDesc": "The cloud is a physical network of servers in data centers, accessed remotely.",
+    "recapServiceModelsTitle": "Service Models:",
+    "recapIaaS": "is renting a provider's cloud infrastructure (servers, storage).",
+    "recapPaaS": "is a platform to operate your own software on, where the provider handles the servers.",
+    "recapSaaS": "is paying to access another organization's ready-to-use software.",
+    "recapDeploymentModelsTitle": "Deployment Models:",
+    "recapPublic": "is shared, cost-effective, and easily accessible.",
+    "recapPrivate": "is dedicated to a single customer for greater security and control.",
+    "recapHybrid": "combines public and private clouds for flexibility.",
+    "score": "Your Score: {totalScore} / {maxScore}",
+    "restartButton": "Try Again"
+  },
+  "serviceModels": {
+    "Infrastructure as a Service (IaaS)": "Infrastructure as a Service (IaaS)",
+    "Platform as a Service (PaaS)": "Platform as a Service (PaaS)",
+    "Software as a Service (SaaS)": "Software as a Service (SaaS)"
+  },
+  "deploymentModels": {
+    "Public Cloud": "Public Cloud",
+    "Private Cloud": "Private Cloud",
+    "Hybrid Cloud": "Hybrid Cloud"
+  }
+}
