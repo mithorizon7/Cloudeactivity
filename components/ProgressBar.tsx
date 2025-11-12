@@ -44,7 +44,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
             
             return (
               <React.Fragment key={stage}>
-                <div className="flex flex-col items-center gap-1 sm:gap-2 flex-shrink-0">
+                <div className="flex flex-col items-center gap-1 sm:gap-2 flex-shrink-0 relative z-10">
                   <button
                     onClick={() => onNavigate(stage)}
                     className={`
@@ -60,9 +60,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     aria-label={intl.formatMessage({ id: `progress.${stage}.label` })}
                     aria-current={isCurrent ? 'step' : undefined}
                   >
-                    {isCurrent && (
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 animate-ping opacity-75" />
-                    )}
                     <div className="relative w-full h-full flex items-center justify-center">
                       {isCompleted ? (
                         <CheckIcon />
@@ -92,7 +89,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                 {index < STAGES.length - 1 && (
                   <div 
                     className={`
-                      h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500
+                      h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500 relative z-0
                       ${index < currentIndex
                         ? 'bg-gradient-to-r from-cyan-500 to-purple-600'
                         : 'bg-slate-700'
