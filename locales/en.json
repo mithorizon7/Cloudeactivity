@@ -287,33 +287,33 @@
   "@summary.recap.servicemodels.title": {
     "description": "Section header for service models recap"
   },
-  "summary.recap.iaas": "is renting a provider's cloud infrastructure (servers, storage).",
+  "summary.recap.iaas": "- IaaS is renting a provider's cloud infrastructure (servers, storage).",
   "@summary.recap.iaas": {
-    "description": "Definition of IaaS to complete the sentence 'IaaS is renting...'. IaaS is an acronym for Infrastructure as a Service"
+    "description": "Full recap item for IaaS including bullet marker. IaaS is an acronym for Infrastructure as a Service - translate the words but keep the acronym"
   },
-  "summary.recap.paas": "is a platform to operate your own software on, where the provider handles the servers.",
+  "summary.recap.paas": "- PaaS is a platform to operate your own software on, where the provider handles the servers.",
   "@summary.recap.paas": {
-    "description": "Definition of PaaS to complete the sentence 'PaaS is a platform...'. PaaS is an acronym for Platform as a Service"
+    "description": "Full recap item for PaaS including bullet marker. PaaS is an acronym for Platform as a Service - translate the words but keep the acronym"
   },
-  "summary.recap.saas": "is paying to access another organization's ready-to-use software.",
+  "summary.recap.saas": "- SaaS is paying to access another organization's ready-to-use software.",
   "@summary.recap.saas": {
-    "description": "Definition of SaaS to complete the sentence 'SaaS is paying...'. SaaS is an acronym for Software as a Service"
+    "description": "Full recap item for SaaS including bullet marker. SaaS is an acronym for Software as a Service - translate the words but keep the acronym"
   },
   "summary.recap.deploymentmodels.title": "Deployment Models:",
   "@summary.recap.deploymentmodels.title": {
     "description": "Section header for deployment models recap"
   },
-  "summary.recap.public": "is shared, cost-effective, and easily accessible.",
+  "summary.recap.public": "- Public is shared, cost-effective, and easily accessible.",
   "@summary.recap.public": {
-    "description": "Summary of Public Cloud characteristics to complete 'Public [cloud] is...'"
+    "description": "Full recap item for Public cloud including bullet marker"
   },
-  "summary.recap.private": "is dedicated to a single customer for greater security and control.",
+  "summary.recap.private": "- Private is dedicated to a single customer for greater security and control.",
   "@summary.recap.private": {
-    "description": "Summary of Private Cloud characteristics to complete 'Private [cloud] is...'"
+    "description": "Full recap item for Private cloud including bullet marker"
   },
-  "summary.recap.hybrid": "combines public and private clouds for flexibility.",
+  "summary.recap.hybrid": "- Hybrid combines public and private clouds for flexibility.",
   "@summary.recap.hybrid": {
-    "description": "Summary of Hybrid Cloud characteristics to complete 'Hybrid [cloud] combines...'"
+    "description": "Full recap item for Hybrid cloud including bullet marker"
   },
   "summary.score": "Your Score: {totalScore, number} / {maxScore, number}",
   "@summary.score": {

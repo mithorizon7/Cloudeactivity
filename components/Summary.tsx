@@ -29,25 +29,25 @@ const Summary: React.FC<SummaryProps> = ({ scores, onRestart }) => {
         <p className="text-slate-300">
           <strong className="text-cyan-400"><FormattedMessage id="summary.recap.servicemodels.title" /></strong>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">IaaS</strong>{' '}<FormattedMessage id="summary.recap.iaas" />
+            <FormattedMessage id="summary.recap.iaas" />
           </span>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">PaaS</strong>{' '}<FormattedMessage id="summary.recap.paas" />
+            <FormattedMessage id="summary.recap.paas" />
           </span>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">SaaS</strong>{' '}<FormattedMessage id="summary.recap.saas" />
+            <FormattedMessage id="summary.recap.saas" />
           </span>
         </p>
          <p className="text-slate-300">
           <strong className="text-cyan-400"><FormattedMessage id="summary.recap.deploymentmodels.title" /></strong>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">Public</strong>{' '}<FormattedMessage id="summary.recap.public" />
+            <FormattedMessage id="summary.recap.public" />
           </span>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">Private</strong>{' '}<FormattedMessage id="summary.recap.private" />
+            <FormattedMessage id="summary.recap.private" />
           </span>
           <span className="block" style={{ marginInlineStart: '1rem' }}>
-            - <strong className="text-white">Hybrid</strong>{' '}<FormattedMessage id="summary.recap.hybrid" />
+            <FormattedMessage id="summary.recap.hybrid" />
           </span>
         </p>
       </div>
