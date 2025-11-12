@@ -1,0 +1,127 @@
+Here’s a tight developer brief you can drop into your engineering docs. It’s opinionated, stack-agnostic, and keeps everything you build translation-ready by default.
+
+# Build Everything Translation-Ready — Developer Instructions
+
+## 1) Non-Negotiables (apply to **all** code)
+
+* **No hard-coded user-visible text.** Externalize every string into locale files (e.g., JSON/PO/ARB/strings.xml). Keys must be stable and descriptive (not English text as keys).
+* **Use ICU MessageFormat (or MessageFormat 2) everywhere** for variables, plurals, ordinals, gender, and selections. Never concatenate strings to “build” sentences.
+* **Locale-aware formatting** via Unicode/CLDR (e.g., `Intl.NumberFormat`, `Intl.DateTimeFormat`, `Intl.ListFormat`, `Intl.PluralRules`). Never hand-roll date/number/currency/percent/list logic.
+* **Text expansion ready (≥30–50%)**: no fixed-width UI that breaks when strings grow; avoid manual line breaks; buttons/labels must reflow.
+* **RTL support** from day one: use CSS logical properties (margin-inline, padding-inline), `dir`/`dir="auto"`, and layout mirroring. No UI element should assume LTR.
+* **Bidi-safe interpolation**: wrap dynamic user/3P content with `<bdi>` (web) or equivalent to prevent direction bugs.
+* **Assets localizable**: no text baked into images/video. Provide alt text, captions, and transcripts as strings in locale files.
+* **A11y is localizable**: ARIA labels, `title`, tooltips, error text, and validation messages are strings like any other.
+* **Language negotiation & persistence**: Use BCP-47 tags (e.g., `en`, `en-GB`, `es-MX`). Order of precedence: explicit URL param > user profile setting > Accept-Language > default. Persist user choice.
+* **Safe fallbacks**: Implement region → language → default cascade (e.g., `pt-BR` → `pt` → `en`). Never crash on missing strings—log and surface a clear fallback indicator in dev/staging.
+* **Zero business logic tied to English** (no logic based on word order, capitalization, or substring matches in messages).
+
+## 2) Resource Files & Keys
+
+* **Structure**: `/locales/{locale}/app.json` (or per-domain bundles: `auth.json`, `billing.json`, etc.). Support lazy loading/code-split per locale.
+* **Keys**: `page.settings.profile.email.label` (stable path, no English in the key).
+* **Context notes**: Every string that could be ambiguous includes a brief developer comment for translators (meaning, audience, tone).
+* **Do not reuse keys** for different contexts even if English is identical.
+
+## 3) Writing Strings (patterns)
+
+* **Use selections, not concatenation**:
+
+  * Plural:
+
+    ```
+    "{count, plural, =0 {No files} one {# file} other {# files}}"
+    ```
+  * Gender/role:
+
+    ```
+    "{role, select, admin {Admin} user {User} other {Member}}"
+    ```
+  * Ordinal:
+
+    ```
+    "You finished {place, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} challenge."
+    ```
+* **Variables are named** (not positional) and carry meaning: `{minutes}`, `{productName}`.
+* **Casing is not localization**: don’t rely on `toUpperCase()` for button labels; provide a correctly cased string per locale.
+
+## 4) Formatting & Data
+
+* Dates/times: `Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short', timeZone })`.
+* Numbers/currency: `Intl.NumberFormat(locale, { style: 'currency', currency })`.
+* Lists: `Intl.ListFormat(locale, { type: 'conjunction' }).format(items)`.
+* Sorting/search: use `localeCompare` with sensitivity options or platform collation APIs.
+* Addresses/names/phones: never assume US formats; keep formatters/validators locale-aware. Store **raw** values; format on display.
+
+## 5) Layout & Styling
+
+* Use **CSS logical properties** (`padding-inline`, `text-align: start/end`) and **flex/grid**; avoid `left/right` unless absolutely necessary.
+* Mirror icons that imply direction for RTL; keep brand logos unmirrored.
+* Reserve space for **longer labels** and multi-line buttons; avoid truncation unless designed with locale-friendly ellipsizing.
+
+## 6) Backend & Data Model
+
+* Make all user-facing copy come from **message catalogs** or **localized DB fields**. For DB content that must be localized, model per-locale fields (e.g., `title_en`, `title_es`, or a child `translations` table).
+* **Emails, notifications, PDFs**: same i18n pipeline and templates; don’t fork ad-hoc.
+* **APIs**: accept/read `Accept-Language` or `X-Locale` and return localized text where appropriate; keep IDs stable and language-neutral.
+
+## 7) Build/CI Gates (fail the build if violated)
+
+* **i18n-lint**: block merges with raw string literals in UI folders (allowlist for test/debug).
+* **Pseudo-localization step** in CI & preview envs:
+
+  * Expand strings by ~40%, wrap with brackets, and swap glyphs (e.g., `Héllò` → `Ｈéļļöö`).
+  * Force RTL pseudo-locale (e.g., `ar-XB`) to test mirroring.
+* **Missing-key detector**: report coverage per bundle; no missing translations in production locales.
+* **Snapshot tests**: verify no layout overflow/clipping under pseudo-locale.
+
+## 8) QA Acceptance Checklist (Definition of Done)
+
+* No raw user-visible strings in code.
+* Works under pseudo-locale (expanded) and RTL without visual defects.
+* All buttons, labels, errors, tooltips, ARIA, alt text sourced from locale files.
+* Dates, numbers, currency, lists, and sort order are locale-aware.
+* Language can be switched at runtime without restart; selection persists.
+* Fallbacks are correct; no “undefined/missing” text appears.
+* No concatenation-based messages; all dynamic text via ICU messages.
+* Emails/notifications render with the same locale as the UI choice (or specified policy).
+* All images avoid embedded text or have localized variants.
+
+## 9) Do / Don’t (quick reference)
+
+* **Do**: use ICU messages, named placeholders, logical CSS, `Intl.*`, and pseudo-locales in CI.
+* **Don’t**: concatenate strings, assume LTR, assume US formats, or use strings as keys.
+
+## 10) Minimal Examples
+
+**React (example, but concept applies everywhere)**
+
+```tsx
+// ✅ Good
+<t id="upload.status" values={{ count }}>
+  {`{count, plural, =0 {No files} one {# file} other {# files}}`}
+</t>
+
+// ❌ Bad
+<span>{count + " files uploaded"}</span>
+```
+
+**Formatting**
+
+```ts
+new Intl.NumberFormat(locale, { style: 'currency', currency }).format(amount);
+new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short', timeZone }).format(date);
+items.sort((a,b) => a.label.localeCompare(b.label, locale, { sensitivity: 'base' }));
+```
+
+**HTML bidi safety**
+
+```html
+<span dir="auto"><bdi>{{username}}</bdi></span>
+```
+
+---
+
+If you need me to, I can turn this into a one-page “i18n Definition of Done” your team can paste into PR templates and CI rules.
+
+**Confidence:** High on the best-practice guidance above (industry-standard and stable across stacks). Medium on exact library choices for your stack (React/iOS/Android/backend) since you didn’t specify the tech; I can tailor it precisely if you share the stack.
