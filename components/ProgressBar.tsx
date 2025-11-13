@@ -63,9 +63,13 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     <div className="relative w-full h-full flex items-center justify-center">
                       {isCompleted ? (
                         <CheckIcon />
+                      ) : stage.startsWith('part') ? (
+                        <span className={`text-xs sm:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
+                          {stage.replace('part', '')}
+                        </span>
                       ) : (
                         <span className={`text-xs sm:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
-                          {index + 1}
+                          {index === 0 ? '→' : '✓'}
                         </span>
                       )}
                     </div>
