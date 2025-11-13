@@ -119,9 +119,9 @@ const Token: React.FC<{children: React.ReactNode}> = ({ children }) => (
 );
 
 const MetricBadge: React.FC<{label:string; value:React.ReactNode}> = ({ label, value }) => (
-  <div className="inline-flex h-16 w-16 sm:h-20 sm:w-20 flex-col items-center justify-center rounded-full border-2 border-slate-600 bg-slate-800/80 text-center">
-    <div className="text-[10px] sm:text-xs text-slate-300 leading-tight">{label}</div>
-    <div className="text-xs sm:text-sm font-bold text-white">{value}</div>
+  <div className="inline-flex h-16 w-16 sm:h-20 sm:w-20 xl:h-24 xl:w-24 flex-col items-center justify-center rounded-full border-2 border-slate-600 bg-slate-800/80 text-center">
+    <div className="text-[10px] sm:text-xs xl:text-sm text-slate-300 leading-tight">{label}</div>
+    <div className="text-xs sm:text-sm xl:text-base font-bold text-white">{value}</div>
   </div>
 );
 
@@ -182,11 +182,25 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     },
   }), [intl]);
 
+  // Auto-expand comparison table on desktop (lg+ breakpoint = 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setShowCompare(true);
+      }
+    };
+    handleResize(); // Check on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // reset on scenario change
   useEffect(() => {
     setService(null); setDeployment(null);
     setUsers(scenario.defaultUsers);
-    setEvaluated(false); setShowCompare(false);
+    setEvaluated(false);
+    // Auto-expand comparison table on desktop, collapse on mobile
+    setShowCompare(window.innerWidth >= 1024);
   }, [scenarioIdx, scenario.defaultUsers]);
 
   // compute all combos
@@ -265,12 +279,12 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               topDeployment: deploymentMeta[topFit.deployment].label, topFit: topFit.metrics.fit,
             }}/>
           </p>
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <div>
+          <div className="grid md:grid-cols-2 lg:flex lg:gap-6 gap-4 text-sm">
+            <div className="flex-1">
               <div className="mb-1 font-semibold text-emerald-300"><FormattedMessage id="part5.feedback.helping.label" /></div>
               <div className="text-slate-300">{helping.length ? <FormattedList type="conjunction" value={helping} /> : intl.formatMessage({ id:"part5.feedback.helping.none" })}</div>
             </div>
-            <div>
+            <div className="flex-1">
               <div className="mb-1 font-semibold text-orange-300"><FormattedMessage id="part5.feedback.hurting.label" /></div>
               <div className="text-slate-300">{hurting.length ? <FormattedList type="conjunction" value={hurting} /> : intl.formatMessage({ id:"part5.feedback.hurting.none" })}</div>
             </div>
@@ -283,28 +297,11 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   // --- UI ---
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-28 md:pb-8">
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="mx-auto w-full max-w-7xl">
         <header className="mb-6 md:mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white"><FormattedMessage id="part5.title" /></h1>
           <p className="mt-2 text-slate-300"><FormattedMessage id="part5.description" /></p>
         </header>
-
-        {/* Primer (collapsible) */}
-        {showPrimer && (
-          <SectionCard className="mb-6 bg-gradient-to-br from-[#750014]/15 to-[#8b959e]/15 border-[#973f4e]/30">
-            <div className="flex items-start justify-between">
-              <h2 className="text-lg font-semibold text-[#d5b2b8]"><FormattedMessage id="part5.primer.title" /></h2>
-              <button onClick={() => setShowPrimer(false)} className="text-xs text-slate-400 hover:text-white motion-safe:transition">
-                <FormattedMessage id="part5.primer.hide" />
-              </button>
-            </div>
-            <ul className="mt-3 space-y-2 text-sm text-slate-300 list-disc ml-5">
-              <li><FormattedMessage id="part5.primer.point1" /></li>
-              <li><FormattedMessage id="part5.primer.point2" /></li>
-              <li><FormattedMessage id="part5.primer.point3" /></li>
-            </ul>
-          </SectionCard>
-        )}
 
         {/* Scenario card spans full width */}
         <SectionCard className="mb-6">
@@ -328,10 +325,10 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           <p className="mt-1 text-slate-300"><FormattedMessage id={scenario.descriptionKey} /></p>
         </SectionCard>
 
-        {/* 12-col desktop grid: selectors left (5), reasoning right (7) */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          {/* LEFT: selectors */}
-          <div className="space-y-6 lg:col-span-5">
+        {/* Two-column desktop layout: sticky selector rail + insights panel */}
+        <div className="grid grid-cols-1 gap-6 lg:grid lg:grid-cols-[minmax(320px,380px)_minmax(0,1fr)] lg:gap-8 lg:items-start">
+          {/* LEFT: selectors (sticky on desktop) */}
+          <div className="space-y-6 lg:sticky lg:top-6 lg:self-start">
             {/* Service model (radio-cards) */}
             <SectionCard ariaLabel={intl.formatMessage({ id: "part5.service.heading" })}>
               <p className="mb-3 font-semibold text-white"><FormattedMessage id="part5.service.heading" /></p>
@@ -348,7 +345,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       aria-disabled={disabled || undefined}
                       aria-describedby={disabled ? "saas-note" : undefined}
                       onClick={() => !disabled && setService(m)}
-                      className={`w-full text-left rounded-lg border p-3 motion-safe:transition
+                      className={`w-full text-left rounded-lg border p-3 lg:p-4 xl:p-5 motion-safe:transition
                         ${selectedState ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
                         ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
                     >
@@ -381,7 +378,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     <button
                       key={m} role="radio" aria-checked={sel}
                       onClick={() => setDeployment(m)}
-                      className={`w-full text-left rounded-lg border p-4 motion-safe:transition
+                      className={`w-full text-left rounded-lg border p-4 lg:p-5 xl:p-6 motion-safe:transition
                         ${sel ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
                     >
                       <div className="mb-1 font-semibold text-slate-100">{meta.label}</div>
@@ -418,13 +415,30 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             </SectionCard>
           </div>
 
-          {/* RIGHT: reasoning and comparison */}
-          <div className="space-y-6 lg:col-span-7">
+          {/* RIGHT: insights panel with primer and results */}
+          <div className="space-y-6">
+            {/* Primer (collapsible) - desktop only in right column */}
+            {showPrimer && (
+              <SectionCard className="bg-gradient-to-br from-[#750014]/15 to-[#8b959e]/15 border-[#973f4e]/30">
+                <div className="flex items-start justify-between">
+                  <h2 className="text-base lg:text-lg font-semibold text-[#d5b2b8]"><FormattedMessage id="part5.primer.title" /></h2>
+                  <button onClick={() => setShowPrimer(false)} className="text-xs text-slate-400 hover:text-white motion-safe:transition">
+                    <FormattedMessage id="part5.primer.hide" />
+                  </button>
+                </div>
+                <ul className="mt-3 space-y-2 text-sm text-slate-300 list-disc ml-5">
+                  <li><FormattedMessage id="part5.primer.point1" /></li>
+                  <li><FormattedMessage id="part5.primer.point2" /></li>
+                  <li><FormattedMessage id="part5.primer.point3" /></li>
+                </ul>
+              </SectionCard>
+            )}
             <SectionCard ariaLabel={intl.formatMessage({ id:"part5.tradeoffs.heading" })}>
               <div className="mb-3 flex items-center justify-between gap-2">
                 <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
+                {/* Toggle button: mobile only (desktop always shows table) */}
                 <button
-                  className="rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
+                  className="lg:hidden rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
                   onClick={()=>setShowCompare(s=>!s)}
                 >
                   <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
@@ -432,7 +446,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               </div>
 
               {selected ? (
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 lg:grid-cols-2 xl:gap-8">
                   {/* Your selection */}
                   <div>
                     <div className="mb-1 font-semibold text-slate-200">
@@ -545,9 +559,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           </div>
         </div>
 
-        {/* Primary actions: sticky on mobile, inline on desktop */}
-        <div className="fixed inset-x-0 bottom-0 z-10 mx-auto max-w-6xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur md:static md:border-0 md:bg-transparent md:p-0">
-          <div className="flex items-center justify-between gap-3">
+        {/* Primary actions: sticky on mobile, inline right-aligned on desktop */}
+        <div className="fixed inset-x-0 bottom-0 z-10 mx-auto max-w-7xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur lg:static lg:border-0 lg:bg-transparent lg:p-0 lg:mt-6">
+          <div className="flex items-center justify-between lg:justify-end gap-3">
             <button
               onClick={handleEvaluate}
               disabled={!service || !deployment || evaluated}
