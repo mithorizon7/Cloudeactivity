@@ -47,7 +47,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
   
   return (
     <div className="w-full max-w-2xl mx-auto p-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
-      <h2 className="text-2xl font-bold text-cyan-400 mb-2">
+      <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] via-[#d5b2b8] to-[#d0d4d8] mb-2">
         <FormattedMessage id="part3.title" />
       </h2>
       <p className="text-slate-400 mb-6">
@@ -88,7 +88,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
           <p dir="auto"><bdi><FormattedMessage id={question.explanationKey} /></bdi></p>
           <button 
             onClick={handleNext} 
-            className="mt-4 w-full bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold py-2 px-4 rounded-full hover:scale-105 transform transition-transform"
+            className="mt-4 w-full bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
             aria-label={intl.formatMessage({ 
               id: currentQuestionIndex < DEPLOYMENT_MODEL_QUESTIONS.length - 1 ? 'part3.button.next' : 'part3.button.finish' 
             })}

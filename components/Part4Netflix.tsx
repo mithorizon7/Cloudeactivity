@@ -71,7 +71,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const allViewed = viewedNetflix && viewedSubscriber;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="max-w-5xl w-full">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
@@ -95,9 +95,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('netflix')}
               className={`
                 relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-red-500/50
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#973f4e]/50
                 ${view === 'netflix'
-                  ? 'bg-gradient-to-br from-red-600 to-red-700 text-white shadow-lg shadow-red-900/50'
+                  ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] text-white shadow-lg shadow-[#750014]/50'
                   : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                 }
               `}
@@ -116,9 +116,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('subscriber')}
               className={`
                 relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500/50
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#8b959e]/50
                 ${view === 'subscriber'
-                  ? 'bg-gradient-to-br from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-900/50'
+                  ? 'bg-gradient-to-br from-slate-900 via-[#1f2937] to-[#8b959e] text-white shadow-lg shadow-slate-900/50'
                   : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                 }
               `}
@@ -171,9 +171,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
                       <FormattedMessage id="part4.netflix.role" />
                     </h2>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/20 border border-purple-400/30 rounded-full">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
-                    <span className="text-sm font-semibold text-purple-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#53595e]/20 border border-[#8b959e]/30 rounded-full">
+                    <div className="w-2 h-2 bg-[#8b959e] rounded-full animate-pulse" />
+                    <span className="text-sm font-semibold text-[#adb4bb]">
                       <FormattedMessage id="part4.netflix.service" />
                     </span>
                   </div>
@@ -255,9 +255,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
                       <FormattedMessage id="part4.subscriber.role" />
                     </h2>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/20 border border-cyan-400/30 rounded-full">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                    <span className="text-sm font-semibold text-cyan-300">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#d0d4d8]/20 border border-[#d0d4d8]/30 rounded-full">
+                    <div className="w-2 h-2 bg-[#d0d4d8] rounded-full animate-pulse" />
+                    <span className="text-sm font-semibold text-[#d0d4d8]">
                       <FormattedMessage id="part4.subscriber.service" />
                     </span>
                   </div>
@@ -322,13 +322,13 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
           )}
         </div>
 
-        <div className="mt-6 sm:mt-8 bg-gradient-to-br from-purple-900/40 to-cyan-900/40 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-purple-400/20 shadow-lg">
+        <div className="mt-6 sm:mt-8 bg-gradient-to-br from-[#750014]/40 to-[#8b959e]/40 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-[#973f4e]/20 shadow-lg">
           <div className="flex items-start gap-3 sm:gap-4">
-            <div className="flex-shrink-0 p-2 bg-purple-500/20 rounded-lg">
+            <div className="flex-shrink-0 p-2 bg-[#973f4e]/20 rounded-lg">
               <LightBulbIcon />
             </div>
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-purple-200 mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-[#d5b2b8] mb-2">
                 <FormattedMessage id="part4.insight.label" />
               </h3>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -348,9 +348,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
             className={`
               px-8 py-4 rounded-xl font-bold text-base sm:text-lg shadow-2xl
               transition-all duration-300 transform
-              focus:outline-none focus:ring-4 focus:ring-purple-500/50 focus:ring-offset-2 focus:ring-offset-slate-900
+              focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 focus:ring-offset-2 focus:ring-offset-slate-900
               ${allViewed
-                ? 'bg-gradient-to-r from-purple-600 via-violet-600 to-cyan-600 text-white hover:from-purple-700 hover:via-violet-700 hover:to-cyan-700 hover:scale-105 hover:shadow-purple-500/50 cursor-pointer'
+                ? 'bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 hover:scale-105 hover:shadow-[#750014]/50 cursor-pointer'
                 : 'bg-slate-700 text-slate-400 cursor-not-allowed opacity-60'
               }
             `}

@@ -35,7 +35,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ type, message, onClose })
         <div className="p-4 bg-slate-900/50 rounded-b-2xl text-end">
              <button 
                onClick={onClose} 
-               className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold rounded-full shadow-lg hover:scale-105 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-cyan-300/50"
+               className="px-6 py-2 bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
                aria-label={intl.formatMessage({ id: 'part2.feedback.button.gotit' })}
              >
                 <FormattedMessage id="part2.feedback.button.gotit" />
@@ -155,7 +155,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
           onClose={handleCloseFeedback}
         />
       )}
-      <h2 className="text-2xl font-bold text-cyan-400 mb-2">
+      <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] via-[#d5b2b8] to-[#d0d4d8] mb-2">
         <FormattedMessage id="part2.title" />
       </h2>
       <p className="text-slate-400 mb-6">
@@ -172,15 +172,15 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               onClick={() => handleCategoryClick(model)}
               className={`bg-slate-900/50 p-4 rounded-lg flex flex-col items-center min-h-[200px] border-2 border-dashed transition-all ${
                 selectedExample 
-                  ? 'border-cyan-400 cursor-pointer hover:bg-slate-800/50 hover:scale-105' 
-                  : 'border-slate-600 hover:border-cyan-400'
+                  ? 'border-[#8b959e] cursor-pointer hover:bg-slate-800/50 hover:scale-105' 
+                  : 'border-slate-600 hover:border-[#8b959e]'
               }`}
             >
-              <h3 className="font-bold text-lg mb-4 text-center text-violet-400">
+              <h3 className="font-bold text-lg mb-4 text-center text-[#8b959e]">
                 <FormattedMessage id={getServiceModelKey(model)} />
               </h3>
               {selectedExample && (
-                <p className="text-xs text-cyan-300 mb-2 text-center">
+                <p className="text-xs text-[#adb4bb] mb-2 text-center">
                   <FormattedMessage id="part2.tap.place" />
                 </p>
               )}
@@ -209,7 +209,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
                   onClick={() => handleCardClick(ex)}
                   className={`p-3 rounded-md cursor-pointer transition-all ${
                     selectedExample?.id === ex.id
-                      ? 'bg-cyan-600 ring-2 ring-cyan-300 scale-105 shadow-lg'
+                      ? 'bg-[#750014] ring-2 ring-[#973f4e] scale-105 shadow-lg'
                       : 'bg-slate-700 hover:bg-slate-600 md:cursor-grab md:active:cursor-grabbing'
                   }`}
                 >
@@ -227,7 +227,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
        {allCorrect && (
           <button 
             onClick={() => onComplete(Math.round(score))} 
-            className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-cyan-500 to-violet-600 text-white font-bold py-3 px-4 rounded-full hover:scale-105 transform transition-transform animate-fade-in"
+            className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold py-3 px-4 rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform animate-fade-in focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
             aria-label={intl.formatMessage({ id: 'part2.button.continue' })}
           >
             <FormattedMessage id="part2.button.continue" />

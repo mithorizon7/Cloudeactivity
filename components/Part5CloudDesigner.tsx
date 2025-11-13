@@ -338,7 +338,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
         </span>
       </div>
       <div className="w-full h-2 bg-slate-700 rounded">
-        <div className="h-2 rounded bg-cyan-500" style={{ width: `${clamp(value, 0, 100)}%` }} />
+        <div className="h-2 rounded bg-[#22c55e]" style={{ width: `${clamp(value, 0, 100)}%` }} />
       </div>
     </div>
   );
@@ -385,7 +385,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     }
 
     return (
-      <div className="bg-slate-900/50 rounded-xl p-5 mb-4 border border-cyan-500/30">
+      <div className="bg-slate-900/50 rounded-xl p-5 mb-4 border border-[#973f4e]/30">
         <div className="text-white font-semibold text-lg mb-2">
           <FormattedMessage id={feedbackKey} />
         </div>
@@ -485,7 +485,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   disabled={disabled}
                   onClick={() => setService(m)}
                   className={`w-full text-left p-3 rounded-lg mb-2 border transition
-                    ${service === m ? "border-cyan-400 bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
+                    ${service === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
                     ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
                   aria-pressed={service === m}
                   aria-label={meta.label}
@@ -522,7 +522,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   key={m}
                   onClick={() => setDeployment(m)}
                   className={`w-full text-left p-3 rounded-lg mb-2 border transition
-                    ${deployment === m ? "border-blue-400 bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
+                    ${deployment === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
                   aria-pressed={deployment === m}
                   aria-label={meta.label}
                 >
@@ -567,7 +567,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               step={Math.max(100, Math.round((scenario.maxUsers - scenario.minUsers) / 100))}
               value={users}
               onChange={(e) => setUsers(Number(e.target.value))}
-              className="w-full h-2 bg-slate-700 rounded-lg appearance-none accent-cyan-500"
+              className="w-full h-2 bg-slate-700 rounded-lg appearance-none accent-[#8b959e]"
               aria-label={intl.formatMessage({ id: "part5.scale.users" }, { count: users })}
             />
             <div className="flex justify-between text-slate-400 text-xs mt-1">
@@ -599,12 +599,12 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <div>
                 <div className="text-slate-200 font-semibold mb-1">
                   <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
-                  <span className="text-cyan-300">{serviceMeta[selected.service].label}</span> +{" "}
-                  <span className="text-blue-300">{deploymentMeta[selected.deployment].label}</span>
+                  <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{" "}
+                  <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
                 </div>
                 <div className="text-slate-400 text-sm mb-2">
                   <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
-                  <b className="text-cyan-300">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
+                  <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
                 </div>
                 <Bar
                   value={selected.metrics.performance}
@@ -752,9 +752,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           <button
             onClick={handleEvaluate}
             disabled={!service || !deployment || evaluated}
-            className={`px-6 py-3 rounded-lg font-semibold transition ${
+            className={`px-6 py-3 rounded-lg font-semibold transition shadow-lg ${
               service && deployment && !evaluated
-                ? "bg-cyan-600 hover:bg-cyan-700 text-white"
+                ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 shadow-[#750014]/45"
                 : "bg-slate-700 text-slate-400 cursor-not-allowed"
             }`}
           >
@@ -764,9 +764,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           <button
             onClick={handleNext}
             disabled={!evaluated}
-            className={`px-6 py-3 rounded-lg font-semibold transition ${
+            className={`px-6 py-3 rounded-lg font-semibold transition shadow-lg ${
               evaluated
-                ? "bg-indigo-600 hover:bg-indigo-700 text-white"
+                ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 shadow-[#750014]/45"
                 : "bg-slate-700 text-slate-400 cursor-not-allowed"
             }`}
           >

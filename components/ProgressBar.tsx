@@ -51,9 +51,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       relative rounded-full transition-all duration-300 transform
                       focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-slate-900
                       ${isCurrent 
-                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-purple-600 shadow-lg shadow-purple-500/50 scale-105 focus:ring-purple-500/50' 
+                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#750014] to-[#973f4e] shadow-lg shadow-[#750014]/50 scale-105 focus:ring-[#ba7f89]/60' 
                         : isCompleted
-                        ? 'w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-cyan-400 to-cyan-600 shadow-md hover:scale-105 focus:ring-cyan-500/50'
+                        ? 'w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-[#22c55e] to-[#15803d] shadow-md hover:scale-105 focus:ring-[#22c55e]/50'
                         : 'w-10 h-10 sm:w-11 sm:h-11 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
                       }
                     `}
@@ -76,9 +76,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       className={`
                         text-xs sm:text-sm font-medium whitespace-nowrap transition-colors duration-200
                         ${isCurrent 
-                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400' 
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] to-[#d5b2b8]' 
                           : isCompleted
-                          ? 'text-cyan-400'
+                          ? 'text-[#22c55e]'
                           : 'text-slate-500'
                         }
                       `}
@@ -89,9 +89,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       className={`
                         text-[10px] sm:text-xs font-normal transition-colors duration-200 leading-tight
                         ${isCurrent 
-                          ? 'text-cyan-300' 
+                          ? 'text-[#adb4bb]' 
                           : isCompleted
-                          ? 'text-cyan-500/70'
+                          ? 'text-[#22c55e]/70'
                           : 'text-slate-600'
                         }
                       `}
@@ -106,7 +106,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     className={`
                       h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500 relative z-0
                       ${index < currentIndex
-                        ? 'bg-gradient-to-r from-cyan-500 to-purple-600'
+                        ? 'bg-gradient-to-r from-[#22c55e] to-[#15803d]'
                         : 'bg-slate-700'
                       }
                     `}

@@ -72,6 +72,18 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-13**: Complete MIT "garnet + steel" brand color migration
+  - **Objective**: Migrated from cyan/purple palette to MIT brand colors while maintaining dark glassy aesthetic
+  - **Background gradients**: Changed from `via-indigo-900` to `via-[#19020b]` (wine-tinted depth)
+  - **Heading gradients**: Changed from `from-cyan-400 to-purple-400` to `from-[#ba7f89] via-[#d5b2b8] to-[#d0d4d8]` (rose→silver)
+  - **Primary buttons**: Changed from `from-purple-600 via-violet-600 to-cyan-600` to `from-[#750014] via-[#973f4e] to-[#ba7f89]` (MIT garnet gradient)
+  - **Completed states**: Changed from cyan to emerald green (`from-[#22c55e] to-[#15803d]`)
+  - **Part 4 tabs**: Netflix tab uses MIT garnet, Subscriber tab uses midnight steel gradient
+  - **Service badges**: Replaced purple/cyan color-coding with steel grey hierarchy (`#53595e`, `#8b959e`, `#adb4bb`, `#d0d4d8`)
+  - **Focus rings**: Updated to `ring-[#ba7f89]/60` or `ring-[#8b959e]/70` depending on context
+  - **Files updated**: Introduction, Part1-5, Summary, ProgressBar, App.tsx (10 components total)
+  - **Verification**: Architect confirmed all cyan/purple/violet references replaced, no functional regressions
+  
 - **2025-11-13**: Comprehensive i18n fixes for Part 5 (CloudDesigner)
   - **Issue 1**: String splitting - `.split(" ")[0]` broke non-English word order
     - **Fix**: Added 6 shortLabel locale keys (part5.service.*.shortLabel, part5.deployment.*.shortLabel)
