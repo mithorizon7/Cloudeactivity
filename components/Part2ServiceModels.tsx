@@ -155,7 +155,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
           onClose={handleCloseFeedback}
         />
       )}
-      <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] via-[#d5b2b8] to-[#d0d4d8] mb-2">
+      <h2 className="text-2xl font-bold text-white mb-2">
         <FormattedMessage id="part2.title" />
       </h2>
       <p className="text-slate-400 mb-6">

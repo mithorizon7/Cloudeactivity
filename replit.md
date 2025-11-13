@@ -34,3 +34,42 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Build Tool:** Vite
 - **Styling:** Tailwind CSS (via CDN for development)
 - **Internationalization:** `react-intl` (FormatJS)
+
+## Recent Changes
+- **2025-11-13**: Improved title readability by removing gradient text
+  - **Issue**: Gradient text on main titles (h1/h2) was hard to read due to low-luminance segments
+  - **Fix**: Replaced all gradient titles with solid white text (`text-white`)
+    - Introduction title (h1)
+    - Part 1-3 titles (h2)
+    - Summary title (h1)
+    - ProgressBar current step labels
+  - **Accessibility**: Solid white text provides consistent 4.5:1+ contrast ratio (WCAG 2.1 AA compliant)
+  - **Rationale**: Gradient text created readability issues especially for low-vision users; reserved gradients for larger non-text elements (buttons, backgrounds)
+  - **Verification**: Architect confirmed change improves accessibility without compromising visual aesthetic
+
+- **2025-11-13**: Desktop-optimized layout for Part 5 (Cloud Solution Designer)
+  - **Two-Column Responsive Layout**: Implemented sticky sidebar with selector controls on desktop
+    - Changed from `lg:grid-cols-12` to `lg:grid-cols-[minmax(320px,380px)_minmax(0,1fr)]` for better desktop space utilization
+    - Left column (service/deployment/scale selectors) sticky on desktop: `lg:sticky lg:top-6`
+    - Selector controls stay visible while scrolling results on wide viewports
+    - Container widened to `max-w-7xl` for better horizontal space usage
+  - **Primer Repositioning**: Moved mental model primer from standalone section to right column
+    - Appears above trade-offs section on desktop for better contextual placement
+    - Maintains same styling and collapsible functionality
+  - **Auto-Expand Comparison Table**: Desktop viewports (≥1024px) show full comparison table by default
+    - Added resize listener to detect viewport width changes
+    - Toggle button hidden on desktop (`lg:hidden`), visible only on mobile
+    - Resets properly on scenario changes based on current viewport size
+  - **Component-Level Responsive Enhancements**:
+    - MetricBadge scaling: `h-16 w-16` → `sm:h-20 w-20` → `xl:h-24 w-24` for better desktop readability
+    - Service selector padding: `p-3` → `lg:p-4` → `xl:p-5` for improved touch/click targets
+    - Deployment selector padding: `p-4` → `lg:p-5` → `xl:p-6` with breathing room on wide screens
+    - Results grid: `lg:grid-cols-2 xl:gap-8` for side-by-side comparison on desktop
+    - Feedback layout: `lg:flex lg:gap-6` for horizontal flow instead of grid stacking
+    - Action buttons: `lg:justify-end` for right-aligned inline placement on desktop
+  - **Mobile Preservation**: All changes maintain excellent mobile responsiveness
+    - Touch targets remain ≥44px minimum
+    - Proper vertical stacking on small screens
+    - Sticky footer with action buttons on mobile
+    - No horizontal overflow across any breakpoint
+  - **Verification**: Architect confirmed desktop optimization meets all objectives with no regressions

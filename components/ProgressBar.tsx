@@ -80,7 +80,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       className={`
                         text-xs sm:text-sm font-medium whitespace-nowrap transition-colors duration-200
                         ${isCurrent 
-                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] to-[#d5b2b8]' 
+                          ? 'text-white' 
                           : isCompleted
                           ? 'text-[#22c55e]'
                           : 'text-slate-500'

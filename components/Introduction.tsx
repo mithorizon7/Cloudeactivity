@@ -10,7 +10,7 @@ const Introduction: React.FC<IntroductionProps> = ({ onStart }) => {
 
   return (
     <div className="text-center bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
-      <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ba7f89] via-[#d5b2b8] to-[#d0d4d8] mb-4">
+      <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
         <FormattedMessage id="introduction.title" />
       </h1>
       <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
