@@ -593,7 +593,23 @@
   },
   "part5.service.pill.lockin": "Lock‑in: {risk}",
   "@part5.service.pill.lockin": {
-    "description": "Pill badge showing vendor lock-in risk level. risk will be 'low', 'med', or 'high'. Lock-in refers to difficulty switching providers"
+    "description": "Pill badge showing vendor lock-in risk level. The risk variable is already translated. Lock-in refers to difficulty switching providers"
+  },
+  "part5.risk.low": "low",
+  "@part5.risk.low": {
+    "description": "Label for low vendor lock-in risk level"
+  },
+  "part5.risk.med": "med",
+  "@part5.risk.med": {
+    "description": "Label for medium vendor lock-in risk level. Use appropriate abbreviation or word for 'medium' in your language"
+  },
+  "part5.risk.high": "high",
+  "@part5.risk.high": {
+    "description": "Label for high vendor lock-in risk level"
+  },
+  "part5.currency.monthly": "${amount, number}/mo",
+  "@part5.currency.monthly": {
+    "description": "Format for displaying monthly cost. The amount variable is a raw number that will be formatted according to your locale. Adapt currency symbol and '/mo' (per month) to your locale"
   },
   "part5.deployment.heading": "2) Choose a Deployment Model",
   "@part5.deployment.heading": {
@@ -771,17 +787,17 @@
   "@part5.explanation.performance.public": {
     "description": "Explanation of performance score for Public/Hybrid cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
   },
-  "part5.explanation.compliance": "Compliance/control is influenced by {deploymentLabel} ({baseCompliance}/100) and {serviceLabel} control bonus ({controlBonus}).",
+  "part5.explanation.compliance": "Compliance/control is influenced by {deploymentLabel} ({baseCompliance}/100) and {serviceLabel} control bonus ({controlBonus, number, :: sign-always}).",
   "@part5.explanation.compliance": {
-    "description": "Explanation of compliance/control score calculation. deploymentLabel=deployment type, baseCompliance=base compliance rating, serviceLabel=service type, controlBonus=control bonus with +/- sign"
+    "description": "Explanation of compliance/control score calculation. deploymentLabel=deployment type, baseCompliance=base compliance rating, serviceLabel=service type, controlBonus=signed number. The :: sign-always ICU syntax forces sign display for translators to control formatting"
   },
   "part5.explanation.effort": "Operational effort is mostly driven by the service model; {serviceLabel} implies {effortScore}/100 effort (lower ease).",
   "@part5.explanation.effort": {
-    "description": "Explanation of operational effort score. serviceLabel=service type, effortScore=effort level"
+    "description": "Explanation of operational effort score for non-hybrid deployments. serviceLabel=service type, effortScore=effort level"
   },
-  "part5.explanation.effort.hybrid": " Hybrid adds some integration overhead.",
+  "part5.explanation.effort.hybrid": "Operational effort is mostly driven by the service model; {serviceLabel} implies {effortScore}/100 effort (lower ease). Hybrid adds some integration overhead.",
   "@part5.explanation.effort.hybrid": {
-    "description": "Additional text appended to effort explanation when deployment is Hybrid to note integration complexity"
+    "description": "Explanation of operational effort score for hybrid deployment. serviceLabel=service type, effortScore=effort level. Includes note about hybrid integration overhead. Translators control full sentence structure"
   },
   "part5.feedback.excellent": "✅ Excellent — you chose the top‑ranked option for this scenario.",
   "@part5.feedback.excellent": {

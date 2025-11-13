@@ -72,14 +72,21 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
-- **2025-11-12**: Critical i18n fix for Part 5 explanation bullets
-  - **Problem**: Used English-specific `.split(" ")[0]` and `.toLowerCase()` string manipulation in explanation text generation
-  - **Solution**: Added 6 new shortLabel locale keys for services and deployments
-    - `part5.service.*.shortLabel` (IaaS, PaaS, SaaS)
-    - `part5.deployment.*.shortLabel` (public cloud, private cloud, hybrid cloud)
-  - **Impact**: Translators now have full control over short-form labels used in explanations across all languages
-  - **Verification**: Architect confirmed 100% i18n compliance with no language-specific hacks remaining
-  - Now fully translation-ready with zero English assumptions in dynamic text generation
+- **2025-11-13**: Comprehensive i18n fixes for Part 5 (CloudDesigner)
+  - **Issue 1**: String splitting - `.split(" ")[0]` broke non-English word order
+    - **Fix**: Added 6 shortLabel locale keys (part5.service.*.shortLabel, part5.deployment.*.shortLabel)
+  - **Issue 2**: Hardcoded risk values - "low"/"med"/"high" not translatable
+    - **Fix**: Added part5.risk.low/med/high locale keys with proper translation
+  - **Issue 3**: Currency formatting - hardcoded "$" and "/mo" with English digit grouping
+    - **Fix**: Created formatMonthlyCost() using ICU message: `{amount, number}/mo`
+  - **Issue 4**: List joining - `Array.join(", ")` hardcoded English comma separator
+    - **Fix**: Replaced with FormattedList component for locale-aware conjunctions
+  - **Issue 5**: Signed number formatting - manual "+8" prefix logic
+    - **Fix**: Used ICU skeleton syntax: `{controlBonus, number, :: sign-always}`
+  - **Issue 6**: String concatenation - effort + hybrid text concatenated
+    - **Fix**: Separate full messages for hybrid vs non-hybrid with conditional selection
+  - **Impact**: Part 5 now 100% translation-ready with zero English assumptions
+  - **Verification**: Architect confirmed PASS - meets all i18n acceptance criteria
 
 - **2025-11-12**: Interactive progress navigation bar with free roaming
   - **Stepper Design**: 7-stage progress bar (Intro → Part 1-5 → Summary) with circular nodes and connecting lines

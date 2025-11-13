@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { FormattedMessage, useIntl, FormattedNumber } from "react-intl";
+import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from "react-intl";
 
 type ServiceModel = "iaas" | "paas" | "saas";
 type DeploymentModel = "public" | "private" | "hybrid";
@@ -90,8 +90,11 @@ function clamp(n: number, lo: number, hi: number) {
   return Math.max(lo, Math.min(hi, n));
 }
 
-function dollars(n: number) {
-  return `$${Math.round(n).toLocaleString()}/mo`;
+function formatMonthlyCost(n: number, intl: any): string {
+  return intl.formatMessage(
+    { id: "part5.currency.monthly" },
+    { amount: Math.round(n) }
+  );
 }
 
 function normalizeTo0_100(values: number[], value: number) {
@@ -142,9 +145,9 @@ function computeMetrics(
       { id: "part5.explanation.cost" },
       {
         deploymentLabel: d.shortLabel,
-        infraCost: dollars(infraCost),
+        infraCost: formatMonthlyCost(infraCost, intl),
         serviceLabel: s.shortLabel,
-        platformCost: dollars(platformOpsCost),
+        platformCost: formatMonthlyCost(platformOpsCost, intl),
       }
     ),
     intl.formatMessage(
@@ -162,16 +165,16 @@ function computeMetrics(
         deploymentLabel: d.label,
         baseCompliance: d.baseCompliance,
         serviceLabel: s.shortLabel,
-        controlBonus: (s.controlBonus >= 0 ? "+" : "") + s.controlBonus,
+        controlBonus: s.controlBonus,
       }
     ),
     intl.formatMessage(
-      { id: "part5.explanation.effort" },
+      { id: deployment === "hybrid" ? "part5.explanation.effort.hybrid" : "part5.explanation.effort" },
       {
         serviceLabel: s.shortLabel,
         effortScore: 100 - ease,
       }
-    ) + (deployment === "hybrid" ? intl.formatMessage({ id: "part5.explanation.effort.hybrid" }) : ""),
+    ),
   ];
 
   return { cost, performance: perf, compliance, ease, fit: 0, explain };
@@ -403,7 +406,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <FormattedMessage id="part5.feedback.helping.label" />
             </div>
             <div className="text-slate-300">
-              {helping.length > 0 ? helping.join(", ") : intl.formatMessage({ id: "part5.feedback.helping.none" })}
+              {helping.length > 0 ? <FormattedList type="conjunction" value={helping} /> : intl.formatMessage({ id: "part5.feedback.helping.none" })}
             </div>
           </div>
           <div>
@@ -411,7 +414,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <FormattedMessage id="part5.feedback.hurting.label" />
             </div>
             <div className="text-slate-300">
-              {hurting.length > 0 ? hurting.join(", ") : intl.formatMessage({ id: "part5.feedback.hurting.none" })}
+              {hurting.length > 0 ? <FormattedList type="conjunction" value={hurting} /> : intl.formatMessage({ id: "part5.feedback.hurting.none" })}
             </div>
           </div>
         </div>
@@ -493,13 +496,13 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     <Pill
                       text={intl.formatMessage(
                         { id: "part5.service.pill.ops" },
-                        { cost: dollars(meta.monthlyOpsOverhead) }
+                        { cost: formatMonthlyCost(meta.monthlyOpsOverhead, intl) }
                       )}
                     />
                     <Pill
                       text={intl.formatMessage(
                         { id: "part5.service.pill.lockin" },
-                        { risk: meta.lockInRisk }
+                        { risk: intl.formatMessage({ id: `part5.risk.${meta.lockInRisk}` }) }
                       )}
                     />
                   </div>
@@ -529,7 +532,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     <Pill
                       text={intl.formatMessage(
                         { id: "part5.deployment.pill.fixed" },
-                        { cost: dollars(meta.fixedInfra) }
+                        { cost: formatMonthlyCost(meta.fixedInfra, intl) }
                       )}
                     />
                     <Pill
@@ -601,7 +604,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                 </div>
                 <div className="text-slate-400 text-sm mb-2">
                   <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
-                  <b className="text-cyan-300">{dollars(selected.metrics.cost)}</b>
+                  <b className="text-cyan-300">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
                 </div>
                 <Bar
                   value={selected.metrics.performance}
@@ -651,7 +654,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   </div>
                   <div className="text-slate-400 text-sm">
                     <FormattedMessage id="part5.top.cost.label" />{" "}
-                    <b className="text-cyan-300">{dollars(topFit.metrics.cost)}</b> ·{" "}
+                    <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·{" "}
                     <FormattedMessage id="part5.top.fit.label" />{" "}
                     <b className="text-emerald-300">
                       <FormattedNumber value={topFit.metrics.fit} />/100
@@ -719,7 +722,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                         <div className="font-medium">{serviceMeta[c.service].label}</div>
                         <div className="text-slate-400 text-xs">{deploymentMeta[c.deployment].label}</div>
                       </td>
-                      <td className="py-2 pr-3">{dollars(c.metrics.cost)}</td>
+                      <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
                       <td className="py-2 pr-3">
                         <FormattedNumber value={Math.round(c.metrics.performance)} />
                       </td>
