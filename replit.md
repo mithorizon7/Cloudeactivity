@@ -72,6 +72,15 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-13**: Layout fixes for progress bar and Part 5 overflow
+  - **Issue 1**: Progress bar showed "5" instead of "4" on Part 4
+    - **Root cause**: Used `index + 1` which didn't account for 'intro' at index 0
+    - **Fix**: Conditional logic extracts number from stage name ('part1' → '1'), intro shows arrow (→), summary shows checkmark (✓)
+  - **Issue 2**: Part 5 content (SaaS, Hybrid options) cut off at bottom
+    - **Root cause**: `items-center` vertically centered content causing overflow without scroll
+    - **Fix**: Changed to `items-start`, added `overflow-y-auto`, increased bottom padding to `pb-32` for progress bar clearance
+  - **Verification**: Architect confirmed both fixes work correctly across viewport sizes
+
 - **2025-11-13**: Complete MIT "garnet + steel" brand color migration
   - **Objective**: Migrated from cyan/purple palette to MIT brand colors while maintaining dark glassy aesthetic
   - **Background gradients**: Changed from `via-indigo-900` to `via-[#19020b]` (wine-tinted depth)
