@@ -299,8 +299,26 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-28 md:pb-8">
       <div className="mx-auto w-full max-w-7xl">
         <header className="mb-6 md:mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white"><FormattedMessage id="part5.title" /></h1>
-          <p className="mt-2 text-slate-300"><FormattedMessage id="part5.description" /></p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4"><FormattedMessage id="part5.title" /></h1>
+          {/* 4-step instructions for clarity */}
+          <ol className="max-w-2xl mx-auto text-left space-y-2 mb-6">
+            <li className="flex items-start gap-2 text-slate-300">
+              <span className="font-bold text-[#8b959e]">1.</span>
+              <FormattedMessage id="part5.steps.1" />
+            </li>
+            <li className="flex items-start gap-2 text-slate-300">
+              <span className="font-bold text-[#8b959e]">2.</span>
+              <FormattedMessage id="part5.steps.2" />
+            </li>
+            <li className="flex items-start gap-2 text-slate-300">
+              <span className="font-bold text-[#8b959e]">3.</span>
+              <FormattedMessage id="part5.steps.3" />
+            </li>
+            <li className="flex items-start gap-2 text-slate-300">
+              <span className="font-bold text-[#8b959e]">4.</span>
+              <FormattedMessage id="part5.steps.4" />
+            </li>
+          </ol>
         </header>
 
         {/* Scenario card spans full width */}
@@ -331,7 +349,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           <div className="space-y-6 lg:sticky lg:top-6 lg:self-start">
             {/* Service model (radio-cards) */}
             <SectionCard ariaLabel={intl.formatMessage({ id: "part5.service.heading" })}>
-              <p className="mb-3 font-semibold text-white"><FormattedMessage id="part5.service.heading" /></p>
+              <p className="mb-1 font-semibold text-white"><FormattedMessage id="part5.service.heading" /></p>
+              <p className="mb-3 text-sm text-slate-400"><FormattedMessage id="part5.service.subtitle" /></p>
               <div role="radiogroup" className="space-y-2">
                 {(["iaas","paas","saas"] as ServiceModel[]).map(m => {
                   const meta = serviceMeta[m];
@@ -367,9 +386,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
 
             {/* Deployment model (radio-cards) */}
             <SectionCard ariaLabel={intl.formatMessage({ id:"part5.deployment.heading" })}>
-              <p className="mb-2 font-semibold text-white"><FormattedMessage id="part5.deployment.heading" /></p>
-              <p className="mb-2 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.instructions" /></p>
-              <p className="mb-3 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.sustainability" /></p>
+              <p className="mb-1 font-semibold text-white"><FormattedMessage id="part5.deployment.heading" /></p>
+              <p className="mb-3 text-sm text-slate-400"><FormattedMessage id="part5.deployment.subtitle" /></p>
+              <p className="mb-3 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.instructions" /></p>
               <div role="radiogroup" className="space-y-2">
                 {(["public","private","hybrid"] as DeploymentModel[]).map(m => {
                   const meta = deploymentMeta[m];

@@ -1,0 +1,306 @@
+Below is a concise **implementation brief** for the developer. It translates the issues we’re seeing in **Part5CloudDesigner (2).tsx** into prioritized changes—with exact copy, UI behaviors, and acceptance criteria. 
+
+---
+
+# Part 5 — Cloud Designer: Clarity & Layout Uplift
+
+**Goal:** Make the activity unmistakably clear for true novices, reduce cognitive load, and keep the rich trade‑off engine.
+**Primary outcomes:** (1) learners understand exactly what to do; (2) they understand the terms; (3) the UI reveals depth only when asked.
+
+---
+
+## P0 (Critical) — Must ship in this pass
+
+### 1) Rewrite the header into explicit, step‑by‑step instructions
+
+**Problem:** “Cloud Design Activity” with a short sentence doesn’t say what to do or why. Users are unsure if they’re choosing “best overall” or “best for the scenario.” 
+
+**Change:**
+
+* Replace the subheader with a 4‑step list (10–12 words each).
+* Add “for the scenario above” to the first two steps so the task is anchored.
+
+**Exact copy (i18n keys suggested):**
+
+* **Title:** `part5.title`: “Cloud Design Activity”
+* **Steps block (beneath title):**
+
+  1. `part5.steps.1`: “Read the scenario.”
+  2. `part5.steps.2`: “Choose **one Service Model** for this scenario (what you buy).”
+  3. `part5.steps.3`: “Choose **one Deployment Model** for this scenario (where it runs).”
+  4. `part5.steps.4`: “Adjust **Active Users** to explore trade‑offs, then **Evaluate** your pick.”
+
+> Rationale: “What you buy” (SaaS/PaaS/IaaS) and “where it runs” (public/private/hybrid) mirrors the articles and is the simplest mental model for novices. 
+
+**Acceptance criteria**
+
+* Four bullet steps render below the H1 on all breakpoints.
+* The phrases **“for this scenario”** appear in steps 2 and 3.
+
+---
+
+### 2) Clarify the scenario line and remove jargon (“CRM”)
+
+**Problem:** “Internal CRM for a sales team” assumes prior knowledge. 
+
+**Change:**
+
+* Replace the scenario subtitle with plain language + parenthetical.
+* Keep the scenario title id, but adjust the localized string.
+
+**Exact copy:**
+
+* `part5.scenario3.title`: “Customer‑tracking tool for a sales team (a ‘CRM’)”
+  *Example description:* “A simple app that lets salespeople log customers, notes, and deals so managers can see progress.”
+
+**Acceptance criteria**
+
+* No unexplained acronyms in scenario titles/descriptions.
+* Scenario block shows a one‑sentence purpose in plain English.
+
+---
+
+### 3) Replace the “Weights” chip with **What matters most** + tooltips
+
+**Problem:** “cost 30%, perf 20%, compliance 20%, effort 30%” is cryptic. Users don’t know the dimensions. 
+
+**Change:**
+
+* Label as **What matters most** and show **High/Med/Low** (keep exact percentages in a tooltip).
+* Add inline info chips for each dimension; each chip opens a 1‑line tooltip.
+
+**Exact copy (chips labels + tooltip content):**
+
+* **Cost** — “Approximate monthly cost of running this choice.”
+* **Speed & Scale** *(rename “Perf” in UI)* — “How well it handles load and stays responsive.”
+* **Compliance** — “How well it fits strict rules and data protections.”
+* **Operational Effort** *(rename “Ease” in UI)* — “How much ongoing work your team must do.”
+
+> These definitions align with the beginner mental model in the articles (infrastructure cost vs. performance vs. governance vs. effort).
+
+**Acceptance criteria**
+
+* New label: **What matters most** replaces “Weights”.
+* Four chips show High/Med/Low; hovering/tapping shows a 1‑line tooltip and the exact %.
+
+---
+
+### 4) Make the section headings unambiguous
+
+**Problem:** “Choose a Service Model” and “Choose a Deployment Model” do not specify **for what**.
+
+**Change (text only):**
+
+* `part5.service.heading`: “1) Choose a Service Model **for this scenario**”
+* `part5.deployment.heading`: “2) Choose a Deployment Model **for this scenario**”
+* `part5.scale.heading`: “3) Adjust **Active Users**”
+
+**Acceptance criteria**
+
+* All three headings include the clarifying phrases as shown.
+
+---
+
+### 5) Add term help on every metric and pill (true tooltips)
+
+**Problem:** “Ops overhead,” “Lock‑in,” “Perf,” “Compliance,” “Ease” are opaque.
+
+**Change:**
+
+* Implement a reusable `InfoTooltip` component (focusable, ESC to close, `aria-describedby` binding).
+* Add it next to these labels: **Ops overhead**, **Lock‑in**, **Fixed**, **$/1k**, **Elasticity**, **Speed & Scale (performance)**, **Compliance**, **Operational Effort**.
+
+**Tooltip copy (one line each):**
+
+* **Ops overhead:** “Extra monthly platform/operations cost beyond infrastructure.”
+* **Lock‑in:** “How hard it is to switch providers later.”
+* **Fixed:** “Base monthly infrastructure cost.”
+* **$/1k users:** “Extra cost for each 1,000 active users.”
+* **Elasticity:** “How easily it scales up/down across data centers.”
+* **Speed & Scale:** “How responsive it is and how well it handles spikes.”
+* **Compliance:** “Fit with strict rules (privacy, industry regulations).”
+* **Operational Effort:** “Ongoing work your team must do to run/maintain it.”
+
+> Elasticity/scale language matches “how the cloud scales” from the explainers. 
+
+**Acceptance criteria**
+
+* Keyboard users can open/close every tooltip.
+* On mobile, tapping the “?” opens a small popover anchored to the term.
+
+---
+
+### 6) Remove the sustainability paragraph from Deployment
+
+**Problem:** The paragraph about hyperscale efficiency vs. electricity/water reads as a detour at decision time. (Leave sustainability for another activity.)
+**Action:** Delete that paragraph from the Deployment card. (Do **not** remove the Fixed / +$ per 1K / Elasticity badges.) 
+
+**Acceptance criteria**
+
+* The Deployment section contains **no** sustainability paragraph.
+
+---
+
+### 7) Reduce “See the trade‑offs” to a skim‑first summary
+
+**Problem:** The “Trade‑offs” block currently reveals a lot at once; learners get stuck reading rather than acting. 
+
+**Change:**
+
+* Default show **three lines only**:
+
+  1. “Your pick: <Service> + <Deployment>”
+  2. “Estimated monthly cost: $X”
+  3. “Fit score: Y/100”
+* Add a **“Why this score?”** toggle that reveals the bars (Speed & Scale / Compliance / Operational Effort) and the bullet list. (Default collapsed.)
+
+**Acceptance criteria**
+
+* With a selection made, the trade‑offs section shows 3 lines.
+* A single toggle expands/collapses the detailed bars + bullets.
+* Component passes keyboard and screen‑reader checks for the toggle.
+
+---
+
+### 8) Blur the **Top recommended option** until the user chooses to reveal
+
+**Problem:** The “top option” can short‑circuit thinking.
+
+**Change:**
+
+* Render the Top card blurred and inert (CSS filter) with a button **“Reveal top recommendation”**.
+* On click, unblur and allow interaction; set `aria-live="polite"` to announce reveal.
+
+**Acceptance criteria**
+
+* Before reveal: text unreadable and controls unfocusable.
+* After reveal: fully readable; revealed state persists until scenario changes.
+
+---
+
+### 9) Tighten the copy in the Trade‑offs meters and labels
+
+**Problem:** Abbreviations (“Perf”, “Ease”) confuse novices.
+
+**Change (text only):**
+
+* “Perf” → **Speed & Scale (performance)**
+* “Ease” → **Operational Effort (higher = less work)**
+
+**Acceptance criteria**
+
+* All meter labels use the long forms above.
+
+---
+
+## P1 (Important) — Next in queue
+
+### 10) Make the big compare table **opt‑in** on mobile (stays optional on desktop)
+
+**Problem:** Novices drown in numbers.
+
+**Change:** Hide the 9‑option table behind **“Compare all 9 options”** on mobile. Keep Top‑3 inline list for mobile scanning (already implemented in your uplift; keep it). 
+
+**Acceptance criteria**
+
+* Mobile: Top‑3 list visible; full table opens from a button.
+* Desktop: either default hidden or persists your current toggle; both are fine.
+
+---
+
+### 11) Add a brief one‑sentence reason above the bars
+
+**Problem:** Learners want a plain‑language verdict.
+
+**Change (text only):**
+`part5.selection.reason`: “This pick scores well because it balances the scenario’s priorities (cost, speed & scale, compliance, and effort).”
+
+**Acceptance criteria**
+
+* Sentence appears between “Estimated monthly cost” and the bars (only when details are expanded).
+
+---
+
+## P2 (Nice to have) — If time allows
+
+### 12) Progress affordance (micro stepper)
+
+Small numbered badges next to section headings (“1”, “2”, “3”), and the **Evaluate** button disabled until a service and deployment are chosen. (You already gate; keep the visual cue.)
+
+### 13) Scenario chips for “What matters most”
+
+Replace the % chip with four small chips (Cost, Speed & Scale, Compliance, Effort) labeled High/Med/Low. Tooltip shows the exact weight. (This is partially covered in P0#3; this is the visual polish version.)
+
+---
+
+## Implementation notes
+
+1. **Tooltips**
+   Create a tiny, accessible tooltip:
+
+```tsx
+// InfoTooltip.tsx
+export function InfoTooltip({ label, children }: { label: string; children: React.ReactNode }) {
+  // Prefer a focusable button + popover div with role="tooltip"
+  // On ESC or blur, close; on mobile, tap toggles.
+}
+```
+
+Use it where labels appear: `Ops overhead`, `Lock‑in`, `Speed & Scale`, `Compliance`, `Operational Effort`, `Fixed`, `$/1k`, `Elasticity`, and in **What matters most** chips. (Definitions above.)
+
+2. **Blurred top recommendation**
+
+* Wrap the Top card in a container that toggles a `blur-sm pointer-events-none aria-hidden="true"` state. Add a button above: “Reveal top recommendation”.
+* On click, remove blur, set `aria-live="polite"` to announce.
+
+3. **Trade‑offs collapse**
+
+* Default show only summary (3 lines).
+* Add a “Why this score?” button that expands to show bars + bullets. Make the button an actual `<button>` with `aria-expanded` toggling.
+
+4. **Strings/i18n**
+   Add/adjust these ids and content:
+
+* `part5.steps.1/2/3/4` (see P0#1)
+* `part5.service.heading` / `part5.deployment.heading` / `part5.scale.heading` (clarified headings)
+* `part5.scenario3.title` (no “CRM” jargon; see P0#2)
+* `part5.matterstitle` = “What matters most”
+* `part5.dim.cost`, `part5.dim.perf`, `part5.dim.compliance`, `part5.dim.effort`
+* `part5.tooltip.*` for each definition
+* `part5.tradeoffs.summary.pick`, `part5.tradeoffs.summary.cost`, `part5.tradeoffs.summary.fit`
+* `part5.tradeoffs.why` = “Why this score?”
+* `part5.top.reveal` = “Reveal top recommendation”
+
+5. **Visual**
+
+* Keep current palette; ensure consistent spacing with `space-y-*`.
+* On mobile, ensure cards are single‑column and primary actions are visible without scrolling when possible.
+* Keep `prefers-reduced-motion` guards.
+
+---
+
+## QA checklist (developer + instructor)
+
+* ✅ Steps list present under the title; headings include “for this scenario”.
+* ✅ Scenario text contains no unexplained acronyms; “CRM” explained parenthetically.
+* ✅ “What matters most” shows High/Med/Low with tooltips revealing percentages.
+* ✅ All terms have tooltips (keyboard/touch accessible).
+* ✅ Sustainability paragraph removed from Deployment.
+* ✅ Trade‑offs collapsed by default to 3‑line summary; “Why this score?” reveals details.
+* ✅ Top recommendation is blurred until reveal.
+* ✅ Mobile: no horizontal scroll; compare table hidden behind a button; Top‑3 list ok.
+* ✅ Screen readers announce toggles and tooltip content; focus order is logical.
+
+---
+
+## Phrasing alignment with our source explainers
+
+* The “what you buy” vs “where it runs” framing is directly consistent with the articles’ treatment of **SaaS/PaaS/IaaS** and **public/private/hybrid**. Use those phrases verbatim to reduce cognitive load.
+
+---
+
+### Confidence
+
+* **High** on the problem diagnosis and required UI/content changes (drawn from the current component). 
+* **High** that the glossary/labels and step framing match the articles’ conceptual model for novices.
+* **Medium** on exact microcopy tone—feel free to trim a few words once you see it in situ.

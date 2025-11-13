@@ -535,9 +535,21 @@
   "@part5.title": {
     "description": "Header for the interactive cloud solution designer section where learners apply their knowledge"
   },
-  "part5.description": "Choose a service model and a deployment model for each scenario. Adjust the users to see trade‑offs. Then evaluate your pick.",
-  "@part5.description": {
-    "description": "Instructions explaining the interactive activity: select models, adjust scale, and evaluate choices"
+  "part5.steps.1": "Read the scenario.",
+  "@part5.steps.1": {
+    "description": "Step 1 of 4 in the activity instructions - tells learner to start by reading the business scenario"
+  },
+  "part5.steps.2": "Choose one Service Model for this scenario (what you buy).",
+  "@part5.steps.2": {
+    "description": "Step 2 of 4 - select a service model with plain language framing 'what you buy'. Anchored to the scenario."
+  },
+  "part5.steps.3": "Choose one Deployment Model for this scenario (where it runs).",
+  "@part5.steps.3": {
+    "description": "Step 3 of 4 - select a deployment model with plain language framing 'where it runs'. Anchored to the scenario."
+  },
+  "part5.steps.4": "Adjust Active Users to explore trade-offs, then Evaluate your pick.",
+  "@part5.steps.4": {
+    "description": "Step 4 of 4 - adjust scale slider and click Evaluate button to see results"
   },
   "part5.primer.title": "Quick Refresher",
   "@part5.primer.title": {
@@ -607,17 +619,21 @@
   "@part5.scenario2.description": {
     "description": "Business scenario description for healthcare emphasizing regulatory compliance, security, and controlled scaling. PHI (Protected Health Information) is sensitive medical data"
   },
-  "part5.scenario3.title": "Internal CRM for a Sales Team",
+  "part5.scenario3.title": "Customer-tracking tool for a sales team (a 'CRM')",
   "@part5.scenario3.title": {
-    "description": "Title for third scenario: internal business system for sales team. CRM is an acronym for Customer Relationship Management"
+    "description": "Title for third scenario: internal business system for sales team. CRM (Customer Relationship Management) explained parenthetically for novices"
   },
-  "part5.scenario3.description": "You need CRM functionality for ~500–5,000 employees. Time‑to‑value and reliability are key; deep customization is less important than getting a proven system.",
+  "part5.scenario3.description": "A simple app that lets salespeople log customers, notes, and deals so managers can see progress. ~500–5,000 employees will use it.",
   "@part5.scenario3.description": {
-    "description": "Business scenario description for internal CRM emphasizing quick deployment and proven reliability over customization. CRM = Customer Relationship Management software"
+    "description": "Plain language description of CRM scenario: customer tracking app for sales teams, no jargon"
   },
-  "part5.service.heading": "1) Choose a Service Model",
+  "part5.service.heading": "1) Choose a Service Model for this scenario",
   "@part5.service.heading": {
-    "description": "Step 1 heading for service model selection (IaaS/PaaS/SaaS)"
+    "description": "Step 1 heading for service model selection (IaaS/PaaS/SaaS), explicitly anchored to the scenario"
+  },
+  "part5.service.subtitle": "(what you buy)",
+  "@part5.service.subtitle": {
+    "description": "Plain language framing for service model - clarifies it's about what service you purchase"
   },
   "part5.service.iaas.label": "IaaS (build & run VMs/containers)",
   "@part5.service.iaas.label": {
@@ -679,9 +695,17 @@
   "@part5.currency.monthly": {
     "description": "Format for displaying monthly cost. The amount variable is a raw number that will be formatted according to your locale. Adapt currency symbol and '/mo' (per month) to your locale"
   },
-  "part5.deployment.heading": "2) Choose a Deployment Model",
+  "part5.deployment.heading": "2) Choose a Deployment Model for this scenario",
   "@part5.deployment.heading": {
-    "description": "Step 2 heading for deployment model selection (Public/Private/Hybrid)"
+    "description": "Step 2 heading for deployment model selection (Public/Private/Hybrid), explicitly anchored to the scenario"
+  },
+  "part5.deployment.subtitle": "(where it runs)",
+  "@part5.deployment.subtitle": {
+    "description": "Plain language framing for deployment model - clarifies it's about where the infrastructure runs"
+  },
+  "part5.deployment.sustainability.learn": "Learn about environmental impact",
+  "@part5.deployment.sustainability.learn": {
+    "description": "Link text to reveal optional sustainability information about data centers"
   },
   "part5.deployment.public.label": "Public Cloud",
   "@part5.deployment.public.label": {
@@ -731,9 +755,9 @@
   "@part5.deployment.pill.elasticity": {
     "description": "Pill badge showing elasticity score (ability to scale dynamically). score is a number from 0-100, higher is better"
   },
-  "part5.scale.heading": "3) Adjust Scale",
+  "part5.scale.heading": "3) Adjust Active Users",
   "@part5.scale.heading": {
-    "description": "Step 3 heading for user count slider control"
+    "description": "Step 3 heading for active user count slider to explore trade-offs"
   },
   "part5.scale.users": "Active users: {count, number}",
   "@part5.scale.users": {
@@ -759,17 +783,25 @@
   "@part5.tradeoffs.cost.label": {
     "description": "Label for estimated monthly cost display"
   },
-  "part5.tradeoffs.metric.performance": "Scale & Performance",
+  "part5.tradeoffs.metric.performance": "Speed & Scale (performance)",
   "@part5.tradeoffs.metric.performance": {
-    "description": "Label for performance/scalability metric bar - measures ability to handle user load and growth"
+    "description": "Label for performance/scalability metric - how well it handles load and stays responsive"
   },
   "part5.tradeoffs.metric.compliance": "Compliance & Control",
   "@part5.tradeoffs.metric.compliance": {
     "description": "Label for compliance/control metric bar - measures security, regulatory compliance, and organizational control"
   },
-  "part5.tradeoffs.metric.ease": "Ease of Operations",
+  "part5.tradeoffs.metric.ease": "Operational Effort (higher = less work)",
   "@part5.tradeoffs.metric.ease": {
-    "description": "Label for operational ease metric bar - measures how much effort is required to manage and maintain the solution"
+    "description": "Label for operational effort metric - how much ongoing work your team must do. Higher score means less work."
+  },
+  "part5.tradeoffs.summary": "Your pick: {service} + {deployment} · Cost: {cost} · Fit: {score}/100",
+  "@part5.tradeoffs.summary": {
+    "description": "Collapsed 3-line summary when details are hidden. Variables are already formatted."
+  },
+  "part5.tradeoffs.why": "Why this score?",
+  "@part5.tradeoffs.why": {
+    "description": "Toggle button to reveal/hide detailed bars and explanation"
   },
   "part5.tradeoffs.explain.heading": "Why it scores this way:",
   "@part5.tradeoffs.explain.heading": {
