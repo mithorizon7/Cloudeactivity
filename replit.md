@@ -72,6 +72,29 @@ The app runs on port 5000 with Vite's dev server configured to:
 - The GEMINI_API_KEY environment variable is configured but not currently used
 
 ## Recent Changes
+- **2025-11-13**: Tier 1 educational enhancements for Parts 4 & 5 (expert pedagogical review)
+  - **Part 5 Mental Model Primer**: Added collapsible 3-bullet refresher at top of Cloud Designer
+    - Covers: remote servers/data centers, service models (IaaS/PaaS/SaaS), deployment models (public/private/hybrid)
+    - Aligns with article framing to reduce cognitive load before activity begins
+    - Hide button available; styled with MIT brand colors
+  - **Part 5 Details-On-Demand**: Changed comparison table default from expanded to collapsed
+    - Fixed useState(false) + useEffect reset to setShowCompare(false) on scenario changes
+    - Reduces comparison paralysis; Top 3 options still visible inline
+    - "Show how all 9 options score" toggle available for learners who want full detail
+  - **Part 5 Sustainability Call-out**: Added neutral one-sentence note near deployment models
+    - Addresses hyperscale data center efficiency vs. environmental impact (electricity, cooling water)
+    - Factual context without preachy tone; tied to grid mix and cooling approach
+  - **Part 4 ARIA Tab Pattern**: Implemented WCAG 2.2-compliant keyboard navigation
+    - Added unique IDs (netflix-tab, subscriber-tab) and proper aria-labelledby references
+    - Left/Right arrow handlers with focus management and refs (netflixTabRef, subscriberTabRef)
+    - Roving tabindex (0 for active, -1 for inactive) for keyboard-only users
+    - Distinct aria-controls per tab using useId() for programmatic panel associations
+  - **i18n Compliance**: Added 12 new locale keys with translator context
+    - Part 4: netflix.model.label, subscriber.model.label, misconceptions.label + 4 items
+    - Part 5: primer.title, primer.hide, primer.point1-3, deployment.sustainability
+    - Maintains 100% localization readiness across all new features
+  - **Verification**: Architect confirmed all Tier 1 requirements met; workflow running without errors
+
 - **2025-11-13**: Layout fixes for progress bar numbering and vertical overflow (Parts 4 & 5)
   - **Issue 1**: Progress bar showed "5" instead of "4" on Part 4
     - **Root cause**: Used `index + 1` which didn't account for 'intro' at index 0
