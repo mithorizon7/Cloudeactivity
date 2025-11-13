@@ -1,0 +1,93 @@
+Below is a prioritized, impact‑focused review of your Part4Netflix learning component. I’ve organized the recommendations from highest to lowest impact on educational potency, while calling out accuracy, clarity, effectiveness, accessibility, and maintainability along the way.
+
+Highest‑impact changes (curriculum, accuracy, and learning design)
+1. Make the core takeaway explicit: Netflix = PaaS for Netflix, SaaS for subscribers. Your two‑perspective toggle is a great scaffold, but the code does not guarantee that novices will connect the perspective to the correct service models. Add a short sentence at the top of each pane that states the mapping in plain language, e.g., “For Netflix, this runs as Platform‑as‑a‑Service (PaaS)” vs “For subscribers, Netflix is Software‑as‑a‑Service (SaaS),” and include a one‑line why. This is straight from the article’s canonical framing and is the most important conceptual bridge for beginners. 
+2. Include vocabulary tooltips/glossary chips at point‑of‑use. For terms like server, data center, API, SaaS/PaaS/IaaS, add tooltip definitions (≤20 words, plain language). Novices shouldn’t have to recall definitions from earlier readings. Tie definitions directly to the text they’re reading.
+3. Add a “common misconceptions” strip. Short bullets such as “The cloud is not a single place,” “Streaming still uses local bandwidth but offloads computation,” “SaaS/PaaS is about how you use the cloud, not what app it is.” This preempts typical novice errors and strengthens schema. But make sure they are easily understandable for beginners. In clear concise sentences give enough context and the main point for them to understand no matter what. 
+
+High‑impact UX & accessibility fixes
+1. Fix the ARIA tab pattern and keyboard support (accuracy + a11y). Currently both tabs point aria-controls="perspective-content", and there’s one shared tabpanel. For robust a11y:
+    * Give each tab an id and point each tabpanel’s aria-labelledby to its tab.
+    * Use distinct aria-controls values (e.g., panel-netflix, panel-subscriber) and two role="tabpanel" containers—hide the inactive with hidden and keep it in the DOM.
+    * Add Left/Right Arrow handling to move focus between tabs; Enter/Space to activate.
+    * Mark decorative SVGs aria-hidden="true" focusable="false". These changes materially improve screen‑reader navigation and conform to the WAI‑ARIA Tabs pattern. (All code remarks refer to your current file.) 
+
+Medium‑impact content and interaction upgrades
+1. Add immediate, targeted feedback for each choice. Provide one sentence per distractor explaining why it’s wrong (e.g., “SaaS = you access software someone else runs; PaaS = you run your software on a provider’s platform”). This speeds correction for novices. 
+2. Integrate a brief “cost & scaling” note in the Netflix pane. One line on why cloud elasticity matters (autoscaling to meet spikes; pay for what you use). This is core to why services like Netflix rely on cloud infrastructure. 
+
+Code quality & maintainability
+1. Refactor the tab UI to an accessible, reusable component. Extract a <Tabs> component with:
+* Tabs, Tab, and TabPanel subcomponents
+* Roving tabindex and arrow‑key navigation
+* Proper ARIA wiring (id, aria-controls, aria-labelledby)
+* onChange callback that you can hook to “mark viewed” This prevents duplication when you add the extra “case study” or “cloud types” tabs later. 
+1. Use useId() for stable IDs (React 18+) for tabs/panels. This avoids collisions and is friendlier for SSR/hydration. 
+2. Remove the JS timer for transitions. Your setIsTransitioning + setTimeout(150) can be replaced by CSS transitions keyed off the view state, which simplifies logic and avoids timing mismatches on slower devices. (Keep the reduced‑motion guard.) 
+3. Mark decorative SVG icons as presentational. Add aria-hidden="true" focusable="false" to CheckIcon, ServerIcon, CloudIcon, LockIcon, PlayIcon, UserIcon, LightBulbIcon. Screen readers don’t need to announce these. If any icon conveys essential meaning, add visible text and/or an aria-label. 
+4. Strengthen i18n coverage. You already use react-intl. Ensure that:
+* Button title/aria-label strings are localized.
+* Tooltip/glossary content and assessment feedback are in message catalogs.
+* Numbers/dates (if added) use FormattedNumber/FormattedDate. This maintains consistency as you scale locales. 
+1. Add tests and linting for a11y.
+* React Testing Library tests that: arrow keys shift tabs; aria-selected updates; the continue button remains disabled until checks pass.
+* eslint-plugin-jsx-a11y for static checks. This protects against regressions as you add content. 
+
+Example: corrected ARIA wiring (minimal, illustrative)
+import { useId, useState } from 'react';
+
+const Tabs = () => {
+  const [view, setView] = useState<'netflix' | 'subscriber'>('netflix');
+  const netflixTabId = useId();
+  const subscriberTabId = useId();
+  const netflixPanelId = useId();
+  const subscriberPanelId = useId();
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const order = ['netflix','subscriber'] as const;
+    const idx = order.indexOf(view);
+    if (e.key === 'ArrowRight') setView(order[(idx + 1) % order.length]);
+    if (e.key === 'ArrowLeft')  setView(order[(idx + order.length - 1) % order.length]);
+  };
+
+  return (
+    <>
+      <div role="tablist" aria-label="Perspectives" onKeyDown={onKeyDown}>
+        <button
+          id={netflixTabId}
+          role="tab"
+          aria-selected={view === 'netflix'}
+          aria-controls={netflixPanelId}
+          onClick={() => setView('netflix')}
+        >Netflix</button>
+
+        <button
+          id={subscriberTabId}
+          role="tab"
+          aria-selected={view === 'subscriber'}
+          aria-controls={subscriberPanelId}
+          onClick={() => setView('subscriber')}
+        >Subscriber</button>
+      </div>
+
+      <div
+        id={netflixPanelId}
+        role="tabpanel"
+        aria-labelledby={netflixTabId}
+        hidden={view !== 'netflix'}
+      >
+        {/* Netflix content */}
+      </div>
+
+      <div
+        id={subscriberPanelId}
+        role="tabpanel"
+        aria-labelledby={subscriberTabId}
+        hidden={view !== 'subscriber'}
+      >
+        {/* Subscriber content */}
+      </div>
+    </>
+  );
+};
+
