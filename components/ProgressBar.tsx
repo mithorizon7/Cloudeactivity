@@ -35,7 +35,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
       aria-label={intl.formatMessage({ id: 'progress.label' })}
     >
       <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
-        <div className="flex items-center justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
+        <div className="flex items-start justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage, index);
             const isCompleted = status === 'completed';
@@ -108,7 +108,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                 {index < STAGES.length - 1 && (
                   <div 
                     className={`
-                      h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500 relative z-0
+                      h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500 relative z-0 mt-5 sm:mt-6
                       ${index < currentIndex
                         ? 'bg-gradient-to-r from-[#22c55e] to-[#15803d]'
                         : 'bg-slate-700'
