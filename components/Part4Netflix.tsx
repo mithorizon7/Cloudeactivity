@@ -88,8 +88,8 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const allViewed = viewedNetflix && viewedSubscriber;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex items-start justify-center p-4 sm:p-6 lg:p-8 pt-8 pb-56 overflow-y-auto">
-      <div className="max-w-5xl w-full my-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex items-start justify-center p-4 sm:p-6 lg:p-8 pt-8 pb-48 overflow-y-auto">
+      <div className="max-w-5xl w-full mx-auto mt-0">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
             <FormattedMessage id="part4.title" />

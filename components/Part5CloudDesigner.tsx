@@ -348,6 +348,12 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     <span className="text-xs bg-slate-700 text-slate-200 px-2 py-1 rounded-full border border-slate-600">{text}</span>
   );
 
+  const MetricBadge = ({ children }: { children: React.ReactNode }) => (
+    <div className="inline-flex flex-col items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full border-2 border-slate-600 bg-slate-800/80 text-center p-2">
+      <div className="text-[10px] sm:text-xs text-slate-300 leading-tight font-medium">{children}</div>
+    </div>
+  );
+
   const getFeedback = () => {
     if (!selected) return null;
     
@@ -424,8 +430,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 flex items-start justify-center p-4 pt-8 pb-56 overflow-y-auto">
-      <div className="max-w-6xl w-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border border-indigo-500/20 my-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 flex items-start justify-center p-4 pt-8 pb-48 overflow-y-auto">
+      <div className="max-w-6xl w-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border border-indigo-500/20 mx-auto mt-0">
         <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
           <FormattedMessage id="part5.title" />
         </h1>
@@ -547,6 +553,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <FormattedMessage id="part5.deployment.heading" />
             </p>
             <p className="text-xs text-slate-400 mb-3 leading-relaxed">
+              <FormattedMessage id="part5.deployment.instructions" />
+            </p>
+            <p className="text-xs text-slate-400 mb-3 leading-relaxed">
               <FormattedMessage id="part5.deployment.sustainability" />
             </p>
             {(["public", "private", "hybrid"] as DeploymentModel[]).map((m) => {
@@ -555,32 +564,38 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                 <button
                   key={m}
                   onClick={() => setDeployment(m)}
-                  className={`w-full text-start p-3 rounded-lg mb-2 border transition
+                  className={`w-full text-start p-4 rounded-lg mb-2 border transition
                     ${deployment === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
                   aria-pressed={deployment === m}
                   aria-label={meta.label}
                 >
-                  <div className="text-slate-100 font-semibold">{meta.label}</div>
-                  <div className="text-slate-400 text-sm">{meta.blurb}</div>
-                  <div className="flex gap-2 mt-2">
-                    <Pill
-                      text={intl.formatMessage(
-                        { id: "part5.deployment.pill.fixed" },
-                        { cost: formatMonthlyCost(meta.fixedInfra, intl) }
-                      )}
-                    />
-                    <Pill
-                      text={intl.formatMessage(
-                        { id: "part5.deployment.pill.variable" },
-                        { cost: meta.variablePerKUsers }
-                      )}
-                    />
-                    <Pill
-                      text={intl.formatMessage(
-                        { id: "part5.deployment.pill.elasticity" },
-                        { score: meta.elasticity }
-                      )}
-                    />
+                  <div className="text-slate-100 font-semibold mb-1">{meta.label}</div>
+                  <div className="text-slate-400 text-sm mb-3">{meta.blurb}</div>
+                  <div className="flex justify-around items-center gap-3 px-2">
+                    <MetricBadge>
+                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
+                        <FormattedMessage id="part5.deployment.badge.fixed" />
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        {formatMonthlyCost(meta.fixedInfra, intl)}
+                      </div>
+                    </MetricBadge>
+                    <MetricBadge>
+                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
+                        <FormattedMessage id="part5.deployment.badge.variable" />
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        ${meta.variablePerKUsers}/1k
+                      </div>
+                    </MetricBadge>
+                    <MetricBadge>
+                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
+                        <FormattedMessage id="part5.deployment.badge.elasticity" />
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        {meta.elasticity}/100
+                      </div>
+                    </MetricBadge>
                   </div>
                 </button>
               );

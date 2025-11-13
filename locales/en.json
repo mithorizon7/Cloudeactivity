@@ -559,9 +559,25 @@
   "@part5.primer.point3": {
     "description": "Third primer point: defines deployment model options. Multi-tenant means shared, single-tenant means dedicated."
   },
+  "part5.deployment.instructions": "Compare the three metrics below (fixed cost, cost per 1K users, elasticity) before selecting a deployment model.",
+  "@part5.deployment.instructions": {
+    "description": "Clear instruction for deployment model selection. Tells learners to examine the three circular metric badges before making a choice."
+  },
   "part5.deployment.sustainability": "Large public clouds often run in hyperscale data centers that concentrate efficiency—but all data centers consume significant electricity and cooling water; impact depends on grid mix and cooling approach.",
   "@part5.deployment.sustainability": {
     "description": "Neutral one-sentence sustainability note about data center environmental impact. Appears near deployment model choices. Hyperscale means very large scale."
+  },
+  "part5.deployment.badge.fixed": "Fixed",
+  "@part5.deployment.badge.fixed": {
+    "description": "Label for fixed monthly cost badge in deployment options"
+  },
+  "part5.deployment.badge.variable": "+/1K",
+  "@part5.deployment.badge.variable": {
+    "description": "Label for variable cost per 1000 users badge in deployment options. Shortened to fit in small circular badge."
+  },
+  "part5.deployment.badge.elasticity": "Scale",
+  "@part5.deployment.badge.elasticity": {
+    "description": "Label for elasticity/scalability score badge in deployment options. Short form of 'Elasticity' to fit in circular badge."
   },
   "part5.scenario.label": "Scenario {current, number} of {total, number}",
   "@part5.scenario.label": {
