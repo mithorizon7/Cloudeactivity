@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useId, useRef } from 'react';
 import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl';
 
 interface Part4NetflixProps {
@@ -6,50 +6,55 @@ interface Part4NetflixProps {
 }
 
 const CheckIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
   </svg>
 );
 
 const ServerIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
   </svg>
 );
 
 const CloudIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
   </svg>
 );
 
 const LockIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
   </svg>
 );
 
 const PlayIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const UserIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
   </svg>
 );
 
 const LightBulbIcon = () => (
-  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
     <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
   </svg>
 );
 
 export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const intl = useIntl();
+  const netflixPanelId = useId();
+  const subscriberPanelId = useId();
+  const netflixTabRef = useRef<HTMLButtonElement>(null);
+  const subscriberTabRef = useRef<HTMLButtonElement>(null);
+  
   const [view, setView] = useState<'netflix' | 'subscriber'>('netflix');
   const [viewedNetflix, setViewedNetflix] = useState(true);
   const [viewedSubscriber, setViewedSubscriber] = useState(false);
@@ -65,6 +70,18 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
       if (newView === 'subscriber') setViewedSubscriber(true);
       setIsTransitioning(false);
     }, 150);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      handleViewChange('netflix');
+      netflixTabRef.current?.focus();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      handleViewChange('subscriber');
+      subscriberTabRef.current?.focus();
+    }
   };
 
   const viewedCount = (viewedNetflix ? 1 : 0) + (viewedSubscriber ? 1 : 0);
@@ -89,10 +106,14 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
             className="inline-flex bg-slate-800/60 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-lg w-full sm:w-auto"
           >
             <button
+              ref={netflixTabRef}
+              id="netflix-tab"
               role="tab"
               aria-selected={view === 'netflix'}
-              aria-controls="perspective-content"
+              aria-controls={netflixPanelId}
+              tabIndex={view === 'netflix' ? 0 : -1}
               onClick={() => handleViewChange('netflix')}
+              onKeyDown={handleKeyDown}
               className={`
                 relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#973f4e]/50
@@ -110,10 +131,14 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               <FormattedMessage id="part4.button.netflix" />
             </button>
             <button
+              ref={subscriberTabRef}
+              id="subscriber-tab"
               role="tab"
               aria-selected={view === 'subscriber'}
-              aria-controls="perspective-content"
+              aria-controls={subscriberPanelId}
+              tabIndex={view === 'subscriber' ? 0 : -1}
               onClick={() => handleViewChange('subscriber')}
+              onKeyDown={handleKeyDown}
               className={`
                 relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#8b959e]/50
@@ -150,8 +175,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
         </div>
 
         <div 
-          id="perspective-content"
+          id={view === 'netflix' ? netflixPanelId : subscriberPanelId}
           role="tabpanel"
+          aria-labelledby={view === 'netflix' ? 'netflix-tab' : 'subscriber-tab'}
           aria-live="polite"
           className={`
             bg-slate-800/40 backdrop-blur-md rounded-2xl border border-slate-700/50 shadow-2xl
@@ -171,6 +197,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
                       <FormattedMessage id="part4.netflix.role" />
                     </h2>
                   </div>
+                  <p className="text-sm text-[#d5b2b8] mb-3 font-medium">
+                    <FormattedMessage id="part4.netflix.model.label" />
+                  </p>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#53595e]/20 border border-[#8b959e]/30 rounded-full">
                     <div className="w-2 h-2 bg-[#8b959e] rounded-full animate-pulse" />
                     <span className="text-sm font-semibold text-[#adb4bb]">
@@ -255,6 +284,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
                       <FormattedMessage id="part4.subscriber.role" />
                     </h2>
                   </div>
+                  <p className="text-sm text-[#d5b2b8] mb-3 font-medium">
+                    <FormattedMessage id="part4.subscriber.model.label" />
+                  </p>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#d0d4d8]/20 border border-[#d0d4d8]/30 rounded-full">
                     <div className="w-2 h-2 bg-[#d0d4d8] rounded-full animate-pulse" />
                     <span className="text-sm font-semibold text-[#d0d4d8]">
@@ -336,6 +368,38 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="mt-6 sm:mt-8 bg-slate-800/40 backdrop-blur-sm rounded-xl p-5 sm:p-6 border border-slate-600/30">
+          <h3 className="text-base sm:text-lg font-bold text-white mb-4">
+            <FormattedMessage id="part4.misconceptions.label" />
+          </h3>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#ba7f89] mt-2" />
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                <FormattedMessage id="part4.misconceptions.item1" />
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#ba7f89] mt-2" />
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                <FormattedMessage id="part4.misconceptions.item2" />
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#ba7f89] mt-2" />
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                <FormattedMessage id="part4.misconceptions.item3" />
+              </p>
+            </li>
+            <li className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#ba7f89] mt-2" />
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                <FormattedMessage id="part4.misconceptions.item4" />
+              </p>
+            </li>
+          </ul>
         </div>
 
         <div className="mt-8 sm:mt-10 text-center">

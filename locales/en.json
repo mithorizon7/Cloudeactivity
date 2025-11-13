@@ -499,6 +499,34 @@
   "@part4.progress.viewed": {
     "description": "Progress counter showing how many perspectives have been explored. {count} is a number (1 or 2)"
   },
+  "part4.netflix.model.label": "Netflix uses this infrastructure as Platform-as-a-Service (PaaS)",
+  "@part4.netflix.model.label": {
+    "description": "Explicit label showing Netflix's perspective uses PaaS. Helps novices understand the service model classification."
+  },
+  "part4.subscriber.model.label": "You use Netflix as Software-as-a-Service (SaaS)",
+  "@part4.subscriber.model.label": {
+    "description": "Explicit label showing subscriber's perspective uses SaaS. Helps novices understand the service model classification."
+  },
+  "part4.misconceptions.label": "Common Misconceptions",
+  "@part4.misconceptions.label": {
+    "description": "Header for callout box addressing typical beginner confusions about service models"
+  },
+  "part4.misconceptions.item1": "PaaS and SaaS aren't different products—they're different perspectives on how the same infrastructure is used.",
+  "@part4.misconceptions.item1": {
+    "description": "First misconception: clarifies that service models are viewpoint-dependent, not separate systems"
+  },
+  "part4.misconceptions.item2": "The cloud provider (like AWS) provides IaaS to Netflix, who builds PaaS on top of it, then offers SaaS to you.",
+  "@part4.misconceptions.item2": {
+    "description": "Second misconception: explains the layered nature of cloud services from provider to end user"
+  },
+  "part4.misconceptions.item3": "You don't need to know the layers below your role—subscribers don't need to understand PaaS or IaaS.",
+  "@part4.misconceptions.item3": {
+    "description": "Third misconception: emphasizes abstraction and that users only need to understand their layer"
+  },
+  "part4.misconceptions.item4": "The same infrastructure can be IaaS, PaaS, and SaaS simultaneously, depending on who is using it and how.",
+  "@part4.misconceptions.item4": {
+    "description": "Fourth misconception: reinforces that service models are about perspective and usage, not physical differences"
+  },
   "part4.button.continue": "Continue to Cloud Designer",
   "@part4.button.continue": {
     "description": "Button to proceed to Part 5"
@@ -510,6 +538,30 @@
   "part5.description": "Choose a service model and a deployment model for each scenario. Adjust the users to see trade‑offs. Then evaluate your pick.",
   "@part5.description": {
     "description": "Instructions explaining the interactive activity: select models, adjust scale, and evaluate choices"
+  },
+  "part5.primer.title": "Quick Refresher",
+  "@part5.primer.title": {
+    "description": "Header for collapsible mental model primer that reviews cloud computing fundamentals before the activity"
+  },
+  "part5.primer.hide": "Hide",
+  "@part5.primer.hide": {
+    "description": "Button text to collapse/hide the mental model primer box"
+  },
+  "part5.primer.point1": "Cloud computing means remote servers in data centers handle storage and processing. You access those resources over the internet.",
+  "@part5.primer.point1": {
+    "description": "First primer point: defines cloud computing as remote data center resources. Aligns with article framing about servers and remote access."
+  },
+  "part5.primer.point2": "Service models differ by who runs what: IaaS (rent servers), PaaS (run your app on the provider's platform), SaaS (use their app).",
+  "@part5.primer.point2": {
+    "description": "Second primer point: explains service model distinctions. IaaS = Infrastructure as a Service, PaaS = Platform as a Service, SaaS = Software as a Service."
+  },
+  "part5.primer.point3": "Deployment models: public (multi-tenant data centers), private (single-tenant), hybrid (mix of both).",
+  "@part5.primer.point3": {
+    "description": "Third primer point: defines deployment model options. Multi-tenant means shared, single-tenant means dedicated."
+  },
+  "part5.deployment.sustainability": "Large public clouds often run in hyperscale data centers that concentrate efficiency—but all data centers consume significant electricity and cooling water; impact depends on grid mix and cooling approach.",
+  "@part5.deployment.sustainability": {
+    "description": "Neutral one-sentence sustainability note about data center environmental impact. Appears near deployment model choices. Hyperscale means very large scale."
   },
   "part5.scenario.label": "Scenario {current, number} of {total, number}",
   "@part5.scenario.label": {

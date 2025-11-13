@@ -30,6 +30,22 @@ interface Scenario {
 
 const BASE_SCENARIOS: Scenario[] = [
   {
+    id: 3,
+    titleKey: "part5.scenario3.title",
+    descriptionKey: "part5.scenario3.description",
+    minUsers: 500,
+    maxUsers: 10_000,
+    defaultUsers: 3_000,
+    weights: {
+      cost: 0.30,
+      performance: 0.20,
+      compliance: 0.20,
+      effort: 0.30,
+    },
+    idealCombos: [{ service: "saas", deployment: "public" }],
+    saasApplicable: true,
+  },
+  {
     id: 1,
     titleKey: "part5.scenario1.title",
     descriptionKey: "part5.scenario1.description",
@@ -67,22 +83,6 @@ const BASE_SCENARIOS: Scenario[] = [
       { service: "paas", deployment: "hybrid" },
     ],
     saasApplicable: false,
-  },
-  {
-    id: 3,
-    titleKey: "part5.scenario3.title",
-    descriptionKey: "part5.scenario3.description",
-    minUsers: 500,
-    maxUsers: 10_000,
-    defaultUsers: 3_000,
-    weights: {
-      cost: 0.30,
-      performance: 0.20,
-      compliance: 0.20,
-      effort: 0.30,
-    },
-    idealCombos: [{ service: "saas", deployment: "public" }],
-    saasApplicable: true,
   },
 ];
 
@@ -203,7 +203,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [users, setUsers] = useState(BASE_SCENARIOS[0].defaultUsers);
   const [evaluated, setEvaluated] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
-  const [showCompare, setShowCompare] = useState(true);
+  const [showCompare, setShowCompare] = useState(false);
+  const [showPrimer, setShowPrimer] = useState(true);
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
 
@@ -272,7 +273,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     setDeployment(null);
     setUsers(scenario.defaultUsers);
     setEvaluated(false);
-    setShowCompare(true);
+    setShowCompare(false);
   }, [scenarioIdx, scenario.defaultUsers]);
 
   const allCombos = useMemo(() => {
@@ -432,6 +433,36 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           <FormattedMessage id="part5.description" />
         </p>
 
+        {showPrimer && (
+          <div className="bg-gradient-to-br from-[#750014]/20 to-[#8b959e]/20 backdrop-blur-sm rounded-xl p-5 mb-6 border border-[#973f4e]/30">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-lg font-bold text-[#d5b2b8]">
+                <FormattedMessage id="part5.primer.title" />
+              </h2>
+              <button
+                onClick={() => setShowPrimer(false)}
+                className="text-xs text-slate-400 hover:text-white transition"
+              >
+                <FormattedMessage id="part5.primer.hide" />
+              </button>
+            </div>
+            <ul className="space-y-2 text-sm text-slate-300">
+              <li className="flex items-start gap-2">
+                <span className="text-[#ba7f89] mt-0.5">•</span>
+                <FormattedMessage id="part5.primer.point1" />
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#ba7f89] mt-0.5">•</span>
+                <FormattedMessage id="part5.primer.point2" />
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#ba7f89] mt-0.5">•</span>
+                <FormattedMessage id="part5.primer.point3" />
+              </li>
+            </ul>
+          </div>
+        )}
+
         <div className="bg-slate-900/50 rounded-xl p-5 mb-6">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <p className="text-cyan-400 font-semibold">
@@ -484,7 +515,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   key={m}
                   disabled={disabled}
                   onClick={() => setService(m)}
-                  className={`w-full text-left p-3 rounded-lg mb-2 border transition
+                  className={`w-full text-start p-3 rounded-lg mb-2 border transition
                     ${service === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
                     ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
                   aria-pressed={service === m}
@@ -512,8 +543,11 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           </div>
 
           <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">
+            <p className="text-white font-semibold mb-2">
               <FormattedMessage id="part5.deployment.heading" />
+            </p>
+            <p className="text-xs text-slate-400 mb-3 leading-relaxed">
+              <FormattedMessage id="part5.deployment.sustainability" />
             </p>
             {(["public", "private", "hybrid"] as DeploymentModel[]).map((m) => {
               const meta = deploymentMeta[m];
@@ -521,7 +555,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                 <button
                   key={m}
                   onClick={() => setDeployment(m)}
-                  className={`w-full text-left p-3 rounded-lg mb-2 border transition
+                  className={`w-full text-start p-3 rounded-lg mb-2 border transition
                     ${deployment === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
                   aria-pressed={deployment === m}
                   aria-label={meta.label}
