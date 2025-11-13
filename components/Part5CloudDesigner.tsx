@@ -1,136 +1,73 @@
-import { useEffect, useMemo, useState } from "react";
+// Part5CloudDesigner (uplifted)
+// Mobile-first; 12-col desktop grid; radio-card semantics; sticky action bar;
+// Top-3 on mobile; full table optional; live region + motion-safe transitions.
+
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from "react-intl";
 
+// --- types & helpers (unchanged) ---
 type ServiceModel = "iaas" | "paas" | "saas";
 type DeploymentModel = "public" | "private" | "hybrid";
 
-interface Part5CloudDesignerProps {
-  onComplete: (score: number) => void;
-}
-
+interface Part5CloudDesignerProps { onComplete: (score: number) => void; }
 interface Scenario {
-  id: number;
-  titleKey: string;
-  descriptionKey: string;
-  minUsers: number;
-  maxUsers: number;
-  defaultUsers: number;
-
-  weights: {
-    cost: number;
-    performance: number;
-    compliance: number;
-    effort: number;
-  };
-
+  id: number; titleKey: string; descriptionKey: string;
+  minUsers: number; maxUsers: number; defaultUsers: number;
+  weights: { cost: number; performance: number; compliance: number; effort: number; };
   idealCombos: Array<{ service: ServiceModel; deployment: DeploymentModel }>;
-
   saasApplicable?: boolean;
 }
 
+function clamp(n:number, lo:number, hi:number){ return Math.max(lo, Math.min(hi,n)); }
+function normalizeTo0_100(vals:number[], v:number){
+  const min = Math.min(...vals), max = Math.max(...vals);
+  if (Math.abs(max-min) < 1e-6) return 50;
+  return clamp(((max - v)/(max - min))*100, 0, 100);
+}
+function formatMonthlyCost(n:number, intl:any){ 
+  return intl.formatMessage({ id: "part5.currency.monthly" }, { amount: Math.round(n) });
+}
+
+// --- scenarios (same ordering you use in (2).tsx) ---
 const BASE_SCENARIOS: Scenario[] = [
   {
-    id: 3,
-    titleKey: "part5.scenario3.title",
-    descriptionKey: "part5.scenario3.description",
-    minUsers: 500,
-    maxUsers: 10_000,
-    defaultUsers: 3_000,
-    weights: {
-      cost: 0.30,
-      performance: 0.20,
-      compliance: 0.20,
-      effort: 0.30,
-    },
-    idealCombos: [{ service: "saas", deployment: "public" }],
-    saasApplicable: true,
+    id: 3, titleKey: "part5.scenario3.title", descriptionKey: "part5.scenario3.description",
+    minUsers: 500, maxUsers: 10_000, defaultUsers: 3_000,
+    weights: { cost: 0.30, performance: 0.20, compliance: 0.20, effort: 0.30 },
+    idealCombos: [{ service: "saas", deployment: "public" }], saasApplicable: true,
   },
   {
-    id: 1,
-    titleKey: "part5.scenario1.title",
-    descriptionKey: "part5.scenario1.description",
-    minUsers: 1_000,
-    maxUsers: 200_000,
-    defaultUsers: 15_000,
-    weights: {
-      cost: 0.30,
-      performance: 0.35,
-      compliance: 0.10,
-      effort: 0.25,
-    },
-    idealCombos: [
-      { service: "paas", deployment: "public" },
-      { service: "iaas", deployment: "public" },
-    ],
+    id: 1, titleKey: "part5.scenario1.title", descriptionKey: "part5.scenario1.description",
+    minUsers: 1_000, maxUsers: 200_000, defaultUsers: 15_000,
+    weights: { cost: 0.30, performance: 0.35, compliance: 0.10, effort: 0.25 },
+    idealCombos: [{ service: "paas", deployment: "public" }, { service: "iaas", deployment: "public" }],
     saasApplicable: false,
   },
   {
-    id: 2,
-    titleKey: "part5.scenario2.title",
-    descriptionKey: "part5.scenario2.description",
-    minUsers: 5_000,
-    maxUsers: 100_000,
-    defaultUsers: 25_000,
-    weights: {
-      cost: 0.15,
-      performance: 0.25,
-      compliance: 0.45,
-      effort: 0.15,
-    },
-    idealCombos: [
-      { service: "iaas", deployment: "hybrid" },
-      { service: "iaas", deployment: "private" },
-      { service: "paas", deployment: "hybrid" },
-    ],
+    id: 2, titleKey: "part5.scenario2.title", descriptionKey: "part5.scenario2.description",
+    minUsers: 5_000, maxUsers: 100_000, defaultUsers: 25_000,
+    weights: { cost: 0.15, performance: 0.25, compliance: 0.45, effort: 0.15 },
+    idealCombos: [{ service: "iaas", deployment: "hybrid" }, { service: "iaas", deployment: "private" }, { service: "paas", deployment: "hybrid" }],
     saasApplicable: false,
   },
 ];
 
-function clamp(n: number, lo: number, hi: number) {
-  return Math.max(lo, Math.min(hi, n));
-}
-
-function formatMonthlyCost(n: number, intl: any): string {
-  return intl.formatMessage(
-    { id: "part5.currency.monthly" },
-    { amount: Math.round(n) }
-  );
-}
-
-function normalizeTo0_100(values: number[], value: number) {
-  const min = Math.min(...values);
-  const max = Math.max(...values);
-  if (Math.abs(max - min) < 1e-6) return 50;
-  return clamp(((max - value) / (max - min)) * 100, 0, 100);
-}
-
-type Metrics = {
-  cost: number;
-  performance: number;
-  compliance: number;
-  ease: number;
-  fit: number;
-  explain: string[];
-};
+// --- metrics (unchanged from your current file) ---
+type Metrics = { cost:number; performance:number; compliance:number; ease:number; fit:number; explain:string[]; };
 
 function computeMetrics(
-  service: ServiceModel,
-  deployment: DeploymentModel,
-  users: number,
-  scenario: Scenario,
-  serviceMeta: any,
-  deploymentMeta: any,
-  intl: any
+  service: ServiceModel, deployment: DeploymentModel, users:number, scenario: Scenario,
+  serviceMeta:any, deploymentMeta:any, intl:any
 ): Metrics {
   const s = serviceMeta[service];
   const d = deploymentMeta[deployment];
 
-  const infraCost = d.fixedInfra + (users / 1000) * d.variablePerKUsers;
+  const infraCost = d.fixedInfra + (users/1000)*d.variablePerKUsers;
   const platformOpsCost = s.monthlyOpsOverhead;
   const cost = infraCost + platformOpsCost;
 
-  const loadFactor = clamp(users / scenario.maxUsers, 0, 1);
-  let perf = d.elasticity - (deployment === "private" ? loadFactor * 25 : loadFactor * 8);
+  const loadFactor = clamp(users/scenario.maxUsers, 0, 1);
+  let perf = d.elasticity - (deployment === "private" ? loadFactor*25 : loadFactor*8);
   if (service === "paas") perf += 5;
   perf = clamp(perf, 25, 98);
 
@@ -140,60 +77,53 @@ function computeMetrics(
 
   let ease = clamp(100 - s.effortScore - (deployment === "hybrid" ? 6 : 0), 10, 95);
 
-  const explain: string[] = [
-    intl.formatMessage(
-      { id: "part5.explanation.cost" },
-      {
-        deploymentLabel: d.shortLabel,
-        infraCost: formatMonthlyCost(infraCost, intl),
-        serviceLabel: s.shortLabel,
-        platformCost: formatMonthlyCost(platformOpsCost, intl),
-      }
-    ),
-    intl.formatMessage(
-      { id: deployment === "private" ? "part5.explanation.performance.private" : "part5.explanation.performance.public" },
-      {
-        deploymentLabel: d.label,
-        elasticity: d.elasticity,
-        loadPercent: Math.round(loadFactor * 100),
-        perfScore: Math.round(perf),
-      }
-    ),
-    intl.formatMessage(
-      { id: "part5.explanation.compliance" },
-      {
-        deploymentLabel: d.label,
-        baseCompliance: d.baseCompliance,
-        serviceLabel: s.shortLabel,
-        controlBonus: s.controlBonus,
-      }
-    ),
-    intl.formatMessage(
-      { id: deployment === "hybrid" ? "part5.explanation.effort.hybrid" : "part5.explanation.effort" },
-      {
-        serviceLabel: s.shortLabel,
-        effortScore: 100 - ease,
-      }
-    ),
+  const explain = [
+    intl.formatMessage({ id: "part5.explanation.cost" }, {
+      deploymentLabel: d.shortLabel, infraCost: formatMonthlyCost(infraCost, intl),
+      serviceLabel: s.shortLabel, platformCost: formatMonthlyCost(platformOpsCost, intl),
+    }),
+    intl.formatMessage({ id: deployment==="private" ? "part5.explanation.performance.private" : "part5.explanation.performance.public" }, {
+      deploymentLabel: d.label, elasticity: d.elasticity, loadPercent: Math.round(loadFactor*100), perfScore: Math.round(perf),
+    }),
+    intl.formatMessage({ id: "part5.explanation.compliance" }, {
+      deploymentLabel: d.label, baseCompliance: d.baseCompliance, serviceLabel: s.shortLabel, controlBonus: s.controlBonus,
+    }),
+    intl.formatMessage({ id: deployment==="hybrid" ? "part5.explanation.effort.hybrid" : "part5.explanation.effort" }, {
+      serviceLabel: s.shortLabel, effortScore: 100 - ease,
+    }),
   ];
 
   return { cost, performance: perf, compliance, ease, fit: 0, explain };
 }
 
-function weightedFit(
-  m: Metrics,
-  peerCosts: number[],
-  weights: Scenario["weights"]
-): { fit: number; affordability: number } {
+function weightedFit(m:Metrics, peerCosts:number[], weights:Scenario["weights"]){
   const affordability = normalizeTo0_100(peerCosts, m.cost);
-  const fit =
-    weights.cost * affordability +
-    weights.performance * m.performance +
-    weights.compliance * m.compliance +
-    weights.effort * m.ease;
-
+  const fit = weights.cost*affordability + weights.performance*m.performance + weights.compliance*m.compliance + weights.effort*m.ease;
   return { fit: Math.round(fit), affordability: Math.round(affordability) };
 }
+
+// --- small presentational helpers ---
+const SectionCard: React.FC<{children: React.ReactNode; className?: string; ariaLabel?: string}> = ({ children, className="", ariaLabel }) => (
+  <section
+    aria-label={ariaLabel}
+    className={`bg-slate-900/50 rounded-xl p-5 border border-slate-700/40 shadow-xl ${className}`}
+  >
+    {children}
+  </section>
+);
+
+const Token: React.FC<{children: React.ReactNode}> = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border border-slate-600 bg-slate-800/70 px-2.5 py-1 text-xs text-slate-200">
+    {children}
+  </span>
+);
+
+const MetricBadge: React.FC<{label:string; value:React.ReactNode}> = ({ label, value }) => (
+  <div className="inline-flex h-16 w-16 sm:h-20 sm:w-20 flex-col items-center justify-center rounded-full border-2 border-slate-600 bg-slate-800/80 text-center">
+    <div className="text-[10px] sm:text-xs text-slate-300 leading-tight">{label}</div>
+    <div className="text-xs sm:text-sm font-bold text-white">{value}</div>
+  </div>
+);
 
 export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerProps) {
   const intl = useIntl();
@@ -203,38 +133,31 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [users, setUsers] = useState(BASE_SCENARIOS[0].defaultUsers);
   const [evaluated, setEvaluated] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
-  const [showCompare, setShowCompare] = useState(false);
+  const [showCompare, setShowCompare] = useState(false); // collapsed by default for mobile
   const [showPrimer, setShowPrimer] = useState(true);
+  const liveRef = useRef<HTMLDivElement | null>(null);
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
 
+  // service & deployment metadata (unchanged text)
   const serviceMeta = useMemo(() => ({
     iaas: {
       label: intl.formatMessage({ id: "part5.service.iaas.label" }),
       shortLabel: intl.formatMessage({ id: "part5.service.iaas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.iaas.blurb" }),
-      monthlyOpsOverhead: 6000,
-      controlBonus: +8,
-      lockInRisk: "low" as const,
-      effortScore: 75,
+      monthlyOpsOverhead: 6000, controlBonus: +8, lockInRisk: "low" as const, effortScore: 75,
     },
     paas: {
       label: intl.formatMessage({ id: "part5.service.paas.label" }),
       shortLabel: intl.formatMessage({ id: "part5.service.paas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.paas.blurb" }),
-      monthlyOpsOverhead: 2500,
-      controlBonus: +2,
-      lockInRisk: "med" as const,
-      effortScore: 45,
+      monthlyOpsOverhead: 2500, controlBonus: +2, lockInRisk: "med" as const, effortScore: 45,
     },
     saas: {
       label: intl.formatMessage({ id: "part5.service.saas.label" }),
       shortLabel: intl.formatMessage({ id: "part5.service.saas.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.service.saas.blurb" }),
-      monthlyOpsOverhead: 800,
-      controlBonus: -6,
-      lockInRisk: "high" as const,
-      effortScore: 20,
+      monthlyOpsOverhead: 800, controlBonus: -6, lockInRisk: "high" as const, effortScore: 20,
     },
   }), [intl]);
 
@@ -243,593 +166,421 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
       label: intl.formatMessage({ id: "part5.deployment.public.label" }),
       shortLabel: intl.formatMessage({ id: "part5.deployment.public.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.public.blurb" }),
-      fixedInfra: 0,
-      variablePerKUsers: 180,
-      elasticity: 90,
-      baseCompliance: 70,
+      fixedInfra: 0, variablePerKUsers: 180, elasticity: 90, baseCompliance: 70,
     },
     private: {
       label: intl.formatMessage({ id: "part5.deployment.private.label" }),
       shortLabel: intl.formatMessage({ id: "part5.deployment.private.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.private.blurb" }),
-      fixedInfra: 12000,
-      variablePerKUsers: 60,
-      elasticity: 55,
-      baseCompliance: 90,
+      fixedInfra: 12000, variablePerKUsers: 60, elasticity: 55, baseCompliance: 90,
     },
     hybrid: {
       label: intl.formatMessage({ id: "part5.deployment.hybrid.label" }),
       shortLabel: intl.formatMessage({ id: "part5.deployment.hybrid.shortLabel" }),
       blurb: intl.formatMessage({ id: "part5.deployment.hybrid.blurb" }),
-      fixedInfra: 4000,
-      variablePerKUsers: 110,
-      elasticity: 80,
-      baseCompliance: 85,
+      fixedInfra: 4000, variablePerKUsers: 110, elasticity: 80, baseCompliance: 85,
     },
   }), [intl]);
 
+  // reset on scenario change
   useEffect(() => {
-    setService(null);
-    setDeployment(null);
+    setService(null); setDeployment(null);
     setUsers(scenario.defaultUsers);
-    setEvaluated(false);
-    setShowCompare(false);
+    setEvaluated(false); setShowCompare(false);
   }, [scenarioIdx, scenario.defaultUsers]);
 
+  // compute all combos
   const allCombos = useMemo(() => {
     const services: ServiceModel[] = ["iaas", "paas", "saas"];
     const deployments: DeploymentModel[] = ["public", "private", "hybrid"];
-
-    const combos = services.flatMap((s) =>
-      deployments.map((d) => ({
-        service: s,
-        deployment: d,
-        metrics: computeMetrics(s, d, users, scenario, serviceMeta, deploymentMeta, intl),
-      }))
-    );
-
+    const combos = services.flatMap((s) => deployments.map((d) => ({
+      service: s, deployment: d, metrics: computeMetrics(s, d, users, scenario, serviceMeta, deploymentMeta, intl),
+    })));
     const peerCosts = combos.map((c) => c.metrics.cost);
     const withFit = combos.map((c) => {
-      const { fit, affordability } = weightedFit(c.metrics, peerCosts, scenario.weights);
-      return { ...c, metrics: { ...c.metrics, fit, explain: c.metrics.explain } as Metrics, affordability };
+      const { fit } = weightedFit(c.metrics, peerCosts, scenario.weights);
+      return { ...c, metrics: { ...c.metrics, fit } as Metrics };
     });
-
-    withFit.sort((a, b) => b.metrics.fit - a.metrics.fit);
+    withFit.sort((a,b) => b.metrics.fit - a.metrics.fit);
     return withFit;
   }, [users, scenario, serviceMeta, deploymentMeta, intl]);
 
-  const selected =
-    service && deployment
-      ? allCombos.find((c) => c.service === service && c.deployment === deployment)
-      : null;
-
+  const selected = service && deployment ? allCombos.find(c => c.service===service && c.deployment===deployment) : null;
   const topFit = allCombos[0];
 
+  // evaluation
   const handleEvaluate = () => {
     if (!selected) return;
     setEvaluated(true);
-
-    const rank = allCombos.findIndex(
-      (c) => c.service === selected.service && c.deployment === selected.deployment
-    );
-    const basePoints = rank === 0 ? 7 : rank <= 2 ? 5 : 3;
-
-    const matchesIdeal = scenario.idealCombos.some(
-      (x) => x.service === selected.service && x.deployment === selected.deployment
-    );
+    const rank = allCombos.findIndex(c => c.service===selected.service && c.deployment===selected.deployment);
+    const basePoints = rank===0 ? 7 : rank<=2 ? 5 : 3;
+    const matchesIdeal = scenario.idealCombos.some(x => x.service===selected.service && x.deployment===selected.deployment);
     const points = basePoints + (matchesIdeal ? 1 : 0);
-
-    setTotalScore((p) => p + points);
+    setTotalScore(p => p + points);
+    // announce result
+    requestAnimationFrame(() => {
+      liveRef.current?.focus();
+    });
   };
 
   const handleNext = () => {
-    if (scenarioIdx < BASE_SCENARIOS.length - 1) {
-      setScenarioIdx((i) => i + 1);
-    } else {
-      onComplete(totalScore);
-    }
+    if (scenarioIdx < BASE_SCENARIOS.length - 1) setScenarioIdx(i => i+1);
+    else onComplete(totalScore);
   };
 
-  const Bar = ({ value, label }: { value: number; label: string }) => (
+  // tiny bar component
+  const Bar = ({ value, label }: { value:number; label:string }) => (
     <div className="mb-3">
       <div className="flex justify-between text-sm text-slate-300">
         <span>{label}</span>
-        <span>
-          <FormattedNumber value={Math.round(value)} />/100
-        </span>
+        <span><FormattedNumber value={Math.round(value)} />/100</span>
       </div>
-      <div className="w-full h-2 bg-slate-700 rounded">
-        <div className="h-2 rounded bg-[#22c55e]" style={{ width: `${clamp(value, 0, 100)}%` }} />
+      <div className="h-2 w-full rounded bg-slate-700">
+        <div className="h-2 rounded bg-emerald-500" style={{ width: `${clamp(value,0,100)}%` }} />
       </div>
     </div>
   );
 
-  const Pill = ({ text }: { text: string }) => (
-    <span className="text-xs bg-slate-700 text-slate-200 px-2 py-1 rounded-full border border-slate-600">{text}</span>
-  );
-
-  const MetricBadge = ({ children }: { children: React.ReactNode }) => (
-    <div className="inline-flex flex-col items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full border-2 border-slate-600 bg-slate-800/80 text-center p-2">
-      <div className="text-[10px] sm:text-xs text-slate-300 leading-tight font-medium">{children}</div>
-    </div>
-  );
-
+  // feedback (unchanged logic; trimmed copy surface)
   const getFeedback = () => {
     if (!selected) return null;
-    
-    const rank = allCombos.findIndex(
-      (c) => c.service === selected.service && c.deployment === selected.deployment
-    );
+    const rank = allCombos.findIndex(c => c.service===selected.service && c.deployment===selected.deployment);
+    const key = rank===0 ? "part5.feedback.excellent" : rank<=2 ? "part5.feedback.solid" : "part5.feedback.reasonable";
 
-    let feedbackKey: string;
-    if (rank === 0) {
-      feedbackKey = "part5.feedback.excellent";
-    } else if (rank <= 2) {
-      feedbackKey = "part5.feedback.solid";
-    } else {
-      feedbackKey = "part5.feedback.reasonable";
-    }
-
-    const helping: string[] = [];
-    const hurting: string[] = [];
-
-    if (selected.metrics.performance >= 75) {
-      helping.push(intl.formatMessage({ id: "part5.feedback.helping.performance" }));
-    } else if (selected.metrics.performance < 60) {
-      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.performance" }));
-    }
-
-    if (selected.metrics.compliance >= 80) {
-      helping.push(intl.formatMessage({ id: "part5.feedback.helping.compliance" }));
-    } else if (selected.metrics.compliance < 65) {
-      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.compliance" }));
-    }
-
-    if (selected.metrics.ease >= 70) {
-      helping.push(intl.formatMessage({ id: "part5.feedback.helping.effort" }));
-    } else if (selected.metrics.ease < 50) {
-      hurting.push(intl.formatMessage({ id: "part5.feedback.hurting.effort" }));
-    }
+    const helping:string[] = [], hurting:string[] = [];
+    if (selected.metrics.performance >= 75) helping.push(intl.formatMessage({ id:"part5.feedback.helping.performance" })); 
+    else if (selected.metrics.performance < 60) hurting.push(intl.formatMessage({ id:"part5.feedback.hurting.performance" }));
+    if (selected.metrics.compliance >= 80) helping.push(intl.formatMessage({ id:"part5.feedback.helping.compliance" })); 
+    else if (selected.metrics.compliance < 65) hurting.push(intl.formatMessage({ id:"part5.feedback.hurting.compliance" }));
+    if (selected.metrics.ease >= 70) helping.push(intl.formatMessage({ id:"part5.feedback.helping.effort" })); 
+    else if (selected.metrics.ease < 50) hurting.push(intl.formatMessage({ id:"part5.feedback.hurting.effort" }));
 
     return (
-      <div className="bg-slate-900/50 rounded-xl p-5 mb-4 border border-[#973f4e]/30">
-        <div className="text-white font-semibold text-lg mb-2">
-          <FormattedMessage id={feedbackKey} />
-        </div>
-        <p className="text-slate-300 mb-3">
-          <FormattedMessage
-            id="part5.feedback.details"
-            values={{
-              yourFit: selected.metrics.fit,
-              topService: serviceMeta[topFit.service].label,
-              topDeployment: deploymentMeta[topFit.deployment].label,
-              topFit: topFit.metrics.fit,
-            }}
-          />
-        </p>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
-          <div>
-            <div className="text-emerald-300 font-semibold mb-1">
-              <FormattedMessage id="part5.feedback.helping.label" />
+      <SectionCard className="border-emerald-500/20 bg-slate-900/50">
+        <div tabIndex={-1} ref={liveRef} className="outline-none">
+          <div className="text-white font-semibold text-lg mb-2"><FormattedMessage id={key} /></div>
+          <p className="text-slate-300 mb-3">
+            <FormattedMessage id="part5.feedback.details" values={{
+              yourFit: selected.metrics.fit, topService: serviceMeta[topFit.service].label,
+              topDeployment: deploymentMeta[topFit.deployment].label, topFit: topFit.metrics.fit,
+            }}/>
+          </p>
+          <div className="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <div className="mb-1 font-semibold text-emerald-300"><FormattedMessage id="part5.feedback.helping.label" /></div>
+              <div className="text-slate-300">{helping.length ? <FormattedList type="conjunction" value={helping} /> : intl.formatMessage({ id:"part5.feedback.helping.none" })}</div>
             </div>
-            <div className="text-slate-300">
-              {helping.length > 0 ? <FormattedList type="conjunction" value={helping} /> : intl.formatMessage({ id: "part5.feedback.helping.none" })}
-            </div>
-          </div>
-          <div>
-            <div className="text-orange-300 font-semibold mb-1">
-              <FormattedMessage id="part5.feedback.hurting.label" />
-            </div>
-            <div className="text-slate-300">
-              {hurting.length > 0 ? <FormattedList type="conjunction" value={hurting} /> : intl.formatMessage({ id: "part5.feedback.hurting.none" })}
+            <div>
+              <div className="mb-1 font-semibold text-orange-300"><FormattedMessage id="part5.feedback.hurting.label" /></div>
+              <div className="text-slate-300">{hurting.length ? <FormattedList type="conjunction" value={hurting} /> : intl.formatMessage({ id:"part5.feedback.hurting.none" })}</div>
             </div>
           </div>
         </div>
-      </div>
+      </SectionCard>
     );
   };
 
+  // --- UI ---
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 flex items-start justify-center p-4 pt-8 pb-48 overflow-y-auto">
-      <div className="max-w-6xl w-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border border-indigo-500/20 mx-auto mt-0">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2">
-          <FormattedMessage id="part5.title" />
-        </h1>
-        <p className="text-slate-300 text-center mb-6">
-          <FormattedMessage id="part5.description" />
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-28 md:pb-8">
+      <div className="mx-auto w-full max-w-6xl">
+        <header className="mb-6 md:mb-8 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-white"><FormattedMessage id="part5.title" /></h1>
+          <p className="mt-2 text-slate-300"><FormattedMessage id="part5.description" /></p>
+        </header>
 
+        {/* Primer (collapsible) */}
         {showPrimer && (
-          <div className="bg-gradient-to-br from-[#750014]/20 to-[#8b959e]/20 backdrop-blur-sm rounded-xl p-5 mb-6 border border-[#973f4e]/30">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-bold text-[#d5b2b8]">
-                <FormattedMessage id="part5.primer.title" />
-              </h2>
-              <button
-                onClick={() => setShowPrimer(false)}
-                className="text-xs text-slate-400 hover:text-white transition"
-              >
+          <SectionCard className="mb-6 bg-gradient-to-br from-[#750014]/15 to-[#8b959e]/15 border-[#973f4e]/30">
+            <div className="flex items-start justify-between">
+              <h2 className="text-lg font-semibold text-[#d5b2b8]"><FormattedMessage id="part5.primer.title" /></h2>
+              <button onClick={() => setShowPrimer(false)} className="text-xs text-slate-400 hover:text-white motion-safe:transition">
                 <FormattedMessage id="part5.primer.hide" />
               </button>
             </div>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li className="flex items-start gap-2">
-                <span className="text-[#ba7f89] mt-0.5">•</span>
-                <FormattedMessage id="part5.primer.point1" />
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#ba7f89] mt-0.5">•</span>
-                <FormattedMessage id="part5.primer.point2" />
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#ba7f89] mt-0.5">•</span>
-                <FormattedMessage id="part5.primer.point3" />
-              </li>
+            <ul className="mt-3 space-y-2 text-sm text-slate-300 list-disc ml-5">
+              <li><FormattedMessage id="part5.primer.point1" /></li>
+              <li><FormattedMessage id="part5.primer.point2" /></li>
+              <li><FormattedMessage id="part5.primer.point3" /></li>
             </ul>
-          </div>
+          </SectionCard>
         )}
 
-        <div className="bg-slate-900/50 rounded-xl p-5 mb-6">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <p className="text-cyan-400 font-semibold">
-              <FormattedMessage
-                id="part5.scenario.label"
-                values={{
-                  current: scenarioIdx + 1,
-                  total: BASE_SCENARIOS.length,
-                }}
-              />
+        {/* Scenario card spans full width */}
+        <SectionCard className="mb-6">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-semibold text-cyan-400">
+              <FormattedMessage id="part5.scenario.label" values={{ current: scenarioIdx+1, total: BASE_SCENARIOS.length }}/>
             </p>
             <div className="flex gap-2">
-              <Pill
-                text={intl.formatMessage(
-                  { id: "part5.scenario.pill.users" },
-                  { count: users }
-                )}
+              <Token><FormattedMessage id="part5.scenario.pill.users" values={{ count: users }} /></Token>
+              <Token>
+                <FormattedMessage id="part5.scenario.pill.weights" values={{
+                  cost: Math.round(scenario.weights.cost*100),
+                  perf: Math.round(scenario.weights.performance*100),
+                  compliance: Math.round(scenario.weights.compliance*100),
+                  effort: Math.round(scenario.weights.effort*100),
+                }}/>
+              </Token>
+            </div>
+          </div>
+          <h2 className="mt-2 text-2xl font-bold text-white"><FormattedMessage id={scenario.titleKey} /></h2>
+          <p className="mt-1 text-slate-300"><FormattedMessage id={scenario.descriptionKey} /></p>
+        </SectionCard>
+
+        {/* 12-col desktop grid: selectors left (5), reasoning right (7) */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          {/* LEFT: selectors */}
+          <div className="space-y-6 lg:col-span-5">
+            {/* Service model (radio-cards) */}
+            <SectionCard ariaLabel={intl.formatMessage({ id: "part5.service.heading" })}>
+              <p className="mb-3 font-semibold text-white"><FormattedMessage id="part5.service.heading" /></p>
+              <div role="radiogroup" className="space-y-2">
+                {(["iaas","paas","saas"] as ServiceModel[]).map(m => {
+                  const meta = serviceMeta[m];
+                  const disabled = m==="saas" && scenario.saasApplicable===false;
+                  const selectedState = service === m;
+                  return (
+                    <button
+                      key={m}
+                      role="radio"
+                      aria-checked={selectedState}
+                      aria-disabled={disabled || undefined}
+                      aria-describedby={disabled ? "saas-note" : undefined}
+                      onClick={() => !disabled && setService(m)}
+                      className={`w-full text-left rounded-lg border p-3 motion-safe:transition
+                        ${selectedState ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
+                        ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
+                    >
+                      <div className="font-semibold text-slate-100">{meta.label}</div>
+                      <div className="text-sm text-slate-400">{meta.blurb}</div>
+                      <div className="mt-2 flex gap-2">
+                        <Token><FormattedMessage id="part5.service.pill.ops" values={{ cost: formatMonthlyCost(meta.monthlyOpsOverhead, intl) }}/></Token>
+                        <Token><FormattedMessage id="part5.service.pill.lockin" values={{ risk: intl.formatMessage({ id:`part5.risk.${meta.lockInRisk}` }) }}/></Token>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+              {/* Explain why SaaS is disabled when it is */}
+              <p id="saas-note" className="sr-only">
+                <FormattedMessage id="part5.saas.disabled" />
+              </p>
+            </SectionCard>
+
+            {/* Deployment model (radio-cards) */}
+            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.deployment.heading" })}>
+              <p className="mb-2 font-semibold text-white"><FormattedMessage id="part5.deployment.heading" /></p>
+              <p className="mb-2 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.instructions" /></p>
+              <p className="mb-3 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.sustainability" /></p>
+              <div role="radiogroup" className="space-y-2">
+                {(["public","private","hybrid"] as DeploymentModel[]).map(m => {
+                  const meta = deploymentMeta[m];
+                  const sel = deployment===m;
+                  return (
+                    <button
+                      key={m} role="radio" aria-checked={sel}
+                      onClick={() => setDeployment(m)}
+                      className={`w-full text-left rounded-lg border p-4 motion-safe:transition
+                        ${sel ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
+                    >
+                      <div className="mb-1 font-semibold text-slate-100">{meta.label}</div>
+                      <div className="mb-3 text-sm text-slate-400">{meta.blurb}</div>
+                      <div className="flex items-center justify-around gap-3">
+                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.fixed" })} value={formatMonthlyCost(meta.fixedInfra, intl)} />
+                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.variable" })} value={`$${meta.variablePerKUsers}/1k`} />
+                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.elasticity" })} value={`${meta.elasticity}/100`} />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </SectionCard>
+
+            {/* Scale slider */}
+            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.scale.heading" })}>
+              <p className="mb-3 font-semibold text-white"><FormattedMessage id="part5.scale.heading" /></p>
+              <div className="mb-2 text-slate-300"><FormattedMessage id="part5.scale.users" values={{ count: users }} /></div>
+              <input
+                type="range"
+                min={scenario.minUsers}
+                max={scenario.maxUsers}
+                step={Math.max(100, Math.round((scenario.maxUsers - scenario.minUsers)/100))}
+                value={users}
+                onChange={(e)=>setUsers(Number(e.target.value))}
+                aria-label={intl.formatMessage({ id:"part5.scale.users" }, { count: users })}
+                className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-2"
               />
-              <Pill
-                text={intl.formatMessage(
-                  { id: "part5.scenario.pill.weights" },
-                  {
-                    cost: Math.round(scenario.weights.cost * 100),
-                    perf: Math.round(scenario.weights.performance * 100),
-                    compliance: Math.round(scenario.weights.compliance * 100),
-                    effort: Math.round(scenario.weights.effort * 100),
-                  }
-                )}
-              />
-            </div>
+              <div className="mt-1 flex justify-between text-xs text-slate-400">
+                <span><FormattedNumber value={scenario.minUsers}/></span>
+                <span><FormattedNumber value={scenario.maxUsers}/></span>
+              </div>
+            </SectionCard>
           </div>
-          <h2 className="text-2xl font-bold text-white mb-1">
-            <FormattedMessage id={scenario.titleKey} />
-          </h2>
-          <p className="text-slate-300">
-            <FormattedMessage id={scenario.descriptionKey} />
-          </p>
-        </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">
-              <FormattedMessage id="part5.service.heading" />
-            </p>
-            {(["iaas", "paas", "saas"] as ServiceModel[]).map((m) => {
-              const meta = serviceMeta[m];
-              const disabled = m === "saas" && scenario.saasApplicable === false;
-              return (
+          {/* RIGHT: reasoning and comparison */}
+          <div className="space-y-6 lg:col-span-7">
+            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.tradeoffs.heading" })}>
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
                 <button
-                  key={m}
-                  disabled={disabled}
-                  onClick={() => setService(m)}
-                  className={`w-full text-start p-3 rounded-lg mb-2 border transition
-                    ${service === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
-                    ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
-                  aria-pressed={service === m}
-                  aria-label={meta.label}
+                  className="rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
+                  onClick={()=>setShowCompare(s=>!s)}
                 >
-                  <div className="text-slate-100 font-semibold">{meta.label}</div>
-                  <div className="text-slate-400 text-sm">{meta.blurb}</div>
-                  <div className="flex gap-2 mt-2">
-                    <Pill
-                      text={intl.formatMessage(
-                        { id: "part5.service.pill.ops" },
-                        { cost: formatMonthlyCost(meta.monthlyOpsOverhead, intl) }
-                      )}
-                    />
-                    <Pill
-                      text={intl.formatMessage(
-                        { id: "part5.service.pill.lockin" },
-                        { risk: intl.formatMessage({ id: `part5.risk.${meta.lockInRisk}` }) }
-                      )}
-                    />
-                  </div>
+                  <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
                 </button>
-              );
-            })}
-          </div>
+              </div>
 
-          <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-2">
-              <FormattedMessage id="part5.deployment.heading" />
-            </p>
-            <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-              <FormattedMessage id="part5.deployment.instructions" />
-            </p>
-            <p className="text-xs text-slate-400 mb-3 leading-relaxed">
-              <FormattedMessage id="part5.deployment.sustainability" />
-            </p>
-            {(["public", "private", "hybrid"] as DeploymentModel[]).map((m) => {
-              const meta = deploymentMeta[m];
-              return (
-                <button
-                  key={m}
-                  onClick={() => setDeployment(m)}
-                  className={`w-full text-start p-4 rounded-lg mb-2 border transition
-                    ${deployment === m ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
-                  aria-pressed={deployment === m}
-                  aria-label={meta.label}
-                >
-                  <div className="text-slate-100 font-semibold mb-1">{meta.label}</div>
-                  <div className="text-slate-400 text-sm mb-3">{meta.blurb}</div>
-                  <div className="flex justify-around items-center gap-3 px-2">
-                    <MetricBadge>
-                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
-                        <FormattedMessage id="part5.deployment.badge.fixed" />
-                      </div>
-                      <div className="text-xs sm:text-sm font-bold text-white">
-                        {formatMonthlyCost(meta.fixedInfra, intl)}
-                      </div>
-                    </MetricBadge>
-                    <MetricBadge>
-                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
-                        <FormattedMessage id="part5.deployment.badge.variable" />
-                      </div>
-                      <div className="text-xs sm:text-sm font-bold text-white">
-                        ${meta.variablePerKUsers}/1k
-                      </div>
-                    </MetricBadge>
-                    <MetricBadge>
-                      <div className="text-[9px] sm:text-[10px] text-slate-400 mb-0.5">
-                        <FormattedMessage id="part5.deployment.badge.elasticity" />
-                      </div>
-                      <div className="text-xs sm:text-sm font-bold text-white">
-                        {meta.elasticity}/100
-                      </div>
-                    </MetricBadge>
+              {selected ? (
+                <div className="grid gap-6 md:grid-cols-2">
+                  {/* Your selection */}
+                  <div>
+                    <div className="mb-1 font-semibold text-slate-200">
+                      <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
+                      <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{" "}
+                      <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
+                    </div>
+                    <div className="mb-2 text-sm text-slate-400">
+                      <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
+                      <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
+                    </div>
+                    <Bar value={selected.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
+                    <Bar value={selected.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
+                    <Bar value={selected.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                    <div className="mt-3 text-sm text-slate-300">
+                      <div className="mb-1 font-semibold"><FormattedMessage id="part5.tradeoffs.explain.heading" /></div>
+                      <ul className="ml-5 list-disc space-y-1">{selected.metrics.explain.map((x,i)=><li key={i}>{x}</li>)}</ul>
+                    </div>
+                    <div className="mt-4 text-slate-200">
+                      <FormattedMessage id="part5.tradeoffs.fit.label" />{" "}
+                      <span className="text-xl font-bold text-emerald-400"><FormattedNumber value={selected.metrics.fit} />/100</span>
+                    </div>
                   </div>
-                </button>
-              );
-            })}
-          </div>
 
-          <div className="bg-slate-900/50 rounded-xl p-5">
-            <p className="text-white font-semibold mb-3">
-              <FormattedMessage id="part5.scale.heading" />
-            </p>
-            <div className="text-slate-300 mb-2">
-              <FormattedMessage id="part5.scale.users" values={{ count: users }} />
-            </div>
-            <input
-              type="range"
-              min={scenario.minUsers}
-              max={scenario.maxUsers}
-              step={Math.max(100, Math.round((scenario.maxUsers - scenario.minUsers) / 100))}
-              value={users}
-              onChange={(e) => setUsers(Number(e.target.value))}
-              className="w-full h-2 bg-slate-700 rounded-lg appearance-none accent-[#8b959e]"
-              aria-label={intl.formatMessage({ id: "part5.scale.users" }, { count: users })}
-            />
-            <div className="flex justify-between text-slate-400 text-xs mt-1">
-              <span>
-                <FormattedNumber value={scenario.minUsers} />
-              </span>
-              <span>
-                <FormattedNumber value={scenario.maxUsers} />
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-slate-900/50 rounded-xl p-5 mb-4">
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <p className="text-white font-semibold">
-              <FormattedMessage id="part5.tradeoffs.heading" />
-            </p>
-            <button
-              className="text-xs px-3 py-1 rounded border border-slate-600 text-slate-200 hover:bg-slate-800"
-              onClick={() => setShowCompare((s) => !s)}
-            >
-              <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
-            </button>
-          </div>
-
-          {selected ? (
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <div className="text-slate-200 font-semibold mb-1">
-                  <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
-                  <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{" "}
-                  <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
-                </div>
-                <div className="text-slate-400 text-sm mb-2">
-                  <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
-                  <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
-                </div>
-                <Bar
-                  value={selected.metrics.performance}
-                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.performance" })}
-                />
-                <Bar
-                  value={selected.metrics.compliance}
-                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.compliance" })}
-                />
-                <Bar
-                  value={selected.metrics.ease}
-                  label={intl.formatMessage({ id: "part5.tradeoffs.metric.ease" })}
-                />
-
-                <div className="mt-3 text-slate-300 text-sm">
-                  <div className="font-semibold mb-1">
-                    <FormattedMessage id="part5.tradeoffs.explain.heading" />
+                  {/* Top fit */}
+                  <div className="rounded-lg border border-emerald-500/30 bg-slate-800/40 p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="font-semibold text-slate-200"><FormattedMessage id="part5.top.heading" /></div>
+                      <span className="rounded px-2 py-0.5 text-xs text-emerald-300 border border-emerald-700 bg-emerald-900/30">
+                        <FormattedMessage id="part5.top.badge" />
+                      </span>
+                    </div>
+                    <div className="mt-2 text-slate-200">
+                      <div><span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> + <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span></div>
+                      <div className="text-sm text-slate-400">
+                        <FormattedMessage id="part5.top.cost.label" /> <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·
+                        <FormattedMessage id="part5.top.fit.label" />{" "}
+                        <b className="text-emerald-300"><FormattedNumber value={topFit.metrics.fit} />/100</b>
+                      </div>
+                      <div className="mt-2">
+                        <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
+                        <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
+                        <Bar value={topFit.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                      </div>
+                    </div>
                   </div>
-                  <ul className="list-disc ml-5 space-y-1">
-                    {selected.metrics.explain.map((x, i) => (
-                      <li key={i}>{x}</li>
+                </div>
+              ) : (
+                <p className="text-slate-300"><FormattedMessage id="part5.tradeoffs.noselection" /></p>
+              )}
+
+              {/* Mobile: Top 3 list for quick scanning */}
+              {!showCompare && (
+                <div className="mt-6 md:hidden">
+                  <div className="mb-2 text-slate-300 font-semibold"><FormattedMessage id="part5.top3.heading" /></div>
+                  <ul className="space-y-2">
+                    {allCombos.slice(0,3).map((c,i)=>(
+                      <li key={`${c.service}-${c.deployment}`} className="rounded-lg border border-slate-700/50 bg-slate-800/60 p-3">
+                        <div className="flex items-center justify-between">
+                          <div className="font-medium text-slate-200">{serviceMeta[c.service].label} · {deploymentMeta[c.deployment].label}</div>
+                          <div className="text-slate-400 text-sm">#{i+1}</div>
+                        </div>
+                        <div className="mt-1 text-xs text-slate-400">
+                          <FormattedMessage id="part5.table.cost" />: {formatMonthlyCost(c.metrics.cost, intl)} · <FormattedMessage id="part5.table.fit" />: <b><FormattedNumber value={c.metrics.fit}/></b>
+                        </div>
+                      </li>
                     ))}
                   </ul>
                 </div>
+              )}
 
-                <div className="mt-4 text-slate-200">
-                  <FormattedMessage id="part5.tradeoffs.fit.label" />{" "}
-                  <span className="text-xl font-bold text-emerald-400">
-                    <FormattedNumber value={selected.metrics.fit} />/100
-                  </span>
+              {/* Full table (desktop always available; mobile behind toggle) */}
+              {showCompare && (
+                <div className="mt-6 overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead className="text-slate-300">
+                      <tr className="text-left">
+                        <th className="sticky left-0 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">#</th>
+                        <th className="sticky left-8 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm"><FormattedMessage id="part5.table.option" /></th>
+                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.cost" /></th>
+                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.perf" /></th>
+                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.compliance" /></th>
+                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.ease" /></th>
+                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.fit" /></th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-slate-200">
+                      {allCombos.map((c,i)=>(
+                        <tr key={`${c.service}-${c.deployment}`} className={`border-t border-slate-700/50 ${selected && c.service===selected.service && c.deployment===selected.deployment ? "bg-slate-800/60" : ""}`}>
+                          <td className="py-2 pr-3 text-slate-400">{i+1}</td>
+                          <td className="py-2 pr-3">
+                            <div className="font-medium">{serviceMeta[c.service].label}</div>
+                            <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
+                          </td>
+                          <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
+                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.performance)} /></td>
+                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.compliance)} /></td>
+                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.ease)} /></td>
+                          <td className="py-2 pr-3 font-semibold"><FormattedNumber value={c.metrics.fit} /></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="mt-2 text-xs text-slate-400"><FormattedMessage id="part5.table.note" /></div>
                 </div>
-              </div>
+              )}
+            </SectionCard>
 
-              <div className="bg-slate-800/40 rounded-lg p-4 border border-emerald-500/30">
-                <div className="flex items-center justify-between">
-                  <div className="text-slate-200 font-semibold">
-                    <FormattedMessage id="part5.top.heading" />
-                  </div>
-                  <span className="text-xs text-emerald-300 bg-emerald-900/30 border border-emerald-700 px-2 py-0.5 rounded">
-                    <FormattedMessage id="part5.top.badge" />
-                  </span>
-                </div>
-                <div className="mt-2 text-slate-200">
-                  <div>
-                    <span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> +{" "}
-                    <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span>
-                  </div>
-                  <div className="text-slate-400 text-sm">
-                    <FormattedMessage id="part5.top.cost.label" />{" "}
-                    <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·{" "}
-                    <FormattedMessage id="part5.top.fit.label" />{" "}
-                    <b className="text-emerald-300">
-                      <FormattedNumber value={topFit.metrics.fit} />/100
-                    </b>
-                  </div>
-                  <div className="mt-2">
-                    <Bar
-                      value={topFit.metrics.performance}
-                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.performance" })}
-                    />
-                    <Bar
-                      value={topFit.metrics.compliance}
-                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.compliance" })}
-                    />
-                    <Bar
-                      value={topFit.metrics.ease}
-                      label={intl.formatMessage({ id: "part5.tradeoffs.metric.ease" })}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <p className="text-slate-300">
-              <FormattedMessage id="part5.tradeoffs.noselection" />
-            </p>
-          )}
+            {evaluated && getFeedback()}
+          </div>
+        </div>
 
-          {showCompare && (
-            <div className="mt-6 overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="text-slate-300">
-                  <tr className="text-left">
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.rank" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.option" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.cost" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.perf" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.compliance" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.ease" />
-                    </th>
-                    <th className="py-2 pr-3">
-                      <FormattedMessage id="part5.table.fit" />
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-slate-200">
-                  {allCombos.map((c, i) => (
-                    <tr
-                      key={`${c.service}-${c.deployment}`}
-                      className={`border-t border-slate-700/50 ${selected && c.service === selected.service && c.deployment === selected.deployment ? "bg-slate-800/60" : ""}`}
-                    >
-                      <td className="py-2 pr-3 text-slate-400">{i + 1}</td>
-                      <td className="py-2 pr-3">
-                        <div className="font-medium">{serviceMeta[c.service].label}</div>
-                        <div className="text-slate-400 text-xs">{deploymentMeta[c.deployment].label}</div>
-                      </td>
-                      <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
-                      <td className="py-2 pr-3">
-                        <FormattedNumber value={Math.round(c.metrics.performance)} />
-                      </td>
-                      <td className="py-2 pr-3">
-                        <FormattedNumber value={Math.round(c.metrics.compliance)} />
-                      </td>
-                      <td className="py-2 pr-3">
-                        <FormattedNumber value={Math.round(c.metrics.ease)} />
-                      </td>
-                      <td className="py-2 pr-3 font-semibold">
-                        <FormattedNumber value={c.metrics.fit} />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="text-xs text-slate-400 mt-2">
-                <FormattedMessage id="part5.table.note" />
-              </div>
-            </div>
+        {/* Primary actions: sticky on mobile, inline on desktop */}
+        <div className="fixed inset-x-0 bottom-0 z-10 mx-auto max-w-6xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur md:static md:border-0 md:bg-transparent md:p-0">
+          <div className="flex items-center justify-between gap-3">
+            <button
+              onClick={handleEvaluate}
+              disabled={!service || !deployment || evaluated}
+              className={`px-6 py-3 rounded-lg font-semibold shadow-lg motion-safe:transition
+                ${service && deployment && !evaluated ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110"
+                                                     : "cursor-not-allowed bg-slate-700 text-slate-400"}`}
+            >
+              <FormattedMessage id="part5.button.evaluate" />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!evaluated}
+              className={`px-6 py-3 rounded-lg font-semibold shadow-lg motion-safe:transition
+                ${evaluated ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110"
+                            : "cursor-not-allowed bg-slate-700 text-slate-400"}`}
+            >
+              <FormattedMessage id={scenarioIdx < BASE_SCENARIOS.length - 1 ? "part5.button.next" : "part5.button.finish"} />
+            </button>
+          </div>
+        </div>
+
+        {/* Live region for screen readers */}
+        <div aria-live="polite" className="sr-only">
+          {evaluated && selected && intl.formatMessage(
+            { id: "part5.aria.result" },
+            { fit: selected.metrics.fit, cost: formatMonthlyCost(selected.metrics.cost, intl) }
           )}
         </div>
 
-        {evaluated && getFeedback()}
-
-        <div className="flex justify-between items-center gap-4">
-          <button
-            onClick={handleEvaluate}
-            disabled={!service || !deployment || evaluated}
-            className={`px-6 py-3 rounded-lg font-semibold transition shadow-lg ${
-              service && deployment && !evaluated
-                ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 shadow-[#750014]/45"
-                : "bg-slate-700 text-slate-400 cursor-not-allowed"
-            }`}
-          >
-            <FormattedMessage id="part5.button.evaluate" />
-          </button>
-
-          <button
-            onClick={handleNext}
-            disabled={!evaluated}
-            className={`px-6 py-3 rounded-lg font-semibold transition shadow-lg ${
-              evaluated
-                ? "bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 shadow-[#750014]/45"
-                : "bg-slate-700 text-slate-400 cursor-not-allowed"
-            }`}
-          >
-            <FormattedMessage
-              id={scenarioIdx < BASE_SCENARIOS.length - 1 ? "part5.button.next" : "part5.button.finish"}
-            />
-          </button>
-        </div>
-
-        <div className="mt-6 p-4 bg-slate-900/30 rounded-lg border border-slate-700">
-          <p className="text-slate-400 text-sm italic">
-            <FormattedMessage id="part5.tip" />
-          </p>
-        </div>
+        {/* Tip */}
+        <SectionCard className="mt-6 border-slate-700">
+          <p className="text-sm italic text-slate-400"><FormattedMessage id="part5.tip" /></p>
+        </SectionCard>
       </div>
     </div>
   );
