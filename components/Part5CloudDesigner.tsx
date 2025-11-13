@@ -135,6 +135,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [totalScore, setTotalScore] = useState(0);
   const [showCompare, setShowCompare] = useState(false); // collapsed by default for mobile
   const [showPrimer, setShowPrimer] = useState(true);
+  const [showSustainability, setShowSustainability] = useState(false); // optional environmental disclosure
+  const [showTradeoffDetails, setShowTradeoffDetails] = useState(false); // collapsed trade-offs by default
   const liveRef = useRef<HTMLDivElement | null>(null);
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
@@ -411,6 +413,18 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   );
                 })}
               </div>
+              {/* Optional sustainability disclosure */}
+              <button
+                onClick={() => setShowSustainability(s => !s)}
+                className="mt-3 text-xs text-slate-400 hover:text-slate-200 underline motion-safe:transition"
+              >
+                <FormattedMessage id="part5.deployment.sustainability.learn" />
+              </button>
+              {showSustainability && (
+                <p className="mt-2 text-xs leading-relaxed text-slate-300 bg-slate-800/40 p-3 rounded border border-slate-700/50">
+                  <FormattedMessage id="part5.deployment.sustainability" />
+                </p>
+              )}
             </SectionCard>
 
             {/* Scale slider */}
@@ -465,33 +479,56 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               </div>
 
               {selected ? (
-                <div className="grid gap-6 lg:grid-cols-2 xl:gap-8">
-                  {/* Your selection */}
-                  <div>
-                    <div className="mb-1 font-semibold text-slate-200">
-                      <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
-                      <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{" "}
-                      <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
+                <>
+                  {/* Collapsed summary */}
+                  {!showTradeoffDetails && (
+                    <div className="mb-4">
+                      <p className="text-slate-200">
+                        <FormattedMessage id="part5.tradeoffs.summary" values={{
+                          service: serviceMeta[selected.service].label,
+                          deployment: deploymentMeta[selected.deployment].label,
+                          cost: formatMonthlyCost(selected.metrics.cost, intl),
+                          score: Math.round(selected.metrics.fit),
+                        }} />
+                      </p>
+                      <button
+                        onClick={() => setShowTradeoffDetails(true)}
+                        className="mt-2 text-sm text-[#8b959e] hover:text-white underline motion-safe:transition"
+                      >
+                        <FormattedMessage id="part5.tradeoffs.why" />
+                      </button>
                     </div>
-                    <div className="mb-2 text-sm text-slate-400">
-                      <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
-                      <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
-                    </div>
-                    <Bar value={selected.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
-                    <Bar value={selected.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
-                    <Bar value={selected.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
-                    <div className="mt-3 text-sm text-slate-300">
-                      <div className="mb-1 font-semibold"><FormattedMessage id="part5.tradeoffs.explain.heading" /></div>
-                      <ul className="ml-5 list-disc space-y-1">{selected.metrics.explain.map((x,i)=><li key={i}>{x}</li>)}</ul>
-                    </div>
-                    <div className="mt-4 text-slate-200">
-                      <FormattedMessage id="part5.tradeoffs.fit.label" />{" "}
-                      <span className="text-xl font-bold text-emerald-400"><FormattedNumber value={selected.metrics.fit} />/100</span>
-                    </div>
-                  </div>
+                  )}
+                  
+                  {/* Detailed view */}
+                  {showTradeoffDetails && (
+                    <div className="grid gap-6 lg:grid-cols-2 xl:gap-8">
+                      {/* Your selection */}
+                      <div>
+                        <div className="mb-1 font-semibold text-slate-200">
+                          <FormattedMessage id="part5.tradeoffs.selection.label" />{" "}
+                          <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{" "}
+                          <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
+                        </div>
+                        <div className="mb-2 text-sm text-slate-400">
+                          <FormattedMessage id="part5.tradeoffs.cost.label" />{" "}
+                          <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
+                        </div>
+                        <Bar value={selected.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
+                        <Bar value={selected.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
+                        <Bar value={selected.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                        <div className="mt-3 text-sm text-slate-300">
+                          <div className="mb-1 font-semibold"><FormattedMessage id="part5.tradeoffs.explain.heading" /></div>
+                          <ul className="ml-5 list-disc space-y-1">{selected.metrics.explain.map((x,i)=><li key={i}>{x}</li>)}</ul>
+                        </div>
+                        <div className="mt-4 text-slate-200">
+                          <FormattedMessage id="part5.tradeoffs.fit.label" />{" "}
+                          <span className="text-xl font-bold text-emerald-400"><FormattedNumber value={selected.metrics.fit} />/100</span>
+                        </div>
+                      </div>
 
-                  {/* Top fit */}
-                  <div className="rounded-lg border border-emerald-500/30 bg-slate-800/40 p-4">
+                      {/* Top fit */}
+                      <div className="rounded-lg border border-emerald-500/30 bg-slate-800/40 p-4">
                     <div className="flex items-center justify-between">
                       <div className="font-semibold text-slate-200"><FormattedMessage id="part5.top.heading" /></div>
                       <span className="rounded px-2 py-0.5 text-xs text-emerald-300 border border-emerald-700 bg-emerald-900/30">
@@ -505,14 +542,16 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                         <FormattedMessage id="part5.top.fit.label" />{" "}
                         <b className="text-emerald-300"><FormattedNumber value={topFit.metrics.fit} />/100</b>
                       </div>
-                      <div className="mt-2">
-                        <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
-                        <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
-                        <Bar value={topFit.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                        <div className="mt-2">
+                          <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
+                          <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
+                          <Bar value={topFit.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
+                </>
               ) : (
                 <p className="text-slate-300"><FormattedMessage id="part5.tradeoffs.noselection" /></p>
               )}
