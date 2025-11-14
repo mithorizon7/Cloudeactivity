@@ -3,12 +3,35 @@
 // Top-3 on mobile; full table optional; live region + motion-safe transitions.
 
 import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
-import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from "react-intl";
+import { FormattedMessage, useIntl, FormattedNumber, FormattedList, IntlShape } from "react-intl";
 import { InfoTooltip } from "./InfoTooltip";
 
-// --- types & helpers (unchanged) ---
+// --- types & helpers ---
 type ServiceModel = "iaas" | "paas" | "saas";
 type DeploymentModel = "public" | "private" | "hybrid";
+
+interface ServiceMetadata {
+  label: string;
+  shortLabel: string;
+  blurb: string;
+  monthlyOpsOverhead: number;
+  controlBonus: number;
+  lockInRisk: "low" | "med" | "high";
+  effortScore: number;
+}
+
+interface DeploymentMetadata {
+  label: string;
+  shortLabel: string;
+  blurb: string;
+  fixedInfra: number;
+  variablePerKUsers: number;
+  elasticity: number;
+  baseCompliance: number;
+}
+
+type ServiceMetaMap = Record<ServiceModel, ServiceMetadata>;
+type DeploymentMetaMap = Record<DeploymentModel, DeploymentMetadata>;
 
 interface Part5CloudDesignerProps { onComplete: (score: number) => void; }
 interface Scenario {
@@ -25,7 +48,7 @@ function normalizeTo0_100(vals:number[], v:number){
   if (Math.abs(max-min) < 1e-6) return 50;
   return clamp(((max - v)/(max - min))*100, 0, 100);
 }
-function formatMonthlyCost(n:number, intl:any){ 
+function formatMonthlyCost(n:number, intl:IntlShape){ 
   return intl.formatMessage({ id: "part5.currency.monthly" }, { amount: Math.round(n) });
 }
 function weightToPriority(weight: number): 'high' | 'med' | 'low' {
@@ -63,7 +86,7 @@ type Metrics = { cost:number; performance:number; compliance:number; ease:number
 
 function computeMetrics(
   service: ServiceModel, deployment: DeploymentModel, users:number, scenario: Scenario,
-  serviceMeta:any, deploymentMeta:any, intl:any
+  serviceMeta:ServiceMetaMap, deploymentMeta:DeploymentMetaMap, intl:IntlShape
 ): Metrics {
   const s = serviceMeta[service];
   const d = deploymentMeta[deployment];
