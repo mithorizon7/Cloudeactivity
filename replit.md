@@ -36,6 +36,26 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Internationalization:** `react-intl` (FormatJS)
 
 ## Recent Changes
+- **2025-11-14**: Part 5 (Cloud Designer) P0 clarity improvements for novice users
+  - **"What matters most" priority chips (P0#3)**: Replaced cryptic weight percentages with High/Med/Low priority badges
+    - Each dimension (Cost, Speed & Scale, Compliance, Operational Effort) shows color-coded priority
+    - InfoTooltip on each chip reveals exact percentage + definition
+    - Thresholds: High ≥30%, Med 15-29%, Low <15%
+    - Resets to scenario defaults when user changes scenarios
+  - **Comprehensive InfoTooltip integration (P0#5)**: Added accessible tooltips to all metrics
+    - Service metrics: Ops overhead, Lock-in
+    - Deployment metrics: Fixed cost, $/1k variable, Elasticity
+    - Priority dimensions: Cost, Speed & Scale, Compliance, Operational Effort
+    - All tooltips support keyboard navigation (Enter/Space to open, Escape to close), touch interaction, and ARIA
+  - **Top recommendation blur/reveal (P0#8)**: Prevents users from shortcutting the learning activity
+    - Top recommendation card starts blurred with "Reveal top pick" button overlay
+    - Backdrop-blur effect with accessible focus states
+    - Resets to blurred state when scenario changes
+    - Content hidden from screen readers when blurred (aria-hidden)
+  - **Code cleanup**: Removed unused MetricBadge component (replaced with inline markup + tooltips)
+  - **Rationale**: These changes address feedback that Part 5 was overwhelming for true novices by replacing technical jargon with plain language, adding definitions where needed, and preventing activity shortcuts
+  - **Verification**: Architect confirmed all P0 items complete and ready for user testing
+
 - **2025-11-13**: Improved title readability by removing gradient text
   - **Issue**: Gradient text on main titles (h1/h2) was hard to read due to low-luminance segments
   - **Fix**: Replaced all gradient titles with solid white text (`text-white`)
