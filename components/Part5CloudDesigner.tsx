@@ -2,7 +2,7 @@
 // Mobile-first; 12-col desktop grid; radio-card semantics; sticky action bar;
 // Top-3 on mobile; full table optional; live region + motion-safe transitions.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from "react-intl";
 import { InfoTooltip } from "./InfoTooltip";
 
@@ -108,6 +108,72 @@ function weightedFit(m:Metrics, peerCosts:number[], weights:Scenario["weights"])
   return { fit: Math.round(fit), affordability: Math.round(affordability) };
 }
 
+// --- stepper state management ---
+type StepId = 'service' | 'deployment' | 'results';
+type StepStatus = 'notStarted' | 'inProgress' | 'done';
+
+interface StepState {
+  status: StepStatus;
+  expanded: boolean;
+}
+
+interface StepperState {
+  steps: Record<StepId, StepState>;
+}
+
+type StepperAction =
+  | { type: 'STEP_STARTED'; stepId: StepId }
+  | { type: 'STEP_COMPLETED'; stepId: StepId }
+  | { type: 'STEP_RESET' }
+  | { type: 'SET_EXPANDED'; stepId: StepId; expanded: boolean };
+
+function stepperReducer(state: StepperState, action: StepperAction): StepperState {
+  switch (action.type) {
+    case 'STEP_STARTED':
+      return {
+        ...state,
+        steps: {
+          ...state.steps,
+          [action.stepId]: { ...state.steps[action.stepId], status: 'inProgress', expanded: true },
+        },
+      };
+    case 'STEP_COMPLETED':
+      return {
+        ...state,
+        steps: {
+          ...state.steps,
+          [action.stepId]: { ...state.steps[action.stepId], status: 'done' },
+        },
+      };
+    case 'STEP_RESET':
+      return {
+        steps: {
+          service: { status: 'notStarted', expanded: false },
+          deployment: { status: 'notStarted', expanded: false },
+          results: { status: 'notStarted', expanded: false },
+        },
+      };
+    case 'SET_EXPANDED':
+      return {
+        ...state,
+        steps: {
+          ...state.steps,
+          [action.stepId]: { ...state.steps[action.stepId], expanded: action.expanded },
+        },
+      };
+    default:
+      return state;
+  }
+}
+
+const initialStepperState: StepperState = {
+  steps: {
+    service: { status: 'notStarted', expanded: false },
+    deployment: { status: 'notStarted', expanded: false },
+    results: { status: 'notStarted', expanded: false },
+  },
+};
+
 // --- small presentational helpers ---
 const SectionCard: React.FC<{children: React.ReactNode; className?: string; ariaLabel?: string}> = ({ children, className="", ariaLabel }) => (
   <section
@@ -138,6 +204,9 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [showTradeoffDetails, setShowTradeoffDetails] = useState(false); // collapsed trade-offs by default
   const [topRevealed, setTopRevealed] = useState(false); // blur top recommendation until user reveals it
   const liveRef = useRef<HTMLDivElement | null>(null);
+  
+  const [stepperState, dispatchStepper] = useReducer(stepperReducer, initialStepperState);
+  const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
 
@@ -204,7 +273,20 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     setTopRevealed(false); // reset top recommendation blur
     // Auto-expand comparison table on desktop, collapse on mobile
     setShowCompare(window.innerWidth >= 1024);
+    dispatchStepper({ type: 'STEP_RESET' });
   }, [scenarioIdx, scenario.defaultUsers]);
+
+  // Auto-scroll to newly expanded steps
+  useLayoutEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    Object.entries(stepperState.steps).forEach(([stepId, stepState]) => {
+      if (stepState.expanded && stepRefs.current[stepId]) {
+        stepRefs.current[stepId]?.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+      }
+    });
+  }, [stepperState.steps]);
 
   // compute all combos
   const allCombos = useMemo(() => {
@@ -224,6 +306,18 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
 
   const selected = service && deployment ? allCombos.find(c => c.service===service && c.deployment===deployment) : null;
   const topFit = allCombos[0];
+
+  const handleServiceSelect = (selectedService: ServiceModel) => {
+    setService(selectedService);
+    dispatchStepper({ type: 'STEP_COMPLETED', stepId: 'service' });
+    dispatchStepper({ type: 'STEP_STARTED', stepId: 'deployment' });
+  };
+
+  const handleDeploymentSelect = (selectedDeployment: DeploymentModel) => {
+    setDeployment(selectedDeployment);
+    dispatchStepper({ type: 'STEP_COMPLETED', stepId: 'deployment' });
+    dispatchStepper({ type: 'STEP_STARTED', stepId: 'results' });
+  };
 
   // evaluation
   const handleEvaluate = () => {
@@ -364,6 +458,25 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           </div>
           <h2 className="mt-2 text-2xl font-bold text-white"><FormattedMessage id={scenario.titleKey} /></h2>
           <p className="mt-1 text-slate-300"><FormattedMessage id={scenario.descriptionKey} /></p>
+          
+          {/* Users slider - moved from separate section */}
+          <div className="mt-4 pt-4 border-t border-slate-700/40">
+            <div className="mb-2 text-slate-300"><FormattedMessage id="part5.scale.users" values={{ count: users }} /></div>
+            <input
+              type="range"
+              min={scenario.minUsers}
+              max={scenario.maxUsers}
+              step={Math.max(100, Math.round((scenario.maxUsers - scenario.minUsers)/100))}
+              value={users}
+              onChange={(e)=>setUsers(Number(e.target.value))}
+              aria-label={intl.formatMessage({ id:"part5.scale.users" }, { count: users })}
+              className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-2"
+            />
+            <div className="mt-1 flex justify-between text-xs text-slate-400">
+              <span><FormattedNumber value={scenario.minUsers}/></span>
+              <span><FormattedNumber value={scenario.maxUsers}/></span>
+            </div>
+          </div>
         </SectionCard>
 
         {/* Two-column desktop layout: sticky selector rail + insights panel */}
@@ -386,7 +499,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       aria-checked={selectedState}
                       aria-disabled={disabled || undefined}
                       aria-describedby={disabled ? "saas-note" : undefined}
-                      onClick={() => !disabled && setService(m)}
+                      onClick={() => !disabled && handleServiceSelect(m)}
                       className={`w-full text-left rounded-lg border p-3 lg:p-4 xl:p-5 motion-safe:transition
                         ${selectedState ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
                         ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
@@ -427,7 +540,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   return (
                     <button
                       key={m} role="radio" aria-checked={sel}
-                      onClick={() => setDeployment(m)}
+                      onClick={() => handleDeploymentSelect(m)}
                       className={`w-full text-left rounded-lg border p-4 lg:p-5 xl:p-6 motion-safe:transition
                         ${sel ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
                     >
@@ -469,26 +582,6 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   <FormattedMessage id="part5.deployment.sustainability" />
                 </p>
               )}
-            </SectionCard>
-
-            {/* Scale slider */}
-            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.scale.heading" })}>
-              <p className="mb-3 font-semibold text-white"><FormattedMessage id="part5.scale.heading" /></p>
-              <div className="mb-2 text-slate-300"><FormattedMessage id="part5.scale.users" values={{ count: users }} /></div>
-              <input
-                type="range"
-                min={scenario.minUsers}
-                max={scenario.maxUsers}
-                step={Math.max(100, Math.round((scenario.maxUsers - scenario.minUsers)/100))}
-                value={users}
-                onChange={(e)=>setUsers(Number(e.target.value))}
-                aria-label={intl.formatMessage({ id:"part5.scale.users" }, { count: users })}
-                className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-2"
-              />
-              <div className="mt-1 flex justify-between text-xs text-slate-400">
-                <span><FormattedNumber value={scenario.minUsers}/></span>
-                <span><FormattedNumber value={scenario.maxUsers}/></span>
-              </div>
             </SectionCard>
           </div>
 
