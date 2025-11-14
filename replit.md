@@ -53,8 +53,13 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
     - Resets to blurred state when scenario changes
     - Content hidden from screen readers when blurred (aria-hidden)
   - **Code cleanup**: Removed unused MetricBadge component (replaced with inline markup + tooltips)
+  - **Mobile accessibility fix**: Increased InfoTooltip touch targets from 16px to 44px minimum
+    - Added min-w-[44px] min-h-[44px] with padding for comfortable tapping
+    - Used negative margins (-my-2) to maintain vertical alignment
+    - Added touch-manipulation CSS and max-width constraints to prevent overflow
+    - Visual icon kept small (20px) while touch area meets accessibility guidelines
   - **Rationale**: These changes address feedback that Part 5 was overwhelming for true novices by replacing technical jargon with plain language, adding definitions where needed, and preventing activity shortcuts
-  - **Verification**: Architect confirmed all P0 items complete and ready for user testing
+  - **Verification**: Architect confirmed all P0 items complete, mobile-friendly, and ready for user testing
 
 - **2025-11-13**: Improved title readability by removing gradient text
   - **Issue**: Gradient text on main titles (h1/h2) was hard to read due to low-luminance segments
