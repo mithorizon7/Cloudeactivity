@@ -264,7 +264,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [showCompare, setShowCompare] = useState(false); // collapsed by default for mobile
   const [showPrimer, setShowPrimer] = useState(true);
   const [showSustainability, setShowSustainability] = useState(false); // optional environmental disclosure
-  const [showTradeoffDetails, setShowTradeoffDetails] = useState(false); // collapsed trade-offs by default
+  const [showTradeoffDetails, setShowTradeoffDetails] = useState(true); // show detailed view by default
   const [topRevealed, setTopRevealed] = useState(false); // blur top recommendation until user reveals it
   const liveRef = useRef<HTMLDivElement | null>(null);
   
