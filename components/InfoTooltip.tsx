@@ -48,10 +48,14 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
       <button
         ref={buttonRef}
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(!isOpen);
+        }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
+            e.stopPropagation();
             setIsOpen(!isOpen);
           }
         }}
