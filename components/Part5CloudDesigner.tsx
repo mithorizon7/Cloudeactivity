@@ -698,6 +698,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
             </div>
 
+            <>
               {selected ? (
                 <>
                   {/* Collapsed summary */}
@@ -782,119 +783,133 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                           </div>
                         </div>
                       </div>
-                  </div>
-                )}
+                    </div>
+                  )}
                 </>
               ) : (
                 <p className="text-slate-300"><FormattedMessage id="part5.tradeoffs.noselection" /></p>
               )}
 
-              {/* Comparison table with Summary/All toggle */}
-              <div className="mt-6">
-                {/* Summary/All toggle */}
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="text-sm text-slate-300">Show:</span>
-                  <div className="inline-flex rounded-lg border border-slate-600 bg-slate-800/60 p-1">
-                    <button
-                      onClick={() => setComparisonView('summary')}
-                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
-                        comparisonView === 'summary'
-                          ? 'bg-cyan-600 text-white font-semibold'
-                          : 'text-slate-300 hover:text-white'
-                      }`}
-                    >
-                      Summary
-                    </button>
-                    <button
-                      onClick={() => setComparisonView('all')}
-                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
-                        comparisonView === 'all'
-                          ? 'bg-cyan-600 text-white font-semibold'
-                          : 'text-slate-300 hover:text-white'
-                      }`}
-                    >
-                      All Options
-                    </button>
+              {/* Comparison table - only shown after revealing top recommendation */}
+              {topRevealed && selected && (
+                <div className="mt-6">
+                  {/* Table heading */}
+                  <h3 className="mb-3 text-lg font-semibold text-white">
+                    Compare All Service & Deployment Options
+                  </h3>
+                  
+                  {/* Summary/All toggle */}
+                  <div className="mb-3 flex items-center gap-2">
+                    <span className="text-sm text-slate-300">Show:</span>
+                    <div className="inline-flex rounded-lg border border-slate-600 bg-slate-800/60 p-1">
+                      <button
+                        onClick={() => setComparisonView('summary')}
+                        className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
+                          comparisonView === 'summary'
+                            ? 'bg-cyan-600 text-white font-semibold'
+                            : 'text-slate-300 hover:text-white'
+                        }`}
+                      >
+                        Summary
+                      </button>
+                      <button
+                        onClick={() => setComparisonView('all')}
+                        className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
+                          comparisonView === 'all'
+                            ? 'bg-cyan-600 text-white font-semibold'
+                            : 'text-slate-300 hover:text-white'
+                        }`}
+                      >
+                        All Options
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Comparison table */}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead className="text-slate-300">
+                        <tr className="text-left">
+                          <th className="sticky left-0 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">#</th>
+                          <th className="sticky left-8 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm"><FormattedMessage id="part5.table.option" /></th>
+                          <th className="py-2 pr-3"><FormattedMessage id="part5.table.cost" /></th>
+                          <th className="py-2 pr-3"><FormattedMessage id="part5.table.perf" /></th>
+                          <th className="py-2 pr-3"><FormattedMessage id="part5.table.compliance" /></th>
+                          <th className="py-2 pr-3"><FormattedMessage id="part5.table.ease" /></th>
+                          <th className="py-2 pr-3"><FormattedMessage id="part5.table.fit" /></th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-slate-200">
+                        {(() => {
+                          // Filter combos based on view mode
+                          let displayedCombos = allCombos;
+                          if (comparisonView === 'summary' && selected) {
+                            // Summary: always show top recommendation + current selection + one more alternative
+                            const topRecommendation = allCombos[0];
+                            const isTopSelected = selected.service === topRecommendation.service && 
+                                                  selected.deployment === topRecommendation.deployment;
+                            
+                            if (isTopSelected) {
+                              // User picked the best, show top 3
+                              displayedCombos = allCombos.slice(0, 3);
+                            } else {
+                              // User didn't pick the best - show top recommendation, their selection, and next best
+                              // Build unique set ensuring we have exactly these items
+                              const combosSet = new Set([topRecommendation, selected]);
+                              
+                              // Add next best alternatives until we have 3 unique items
+                              for (let i = 1; i < allCombos.length && combosSet.size < 3; i++) {
+                                const combo = allCombos[i];
+                                if (combo.service !== selected.service || combo.deployment !== selected.deployment) {
+                                  combosSet.add(combo);
+                                }
+                              }
+                              
+                              displayedCombos = Array.from(combosSet);
+                            }
+                          } else if (comparisonView === 'summary') {
+                            // No selection yet, just show top 3
+                            displayedCombos = allCombos.slice(0, 3);
+                          }
+
+                          return displayedCombos.map((c, displayIndex) => {
+                            // Find the original rank in full list
+                            const originalRank = allCombos.findIndex(
+                              combo => combo.service === c.service && combo.deployment === c.deployment
+                            ) + 1;
+                            const isCurrentSelection = selected && c.service === selected.service && c.deployment === selected.deployment;
+                            
+                            return (
+                              <tr 
+                                key={`${c.service}-${c.deployment}`} 
+                                className={`border-t border-slate-700/50 ${isCurrentSelection ? "bg-cyan-900/20 border-cyan-500/30" : ""}`}
+                              >
+                                <td className="py-2 pr-3 text-slate-400">
+                                  {originalRank}
+                                  {isCurrentSelection && <span className="ml-1 text-cyan-400">★</span>}
+                                </td>
+                                <td className="py-2 pr-3">
+                                  <div className={`font-medium ${isCurrentSelection ? "text-cyan-300" : ""}`}>
+                                    {serviceMeta[c.service].label}
+                                  </div>
+                                  <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
+                                </td>
+                                <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
+                                <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.performance)} /></td>
+                                <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.compliance)} /></td>
+                                <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.ease)} /></td>
+                                <td className="py-2 pr-3 font-semibold"><FormattedNumber value={c.metrics.fit} /></td>
+                              </tr>
+                            );
+                          });
+                        })()}
+                      </tbody>
+                    </table>
+                    <div className="mt-2 text-xs text-slate-400"><FormattedMessage id="part5.table.note" /></div>
                   </div>
                 </div>
-
-                {/* Comparison table */}
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead className="text-slate-300">
-                      <tr className="text-left">
-                        <th className="sticky left-0 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">#</th>
-                        <th className="sticky left-8 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm"><FormattedMessage id="part5.table.option" /></th>
-                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.cost" /></th>
-                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.perf" /></th>
-                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.compliance" /></th>
-                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.ease" /></th>
-                        <th className="py-2 pr-3"><FormattedMessage id="part5.table.fit" /></th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-slate-200">
-                      {(() => {
-                        // Filter combos based on view mode
-                        let displayedCombos = allCombos;
-                        if (comparisonView === 'summary' && selected) {
-                          // Show current selection + top 2 alternatives
-                          const isSelectedInTop2 = allCombos.slice(0, 2).some(
-                            c => c.service === selected.service && c.deployment === selected.deployment
-                          );
-                          
-                          if (isSelectedInTop2) {
-                            // Selected is already in top 2, just show top 3
-                            displayedCombos = allCombos.slice(0, 3);
-                          } else {
-                            // Selected not in top 2, show selected + top 2
-                            displayedCombos = [
-                              selected,
-                              ...allCombos.slice(0, 2).filter(
-                                c => !(c.service === selected.service && c.deployment === selected.deployment)
-                              )
-                            ];
-                          }
-                        } else if (comparisonView === 'summary') {
-                          // No selection yet, just show top 3
-                          displayedCombos = allCombos.slice(0, 3);
-                        }
-
-                        return displayedCombos.map((c, displayIndex) => {
-                          // Find the original rank in full list
-                          const originalRank = allCombos.findIndex(
-                            combo => combo.service === c.service && combo.deployment === c.deployment
-                          ) + 1;
-                          const isCurrentSelection = selected && c.service === selected.service && c.deployment === selected.deployment;
-                          
-                          return (
-                            <tr 
-                              key={`${c.service}-${c.deployment}`} 
-                              className={`border-t border-slate-700/50 ${isCurrentSelection ? "bg-cyan-900/20 border-cyan-500/30" : ""}`}
-                            >
-                              <td className="py-2 pr-3 text-slate-400">
-                                {originalRank}
-                                {isCurrentSelection && <span className="ml-1 text-cyan-400">★</span>}
-                              </td>
-                              <td className="py-2 pr-3">
-                                <div className={`font-medium ${isCurrentSelection ? "text-cyan-300" : ""}`}>
-                                  {serviceMeta[c.service].label}
-                                </div>
-                                <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
-                              </td>
-                              <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
-                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.performance)} /></td>
-                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.compliance)} /></td>
-                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.ease)} /></td>
-                              <td className="py-2 pr-3 font-semibold"><FormattedNumber value={c.metrics.fit} /></td>
-                            </tr>
-                          );
-                        });
-                      })()}
-                    </tbody>
-                  </table>
-                  <div className="mt-2 text-xs text-slate-400"><FormattedMessage id="part5.table.note" /></div>
-                </div>
-              </div>
+              )}
+            </>
           </StepCard>
         </div>
 
