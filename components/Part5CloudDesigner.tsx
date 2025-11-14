@@ -148,7 +148,7 @@ function stepperReducer(state: StepperState, action: StepperAction): StepperStat
     case 'STEP_RESET':
       return {
         steps: {
-          service: { status: 'notStarted', expanded: false },
+          service: { status: 'inProgress', expanded: true },
           deployment: { status: 'notStarted', expanded: false },
           results: { status: 'notStarted', expanded: false },
         },
@@ -168,7 +168,7 @@ function stepperReducer(state: StepperState, action: StepperAction): StepperStat
 
 const initialStepperState: StepperState = {
   steps: {
-    service: { status: 'notStarted', expanded: false },
+    service: { status: 'inProgress', expanded: true },
     deployment: { status: 'notStarted', expanded: false },
     results: { status: 'notStarted', expanded: false },
   },
@@ -189,6 +189,69 @@ const Token: React.FC<{children: React.ReactNode}> = ({ children }) => (
     {children}
   </span>
 );
+
+interface StepCardProps {
+  stepNumber: number;
+  title: string;
+  subtitle: string;
+  status: 'notStarted' | 'inProgress' | 'done';
+  expanded: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+  stepRef?: (el: HTMLDivElement | null) => void;
+}
+
+const StepCard: React.FC<StepCardProps> = ({
+  stepNumber,
+  title,
+  subtitle,
+  status,
+  expanded,
+  onToggle,
+  children,
+  stepRef,
+}) => {
+  const statusColors = {
+    notStarted: 'bg-slate-600 text-slate-300',
+    inProgress: 'bg-cyan-500 text-white',
+    done: 'bg-emerald-500 text-white',
+  };
+
+  return (
+    <div
+      ref={stepRef}
+      className={`bg-slate-900/50 rounded-xl border shadow-xl motion-safe:transition-all ${
+        expanded ? 'border-cyan-500/60' : 'border-slate-700/40'
+      }`}
+    >
+      <button
+        onClick={onToggle}
+        aria-expanded={expanded}
+        className={`w-full text-left p-5 flex items-center gap-4 hover:bg-slate-800/30 motion-safe:transition-colors rounded-t-xl ${
+          expanded ? '' : 'rounded-b-xl'
+        }`}
+      >
+        <div
+          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${statusColors[status]}`}
+        >
+          {status === 'done' ? '✓' : stepNumber}
+        </div>
+        <div className="flex-1">
+          <div className="text-lg font-semibold text-white">{title}</div>
+          <div className="text-sm text-slate-400">{subtitle}</div>
+        </div>
+        <div className="text-slate-400 text-xl">
+          {expanded ? '−' : '+'}
+        </div>
+      </button>
+      {expanded && (
+        <div className="p-5 pt-0 motion-safe:animate-fadeIn">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerProps) {
   const intl = useIntl();
@@ -479,15 +542,36 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           </div>
         </SectionCard>
 
-        {/* Two-column desktop layout: sticky selector rail + insights panel */}
-        <div className="grid grid-cols-1 gap-6 lg:grid lg:grid-cols-[minmax(320px,380px)_minmax(0,1fr)] lg:gap-8 lg:items-start">
-          {/* LEFT: selectors (sticky on desktop) */}
-          <div className="space-y-6 lg:sticky lg:top-6 lg:self-start">
-            {/* Service model (radio-cards) */}
-            <SectionCard ariaLabel={intl.formatMessage({ id: "part5.service.heading" })}>
-              <p className="mb-1 font-semibold text-white"><FormattedMessage id="part5.service.heading" /></p>
-              <p className="mb-3 text-sm text-slate-400"><FormattedMessage id="part5.service.subtitle" /></p>
-              <div role="radiogroup" className="space-y-2">
+        {/* Primer section - shown above step cards */}
+        {showPrimer && (
+          <SectionCard className="mb-6 bg-gradient-to-br from-[#750014]/15 to-[#8b959e]/15 border-[#973f4e]/30">
+            <div className="flex items-start justify-between">
+              <h2 className="text-base lg:text-lg font-semibold text-[#d5b2b8]"><FormattedMessage id="part5.primer.title" /></h2>
+              <button onClick={() => setShowPrimer(false)} className="text-xs text-slate-400 hover:text-white motion-safe:transition">
+                <FormattedMessage id="part5.primer.hide" />
+              </button>
+            </div>
+            <ul className="mt-3 space-y-2 text-sm text-slate-300 list-disc ml-5">
+              <li><FormattedMessage id="part5.primer.point1" /></li>
+              <li><FormattedMessage id="part5.primer.point2" /></li>
+              <li><FormattedMessage id="part5.primer.point3" /></li>
+            </ul>
+          </SectionCard>
+        )}
+
+        {/* Step cards - vertical stack */}
+        <div className="space-y-6">
+          {/* Step 1: Service Model */}
+          <StepCard
+            stepNumber={1}
+            title="Choose a Service Model"
+            subtitle="What you buy"
+            status={stepperState.steps.service.status}
+            expanded={stepperState.steps.service.expanded}
+            onToggle={() => dispatchStepper({ type: 'SET_EXPANDED', stepId: 'service', expanded: !stepperState.steps.service.expanded })}
+            stepRef={(el) => stepRefs.current['service'] = el}
+          >
+            <div role="radiogroup" className="space-y-2">
                 {(["iaas","paas","saas"] as ServiceModel[]).map(m => {
                   const meta = serviceMeta[m];
                   const disabled = m==="saas" && scenario.saasApplicable===false;
@@ -522,18 +606,23 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   );
                 })}
               </div>
-              {/* Explain why SaaS is disabled when it is */}
-              <p id="saas-note" className="sr-only">
-                <FormattedMessage id="part5.saas.disabled" />
-              </p>
-            </SectionCard>
+            {/* Explain why SaaS is disabled when it is */}
+            <p id="saas-note" className="sr-only">
+              <FormattedMessage id="part5.saas.disabled" />
+            </p>
+          </StepCard>
 
-            {/* Deployment model (radio-cards) */}
-            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.deployment.heading" })}>
-              <p className="mb-1 font-semibold text-white"><FormattedMessage id="part5.deployment.heading" /></p>
-              <p className="mb-3 text-sm text-slate-400"><FormattedMessage id="part5.deployment.subtitle" /></p>
-              <p className="mb-3 text-xs leading-relaxed text-slate-400"><FormattedMessage id="part5.deployment.instructions" /></p>
-              <div role="radiogroup" className="space-y-2">
+          {/* Step 2: Deployment Model */}
+          <StepCard
+            stepNumber={2}
+            title="Choose a Deployment Model"
+            subtitle="Where it runs"
+            status={stepperState.steps.deployment.status}
+            expanded={stepperState.steps.deployment.expanded}
+            onToggle={() => dispatchStepper({ type: 'SET_EXPANDED', stepId: 'deployment', expanded: !stepperState.steps.deployment.expanded })}
+            stepRef={(el) => stepRefs.current['deployment'] = el}
+          >
+            <div role="radiogroup" className="space-y-2">
                 {(["public","private","hybrid"] as DeploymentModel[]).map(m => {
                   const meta = deploymentMeta[m];
                   const sel = deployment===m;
@@ -569,51 +658,41 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     </button>
                   );
                 })}
-              </div>
-              {/* Optional sustainability disclosure */}
-              <button
-                onClick={() => setShowSustainability(s => !s)}
-                className="mt-3 text-xs text-slate-400 hover:text-slate-200 underline motion-safe:transition"
-              >
-                <FormattedMessage id="part5.deployment.sustainability.learn" />
-              </button>
-              {showSustainability && (
-                <p className="mt-2 text-xs leading-relaxed text-slate-300 bg-slate-800/40 p-3 rounded border border-slate-700/50">
-                  <FormattedMessage id="part5.deployment.sustainability" />
-                </p>
-              )}
-            </SectionCard>
-          </div>
-
-          {/* RIGHT: insights panel with primer and results */}
-          <div className="space-y-6">
-            {/* Primer (collapsible) - desktop only in right column */}
-            {showPrimer && (
-              <SectionCard className="bg-gradient-to-br from-[#750014]/15 to-[#8b959e]/15 border-[#973f4e]/30">
-                <div className="flex items-start justify-between">
-                  <h2 className="text-base lg:text-lg font-semibold text-[#d5b2b8]"><FormattedMessage id="part5.primer.title" /></h2>
-                  <button onClick={() => setShowPrimer(false)} className="text-xs text-slate-400 hover:text-white motion-safe:transition">
-                    <FormattedMessage id="part5.primer.hide" />
-                  </button>
-                </div>
-                <ul className="mt-3 space-y-2 text-sm text-slate-300 list-disc ml-5">
-                  <li><FormattedMessage id="part5.primer.point1" /></li>
-                  <li><FormattedMessage id="part5.primer.point2" /></li>
-                  <li><FormattedMessage id="part5.primer.point3" /></li>
-                </ul>
-              </SectionCard>
+            </div>
+            {/* Optional sustainability disclosure */}
+            <button
+              onClick={() => setShowSustainability(s => !s)}
+              className="mt-3 text-xs text-slate-400 hover:text-slate-200 underline motion-safe:transition"
+            >
+              <FormattedMessage id="part5.deployment.sustainability.learn" />
+            </button>
+            {showSustainability && (
+              <p className="mt-2 text-xs leading-relaxed text-slate-300 bg-slate-800/40 p-3 rounded border border-slate-700/50">
+                <FormattedMessage id="part5.deployment.sustainability" />
+              </p>
             )}
-            <SectionCard ariaLabel={intl.formatMessage({ id:"part5.tradeoffs.heading" })}>
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
-                {/* Toggle button: mobile only (desktop always shows table) */}
-                <button
-                  className="lg:hidden rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
-                  onClick={()=>setShowCompare(s=>!s)}
-                >
-                  <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
-                </button>
-              </div>
+          </StepCard>
+
+          {/* Step 3: Results */}
+          <StepCard
+            stepNumber={3}
+            title="See Trade-offs & Evaluate"
+            subtitle="Review your design"
+            status={stepperState.steps.results.status}
+            expanded={stepperState.steps.results.expanded}
+            onToggle={() => dispatchStepper({ type: 'SET_EXPANDED', stepId: 'results', expanded: !stepperState.steps.results.expanded })}
+            stepRef={(el) => stepRefs.current['results'] = el}
+          >
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
+              {/* Toggle button: mobile only (desktop always shows table) */}
+              <button
+                className="lg:hidden rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
+                onClick={()=>setShowCompare(s=>!s)}
+              >
+                <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
+              </button>
+            </div>
 
               {selected ? (
                 <>
@@ -761,11 +840,11 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   <div className="mt-2 text-xs text-slate-400"><FormattedMessage id="part5.table.note" /></div>
                 </div>
               )}
-            </SectionCard>
-
-            {evaluated && getFeedback()}
-          </div>
+          </StepCard>
         </div>
+
+        {/* Feedback section - shown after evaluation */}
+        {evaluated && getFeedback()}
 
         {/* Primary actions: sticky on mobile, inline right-aligned on desktop */}
         <div className="fixed inset-x-0 bottom-0 z-10 mx-auto max-w-7xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur lg:static lg:border-0 lg:bg-transparent lg:p-0 lg:mt-6">
