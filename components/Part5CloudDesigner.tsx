@@ -124,13 +124,6 @@ const Token: React.FC<{children: React.ReactNode}> = ({ children }) => (
   </span>
 );
 
-const MetricBadge: React.FC<{label:string; value:React.ReactNode}> = ({ label, value }) => (
-  <div className="inline-flex h-16 w-16 sm:h-20 sm:w-20 xl:h-24 xl:w-24 flex-col items-center justify-center rounded-full border-2 border-slate-600 bg-slate-800/80 text-center">
-    <div className="text-[10px] sm:text-xs xl:text-sm text-slate-300 leading-tight">{label}</div>
-    <div className="text-xs sm:text-sm xl:text-base font-bold text-white">{value}</div>
-  </div>
-);
-
 export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerProps) {
   const intl = useIntl();
   const [scenarioIdx, setScenarioIdx] = useState(0);
