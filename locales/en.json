@@ -603,6 +603,78 @@
   "@part5.scenario.pill.weights": {
     "description": "Pill badge showing scenario weight distribution across evaluation criteria. All values are percentages. Perf is short for Performance"
   },
+  "part5.matters.title": "What matters most:",
+  "@part5.matters.title": {
+    "description": "Label introducing priority chips showing what dimensions matter most for this scenario"
+  },
+  "part5.matters.high": "High",
+  "@part5.matters.high": {
+    "description": "Badge text indicating high priority (weight >= 30%)"
+  },
+  "part5.matters.med": "Med",
+  "@part5.matters.med": {
+    "description": "Badge text indicating medium priority (weight 15-29%)"
+  },
+  "part5.matters.low": "Low",
+  "@part5.matters.low": {
+    "description": "Badge text indicating low priority (weight < 15%)"
+  },
+  "part5.dim.cost": "Cost",
+  "@part5.dim.cost": {
+    "description": "Short label for Cost dimension"
+  },
+  "part5.dim.perf": "Speed & Scale",
+  "@part5.dim.perf": {
+    "description": "Short label for Speed & Scale (performance) dimension"
+  },
+  "part5.dim.compliance": "Compliance",
+  "@part5.dim.compliance": {
+    "description": "Short label for Compliance dimension"
+  },
+  "part5.dim.effort": "Operational Effort",
+  "@part5.dim.effort": {
+    "description": "Short label for Operational Effort dimension"
+  },
+  "part5.tooltip.cost": "Approximate monthly cost of running this choice. Weight: {weight}%",
+  "@part5.tooltip.cost": {
+    "description": "Tooltip explaining Cost dimension with exact weight percentage"
+  },
+  "part5.tooltip.perf": "How well it handles load and stays responsive. Weight: {weight}%",
+  "@part5.tooltip.perf": {
+    "description": "Tooltip explaining Speed & Scale with exact weight percentage"
+  },
+  "part5.tooltip.compliance": "How well it fits strict rules and data protections. Weight: {weight}%",
+  "@part5.tooltip.compliance": {
+    "description": "Tooltip explaining Compliance with exact weight percentage"
+  },
+  "part5.tooltip.effort": "How much ongoing work your team must do. Weight: {weight}%",
+  "@part5.tooltip.effort": {
+    "description": "Tooltip explaining Operational Effort with exact weight percentage"
+  },
+  "part5.tooltip.ops": "Extra monthly platform/operations cost beyond infrastructure.",
+  "@part5.tooltip.ops": {
+    "description": "Tooltip explaining Ops overhead metric"
+  },
+  "part5.tooltip.lockin": "How hard it is to switch providers later.",
+  "@part5.tooltip.lockin": {
+    "description": "Tooltip explaining Lock-in risk"
+  },
+  "part5.tooltip.fixed": "Base monthly infrastructure cost.",
+  "@part5.tooltip.fixed": {
+    "description": "Tooltip explaining Fixed infrastructure cost"
+  },
+  "part5.tooltip.variable": "Extra cost for each 1,000 active users.",
+  "@part5.tooltip.variable": {
+    "description": "Tooltip explaining variable $/1k users cost"
+  },
+  "part5.tooltip.elasticity": "How easily it scales up/down across data centers.",
+  "@part5.tooltip.elasticity": {
+    "description": "Tooltip explaining Elasticity metric"
+  },
+  "part5.top.reveal": "Reveal top recommendation",
+  "@part5.top.reveal": {
+    "description": "Button text to unblur and reveal the highest-ranked solution"
+  },
   "part5.scenario1.title": "Viral Mobile App Launch",
   "@part5.scenario1.title": {
     "description": "Title for first scenario: a startup launching a consumer mobile app with uncertain growth"

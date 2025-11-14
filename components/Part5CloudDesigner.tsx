@@ -4,6 +4,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from "react-intl";
+import { InfoTooltip } from "./InfoTooltip";
 
 // --- types & helpers (unchanged) ---
 type ServiceModel = "iaas" | "paas" | "saas";
@@ -26,6 +27,11 @@ function normalizeTo0_100(vals:number[], v:number){
 }
 function formatMonthlyCost(n:number, intl:any){ 
   return intl.formatMessage({ id: "part5.currency.monthly" }, { amount: Math.round(n) });
+}
+function weightToPriority(weight: number): 'high' | 'med' | 'low' {
+  if (weight >= 0.30) return 'high';
+  if (weight >= 0.15) return 'med';
+  return 'low';
 }
 
 // --- scenarios (same ordering you use in (2).tsx) ---
@@ -137,6 +143,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [showPrimer, setShowPrimer] = useState(true);
   const [showSustainability, setShowSustainability] = useState(false); // optional environmental disclosure
   const [showTradeoffDetails, setShowTradeoffDetails] = useState(false); // collapsed trade-offs by default
+  const [topRevealed, setTopRevealed] = useState(false); // blur top recommendation until user reveals it
   const liveRef = useRef<HTMLDivElement | null>(null);
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
@@ -201,6 +208,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     setService(null); setDeployment(null);
     setUsers(scenario.defaultUsers);
     setEvaluated(false);
+    setTopRevealed(false); // reset top recommendation blur
     // Auto-expand comparison table on desktop, collapse on mobile
     setShowCompare(window.innerWidth >= 1024);
   }, [scenarioIdx, scenario.defaultUsers]);
@@ -329,16 +337,36 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             <p className="font-semibold text-cyan-400">
               <FormattedMessage id="part5.scenario.label" values={{ current: scenarioIdx+1, total: BASE_SCENARIOS.length }}/>
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Token><FormattedMessage id="part5.scenario.pill.users" values={{ count: users }} /></Token>
-              <Token>
-                <FormattedMessage id="part5.scenario.pill.weights" values={{
-                  cost: Math.round(scenario.weights.cost*100),
-                  perf: Math.round(scenario.weights.performance*100),
-                  compliance: Math.round(scenario.weights.compliance*100),
-                  effort: Math.round(scenario.weights.effort*100),
-                }}/>
-              </Token>
+            </div>
+          </div>
+          {/* What matters most - High/Med/Low chips with tooltips */}
+          <div className="mt-3">
+            <p className="text-sm text-slate-400 mb-2"><FormattedMessage id="part5.matters.title" /></p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { key: 'cost', weight: scenario.weights.cost },
+                { key: 'perf', weight: scenario.weights.performance },
+                { key: 'compliance', weight: scenario.weights.compliance },
+                { key: 'effort', weight: scenario.weights.effort },
+              ].map(({ key, weight }) => {
+                const priority = weightToPriority(weight);
+                const priorityColors = { high: 'bg-emerald-600 text-white', med: 'bg-blue-600 text-white', low: 'bg-slate-600 text-slate-200' };
+                return (
+                  <div key={key} className="inline-flex items-center gap-1">
+                    <InfoTooltip
+                      label={intl.formatMessage({ id: `part5.dim.${key}` })}
+                      id={`weight-${key}`}
+                    >
+                      <FormattedMessage id={`part5.tooltip.${key}`} values={{ weight: Math.round(weight * 100) }} />
+                    </InfoTooltip>
+                    <span className={`px-2 py-0.5 rounded text-xs font-medium ${priorityColors[priority]}`}>
+                      <FormattedMessage id={`part5.matters.${priority}`} />
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <h2 className="mt-2 text-2xl font-bold text-white"><FormattedMessage id={scenario.titleKey} /></h2>
@@ -373,8 +401,16 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       <div className="font-semibold text-slate-100">{meta.label}</div>
                       <div className="text-sm text-slate-400">{meta.blurb}</div>
                       <div className="mt-2 flex gap-2">
-                        <Token><FormattedMessage id="part5.service.pill.ops" values={{ cost: formatMonthlyCost(meta.monthlyOpsOverhead, intl) }}/></Token>
-                        <Token><FormattedMessage id="part5.service.pill.lockin" values={{ risk: intl.formatMessage({ id:`part5.risk.${meta.lockInRisk}` }) }}/></Token>
+                        <Token>
+                          <InfoTooltip label={intl.formatMessage({ id: "part5.service.pill.ops" }, { cost: formatMonthlyCost(meta.monthlyOpsOverhead, intl) })}>
+                            <FormattedMessage id="part5.tooltip.ops" />
+                          </InfoTooltip>
+                        </Token>
+                        <Token>
+                          <InfoTooltip label={intl.formatMessage({ id: "part5.service.pill.lockin" }, { risk: intl.formatMessage({ id:`part5.risk.${meta.lockInRisk}` }) })}>
+                            <FormattedMessage id="part5.tooltip.lockin" />
+                          </InfoTooltip>
+                        </Token>
                       </div>
                     </button>
                   );
@@ -405,9 +441,24 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       <div className="mb-1 font-semibold text-slate-100">{meta.label}</div>
                       <div className="mb-3 text-sm text-slate-400">{meta.blurb}</div>
                       <div className="flex items-center justify-around gap-3">
-                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.fixed" })} value={formatMonthlyCost(meta.fixedInfra, intl)} />
-                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.variable" })} value={`$${meta.variablePerKUsers}/1k`} />
-                        <MetricBadge label={intl.formatMessage({ id: "part5.deployment.badge.elasticity" })} value={`${meta.elasticity}/100`} />
+                        <div className="text-center">
+                          <InfoTooltip label={intl.formatMessage({ id: "part5.deployment.badge.fixed" })}>
+                            <FormattedMessage id="part5.tooltip.fixed" />
+                          </InfoTooltip>
+                          <div className="text-lg font-bold text-cyan-300">{formatMonthlyCost(meta.fixedInfra, intl)}</div>
+                        </div>
+                        <div className="text-center">
+                          <InfoTooltip label={`$${meta.variablePerKUsers}/1k`}>
+                            <FormattedMessage id="part5.tooltip.variable" />
+                          </InfoTooltip>
+                          <div className="text-lg font-bold text-cyan-300">${meta.variablePerKUsers}/1k</div>
+                        </div>
+                        <div className="text-center">
+                          <InfoTooltip label={intl.formatMessage({ id: "part5.deployment.badge.elasticity" })}>
+                            <FormattedMessage id="part5.tooltip.elasticity" />
+                          </InfoTooltip>
+                          <div className="text-lg font-bold text-cyan-300">{meta.elasticity}/100</div>
+                        </div>
                       </div>
                     </button>
                   );
@@ -527,28 +578,41 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                         </div>
                       </div>
 
-                      {/* Top fit */}
-                      <div className="rounded-lg border border-emerald-500/30 bg-slate-800/40 p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="font-semibold text-slate-200"><FormattedMessage id="part5.top.heading" /></div>
-                      <span className="rounded px-2 py-0.5 text-xs text-emerald-300 border border-emerald-700 bg-emerald-900/30">
-                        <FormattedMessage id="part5.top.badge" />
-                      </span>
-                    </div>
-                    <div className="mt-2 text-slate-200">
-                      <div><span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> + <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span></div>
-                      <div className="text-sm text-slate-400">
-                        <FormattedMessage id="part5.top.cost.label" /> <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·
-                        <FormattedMessage id="part5.top.fit.label" />{" "}
-                        <b className="text-emerald-300"><FormattedNumber value={topFit.metrics.fit} />/100</b>
-                      </div>
-                        <div className="mt-2">
-                          <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
-                          <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
-                          <Bar value={topFit.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                      {/* Top fit - blurred until revealed */}
+                      <div className="rounded-lg border border-emerald-500/30 bg-slate-800/40 p-4 relative">
+                        {!topRevealed && (
+                          <div className="absolute inset-0 bg-slate-800/60 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg">
+                            <button
+                              onClick={() => setTopRevealed(true)}
+                              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                              aria-live="polite"
+                            >
+                              <FormattedMessage id="part5.top.reveal" />
+                            </button>
+                          </div>
+                        )}
+                        <div className={topRevealed ? '' : 'pointer-events-none'} aria-hidden={!topRevealed}>
+                          <div className="flex items-center justify-between">
+                            <div className="font-semibold text-slate-200"><FormattedMessage id="part5.top.heading" /></div>
+                            <span className="rounded px-2 py-0.5 text-xs text-emerald-300 border border-emerald-700 bg-emerald-900/30">
+                              <FormattedMessage id="part5.top.badge" />
+                            </span>
+                          </div>
+                          <div className="mt-2 text-slate-200">
+                            <div><span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> + <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span></div>
+                            <div className="text-sm text-slate-400">
+                              <FormattedMessage id="part5.top.cost.label" /> <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·
+                              <FormattedMessage id="part5.top.fit.label" />{" "}
+                              <b className="text-emerald-300"><FormattedNumber value={topFit.metrics.fit} />/100</b>
+                            </div>
+                            <div className="mt-2">
+                              <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.performance" })}/>
+                              <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id:"part5.tradeoffs.metric.compliance" })}/>
+                              <Bar value={topFit.metrics.ease}        label={intl.formatMessage({ id:"part5.tradeoffs.metric.ease" })}/>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                 )}
                 </>
