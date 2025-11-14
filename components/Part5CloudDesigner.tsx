@@ -262,6 +262,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [evaluated, setEvaluated] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [showCompare, setShowCompare] = useState(false); // collapsed by default for mobile
+  const [comparisonView, setComparisonView] = useState<'summary' | 'all'>('summary'); // summary shows current + top 2, all shows everything
   const [showPrimer, setShowPrimer] = useState(true);
   const [showSustainability, setShowSustainability] = useState(false); // optional environmental disclosure
   const [showTradeoffDetails, setShowTradeoffDetails] = useState(true); // show detailed view by default
@@ -584,10 +585,15 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       aria-disabled={disabled || undefined}
                       aria-describedby={disabled ? "saas-note" : undefined}
                       onClick={() => !disabled && handleServiceSelect(m)}
-                      className={`w-full text-left rounded-lg border p-3 lg:p-4 xl:p-5 motion-safe:transition
-                        ${selectedState ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}
+                      className={`w-full text-left rounded-lg border-2 p-3 lg:p-4 xl:p-5 motion-safe:transition relative
+                        ${selectedState ? "border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600"}
                         ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
                     >
+                      {selectedState && (
+                        <div className="absolute top-2 right-2 flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white font-bold text-sm">
+                          ✓
+                        </div>
+                      )}
                       <div className="font-semibold text-slate-100">{meta.label}</div>
                       <div className="text-sm text-slate-400">{meta.blurb}</div>
                       <div className="mt-2 flex gap-2">
@@ -630,9 +636,14 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     <button
                       key={m} role="radio" aria-checked={sel}
                       onClick={() => handleDeploymentSelect(m)}
-                      className={`w-full text-left rounded-lg border p-4 lg:p-5 xl:p-6 motion-safe:transition
-                        ${sel ? "border-[#8b959e] bg-slate-800" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800"}`}
+                      className={`w-full text-left rounded-lg border-2 p-4 lg:p-5 xl:p-6 motion-safe:transition relative
+                        ${sel ? "border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20" : "border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600"}`}
                     >
+                      {sel && (
+                        <div className="absolute top-3 right-3 flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white font-bold text-sm">
+                          ✓
+                        </div>
+                      )}
                       <div className="mb-1 font-semibold text-slate-100">{meta.label}</div>
                       <div className="mb-3 text-sm text-slate-400">{meta.blurb}</div>
                       <div className="flex items-center justify-around gap-3">
@@ -685,13 +696,6 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           >
             <div className="mb-3 flex items-center justify-between gap-2">
               <p className="font-semibold text-white"><FormattedMessage id="part5.tradeoffs.heading" /></p>
-              {/* Toggle button: mobile only (desktop always shows table) */}
-              <button
-                className="lg:hidden rounded border border-slate-600 px-3 py-1 text-xs text-slate-200 hover:bg-slate-800 motion-safe:transition"
-                onClick={()=>setShowCompare(s=>!s)}
-              >
-                <FormattedMessage id={showCompare ? "part5.tradeoffs.button.hide" : "part5.tradeoffs.button.show"} />
-              </button>
             </div>
 
               {selected ? (
@@ -785,29 +789,37 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                 <p className="text-slate-300"><FormattedMessage id="part5.tradeoffs.noselection" /></p>
               )}
 
-              {/* Mobile: Top 3 list for quick scanning */}
-              {!showCompare && (
-                <div className="mt-6 md:hidden">
-                  <div className="mb-2 text-slate-300 font-semibold"><FormattedMessage id="part5.top3.heading" /></div>
-                  <ul className="space-y-2">
-                    {allCombos.slice(0,3).map((c,i)=>(
-                      <li key={`${c.service}-${c.deployment}`} className="rounded-lg border border-slate-700/50 bg-slate-800/60 p-3">
-                        <div className="flex items-center justify-between">
-                          <div className="font-medium text-slate-200">{serviceMeta[c.service].label} · {deploymentMeta[c.deployment].label}</div>
-                          <div className="text-slate-400 text-sm">#{i+1}</div>
-                        </div>
-                        <div className="mt-1 text-xs text-slate-400">
-                          <FormattedMessage id="part5.table.cost" />: {formatMonthlyCost(c.metrics.cost, intl)} · <FormattedMessage id="part5.table.fit" />: <b><FormattedNumber value={c.metrics.fit}/></b>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+              {/* Comparison table with Summary/All toggle */}
+              <div className="mt-6">
+                {/* Summary/All toggle */}
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="text-sm text-slate-300">Show:</span>
+                  <div className="inline-flex rounded-lg border border-slate-600 bg-slate-800/60 p-1">
+                    <button
+                      onClick={() => setComparisonView('summary')}
+                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
+                        comparisonView === 'summary'
+                          ? 'bg-cyan-600 text-white font-semibold'
+                          : 'text-slate-300 hover:text-white'
+                      }`}
+                    >
+                      Summary
+                    </button>
+                    <button
+                      onClick={() => setComparisonView('all')}
+                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
+                        comparisonView === 'all'
+                          ? 'bg-cyan-600 text-white font-semibold'
+                          : 'text-slate-300 hover:text-white'
+                      }`}
+                    >
+                      All Options
+                    </button>
+                  </div>
                 </div>
-              )}
 
-              {/* Full table (desktop always available; mobile behind toggle) */}
-              {showCompare && (
-                <div className="mt-6 overflow-x-auto">
+                {/* Comparison table */}
+                <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead className="text-slate-300">
                       <tr className="text-left">
@@ -821,25 +833,68 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                       </tr>
                     </thead>
                     <tbody className="text-slate-200">
-                      {allCombos.map((c,i)=>(
-                        <tr key={`${c.service}-${c.deployment}`} className={`border-t border-slate-700/50 ${selected && c.service===selected.service && c.deployment===selected.deployment ? "bg-slate-800/60" : ""}`}>
-                          <td className="py-2 pr-3 text-slate-400">{i+1}</td>
-                          <td className="py-2 pr-3">
-                            <div className="font-medium">{serviceMeta[c.service].label}</div>
-                            <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
-                          </td>
-                          <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
-                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.performance)} /></td>
-                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.compliance)} /></td>
-                          <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.ease)} /></td>
-                          <td className="py-2 pr-3 font-semibold"><FormattedNumber value={c.metrics.fit} /></td>
-                        </tr>
-                      ))}
+                      {(() => {
+                        // Filter combos based on view mode
+                        let displayedCombos = allCombos;
+                        if (comparisonView === 'summary' && selected) {
+                          // Show current selection + top 2 alternatives
+                          const isSelectedInTop2 = allCombos.slice(0, 2).some(
+                            c => c.service === selected.service && c.deployment === selected.deployment
+                          );
+                          
+                          if (isSelectedInTop2) {
+                            // Selected is already in top 2, just show top 3
+                            displayedCombos = allCombos.slice(0, 3);
+                          } else {
+                            // Selected not in top 2, show selected + top 2
+                            displayedCombos = [
+                              selected,
+                              ...allCombos.slice(0, 2).filter(
+                                c => !(c.service === selected.service && c.deployment === selected.deployment)
+                              )
+                            ];
+                          }
+                        } else if (comparisonView === 'summary') {
+                          // No selection yet, just show top 3
+                          displayedCombos = allCombos.slice(0, 3);
+                        }
+
+                        return displayedCombos.map((c, displayIndex) => {
+                          // Find the original rank in full list
+                          const originalRank = allCombos.findIndex(
+                            combo => combo.service === c.service && combo.deployment === c.deployment
+                          ) + 1;
+                          const isCurrentSelection = selected && c.service === selected.service && c.deployment === selected.deployment;
+                          
+                          return (
+                            <tr 
+                              key={`${c.service}-${c.deployment}`} 
+                              className={`border-t border-slate-700/50 ${isCurrentSelection ? "bg-cyan-900/20 border-cyan-500/30" : ""}`}
+                            >
+                              <td className="py-2 pr-3 text-slate-400">
+                                {originalRank}
+                                {isCurrentSelection && <span className="ml-1 text-cyan-400">★</span>}
+                              </td>
+                              <td className="py-2 pr-3">
+                                <div className={`font-medium ${isCurrentSelection ? "text-cyan-300" : ""}`}>
+                                  {serviceMeta[c.service].label}
+                                </div>
+                                <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
+                              </td>
+                              <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
+                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.performance)} /></td>
+                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.compliance)} /></td>
+                              <td className="py-2 pr-3"><FormattedNumber value={Math.round(c.metrics.ease)} /></td>
+                              <td className="py-2 pr-3 font-semibold"><FormattedNumber value={c.metrics.fit} /></td>
+                            </tr>
+                          );
+                        });
+                      })()}
                     </tbody>
                   </table>
                   <div className="mt-2 text-xs text-slate-400"><FormattedMessage id="part5.table.note" /></div>
                 </div>
-              )}
+              </div>
           </StepCard>
         </div>
 
