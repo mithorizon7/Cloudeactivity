@@ -36,6 +36,36 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Internationalization:** `react-intl` (FormatJS)
 
 ## Recent Changes
+- **2025-11-14**: Part 5 (Cloud Designer) comprehensive UX transformation based on user feedback
+  - **InfoTooltip event handling fix**: Added `stopPropagation()` to click/keyboard events
+    - Prevents tooltips from triggering card selection when clicked
+    - Maintains accessibility (Enter/Space to open, Escape to close)
+    - Applied to all interactive tooltips across service/deployment cards
+  - **Default trade-off visibility**: Changed `showTradeoffDetails` initial state to `true`
+    - Users see detailed score breakdown immediately without clicking "Why this score?"
+    - Removes barrier to understanding their choice's trade-offs
+    - All four metrics (Cost, Speed & Scale, Compliance, Operational Effort) visible by default
+  - **Strengthened selection states**: Enhanced visual feedback for selected cards
+    - Cyan borders (border-2 border-cyan-400) on selected service/deployment cards
+    - Ring glow effect (ring-2 ring-cyan-500/20) for subtle emphasis
+    - Green checkmark badges (✓) on selected cards
+    - Applied consistently across both service and deployment selectors
+  - **Comparison table Summary/All toggle**: Added view mode switcher
+    - Summary mode: Shows top recommendation + user's selection + 1 alternative (3 rows)
+    - All mode: Shows all 9 service/deployment combinations
+    - Uses Set-based logic to guarantee top recommendation always appears in Summary view
+    - Current selection marked with cyan star (★) and highlighted row
+    - Original rank numbers preserved for all combinations
+  - **Comparison table visibility gating**: Table hidden until user reveals top recommendation
+    - Conditional rendering: `{topRevealed && selected && (`
+    - Prevents users from seeing rankings before making their own choice
+    - Maintains learning integrity of the activity
+  - **Clear comparison table heading**: Added "Compare All Service & Deployment Options" h3
+    - Appears above table for better context
+    - Uses consistent styling (text-lg font-semibold text-white)
+  - **Rationale**: These changes address comprehensive user feedback about Part 5's UX, making selections more visible, removing barriers to information, and providing flexible comparison views while preserving the learning flow
+  - **Verification**: Architect confirmed all improvements working correctly with proper edge case handling (top/middle/worst selections all render correctly in Summary view)
+
 - **2025-11-14**: Part 5 (Cloud Designer) P0 clarity improvements for novice users
   - **"What matters most" priority chips (P0#3)**: Replaced cryptic weight percentages with High/Med/Low priority badges
     - Each dimension (Cost, Speed & Scale, Compliance, Operational Effort) shows color-coded priority
