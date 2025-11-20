@@ -49,13 +49,21 @@ function onError(error: any): void {
 }
 
 export const IntlProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [locale, setLocaleState] = useState<string>(getStoredLocale());
+  const [locale, setLocaleState] = useState<string>(DEFAULT_LOCALE);
   const direction = getDirection(locale);
 
   const setLocale = (newLocale: string) => {
     setLocaleState(newLocale);
     storeLocale(newLocale);
   };
+
+  // Sync with localStorage after mount to avoid hydration mismatch
+  useEffect(() => {
+    const stored = getStoredLocale();
+    if (stored !== DEFAULT_LOCALE) {
+      setLocaleState(stored);
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;

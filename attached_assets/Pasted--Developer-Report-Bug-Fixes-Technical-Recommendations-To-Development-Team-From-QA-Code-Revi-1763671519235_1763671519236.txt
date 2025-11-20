@@ -1,0 +1,74 @@
+🔧 Developer Report: Bug Fixes & Technical Recommendations
+To: Development Team From: QA / Code Review Subject: Prioritized Fixes for Cloud Computing App (React/Vite)
+
+The following issues are ordered by Priority (High = Functional Blocker/UX Break, Low = Polish).
+
+🔴 High Priority (Critical UX/Functional Issues)
+1. Mobile UI Z-Index & Layout Collision (Blocker)
+
+Location: Part5CloudDesigner.tsx (Action Bar) vs. ProgressBar.tsx.
+
+Issue: Both components are fixed to the bottom of the viewport (bottom-0).
+
+ProgressBar has z-50.
+
+Part5 Action Bar (fixed inset-x-0 bottom-0...) has z-10.
+
+Result: On mobile devices, the Navigation Bar covers the "Evaluate" and "Next Scenario" buttons, making Part 5 impossible to complete.
+
+Fix: In Part5CloudDesigner.tsx, add bottom padding to the sticky container or lift the action bar above the nav.
+
+Change: Add mb-[60px] (approx height of nav) to the Part 5 action bar container or increase its z-index (though obscuring nav is bad UX).
+
+Better Fix: In App.tsx, ensure the main content container has sufficient padding-bottom to clear the ProgressBar, and make the Part 5 Action Bar sticky relative to the content container rather than fixed to the viewport bottom, OR adjust the bottom position of the Part 5 bar to be bottom-[60px].
+
+2. Accessibility: Missing Translation Keys
+
+Location: Part5CloudDesigner.tsx
+
+Issue: The code uses a hardcoded string for the Saas Disabled note: <p id="saas-note" className="sr-only"><FormattedMessage id="part5.saas.disabled" /></p>
+
+Verification: I checked locales/en.json, and the key "part5.saas.disabled" does not exist. This will crash the app or throw a console error depending on react-intl config.
+
+Fix: Add "part5.saas.disabled": "SaaS is not available for this scenario because the requirements specify custom software development." to en.json.
+
+3. Hydration/Render Mismatch Risk (React 19)
+
+Location: i18n/IntlProvider.tsx
+
+Issue: You are checking localStorage directly in the initial useState.
+
+TypeScript
+
+const [locale, setLocaleState] = useState<string>(getStoredLocale());
+If this app is ever Server-Side Rendered (SSR) or pre-rendered (common with Vite), this will cause a hydration mismatch because the server sees default 'en' and the client sees localStorage value.
+
+Fix: Initialize state with the default, then use useLayoutEffect or useEffect to sync with localStorage immediately on mount.
+
+🟡 Medium Priority (Logic & State)
+4. Part 5 Stepper Logic Sync
+
+Location: Part5CloudDesigner.tsx -> stepperReducer
+
+Issue: When switching scenarios, you dispatch STEP_RESET. This sets the 'Service' step to inProgress and others to notStarted. However, the selected variable depends on service and deployment state, which are set to null via a useEffect.
+
+Risk: If the user clicks "Next Scenario" quickly, there is a brief moment where the Stepper UI says "In Progress" but the internal state might still hold the previous scenario's selection before the effect flushes.
+
+Fix: In handleNext, set setService(null) and setDeployment(null) before or simultaneously with changing the scenario index, rather than relying on a useEffect to clean up stale state.
+
+5. Drag & Drop "Shake" Animation Reliability
+
+Location: Part2ServiceModels.tsx
+
+Issue: const el = document.getElementById(example.id); relies on DOM queries. React 19/Vite may handle IDs differently or component re-renders might detach refs.
+
+Fix: It is safer to use a ref map (useRef<Map<string, HTMLDivElement>>) to target the specific card elements for animation, rather than document.getElementById.
+
+🟢 Low Priority (Polish & Types)
+6. Hardcoded Currency Formatting
+
+Location: Part5CloudDesigner.tsx
+
+Issue: In the deployment buttons: <div className="...">$180/1k</div>.
+
+Fix: You have a part5.currency.monthly formatter, but you are hardcoding the $ symbol in the visual cards for the variable costs. For full localization support, use FormattedNumber with style="currency" or use the Intl shape to format these specific sub-values.

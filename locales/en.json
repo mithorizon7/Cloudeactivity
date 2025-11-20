@@ -739,6 +739,10 @@
   "@part5.service.saas.blurb": {
     "description": "Description of SaaS: emphasizes subscription model, quickest deployment, minimal control and customization options"
   },
+  "part5.saas.disabled": "SaaS is not available for this scenario because the requirements specify custom software development.",
+  "@part5.saas.disabled": {
+    "description": "Accessibility text explaining why SaaS option is disabled for certain scenarios that require custom development. Read by screen readers when SaaS card is disabled."
+  },
   "part5.service.saas.shortLabel": "SaaS",
   "@part5.service.saas.shortLabel": {
     "description": "Short label for SaaS used in explanations and comparisons. Keep as SaaS (the acronym)"

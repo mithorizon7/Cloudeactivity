@@ -352,15 +352,11 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // reset on scenario change
+  // reset users slider and comparison table on scenario change
   useEffect(() => {
-    setService(null); setDeployment(null);
     setUsers(scenario.defaultUsers);
-    setEvaluated(false);
-    setTopRevealed(false); // reset top recommendation blur
     // Auto-expand comparison table on desktop, collapse on mobile
     setShowCompare(window.innerWidth >= 1024);
-    dispatchStepper({ type: 'STEP_RESET' });
   }, [scenarioIdx, scenario.defaultUsers]);
 
   // Auto-scroll to newly expanded steps
@@ -422,8 +418,17 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   };
 
   const handleNext = () => {
-    if (scenarioIdx < BASE_SCENARIOS.length - 1) setScenarioIdx(i => i+1);
-    else onComplete(totalScore);
+    if (scenarioIdx < BASE_SCENARIOS.length - 1) {
+      // Reset state synchronously before changing scenario to avoid stale state in UI
+      setService(null);
+      setDeployment(null);
+      setEvaluated(false);
+      setTopRevealed(false);
+      dispatchStepper({ type: 'STEP_RESET' });
+      setScenarioIdx(i => i+1);
+    } else {
+      onComplete(totalScore);
+    }
   };
 
   // tiny bar component
@@ -677,10 +682,12 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                           <div className="text-lg font-bold text-cyan-300">{formatMonthlyCost(meta.fixedInfra, intl)}</div>
                         </div>
                         <div className="text-center">
-                          <InfoTooltip label={`$${meta.variablePerKUsers}/1k`}>
+                          <InfoTooltip label={intl.formatNumber(meta.variablePerKUsers, { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }) + '/1k'}>
                             <FormattedMessage id="part5.tooltip.variable" />
                           </InfoTooltip>
-                          <div className="text-lg font-bold text-cyan-300">${meta.variablePerKUsers}/1k</div>
+                          <div className="text-lg font-bold text-cyan-300">
+                            <FormattedNumber value={meta.variablePerKUsers} style="currency" currency="USD" minimumFractionDigits={0} />/1k
+                          </div>
                         </div>
                         <div className="text-center">
                           <InfoTooltip label={intl.formatMessage({ id: "part5.deployment.badge.elasticity" })}>
@@ -940,7 +947,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
         {evaluated && getFeedback()}
 
         {/* Primary actions: sticky on mobile, inline right-aligned on desktop */}
-        <div className="fixed inset-x-0 bottom-0 z-10 mx-auto max-w-7xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur lg:static lg:border-0 lg:bg-transparent lg:p-0 lg:mt-6">
+        <div className="fixed inset-x-0 bottom-[60px] z-10 mx-auto max-w-7xl border-t border-slate-700/50 bg-slate-900/80 p-3 backdrop-blur lg:static lg:bottom-auto lg:border-0 lg:bg-transparent lg:p-0 lg:mt-6">
           <div className="flex items-center justify-between lg:justify-end gap-3">
             <button
               onClick={handleEvaluate}

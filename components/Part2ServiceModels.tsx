@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { SERVICE_MODEL_EXAMPLES } from '../constants';
 import { ServiceModel, ServiceExample } from '../types';
 import { CheckCircleIcon, XCircleIcon } from './icons/Icons';
@@ -62,6 +62,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
   const [score, setScore] = useState(0);
   const [feedback, setFeedback] = useState<{ type: 'correct' | 'incorrect', message: string, messageKey: string } | null>(null);
   const [selectedExample, setSelectedExample] = useState<ServiceExample | null>(null);
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, example: ServiceExample) => {
     e.dataTransfer.setData('exampleId', example.id);
@@ -85,7 +86,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
         setScore(s => s + (10 / SERVICE_MODEL_EXAMPLES.length));
         setFeedback({ type: 'correct', message: intl.formatMessage({ id: example.explanationKey }), messageKey: example.explanationKey });
       } else {
-        const el = document.getElementById(example.id);
+        const el = cardRefs.current.get(example.id);
         if (el) {
           el.classList.add('animate-shake');
           setTimeout(() => el.classList.remove('animate-shake'), 500);
@@ -108,7 +109,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
       setFeedback({ type: 'correct', message: intl.formatMessage({ id: selectedExample.explanationKey }), messageKey: selectedExample.explanationKey });
       setSelectedExample(null);
     } else {
-      const el = document.getElementById(selectedExample.id);
+      const el = cardRefs.current.get(selectedExample.id);
       if (el) {
         el.classList.add('animate-shake');
         setTimeout(() => el.classList.remove('animate-shake'), 500);
@@ -203,7 +204,13 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               {examples.map(ex => (
                 <div
                   key={ex.id}
-                  id={ex.id}
+                  ref={(el) => {
+                    if (el) {
+                      cardRefs.current.set(ex.id, el);
+                    } else {
+                      cardRefs.current.delete(ex.id);
+                    }
+                  }}
                   draggable
                   onDragStart={(e) => handleDragStart(e, ex)}
                   onClick={() => handleCardClick(ex)}
