@@ -50,22 +50,26 @@ const LightBulbIcon = () => (
 
 export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const intl = useIntl();
+  const awsPanelId = useId();
   const netflixPanelId = useId();
   const subscriberPanelId = useId();
+  const awsTabRef = useRef<HTMLButtonElement>(null);
   const netflixTabRef = useRef<HTMLButtonElement>(null);
   const subscriberTabRef = useRef<HTMLButtonElement>(null);
   
-  const [view, setView] = useState<'netflix' | 'subscriber'>('netflix');
-  const [viewedNetflix, setViewedNetflix] = useState(true);
+  const [view, setView] = useState<'aws' | 'netflix' | 'subscriber'>('aws');
+  const [viewedAWS, setViewedAWS] = useState(true);
+  const [viewedNetflix, setViewedNetflix] = useState(false);
   const [viewedSubscriber, setViewedSubscriber] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const handleViewChange = (newView: 'netflix' | 'subscriber') => {
+  const handleViewChange = (newView: 'aws' | 'netflix' | 'subscriber') => {
     if (newView === view) return;
     
     setIsTransitioning(true);
     setTimeout(() => {
       setView(newView);
+      if (newView === 'aws') setViewedAWS(true);
       if (newView === 'netflix') setViewedNetflix(true);
       if (newView === 'subscriber') setViewedSubscriber(true);
       setIsTransitioning(false);
@@ -75,17 +79,27 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
-      handleViewChange('netflix');
-      netflixTabRef.current?.focus();
+      if (view === 'subscriber') {
+        handleViewChange('netflix');
+        netflixTabRef.current?.focus();
+      } else if (view === 'netflix') {
+        handleViewChange('aws');
+        awsTabRef.current?.focus();
+      }
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
-      handleViewChange('subscriber');
-      subscriberTabRef.current?.focus();
+      if (view === 'aws') {
+        handleViewChange('netflix');
+        netflixTabRef.current?.focus();
+      } else if (view === 'netflix') {
+        handleViewChange('subscriber');
+        subscriberTabRef.current?.focus();
+      }
     }
   };
 
-  const viewedCount = (viewedNetflix ? 1 : 0) + (viewedSubscriber ? 1 : 0);
-  const allViewed = viewedNetflix && viewedSubscriber;
+  const viewedCount = (viewedAWS ? 1 : 0) + (viewedNetflix ? 1 : 0) + (viewedSubscriber ? 1 : 0);
+  const allViewed = viewedAWS && viewedNetflix && viewedSubscriber;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex items-start justify-center p-4 sm:p-6 lg:p-8 pt-8 pb-48 overflow-y-auto">
@@ -103,8 +117,33 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
           <div 
             role="tablist" 
             aria-label={intl.formatMessage({ id: 'part4.instructions' })}
-            className="inline-flex bg-slate-800/60 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-lg w-full sm:w-auto"
+            className="inline-flex bg-slate-800/60 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-lg w-full sm:w-auto flex-wrap sm:flex-nowrap gap-1.5 sm:gap-0"
           >
+            <button
+              ref={awsTabRef}
+              id="aws-tab"
+              role="tab"
+              aria-selected={view === 'aws'}
+              aria-controls={awsPanelId}
+              tabIndex={view === 'aws' ? 0 : -1}
+              onClick={() => handleViewChange('aws')}
+              onKeyDown={handleKeyDown}
+              className={`
+                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-orange-500/50
+                ${view === 'aws'
+                  ? 'bg-gradient-to-br from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-600/50'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                }
+              `}
+            >
+              {viewedAWS && view !== 'aws' && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
+                  <CheckIcon />
+                </span>
+              )}
+              <FormattedMessage id="part4.button.aws" />
+            </button>
             <button
               ref={netflixTabRef}
               id="netflix-tab"
@@ -115,7 +154,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('netflix')}
               onKeyDown={handleKeyDown}
               className={`
-                relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#973f4e]/50
                 ${view === 'netflix'
                   ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] text-white shadow-lg shadow-[#750014]/50'
@@ -140,7 +179,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('subscriber')}
               onKeyDown={handleKeyDown}
               className={`
-                relative px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#8b959e]/50
                 ${view === 'subscriber'
                   ? 'bg-gradient-to-br from-slate-900 via-[#1f2937] to-[#8b959e] text-white shadow-lg shadow-slate-900/50'
@@ -162,6 +201,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               <FormattedMessage id="part4.progress.label" />
             </span>
             <div className="flex gap-1.5">
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedAWS ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
               <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedNetflix ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
               <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedSubscriber ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
             </div>
@@ -175,9 +215,9 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
         </div>
 
         <div 
-          id={view === 'netflix' ? netflixPanelId : subscriberPanelId}
+          id={view === 'aws' ? awsPanelId : view === 'netflix' ? netflixPanelId : subscriberPanelId}
           role="tabpanel"
-          aria-labelledby={view === 'netflix' ? 'netflix-tab' : 'subscriber-tab'}
+          aria-labelledby={view === 'aws' ? 'aws-tab' : view === 'netflix' ? 'netflix-tab' : 'subscriber-tab'}
           aria-live="polite"
           className={`
             bg-slate-800/40 backdrop-blur-md rounded-2xl border border-slate-700/50 shadow-2xl
@@ -185,7 +225,94 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
             ${isTransitioning ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'}
           `}
         >
-          {view === 'netflix' ? (
+          {view === 'aws' ? (
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 mb-6 sm:mb-8 border-b border-slate-700/50">
+                <div>
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <div className="p-2 bg-orange-500/10 rounded-lg">
+                      <ServerIcon />
+                    </div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-white">
+                      <FormattedMessage id="part4.aws.role" />
+                    </h2>
+                  </div>
+                  <p className="text-sm text-orange-200/80 mb-3 font-medium">
+                    <FormattedMessage id="part4.aws.model.label" />
+                  </p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500/20 border border-orange-400/30 rounded-full">
+                    <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
+                    <span className="text-sm font-semibold text-orange-300">
+                      <FormattedMessage id="part4.aws.service" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid gap-6 lg:gap-8">
+                <div className="bg-slate-900/50 rounded-xl p-5 sm:p-6 border border-slate-700/30">
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2.5">
+                    <CloudIcon />
+                    <FormattedMessage id="part4.aws.provides" />
+                  </h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                      <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                      <FormattedMessage id="part4.aws.provide1" />
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                      <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                      <FormattedMessage id="part4.aws.provide2" />
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                      <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                      <FormattedMessage id="part4.aws.provide3" />
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="bg-slate-900/50 rounded-xl p-5 sm:p-6 border border-slate-700/30">
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2.5">
+                      <ServerIcon />
+                      <FormattedMessage id="part4.aws.manages" />
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                        <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                        <FormattedMessage id="part4.aws.manage1" />
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                        <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                        <FormattedMessage id="part4.aws.manage2" />
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                        <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                        <FormattedMessage id="part4.aws.manage3" />
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-slate-900/50 rounded-xl p-5 sm:p-6 border border-slate-700/30">
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-4 flex items-center gap-2.5">
+                      <LockIcon />
+                      <FormattedMessage id="part4.aws.customer" />
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                        <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                        <FormattedMessage id="part4.aws.customer1" />
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-300 leading-relaxed">
+                        <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-400 mt-2" />
+                        <FormattedMessage id="part4.aws.customer2" />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : view === 'netflix' ? (
             <div className="p-6 sm:p-8 lg:p-10">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 mb-6 sm:mb-8 border-b border-slate-700/50">
                 <div>

@@ -371,21 +371,81 @@
   "@part4.title": {
     "description": "Header for the Netflix perspective-switching section"
   },
-  "part4.subtitle": "The same cloud infrastructure can be different service models depending on your role.",
+  "part4.subtitle": "The same cloud infrastructure can be different service models depending on your role. Explore all three layers of the stack.",
   "@part4.subtitle": {
-    "description": "Educational explanation of perspective in service models"
+    "description": "Educational explanation of perspective in service models with three-layer stack reference"
   },
-  "part4.instructions": "Click the buttons below to switch between Netflix's perspective and a subscriber's perspective:",
+  "part4.instructions": "Click the buttons below to switch between AWS's infrastructure layer, Netflix's platform layer, and the subscriber's application layer:",
   "@part4.instructions": {
-    "description": "Instructions for the interactive perspective switcher"
+    "description": "Instructions for the interactive three-perspective switcher showing IaaS->PaaS->SaaS vertical stack"
+  },
+  "part4.button.aws": "AWS/Provider View",
+  "@part4.button.aws": {
+    "description": "Button to switch to AWS cloud provider perspective (IaaS layer)"
   },
   "part4.button.netflix": "Netflix's View",
   "@part4.button.netflix": {
-    "description": "Button to switch to Netflix company perspective"
+    "description": "Button to switch to Netflix company perspective (PaaS layer)"
   },
   "part4.button.subscriber": "Subscriber's View",
   "@part4.button.subscriber": {
-    "description": "Button to switch to subscriber/user perspective"
+    "description": "Button to switch to subscriber/user perspective (SaaS layer)"
+  },
+  "part4.aws.role": "Role: Infrastructure Provider",
+  "@part4.aws.role": {
+    "description": "Label showing AWS's business role as cloud infrastructure provider"
+  },
+  "part4.aws.service": "Service Model: Infrastructure as a Service (IaaS)",
+  "@part4.aws.service": {
+    "description": "Service model from AWS provider's perspective - IaaS"
+  },
+  "part4.aws.model.label": "AWS provides raw infrastructure as Infrastructure-as-a-Service (IaaS)",
+  "@part4.aws.model.label": {
+    "description": "Explicit label showing AWS's perspective provides IaaS layer - the foundation beneath Netflix's PaaS"
+  },
+  "part4.aws.provides": "AWS Provides:",
+  "@part4.aws.provides": {
+    "description": "Header for what AWS infrastructure provider offers to customers like Netflix"
+  },
+  "part4.aws.provide1": "Physical servers, storage, and networking hardware",
+  "@part4.aws.provide1": {
+    "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
+  },
+  "part4.aws.provide2": "Virtualization and compute capacity (EC2, S3)",
+  "@part4.aws.provide2": {
+    "description": "Second item AWS provides - virtualized resources with examples"
+  },
+  "part4.aws.provide3": "Global data centers with redundancy and uptime",
+  "@part4.aws.provide3": {
+    "description": "Third item AWS provides - physical infrastructure reliability"
+  },
+  "part4.aws.manages": "AWS Manages:",
+  "@part4.aws.manages": {
+    "description": "Header for what AWS infrastructure provider manages"
+  },
+  "part4.aws.manage1": "Physical hardware (servers, racks, cooling)",
+  "@part4.aws.manage1": {
+    "description": "First item AWS manages - physical data center equipment"
+  },
+  "part4.aws.manage2": "Network infrastructure and connectivity",
+  "@part4.aws.manage2": {
+    "description": "Second item AWS manages - networking layer"
+  },
+  "part4.aws.manage3": "Virtualization platform and resource allocation",
+  "@part4.aws.manage3": {
+    "description": "Third item AWS manages - hypervisor and resource scheduling"
+  },
+  "part4.aws.customer": "Customers (like Netflix) Manage:",
+  "@part4.aws.customer": {
+    "description": "Header for what AWS customers must handle themselves with IaaS"
+  },
+  "part4.aws.customer1": "Operating systems and runtime environments",
+  "@part4.aws.customer1": {
+    "description": "First item customers manage - OS and middleware (Netflix's responsibility)"
+  },
+  "part4.aws.customer2": "Applications, data, and user management",
+  "@part4.aws.customer2": {
+    "description": "Second item customers manage - application layer and business logic"
   },
   "part4.netflix.role": "Role: Content Provider",
   "@part4.netflix.role": {
@@ -483,21 +543,21 @@
   "@part4.subscriber.notneed2": {
     "description": "Second hidden complexity - infrastructure details"
   },
-  "part4.insight": "Key Insight: Netflix uses PaaS to run their business, but provides SaaS to you. The same infrastructure serves different purposes!",
+  "part4.insight": "Key Insight: AWS provides IaaS (servers and infrastructure) → Netflix uses that as PaaS (platform to build their service) → You experience it as SaaS (ready-to-use software). The same physical infrastructure serves three different roles!",
   "@part4.insight": {
-    "description": "Educational insight explaining the dual perspective"
+    "description": "Educational insight explaining the three-layer vertical stack from IaaS to PaaS to SaaS"
   },
   "part4.insight.label": "Key Insight",
   "@part4.insight.label": {
     "description": "Label for the educational insight callout box"
   },
-  "part4.progress.label": "Explore both perspectives",
+  "part4.progress.label": "Explore all three perspectives",
   "@part4.progress.label": {
-    "description": "Instruction to view both Netflix and Subscriber perspectives"
+    "description": "Instruction to view all three perspectives (AWS, Netflix, Subscriber) to understand the vertical stack"
   },
-  "part4.progress.viewed": "Viewed: {count} of 2",
+  "part4.progress.viewed": "Viewed: {count} of 3",
   "@part4.progress.viewed": {
-    "description": "Progress counter showing how many perspectives have been explored. {count} is a number (1 or 2)"
+    "description": "Progress counter showing how many perspectives have been explored. {count} is a number (1, 2, or 3)"
   },
   "part4.netflix.model.label": "Netflix uses this infrastructure as Platform-as-a-Service (PaaS)",
   "@part4.netflix.model.label": {
