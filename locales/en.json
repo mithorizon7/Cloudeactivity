@@ -271,6 +271,10 @@
   "@part3.explanation.default": {
     "description": "Generic feedback for incorrect deployment model selection"
   },
+  "part3.venn.caption": "Visual representation: Hybrid Cloud combines Public and Private clouds",
+  "@part3.venn.caption": {
+    "description": "Caption explaining the Venn diagram visual aid showing how deployment models relate spatially"
+  },
   "summary.title": "Great Job!",
   "@summary.title": {
     "description": "Congratulatory heading on completion screen"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { DEPLOYMENT_MODEL_QUESTIONS } from '../constants';
 import { useIntl, FormattedMessage } from '../i18n';
+import VennDiagram from './VennDiagram';
 
 interface Part3DeploymentModelsProps {
   onComplete: (score: number) => void;
@@ -44,6 +45,13 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
       default: return 'deploymentmodel.public';
     }
   };
+
+  const getVennHighlight = (): 'public' | 'private' | 'hybrid' => {
+    const correctOption = question.options[question.correctAnswer];
+    if (correctOption === 'Public Cloud') return 'public';
+    if (correctOption === 'Private Cloud') return 'private';
+    return 'hybrid';
+  };
   
   return (
     <div className="w-full max-w-2xl mx-auto p-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
@@ -86,6 +94,15 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
             <FormattedMessage id={isCorrect ? 'part3.feedback.correct.title' : 'part3.feedback.incorrect.title'} />
           </h3>
           <p dir="auto"><bdi><FormattedMessage id={question.explanationKey} /></bdi></p>
+          
+          {/* Venn Diagram Visual Aid */}
+          <div className="my-4 bg-slate-900/50 rounded-xl p-4 border border-slate-700/40">
+            <VennDiagram highlightModel={getVennHighlight()} />
+            <p className="text-xs text-center text-slate-400 mt-2">
+              <FormattedMessage id="part3.venn.caption" />
+            </p>
+          </div>
+
           <button 
             onClick={handleNext} 
             className="mt-4 w-full bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold py-2 px-4 rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
