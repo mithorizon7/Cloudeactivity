@@ -22,8 +22,8 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Interactive Components:**
     - **Part 1 (Foundations):** Myth vs. fact quiz.
     - **Part 2 (Service Models):** Drag-and-drop categorization game with dual-mode interaction (drag-and-drop + tap-to-select) for mobile accessibility.
-    - **Part 3 (Deployment Models):** Real-world scenario application.
-    - **Part 4 (Perspective Matters):** An interactive perspective switcher demonstrating IaaS/PaaS/SaaS roles using a Netflix case study, with WCAG 2.2-compliant ARIA tab patterns.
+    - **Part 3 (Deployment Models):** Real-world scenario application with animated Venn diagrams showing Public/Private/Hybrid relationships using Dual Coding Theory.
+    - **Part 4 (Perspective Matters):** Three-layer perspective switcher showing complete IaaS→PaaS→SaaS vertical stack (AWS, Netflix, Subscriber) with WCAG 2.2-compliant ARIA tab patterns.
     - **Part 5 (Cloud Solution Designer):** Users select service and deployment models, adjust user counts, and receive real-time cost/performance feedback for business scenarios. Includes a collapsible mental model primer and context-sensitive feedback.
 - **Scoring System:** Rebalanced to 5/10/10/5/20 for a total of 50 points to ensure sustained engagement across all interactive sections.
 - **Vite Configuration:** The development server runs on port 5000, binds to `0.0.0.0`, and allows all hosts for Replit's proxy and iframe compatibility, with Hot Module Replacement (HMR) enabled.
@@ -36,6 +36,29 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Internationalization:** `react-intl` (FormatJS)
 
 ## Recent Changes
+- **2025-11-20**: Pedagogical enhancements for true novice learners addressing "Expert Blind Spot" and Dual Coding Theory
+  - **Part 4 (Perspective Matters) - Three-Layer Vertical Stack**: Added AWS/Provider View (IaaS) as third perspective
+    - Complete vertical slice: IaaS (AWS) → PaaS (Netflix) → SaaS (Subscriber)
+    - Addresses "Expert Blind Spot" where novices struggle to separate "Provider" from "Platform"
+    - Color-coded tabs: Orange (AWS infrastructure), Red (Netflix platform), Steel (Subscriber application)
+    - Keyboard navigation supports ArrowLeft/Right across all three tabs
+    - Progress tracker shows "Viewed: {count} of 3" with three progress dots
+    - Continue button requires viewing all three perspectives before enabling
+    - AWS content: Provides servers/virtualization, manages hardware/network, customers handle OS/applications
+    - Updated key insight: "AWS provides IaaS → Netflix uses that as PaaS → You experience it as SaaS"
+    - Reinforces building-block mental model - layers stack on each other, not separate products
+  - **Part 3 (Deployment Models) - Venn Diagram Visual Reinforcement**: Added animated SVG diagrams
+    - Leverages Dual Coding Theory: combining text + spatial visuals enhances recall
+    - Left circle (cyan): Public Cloud with globe icon (accessible)
+    - Right circle (green): Private Cloud with building icon (internal)
+    - Intersection (purple blend): Hybrid Cloud with bidirectional arrows (integration)
+    - Staggered animation: circles → intersection → labels → icons (~700ms total)
+    - Dynamic highlighting based on correct answer (dims non-relevant models to 40% opacity)
+    - Appears in feedback section after explanation text with caption
+    - Makes abstract "Hybrid" concept concrete through spatial representation
+  - **Rationale**: Both enhancements target novice confusion patterns identified in user research - the provider/platform distinction and abstract hybrid concepts
+  - **Verification**: Architect confirmed both meet pedagogical objectives, maintain <10 minute completion target, preserve WCAG 2.2 AA accessibility
+
 - **2025-11-14**: Part 5 (Cloud Designer) comprehensive UX transformation based on user feedback
   - **InfoTooltip event handling fix**: Added `stopPropagation()` to click/keyboard events
     - Prevents tooltips from triggering card selection when clicked
