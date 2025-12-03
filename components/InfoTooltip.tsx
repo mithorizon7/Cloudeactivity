@@ -63,10 +63,16 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
         }}
         aria-describedby={isOpen ? uniqueId : undefined}
         aria-expanded={isOpen}
-        className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 touch-manipulation text-xs rounded-full bg-slate-600 text-white hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8b959e]/70 transition-colors -my-2"
+        className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-1.5 touch-manipulation rounded-full bg-slate-600/80 text-white hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8b959e]/70 transition-all -my-2 group"
         aria-label={intl.formatMessage({ id: 'common.tooltip.moreInfo' }, { label })}
       >
-        <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-700 border border-slate-500">?</span>
+        <span className="w-7 h-7 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-600 to-slate-700 border border-slate-500/80 shadow-inner group-hover:from-slate-500 group-hover:to-slate-600 transition-all">
+          <svg className="w-4 h-4 text-slate-200 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" strokeWidth="0" fill="none" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="3" />
+          </svg>
+        </span>
       </button>
       {isOpen && (
         <div
