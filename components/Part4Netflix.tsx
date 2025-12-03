@@ -104,13 +104,56 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex items-start justify-center p-4 sm:p-6 lg:p-8 pt-8 pb-48 overflow-y-auto">
       <div className="max-w-5xl w-full mx-auto mt-0">
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
             <FormattedMessage id="part4.title" />
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             <FormattedMessage id="part4.subtitle" />
           </p>
+        </div>
+
+        <div className="mb-8 sm:mb-10 bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 lg:p-8 border border-slate-700/50 shadow-xl">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+            <div className="flex-shrink-0 p-3 sm:p-4 bg-red-600/20 rounded-xl border border-red-500/30 self-center lg:self-start">
+              <svg className="w-10 h-10 sm:w-12 sm:h-12 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z"/>
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                <FormattedMessage 
+                  id="part4.intro.heading" 
+                  defaultMessage="Ever wondered what happens when you press play?" 
+                />
+              </h2>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
+                <FormattedMessage 
+                  id="part4.intro.description" 
+                  defaultMessage="You know Netflix - you open the app, browse shows, and start watching. It feels simple. But behind that familiar experience is a complex cloud computing system involving multiple layers of technology and different companies working together." 
+                />
+              </p>
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
+                <FormattedMessage 
+                  id="part4.intro.purpose" 
+                  defaultMessage="In this activity, you'll explore the same streaming service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you - the subscriber. Each sees and manages something completely different." 
+                />
+              </p>
+              <div className="flex items-center gap-3 p-3 sm:p-4 bg-slate-900/50 rounded-xl border border-slate-700/40">
+                <div className="flex-shrink-0 p-2 bg-[#973f4e]/20 rounded-lg">
+                  <svg className="w-5 h-5 text-[#ba7f89]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <p className="text-sm sm:text-base text-slate-400">
+                  <FormattedMessage 
+                    id="part4.intro.instruction" 
+                    defaultMessage="Click each tab below to see the behind-the-scenes view from each perspective. You'll need to explore all three to continue." 
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
