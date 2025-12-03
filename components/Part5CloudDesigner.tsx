@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from 'react-intl';
 import { InfoTooltip } from './InfoTooltip';
 import { ServiceModelKey, DeploymentModelKey } from '../types';
@@ -170,7 +170,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     dispatchStepper({ type: 'STEP_STARTED', stepId: 'results' });
   };
 
-  const handleEvaluate = () => {
+  const handleEvaluate = useCallback(() => {
     if (!selected) return;
     setEvaluated(true);
     const rank = allCombos.findIndex((c) => c.service === selected.service && c.deployment === selected.deployment);
@@ -186,9 +186,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     requestAnimationFrame(() => {
       liveRef.current?.focus();
     });
-  };
+  }, [selected, allCombos, scenario.idealCombos]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (scenarioIdx < BASE_SCENARIOS.length - 1) {
       setService(null);
       setDeployment(null);
@@ -199,7 +199,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     } else {
       onComplete(totalScore);
     }
-  };
+  }, [scenarioIdx, onComplete, totalScore]);
 
   useEffect(() => {
     if (!setActionBar) return;
@@ -340,7 +340,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-[180px] sm:pb-[200px]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-[200px] sm:pb-[220px]">
       <PointsAnimation points={lastPointsEarned} show={showPointsAnimation} />
       
       <div className="mx-auto w-full max-w-7xl">
