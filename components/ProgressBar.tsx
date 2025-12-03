@@ -6,6 +6,7 @@ interface ProgressBarProps {
   currentStage: Stage;
   completedStages: Set<Stage>;
   onNavigate: (stage: Stage) => void;
+  actionBar?: React.ReactNode;
 }
 
 const CheckIcon = () => (
@@ -14,7 +15,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages, onNavigate }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages, onNavigate, actionBar }) => {
   const intl = useIntl();
   
   const currentIndex = STAGES.indexOf(currentStage);
@@ -26,12 +27,20 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
   };
 
   return (
-    <nav 
-      className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 shadow-2xl z-50 overflow-visible pb-[env(safe-area-inset-bottom)]"
-      role="navigation"
-      aria-label={intl.formatMessage({ id: 'progress.label' })}
-    >
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+    <div className="fixed bottom-0 left-0 right-0 z-50">
+      {actionBar && (
+        <div className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4">
+          <div className="max-w-7xl mx-auto">
+            {actionBar}
+          </div>
+        </div>
+      )}
+      <nav 
+        className="bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 shadow-2xl overflow-visible pb-[env(safe-area-inset-bottom)]"
+        role="navigation"
+        aria-label={intl.formatMessage({ id: 'progress.label' })}
+      >
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
         <div className="flex items-start justify-between gap-1 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[56px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage);
@@ -119,7 +128,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
           })}
         </div>
       </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
