@@ -67,10 +67,9 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
         aria-label={intl.formatMessage({ id: 'common.tooltip.moreInfo' }, { label })}
       >
         <span className="w-7 h-7 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-600 to-slate-700 border border-slate-500/80 shadow-inner group-hover:from-slate-500 group-hover:to-slate-600 transition-all">
-          <svg className="w-4 h-4 text-slate-200 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" strokeWidth="0" fill="none" />
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-            <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="3" />
+          <svg className="w-5 h-5 text-slate-100 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 9a3 3 0 1 1 4 2.83c-.5.29-1 .84-1 1.42V14" />
+            <circle cx="12" cy="18" r="0.5" fill="currentColor" stroke="none" />
           </svg>
         </span>
       </button>
