@@ -36,6 +36,25 @@ The application is built using React 19.2.0, TypeScript 5.8.2, and Vite 6.2.0. S
 - **Internationalization:** `react-intl` (FormatJS)
 
 ## Recent Changes
+- **2025-12-03**: Code quality refactoring and Tailwind CSS v4 compatibility fix
+  - **Part5CloudDesigner modular refactoring**: Extracted large component into organized submodules
+    - `components/Part5/types.ts`: Centralized type definitions for Part5 (ServiceMetadata, DeploymentMetadata, Scenario, Metrics, StepperState)
+    - `components/Part5/helpers.ts`: Utility functions (clamp, normalizeTo0_100, formatMonthlyCost, weightToPriority, computeMetrics, weightedFit)
+    - `components/Part5/stepperReducer.ts`: Step state management reducer with initial state
+    - `components/Part5/scenarios.ts`: Scenario data constants extracted from component
+    - `components/Part5/UIComponents.tsx`: Reusable UI primitives (SectionCard, Token, StepCard, Bar)
+    - `components/Part5/index.ts`: Barrel exports for clean imports
+  - **VennDiagram internationalization**: Updated SVG text labels to use react-intl formatMessage
+    - Public/Private/Hybrid labels now sourced from locale files
+    - Added accessible aria-label with internationalized text
+    - Added venn.* i18n keys to locales/en.json
+  - **Tailwind CSS v4 compatibility**: Fixed PostCSS plugin configuration
+    - Updated postcss.config.js to use @tailwindcss/postcss instead of tailwindcss directly
+    - Resolves Vite build errors for Tailwind v4 compatibility
+  - **Added i18n keys**: Step card titles/subtitles and comparison table labels
+  - **Rationale**: Large components split into focused modules improve maintainability, testing, and collaboration
+  - **Verification**: Architect confirmed refactoring preserves functionality while improving code organization
+
 - **2025-11-20**: Pedagogical enhancements for true novice learners addressing "Expert Blind Spot" and Dual Coding Theory
   - **Part 4 (Perspective Matters) - Three-Layer Vertical Stack**: Added AWS/Provider View (IaaS) as third perspective
     - Complete vertical slice: IaaS (AWS) → PaaS (Netflix) → SaaS (Subscriber)

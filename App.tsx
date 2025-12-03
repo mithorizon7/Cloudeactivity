@@ -7,21 +7,18 @@ import Part4Netflix from './components/Part4Netflix';
 import Part5CloudDesigner from './components/Part5CloudDesigner';
 import Summary from './components/Summary';
 import ProgressBar from './components/ProgressBar';
-
-type Stage = 'introduction' | 'part1' | 'part2' | 'part3' | 'part4' | 'part5' | 'summary';
+import { Stage, STAGES } from './types';
 
 const App: React.FC = () => {
   const [currentStage, setCurrentStage] = useState<Stage>('introduction');
   const [furthestStage, setFurthestStage] = useState<Stage>('introduction');
   const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
 
-  const stageOrder: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
-  
   const getCompletedStages = (): Set<Stage> => {
-    const currentIndex = stageOrder.indexOf(currentStage);
+    const currentIndex = STAGES.indexOf(currentStage);
     const completed = new Set<Stage>();
     for (let i = 0; i < currentIndex; i++) {
-      completed.add(stageOrder[i]);
+      completed.add(STAGES[i]);
     }
     return completed;
   };
@@ -29,13 +26,13 @@ const App: React.FC = () => {
   const handleNext = (part: string, score: number) => {
     setScores(prev => ({ ...prev, [part]: score }));
     
-    const currentIndex = stageOrder.indexOf(currentStage);
-    if (currentIndex < stageOrder.length - 1) {
-      const nextStage = stageOrder[currentIndex + 1];
+    const currentIndex = STAGES.indexOf(currentStage);
+    if (currentIndex < STAGES.length - 1) {
+      const nextStage = STAGES[currentIndex + 1];
       setCurrentStage(nextStage);
       
-      const nextIndex = stageOrder.indexOf(nextStage);
-      const furthestIndex = stageOrder.indexOf(furthestStage);
+      const nextIndex = STAGES.indexOf(nextStage);
+      const furthestIndex = STAGES.indexOf(furthestStage);
       if (nextIndex > furthestIndex) {
         setFurthestStage(nextStage);
       }
@@ -50,8 +47,8 @@ const App: React.FC = () => {
 
   const handleNavigate = (stage: Stage) => {
     setCurrentStage(stage);
-    const stageIndex = stageOrder.indexOf(stage);
-    const furthestIndex = stageOrder.indexOf(furthestStage);
+    const stageIndex = STAGES.indexOf(stage);
+    const furthestIndex = STAGES.indexOf(furthestStage);
     if (stageIndex > furthestIndex) {
       setFurthestStage(stage);
     }

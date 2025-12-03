@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { SERVICE_MODEL_EXAMPLES } from '../constants';
 import { ServiceModel, ServiceExample } from '../types';
 import { CheckCircleIcon, XCircleIcon } from './icons/Icons';
@@ -63,6 +63,14 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
   const [feedback, setFeedback] = useState<{ type: 'correct' | 'incorrect', message: string, messageKey: string } | null>(null);
   const [selectedExample, setSelectedExample] = useState<ServiceExample | null>(null);
   const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  const setCardRef = useCallback((id: string) => (el: HTMLDivElement | null) => {
+    if (el) {
+      cardRefs.current.set(id, el);
+    } else {
+      cardRefs.current.delete(id);
+    }
+  }, []);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, example: ServiceExample) => {
     e.dataTransfer.setData('exampleId', example.id);
@@ -204,13 +212,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               {examples.map(ex => (
                 <div
                   key={ex.id}
-                  ref={(el) => {
-                    if (el) {
-                      cardRefs.current.set(ex.id, el);
-                    } else {
-                      cardRefs.current.delete(ex.id);
-                    }
-                  }}
+                  ref={setCardRef(ex.id)}
                   draggable
                   onDragStart={(e) => handleDragStart(e, ex)}
                   onClick={() => handleCardClick(ex)}
@@ -240,14 +242,6 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
             <FormattedMessage id="part2.button.continue" />
           </button>
         )}
-        <style>{`
-          .animate-shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; transform: translate3d(0, 0, 0); backface-visibility: hidden; perspective: 1000px; border: 2px solid #ef4444; }
-          @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-          .animate-fade-in-up { animation: fadeInUp 0.3s ease-out both; }
-          @keyframes fadeInUp { from { opacity: 0; transform: translate3d(0, 20px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
-          .animate-fade-in { animation: fadeIn 0.5s ease-out both; }
-          @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        `}</style>
     </div>
   );
 };

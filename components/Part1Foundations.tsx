@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FOUNDATIONS_QUESTIONS } from '../constants';
 import { useIntl, FormattedMessage } from '../i18n';
 
@@ -11,7 +11,7 @@ const Part1Foundations: React.FC<Part1FoundationsProps> = ({ onComplete }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  const [score, setScore] = useState(0);
+  const scoreRef = useRef(0);
 
   const question = FOUNDATIONS_QUESTIONS[currentQuestionIndex];
   const isCorrect = selectedAnswer === question.isTrue;
@@ -22,7 +22,7 @@ const Part1Foundations: React.FC<Part1FoundationsProps> = ({ onComplete }) => {
     setShowFeedback(true);
     if (answer === question.isTrue) {
       const points = currentQuestionIndex === 0 ? 2 : 3;
-      setScore(s => s + points);
+      scoreRef.current += points;
     }
   };
 
@@ -32,7 +32,7 @@ const Part1Foundations: React.FC<Part1FoundationsProps> = ({ onComplete }) => {
       setSelectedAnswer(null);
       setShowFeedback(false);
     } else {
-      onComplete(score);
+      onComplete(scoreRef.current);
     }
   };
 

@@ -1186,5 +1186,61 @@
   "progress.summary.subtitle": "Your Results",
   "@progress.summary.subtitle": {
     "description": "Subtitle shown under the Summary progress stage - final score and recap"
+  },
+  "part5.step1.title": "Choose a Service Model",
+  "@part5.step1.title": {
+    "description": "Step 1 heading in the stepper - service model selection"
+  },
+  "part5.step1.subtitle": "What you buy",
+  "@part5.step1.subtitle": {
+    "description": "Step 1 subtitle explaining service model concept"
+  },
+  "part5.step2.title": "Choose a Deployment Model",
+  "@part5.step2.title": {
+    "description": "Step 2 heading in the stepper - deployment model selection"
+  },
+  "part5.step2.subtitle": "Where it runs",
+  "@part5.step2.subtitle": {
+    "description": "Step 2 subtitle explaining deployment model concept"
+  },
+  "part5.step3.title": "See Trade-offs & Evaluate",
+  "@part5.step3.title": {
+    "description": "Step 3 heading in the stepper - view results and compare"
+  },
+  "part5.step3.subtitle": "Review your design",
+  "@part5.step3.subtitle": {
+    "description": "Step 3 subtitle explaining the results review step"
+  },
+  "part5.compare.title": "Compare All Service & Deployment Options",
+  "@part5.compare.title": {
+    "description": "Title for the comparison table showing all combinations"
+  },
+  "part5.compare.show": "Show:",
+  "@part5.compare.show": {
+    "description": "Label before the summary/all toggle buttons"
+  },
+  "part5.compare.summary": "Summary",
+  "@part5.compare.summary": {
+    "description": "Button to show summarized comparison (top 3 options)"
+  },
+  "part5.compare.all": "All Options",
+  "@part5.compare.all": {
+    "description": "Button to show all 9 service/deployment combinations"
+  },
+  "venn.public.label": "Public Cloud",
+  "@venn.public.label": {
+    "description": "Label for Public Cloud in the Venn diagram"
+  },
+  "venn.private.label": "Private Cloud",
+  "@venn.private.label": {
+    "description": "Label for Private Cloud in the Venn diagram"
+  },
+  "venn.hybrid.label": "Hybrid Cloud",
+  "@venn.hybrid.label": {
+    "description": "Label for Hybrid Cloud intersection in the Venn diagram"
+  },
+  "venn.aria.label": "Venn diagram showing relationship between Public, Private, and Hybrid cloud deployment models",
+  "@venn.aria.label": {
+    "description": "Accessible description of the Venn diagram for screen readers"
   }
 }

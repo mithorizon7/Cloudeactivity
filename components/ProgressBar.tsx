@@ -1,7 +1,6 @@
 import React from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
-
-type Stage = 'introduction' | 'part1' | 'part2' | 'part3' | 'part4' | 'part5' | 'summary';
+import { Stage, STAGES } from '../types';
 
 interface ProgressBarProps {
   currentStage: Stage;
@@ -15,14 +14,12 @@ const CheckIcon = () => (
   </svg>
 );
 
-const STAGES: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
-
 const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages, onNavigate }) => {
   const intl = useIntl();
   
   const currentIndex = STAGES.indexOf(currentStage);
   
-  const getStageStatus = (stage: Stage, index: number): 'completed' | 'current' | 'upcoming' => {
+  const getStageStatus = (stage: Stage): 'completed' | 'current' | 'upcoming' => {
     if (stage === currentStage) return 'current';
     if (completedStages.has(stage)) return 'completed';
     return 'upcoming';
@@ -37,10 +34,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
       <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
         <div className="flex items-start justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
-            const status = getStageStatus(stage, index);
+            const status = getStageStatus(stage);
             const isCompleted = status === 'completed';
             const isCurrent = status === 'current';
-            const isUpcoming = status === 'upcoming';
             
             return (
               <React.Fragment key={stage}>

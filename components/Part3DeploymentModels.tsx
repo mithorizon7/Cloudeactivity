@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { DEPLOYMENT_MODEL_QUESTIONS } from '../constants';
 import { useIntl, FormattedMessage } from '../i18n';
 import VennDiagram from './VennDiagram';
+import { DeploymentModelKey } from '../types';
 
 interface Part3DeploymentModelsProps {
   onComplete: (score: number) => void;
@@ -12,7 +13,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  const [score, setScore] = useState(0);
+  const scoreRef = useRef(0);
 
   const question = DEPLOYMENT_MODEL_QUESTIONS[currentQuestionIndex];
   const isCorrect = selectedAnswer === question.correctAnswer;
@@ -23,7 +24,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
     setShowFeedback(true);
     if (answerIndex === question.correctAnswer) {
       const points = currentQuestionIndex === 2 ? 4 : 3;
-      setScore(s => s + points);
+      scoreRef.current += points;
     }
   };
 
@@ -33,7 +34,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
       setSelectedAnswer(null);
       setShowFeedback(false);
     } else {
-      onComplete(score);
+      onComplete(scoreRef.current);
     }
   };
 
@@ -46,7 +47,7 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
     }
   };
 
-  const getVennHighlight = (): 'public' | 'private' | 'hybrid' => {
+  const getVennHighlight = (): DeploymentModelKey => {
     const correctOption = question.options[question.correctAnswer];
     if (correctOption === 'Public Cloud') return 'public';
     if (correctOption === 'Private Cloud') return 'private';
@@ -95,7 +96,6 @@ const Part3DeploymentModels: React.FC<Part3DeploymentModelsProps> = ({ onComplet
           </h3>
           <p dir="auto"><bdi><FormattedMessage id={question.explanationKey} /></bdi></p>
           
-          {/* Venn Diagram Visual Aid */}
           <div className="my-4 bg-slate-900/50 rounded-xl p-4 border border-slate-700/40">
             <VennDiagram highlightModel={getVennHighlight()} />
             <p className="text-xs text-center text-slate-400 mt-2">
