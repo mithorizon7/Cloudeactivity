@@ -148,43 +148,21 @@ interface SliderMilestoneProps {
   value: number;
 }
 
-export const SliderMilestones: React.FC<SliderMilestoneProps> = ({ min, max, value }) => {
-  const milestones = [
-    { label: 'Startup', threshold: 5000 },
-    { label: 'Growth', threshold: 25000 },
-    { label: 'Enterprise', threshold: 100000 },
-  ].filter(m => m.threshold >= min && m.threshold <= max);
-  
-  const getPosition = (val: number) => ((val - min) / (max - min)) * 100;
-  
+export const SliderMilestones: React.FC<SliderMilestoneProps> = ({ value }) => {
   const getCurrentStage = () => {
-    if (value >= 100000) return 'Enterprise';
-    if (value >= 25000) return 'Growth';
-    if (value >= 5000) return 'Startup';
-    return 'Early';
+    if (value >= 100000) return { name: 'Enterprise', color: 'from-purple-500/30 to-purple-600/20 border-purple-400/50 text-purple-300' };
+    if (value >= 25000) return { name: 'Growth', color: 'from-emerald-500/30 to-emerald-600/20 border-emerald-400/50 text-emerald-300' };
+    if (value >= 5000) return { name: 'Startup', color: 'from-cyan-500/30 to-cyan-600/20 border-cyan-400/50 text-cyan-300' };
+    return { name: 'Early', color: 'from-slate-500/30 to-slate-600/20 border-slate-400/50 text-slate-300' };
   };
   
+  const stage = getCurrentStage();
+  
   return (
-    <div className="mt-4">
-      <div className="relative h-6 mb-2">
-        {milestones.map(({ label, threshold }) => (
-          <div 
-            key={label}
-            className="absolute -translate-x-1/2 flex flex-col items-center"
-            style={{ left: `${getPosition(threshold)}%` }}
-          >
-            <div className={`w-0.5 h-3 ${value >= threshold ? 'bg-cyan-400' : 'bg-slate-500'}`} />
-            <span className={`text-[10px] mt-0.5 ${value >= threshold ? 'text-cyan-400' : 'text-slate-500'} whitespace-nowrap`}>
-              {label}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="text-center">
-        <span className="inline-block px-3 py-1.5 bg-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30">
-          Stage: {getCurrentStage()}
-        </span>
-      </div>
+    <div className="mt-4 text-center">
+      <span className={`inline-block px-4 py-1.5 bg-gradient-to-r ${stage.color} text-xs font-semibold rounded-full border`}>
+        Stage: {stage.name}
+      </span>
     </div>
   );
 };
