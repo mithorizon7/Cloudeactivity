@@ -17,7 +17,7 @@ The application is built using React, TypeScript, and Vite, with styling managed
 - A 7-stage progress bar provides free navigation with distinct visual states.
 
 **Technical Implementations:**
-- **Internationalization (i18n):** Uses `react-intl` (FormatJS) with ICU MessageFormat for full translation readiness, including locale persistence and RTL support.
+- **Internationalization (i18n):** Uses `react-intl` (FormatJS) with ICU MessageFormat for full translation readiness, including locale persistence and RTL support. Supports English, Russian (Русский), and Latvian (Latviešu) with a language switcher in the top-right corner.
 - **Interactive Components:**
     - Part 1 (Foundations): Myth vs. fact quiz.
     - Part 2 (Service Models): Drag-and-drop categorization game with dual-mode interaction.
