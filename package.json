@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "i18n:extract": "formatjs extract './**/*.tsx' --ignore './node_modules/**' --out-file locales/extracted.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
-    "i18n:compile": "formatjs compile locales/en.json --out-file locales/en.compiled.json",
+    "i18n:extract": "formatjs extract './**/*.tsx' --ignore './node_modules/**' --out-file locales/extracted.json --format simple",
+    "i18n:compile": "node scripts/compile-messages.js",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {

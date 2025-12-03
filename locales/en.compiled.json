@@ -1,0 +1,2250 @@
+{
+  "deploymentmodel.hybrid": [
+    {
+      "type": 0,
+      "value": "Hybrid Cloud"
+    }
+  ],
+  "deploymentmodel.private": [
+    {
+      "type": 0,
+      "value": "Private Cloud"
+    }
+  ],
+  "deploymentmodel.public": [
+    {
+      "type": 0,
+      "value": "Public Cloud"
+    }
+  ],
+  "introduction.button.start": [
+    {
+      "type": 0,
+      "value": "Let's Get Started"
+    }
+  ],
+  "introduction.description": [
+    {
+      "type": 0,
+      "value": "This short, interactive activity will guide you through the methods and techniques of the cloud, from its foundations to its deployment."
+    }
+  ],
+  "introduction.part1.description": [
+    {
+      "type": 0,
+      "value": "Tackle 'Myth vs. Fact' questions about what the cloud really is."
+    }
+  ],
+  "introduction.part1.title": [
+    {
+      "type": 0,
+      "value": "Part 1: Foundations."
+    }
+  ],
+  "introduction.part2.description": [
+    {
+      "type": 0,
+      "value": "Play a drag-and-drop game to sort IaaS, PaaS, and SaaS."
+    }
+  ],
+  "introduction.part2.title": [
+    {
+      "type": 0,
+      "value": "Part 2: Service Models."
+    }
+  ],
+  "introduction.part3.description": [
+    {
+      "type": 0,
+      "value": "Solve real-world scenarios to understand Public, Private, and Hybrid clouds."
+    }
+  ],
+  "introduction.part3.title": [
+    {
+      "type": 0,
+      "value": "Part 3: Deployment Models."
+    }
+  ],
+  "introduction.title": [
+    {
+      "type": 0,
+      "value": "How Cloud Computing Works"
+    }
+  ],
+  "part1.button.continue": [
+    {
+      "type": 0,
+      "value": "Continue"
+    }
+  ],
+  "part1.button.fact": [
+    {
+      "type": 0,
+      "value": "Fact"
+    }
+  ],
+  "part1.button.myth": [
+    {
+      "type": 0,
+      "value": "Myth"
+    }
+  ],
+  "part1.button.next": [
+    {
+      "type": 0,
+      "value": "Next Question"
+    }
+  ],
+  "part1.feedback.correct.title": [
+    {
+      "type": 0,
+      "value": "Correct!"
+    }
+  ],
+  "part1.feedback.incorrect.title": [
+    {
+      "type": 0,
+      "value": "Not Quite!"
+    }
+  ],
+  "part1.question1.explanation": [
+    {
+      "type": 0,
+      "value": "That's right! The cloud's central innovation is placing large numbers of servers in data centers, typically located far from the individuals and organizations that access them."
+    }
+  ],
+  "part1.question1.statement": [
+    {
+      "type": 0,
+      "value": "The foundations of cloud computing are high-powered computers called servers, located in facilities called data centers."
+    }
+  ],
+  "part1.question2.explanation": [
+    {
+      "type": 0,
+      "value": "Exactly. Historically, organizations operated their own on-premises equipment. Cloud computing allows them to access resources remotely from a cloud provider instead."
+    }
+  ],
+  "part1.question2.statement": [
+    {
+      "type": 0,
+      "value": "Cloud computing requires organizations to buy and operate their own computer equipment on-premises."
+    }
+  ],
+  "part1.subtitle": [
+    {
+      "type": 0,
+      "value": "Is the following statement a myth or a fact?"
+    }
+  ],
+  "part1.title": [
+    {
+      "type": 0,
+      "value": "Part 1: The Foundation"
+    }
+  ],
+  "part2.allsorted.message": [
+    {
+      "type": 0,
+      "value": "All items sorted correctly!"
+    }
+  ],
+  "part2.button.continue": [
+    {
+      "type": 0,
+      "value": "Continue"
+    }
+  ],
+  "part2.example1.correct": [
+    {
+      "type": 0,
+      "value": "You got it. Scalable storage is a core component of infrastructure that you rent from a provider. This is a classic IaaS offering."
+    }
+  ],
+  "part2.example1.hint.paas": [
+    {
+      "type": 0,
+      "value": "While a PaaS application would *use* storage, the storage service itself is a more fundamental building block. It's part of the core infrastructure."
+    }
+  ],
+  "part2.example1.hint.saas": [
+    {
+      "type": 0,
+      "value": "This isn't a complete application, but a raw component you'd use to build one. Which model provides these fundamental building blocks?"
+    }
+  ],
+  "part2.example1.text": [
+    {
+      "type": 0,
+      "value": "Paying for storage space that automatically scales to match the amount of data in use."
+    }
+  ],
+  "part2.example2.correct": [
+    {
+      "type": 0,
+      "value": "That's it! These are examples of complete software products that you access, typically by paying a subscription. This is Software as a Service."
+    }
+  ],
+  "part2.example2.hint.iaas": [
+    {
+      "type": 0,
+      "value": "With Zoom or Slack, are you managing servers or just using an app? IaaS is about renting the servers themselves. This is a level above that."
+    }
+  ],
+  "part2.example2.hint.paas": [
+    {
+      "type": 0,
+      "value": "PaaS is a platform for developers to *create* apps. Zoom is an app that has already been created for you to use. Which model fits that description?"
+    }
+  ],
+  "part2.example2.text": [
+    {
+      "type": 0,
+      "value": "Using Zoom for video calls or Slack for messaging."
+    }
+  ],
+  "part2.example3.correct": [
+    {
+      "type": 0,
+      "value": "Perfect! With PaaS, you focus on your application code, while the provider handles the underlying infrastructure and technical responsibilities, like server maintenance."
+    }
+  ],
+  "part2.example3.hint.iaas": [
+    {
+      "type": 0,
+      "value": "You're getting warmer! IaaS would give you the server, but you would be responsible for maintaining it. This service handles that maintenance for you."
+    }
+  ],
+  "part2.example3.hint.saas": [
+    {
+      "type": 0,
+      "value": "This is a model for *running* your own software, not for *using* someone else's. Which category provides that kind of platform?"
+    }
+  ],
+  "part2.example3.text": [
+    {
+      "type": 0,
+      "value": "Operating your own software in the cloud while a provider handles and maintains the servers."
+    }
+  ],
+  "part2.example4.correct": [
+    {
+      "type": 0,
+      "value": "Correct! A file sharing service is a ready-to-use application provided for end-users, which is the definition of SaaS."
+    }
+  ],
+  "part2.example4.hint.iaas": [
+    {
+      "type": 0,
+      "value": "File sharing is a feature of a complete software product. IaaS would be renting the raw storage where those files are kept."
+    }
+  ],
+  "part2.example4.hint.paas": [
+    {
+      "type": 0,
+      "value": "You are *using* a finished service, not *building* one. PaaS is the environment for building. What's the model for using?"
+    }
+  ],
+  "part2.example4.text": [
+    {
+      "type": 0,
+      "value": "Accessing a file sharing service to collaborate with a team."
+    }
+  ],
+  "part2.example5.correct": [
+    {
+      "type": 0,
+      "value": "Exactly! You are renting the provider's fundamental computing resources (their infrastructure) to perform complex tasks. This is IaaS."
+    }
+  ],
+  "part2.example5.hint.paas": [
+    {
+      "type": 0,
+      "value": "PaaS provides a managed platform, but when you're directly utilizing raw processing power and storage for custom analytics, you're using the underlying infrastructure."
+    }
+  ],
+  "part2.example5.hint.saas": [
+    {
+      "type": 0,
+      "value": "This describes using core computing power, not a specific, pre-built software application. Which model is about renting raw resources?"
+    }
+  ],
+  "part2.example5.text": [
+    {
+      "type": 0,
+      "value": "Using a provider's infrastructure for large-scale data processing and analytics."
+    }
+  ],
+  "part2.example6.correct": [
+    {
+      "type": 0,
+      "value": "That's right. When you deploy and run your own software and tools on a managed environment from a cloud provider, that's Platform as a Service."
+    }
+  ],
+  "part2.example6.hint.iaas": [
+    {
+      "type": 0,
+      "value": "You could do this with IaaS, but you'd also have to manage the operating systems and servers. PaaS handles that for you so you can focus on your app."
+    }
+  ],
+  "part2.example6.hint.saas": [
+    {
+      "type": 0,
+      "value": "This is about running your *own* custom application, not subscribing to one made by someone else. Which model provides a platform for your own software?"
+    }
+  ],
+  "part2.example6.text": [
+    {
+      "type": 0,
+      "value": "Hosting your company's custom application and its business analytics tools."
+    }
+  ],
+  "part2.examples.title": [
+    {
+      "type": 0,
+      "value": "Examples"
+    }
+  ],
+  "part2.feedback.button.gotit": [
+    {
+      "type": 0,
+      "value": "Got it"
+    }
+  ],
+  "part2.feedback.correct.title": [
+    {
+      "type": 0,
+      "value": "Correct!"
+    }
+  ],
+  "part2.feedback.incorrect.title": [
+    {
+      "type": 0,
+      "value": "Not Quite..."
+    }
+  ],
+  "part2.hint.default": [
+    {
+      "type": 0,
+      "value": "That doesn't seem to be the right fit. Think about the level of management provided by the service."
+    }
+  ],
+  "part2.subtitle": [
+    {
+      "type": 0,
+      "value": "Drag each example to the correct service model category."
+    }
+  ],
+  "part2.tap.place": [
+    {
+      "type": 0,
+      "value": "Tap here to place"
+    }
+  ],
+  "part2.title": [
+    {
+      "type": 0,
+      "value": "Part 2: Service Models"
+    }
+  ],
+  "part3.button.finish": [
+    {
+      "type": 0,
+      "value": "Finish Activity"
+    }
+  ],
+  "part3.button.next": [
+    {
+      "type": 0,
+      "value": "Next Scenario"
+    }
+  ],
+  "part3.explanation.default": [
+    {
+      "type": 0,
+      "value": "That's a good thought, but there's a better fit. Consider the key requirements of the scenario."
+    }
+  ],
+  "part3.feedback.correct.title": [
+    {
+      "type": 0,
+      "value": "Correct!"
+    }
+  ],
+  "part3.feedback.incorrect.title": [
+    {
+      "type": 0,
+      "value": "Good Try!"
+    }
+  ],
+  "part3.scenario1.explanation": [
+    {
+      "type": 0,
+      "value": "A Private Cloud is ideal here. It offers the greatest security by imposing more restrictions on access, making it suitable for sensitive information like financial records or proprietary research."
+    }
+  ],
+  "part3.scenario1.text": [
+    {
+      "type": 0,
+      "value": "A financial firm needs to store proprietary research with greater security, requiring an encrypted VPN connection for its employees to access it."
+    }
+  ],
+  "part3.scenario2.explanation": [
+    {
+      "type": 0,
+      "value": "A Public Cloud is the perfect choice. They are called 'public' because nearly any customer can pay to use their servers, making them cheaper and offering easy access."
+    }
+  ],
+  "part3.scenario2.text": [
+    {
+      "type": 0,
+      "value": "A software company wants to deploy its app for nearly any customer to use, with easy access over standard internet connections and lower costs."
+    }
+  ],
+  "part3.scenario3.explanation": [
+    {
+      "type": 0,
+      "value": "This is a classic Hybrid Cloud. This model involves splitting data and applications across public and private clouds to combine the benefits of both."
+    }
+  ],
+  "part3.scenario3.text": [
+    {
+      "type": 0,
+      "value": "A company runs its videoconferencing software on a public cloud but stores its sensitive customer service records in a separate, more secure environment."
+    }
+  ],
+  "part3.subtitle": [
+    {
+      "type": 0,
+      "value": "Read the scenario and choose the most appropriate cloud model."
+    }
+  ],
+  "part3.title": [
+    {
+      "type": 0,
+      "value": "Part 3: Deployment Models"
+    }
+  ],
+  "part3.venn.caption": [
+    {
+      "type": 0,
+      "value": "Visual representation: Hybrid Cloud combines Public and Private clouds"
+    }
+  ],
+  "part4.aws.customer": [
+    {
+      "type": 0,
+      "value": "Customers (like Netflix) Manage:"
+    }
+  ],
+  "part4.aws.customer1": [
+    {
+      "type": 0,
+      "value": "Operating systems and runtime environments"
+    }
+  ],
+  "part4.aws.customer2": [
+    {
+      "type": 0,
+      "value": "Applications, data, and user management"
+    }
+  ],
+  "part4.aws.manage1": [
+    {
+      "type": 0,
+      "value": "Physical hardware (servers, racks, cooling)"
+    }
+  ],
+  "part4.aws.manage2": [
+    {
+      "type": 0,
+      "value": "Network infrastructure and connectivity"
+    }
+  ],
+  "part4.aws.manage3": [
+    {
+      "type": 0,
+      "value": "Virtualization platform and resource allocation"
+    }
+  ],
+  "part4.aws.manages": [
+    {
+      "type": 0,
+      "value": "AWS Manages:"
+    }
+  ],
+  "part4.aws.model.label": [
+    {
+      "type": 0,
+      "value": "AWS provides raw infrastructure as Infrastructure-as-a-Service (IaaS)"
+    }
+  ],
+  "part4.aws.provide1": [
+    {
+      "type": 0,
+      "value": "Physical servers, storage, and networking hardware"
+    }
+  ],
+  "part4.aws.provide2": [
+    {
+      "type": 0,
+      "value": "Virtualization and compute capacity (EC2, S3)"
+    }
+  ],
+  "part4.aws.provide3": [
+    {
+      "type": 0,
+      "value": "Global data centers with redundancy and uptime"
+    }
+  ],
+  "part4.aws.provides": [
+    {
+      "type": 0,
+      "value": "AWS Provides:"
+    }
+  ],
+  "part4.aws.role": [
+    {
+      "type": 0,
+      "value": "Role: Infrastructure Provider"
+    }
+  ],
+  "part4.aws.service": [
+    {
+      "type": 0,
+      "value": "Service Model: Infrastructure as a Service (IaaS)"
+    }
+  ],
+  "part4.button.aws": [
+    {
+      "type": 0,
+      "value": "AWS/Provider View"
+    }
+  ],
+  "part4.button.continue": [
+    {
+      "type": 0,
+      "value": "Continue to Cloud Designer"
+    }
+  ],
+  "part4.button.netflix": [
+    {
+      "type": 0,
+      "value": "Netflix's View"
+    }
+  ],
+  "part4.button.subscriber": [
+    {
+      "type": 0,
+      "value": "Subscriber's View"
+    }
+  ],
+  "part4.insight": [
+    {
+      "type": 0,
+      "value": "Key Insight: AWS provides IaaS (servers and infrastructure) → Netflix uses that as PaaS (platform to build their service) → You experience it as SaaS (ready-to-use software). The same physical infrastructure serves three different roles!"
+    }
+  ],
+  "part4.insight.label": [
+    {
+      "type": 0,
+      "value": "Key Insight"
+    }
+  ],
+  "part4.instructions": [
+    {
+      "type": 0,
+      "value": "Click the buttons below to switch between AWS's infrastructure layer, Netflix's platform layer, and the subscriber's application layer:"
+    }
+  ],
+  "part4.misconceptions.item1": [
+    {
+      "type": 0,
+      "value": "PaaS and SaaS aren't different products—they're different perspectives on how the same infrastructure is used."
+    }
+  ],
+  "part4.misconceptions.item2": [
+    {
+      "type": 0,
+      "value": "The cloud provider (like AWS) provides IaaS to Netflix, who builds PaaS on top of it, then offers SaaS to you."
+    }
+  ],
+  "part4.misconceptions.item3": [
+    {
+      "type": 0,
+      "value": "You don't need to know the layers below your role—subscribers don't need to understand PaaS or IaaS."
+    }
+  ],
+  "part4.misconceptions.item4": [
+    {
+      "type": 0,
+      "value": "The same infrastructure can be IaaS, PaaS, and SaaS simultaneously, depending on who is using it and how."
+    }
+  ],
+  "part4.misconceptions.label": [
+    {
+      "type": 0,
+      "value": "Common Misconceptions"
+    }
+  ],
+  "part4.netflix.manage1": [
+    {
+      "type": 0,
+      "value": "Their streaming software"
+    }
+  ],
+  "part4.netflix.manage2": [
+    {
+      "type": 0,
+      "value": "Content library and recommendations"
+    }
+  ],
+  "part4.netflix.manage3": [
+    {
+      "type": 0,
+      "value": "User accounts and billing"
+    }
+  ],
+  "part4.netflix.manages": [
+    {
+      "type": 0,
+      "value": "Netflix Manages:"
+    }
+  ],
+  "part4.netflix.model.label": [
+    {
+      "type": 0,
+      "value": "Netflix uses this infrastructure as Platform-as-a-Service (PaaS)"
+    }
+  ],
+  "part4.netflix.pay1": [
+    {
+      "type": 0,
+      "value": "Hosting their streaming application"
+    }
+  ],
+  "part4.netflix.pay2": [
+    {
+      "type": 0,
+      "value": "Storage for their video library"
+    }
+  ],
+  "part4.netflix.pay3": [
+    {
+      "type": 0,
+      "value": "Bandwidth for streaming to millions"
+    }
+  ],
+  "part4.netflix.pays": [
+    {
+      "type": 0,
+      "value": "Netflix Pays For:"
+    }
+  ],
+  "part4.netflix.provider": [
+    {
+      "type": 0,
+      "value": "Cloud Provider Manages:"
+    }
+  ],
+  "part4.netflix.provider1": [
+    {
+      "type": 0,
+      "value": "Servers and infrastructure"
+    }
+  ],
+  "part4.netflix.provider2": [
+    {
+      "type": 0,
+      "value": "Security and updates"
+    }
+  ],
+  "part4.netflix.role": [
+    {
+      "type": 0,
+      "value": "Role: Content Provider"
+    }
+  ],
+  "part4.netflix.service": [
+    {
+      "type": 0,
+      "value": "Service Model: Platform as a Service (PaaS)"
+    }
+  ],
+  "part4.progress.label": [
+    {
+      "type": 0,
+      "value": "Explore all three perspectives"
+    }
+  ],
+  "part4.progress.viewed": [
+    {
+      "type": 0,
+      "value": "Viewed: "
+    },
+    {
+      "type": 1,
+      "value": "count"
+    },
+    {
+      "type": 0,
+      "value": " of 3"
+    }
+  ],
+  "part4.subscriber.get1": [
+    {
+      "type": 0,
+      "value": "Instant access to stream content"
+    }
+  ],
+  "part4.subscriber.get2": [
+    {
+      "type": 0,
+      "value": "No software to install or maintain"
+    }
+  ],
+  "part4.subscriber.get3": [
+    {
+      "type": 0,
+      "value": "Works on any device with internet"
+    }
+  ],
+  "part4.subscriber.gets": [
+    {
+      "type": 0,
+      "value": "You Get:"
+    }
+  ],
+  "part4.subscriber.model.label": [
+    {
+      "type": 0,
+      "value": "You use Netflix as Software-as-a-Service (SaaS)"
+    }
+  ],
+  "part4.subscriber.notneed": [
+    {
+      "type": 0,
+      "value": "You Don't Need to Know About:"
+    }
+  ],
+  "part4.subscriber.notneed1": [
+    {
+      "type": 0,
+      "value": "Where the servers are located"
+    }
+  ],
+  "part4.subscriber.notneed2": [
+    {
+      "type": 0,
+      "value": "How the infrastructure works"
+    }
+  ],
+  "part4.subscriber.pay1": [
+    {
+      "type": 0,
+      "value": "Monthly subscription to access Netflix"
+    }
+  ],
+  "part4.subscriber.pays": [
+    {
+      "type": 0,
+      "value": "You Pay For:"
+    }
+  ],
+  "part4.subscriber.role": [
+    {
+      "type": 0,
+      "value": "Role: End User"
+    }
+  ],
+  "part4.subscriber.service": [
+    {
+      "type": 0,
+      "value": "Service Model: Software as a Service (SaaS)"
+    }
+  ],
+  "part4.subtitle": [
+    {
+      "type": 0,
+      "value": "The same cloud infrastructure can be different service models depending on your role. Explore all three layers of the stack."
+    }
+  ],
+  "part4.title": [
+    {
+      "type": 0,
+      "value": "Part 4: Perspective Matters"
+    }
+  ],
+  "part5.button.evaluate": [
+    {
+      "type": 0,
+      "value": "Evaluate my choice"
+    }
+  ],
+  "part5.button.finish": [
+    {
+      "type": 0,
+      "value": "Finish"
+    }
+  ],
+  "part5.button.next": [
+    {
+      "type": 0,
+      "value": "Next scenario"
+    }
+  ],
+  "part5.compare.all": [
+    {
+      "type": 0,
+      "value": "All Options"
+    }
+  ],
+  "part5.compare.show": [
+    {
+      "type": 0,
+      "value": "Show:"
+    }
+  ],
+  "part5.compare.summary": [
+    {
+      "type": 0,
+      "value": "Summary"
+    }
+  ],
+  "part5.compare.title": [
+    {
+      "type": 0,
+      "value": "Compare All Service & Deployment Options"
+    }
+  ],
+  "part5.currency.monthly": [
+    {
+      "type": 0,
+      "value": "$"
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "amount"
+    },
+    {
+      "type": 0,
+      "value": "/mo"
+    }
+  ],
+  "part5.deployment.badge.elasticity": [
+    {
+      "type": 0,
+      "value": "Scale"
+    }
+  ],
+  "part5.deployment.badge.fixed": [
+    {
+      "type": 0,
+      "value": "Fixed"
+    }
+  ],
+  "part5.deployment.badge.variable": [
+    {
+      "type": 0,
+      "value": "+/1K"
+    }
+  ],
+  "part5.deployment.heading": [
+    {
+      "type": 0,
+      "value": "2) Choose a Deployment Model for this scenario"
+    }
+  ],
+  "part5.deployment.hybrid.blurb": [
+    {
+      "type": 0,
+      "value": "Mix of private plus public burst. Strikes a balance: control where needed, elasticity for peaks."
+    }
+  ],
+  "part5.deployment.hybrid.label": [
+    {
+      "type": 0,
+      "value": "Hybrid"
+    }
+  ],
+  "part5.deployment.hybrid.shortLabel": [
+    {
+      "type": 0,
+      "value": "hybrid cloud"
+    }
+  ],
+  "part5.deployment.instructions": [
+    {
+      "type": 0,
+      "value": "Compare the three metrics below (fixed cost, cost per 1K users, elasticity) before selecting a deployment model."
+    }
+  ],
+  "part5.deployment.pill.elasticity": [
+    {
+      "type": 0,
+      "value": "Elasticity "
+    },
+    {
+      "type": 1,
+      "value": "score"
+    },
+    {
+      "type": 0,
+      "value": "/100"
+    }
+  ],
+  "part5.deployment.pill.fixed": [
+    {
+      "type": 0,
+      "value": "Fixed: "
+    },
+    {
+      "type": 1,
+      "value": "cost"
+    }
+  ],
+  "part5.deployment.pill.variable": [
+    {
+      "type": 0,
+      "value": "+ $"
+    },
+    {
+      "type": 1,
+      "value": "cost"
+    },
+    {
+      "type": 0,
+      "value": "/1k users"
+    }
+  ],
+  "part5.deployment.private.blurb": [
+    {
+      "type": 0,
+      "value": "Dedicated resources and higher control. Good for strict compliance; capacity must be planned."
+    }
+  ],
+  "part5.deployment.private.label": [
+    {
+      "type": 0,
+      "value": "Private Cloud / On‑Prem"
+    }
+  ],
+  "part5.deployment.private.shortLabel": [
+    {
+      "type": 0,
+      "value": "private cloud"
+    }
+  ],
+  "part5.deployment.public.blurb": [
+    {
+      "type": 0,
+      "value": "Elastic capacity with pay‑as‑you‑go. Great for spiky workloads and faster global reach."
+    }
+  ],
+  "part5.deployment.public.label": [
+    {
+      "type": 0,
+      "value": "Public Cloud"
+    }
+  ],
+  "part5.deployment.public.shortLabel": [
+    {
+      "type": 0,
+      "value": "public cloud"
+    }
+  ],
+  "part5.deployment.subtitle": [
+    {
+      "type": 0,
+      "value": "(where it runs)"
+    }
+  ],
+  "part5.deployment.sustainability": [
+    {
+      "type": 0,
+      "value": "Large public clouds often run in hyperscale data centers that concentrate efficiency—but all data centers consume significant electricity and cooling water; impact depends on grid mix and cooling approach."
+    }
+  ],
+  "part5.deployment.sustainability.learn": [
+    {
+      "type": 0,
+      "value": "Learn about environmental impact"
+    }
+  ],
+  "part5.dim.compliance": [
+    {
+      "type": 0,
+      "value": "Compliance"
+    }
+  ],
+  "part5.dim.cost": [
+    {
+      "type": 0,
+      "value": "Cost"
+    }
+  ],
+  "part5.dim.effort": [
+    {
+      "type": 0,
+      "value": "Operational Effort"
+    }
+  ],
+  "part5.dim.perf": [
+    {
+      "type": 0,
+      "value": "Speed & Scale"
+    }
+  ],
+  "part5.explanation.compliance": [
+    {
+      "type": 0,
+      "value": "Compliance/control is influenced by "
+    },
+    {
+      "type": 1,
+      "value": "deploymentLabel"
+    },
+    {
+      "type": 0,
+      "value": " ("
+    },
+    {
+      "type": 1,
+      "value": "baseCompliance"
+    },
+    {
+      "type": 0,
+      "value": "/100) and "
+    },
+    {
+      "type": 1,
+      "value": "serviceLabel"
+    },
+    {
+      "type": 0,
+      "value": " control bonus ("
+    },
+    {
+      "style": {
+        "parsedOptions": {
+          "signDisplay": "always"
+        },
+        "tokens": [
+          {
+            "options": [
+            ],
+            "stem": "sign-always"
+          }
+        ],
+        "type": 0
+      },
+      "type": 2,
+      "value": "controlBonus"
+    },
+    {
+      "type": 0,
+      "value": ")."
+    }
+  ],
+  "part5.explanation.cost": [
+    {
+      "type": 0,
+      "value": "Cost combines "
+    },
+    {
+      "type": 1,
+      "value": "deploymentLabel"
+    },
+    {
+      "type": 0,
+      "value": " infra "
+    },
+    {
+      "type": 1,
+      "value": "infraCost"
+    },
+    {
+      "type": 0,
+      "value": " + "
+    },
+    {
+      "type": 1,
+      "value": "serviceLabel"
+    },
+    {
+      "type": 0,
+      "value": " platform/ops "
+    },
+    {
+      "type": 1,
+      "value": "platformCost"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "part5.explanation.effort": [
+    {
+      "type": 0,
+      "value": "Operational effort is mostly driven by the service model; "
+    },
+    {
+      "type": 1,
+      "value": "serviceLabel"
+    },
+    {
+      "type": 0,
+      "value": " implies "
+    },
+    {
+      "type": 1,
+      "value": "effortScore"
+    },
+    {
+      "type": 0,
+      "value": "/100 effort (lower ease)."
+    }
+  ],
+  "part5.explanation.effort.hybrid": [
+    {
+      "type": 0,
+      "value": "Operational effort is mostly driven by the service model; "
+    },
+    {
+      "type": 1,
+      "value": "serviceLabel"
+    },
+    {
+      "type": 0,
+      "value": " implies "
+    },
+    {
+      "type": 1,
+      "value": "effortScore"
+    },
+    {
+      "type": 0,
+      "value": "/100 effort (lower ease). Hybrid adds some integration overhead."
+    }
+  ],
+  "part5.explanation.performance.private": [
+    {
+      "type": 1,
+      "value": "deploymentLabel"
+    },
+    {
+      "type": 0,
+      "value": " elasticity ("
+    },
+    {
+      "type": 1,
+      "value": "elasticity"
+    },
+    {
+      "type": 0,
+      "value": "/100) drops more near peak without capacity planning, so at "
+    },
+    {
+      "type": 1,
+      "value": "loadPercent"
+    },
+    {
+      "type": 0,
+      "value": "% of peak your performance score is "
+    },
+    {
+      "type": 1,
+      "value": "perfScore"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "part5.explanation.performance.public": [
+    {
+      "type": 1,
+      "value": "deploymentLabel"
+    },
+    {
+      "type": 0,
+      "value": " elasticity ("
+    },
+    {
+      "type": 1,
+      "value": "elasticity"
+    },
+    {
+      "type": 0,
+      "value": "/100) handles spikes better, so at "
+    },
+    {
+      "type": 1,
+      "value": "loadPercent"
+    },
+    {
+      "type": 0,
+      "value": "% of peak your performance score is "
+    },
+    {
+      "type": 1,
+      "value": "perfScore"
+    },
+    {
+      "type": 0,
+      "value": "."
+    }
+  ],
+  "part5.feedback.details": [
+    {
+      "type": 0,
+      "value": "Your Fit Score: "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "yourFit"
+    },
+    {
+      "type": 0,
+      "value": "/100. Top option: "
+    },
+    {
+      "type": 1,
+      "value": "topService"
+    },
+    {
+      "type": 0,
+      "value": " + "
+    },
+    {
+      "type": 1,
+      "value": "topDeployment"
+    },
+    {
+      "type": 0,
+      "value": " ("
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "topFit"
+    },
+    {
+      "type": 0,
+      "value": "/100)."
+    }
+  ],
+  "part5.feedback.excellent": [
+    {
+      "type": 0,
+      "value": "✅ Excellent — you chose the top‑ranked option for this scenario."
+    }
+  ],
+  "part5.feedback.helping.compliance": [
+    {
+      "type": 0,
+      "value": "compliance"
+    }
+  ],
+  "part5.feedback.helping.effort": [
+    {
+      "type": 0,
+      "value": "low ops effort"
+    }
+  ],
+  "part5.feedback.helping.label": [
+    {
+      "type": 0,
+      "value": "Factors helping your choice:"
+    }
+  ],
+  "part5.feedback.helping.none": [
+    {
+      "type": 0,
+      "value": "none highlighted"
+    }
+  ],
+  "part5.feedback.helping.performance": [
+    {
+      "type": 0,
+      "value": "performance"
+    }
+  ],
+  "part5.feedback.hurting.compliance": [
+    {
+      "type": 0,
+      "value": "compliance"
+    }
+  ],
+  "part5.feedback.hurting.effort": [
+    {
+      "type": 0,
+      "value": "ops effort"
+    }
+  ],
+  "part5.feedback.hurting.label": [
+    {
+      "type": 0,
+      "value": "Factors hurting your choice:"
+    }
+  ],
+  "part5.feedback.hurting.none": [
+    {
+      "type": 0,
+      "value": "none highlighted"
+    }
+  ],
+  "part5.feedback.hurting.performance": [
+    {
+      "type": 0,
+      "value": "performance"
+    }
+  ],
+  "part5.feedback.reasonable": [
+    {
+      "type": 0,
+      "value": "💡 Reasonable, but there are options that fit better for this scenario."
+    }
+  ],
+  "part5.feedback.solid": [
+    {
+      "type": 0,
+      "value": "👍 Solid — your pick is among the top three for this scenario."
+    }
+  ],
+  "part5.matters.high": [
+    {
+      "type": 0,
+      "value": "High"
+    }
+  ],
+  "part5.matters.low": [
+    {
+      "type": 0,
+      "value": "Low"
+    }
+  ],
+  "part5.matters.med": [
+    {
+      "type": 0,
+      "value": "Med"
+    }
+  ],
+  "part5.matters.title": [
+    {
+      "type": 0,
+      "value": "What matters most:"
+    }
+  ],
+  "part5.primer.hide": [
+    {
+      "type": 0,
+      "value": "Hide"
+    }
+  ],
+  "part5.primer.point1": [
+    {
+      "type": 0,
+      "value": "Cloud computing means remote servers in data centers handle storage and processing. You access those resources over the internet."
+    }
+  ],
+  "part5.primer.point2": [
+    {
+      "type": 0,
+      "value": "Service models differ by who runs what: IaaS (rent servers), PaaS (run your app on the provider's platform), SaaS (use their app)."
+    }
+  ],
+  "part5.primer.point3": [
+    {
+      "type": 0,
+      "value": "Deployment models: public (multi-tenant data centers), private (single-tenant), hybrid (mix of both)."
+    }
+  ],
+  "part5.primer.title": [
+    {
+      "type": 0,
+      "value": "Quick Refresher"
+    }
+  ],
+  "part5.risk.high": [
+    {
+      "type": 0,
+      "value": "high"
+    }
+  ],
+  "part5.risk.low": [
+    {
+      "type": 0,
+      "value": "low"
+    }
+  ],
+  "part5.risk.med": [
+    {
+      "type": 0,
+      "value": "med"
+    }
+  ],
+  "part5.saas.disabled": [
+    {
+      "type": 0,
+      "value": "SaaS is not available for this scenario because the requirements specify custom software development."
+    }
+  ],
+  "part5.scale.heading": [
+    {
+      "type": 0,
+      "value": "3) Adjust Active Users"
+    }
+  ],
+  "part5.scale.users": [
+    {
+      "type": 0,
+      "value": "Active users: "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    }
+  ],
+  "part5.scenario.label": [
+    {
+      "type": 0,
+      "value": "Scenario "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "current"
+    },
+    {
+      "type": 0,
+      "value": " of "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "total"
+    }
+  ],
+  "part5.scenario.pill.users": [
+    {
+      "type": 0,
+      "value": "Users: "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "count"
+    }
+  ],
+  "part5.scenario.pill.weights": [
+    {
+      "type": 0,
+      "value": "Weights → Cost "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "cost"
+    },
+    {
+      "type": 0,
+      "value": "%, Perf "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "perf"
+    },
+    {
+      "type": 0,
+      "value": "%, Compliance "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "compliance"
+    },
+    {
+      "type": 0,
+      "value": "%, Effort "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "effort"
+    },
+    {
+      "type": 0,
+      "value": "%"
+    }
+  ],
+  "part5.scenario1.description": [
+    {
+      "type": 0,
+      "value": "You're a small team launching a new consumer app. User growth is uncertain and potentially spiky. You need to ship fast and keep costs sensible at low/medium scale."
+    }
+  ],
+  "part5.scenario1.title": [
+    {
+      "type": 0,
+      "value": "Viral Mobile App Launch"
+    }
+  ],
+  "part5.scenario2.description": [
+    {
+      "type": 0,
+      "value": "A healthcare provider needs to store and process PHI. Compliance and control matter most, but the portal must still scale during seasonal surges."
+    }
+  ],
+  "part5.scenario2.title": [
+    {
+      "type": 0,
+      "value": "Hospital Patient Portal (PHI)"
+    }
+  ],
+  "part5.scenario3.description": [
+    {
+      "type": 0,
+      "value": "A simple app that lets salespeople log customers, notes, and deals so managers can see progress. ~500–5,000 employees will use it."
+    }
+  ],
+  "part5.scenario3.title": [
+    {
+      "type": 0,
+      "value": "Customer-tracking tool for a sales team (a 'CRM')"
+    }
+  ],
+  "part5.service.heading": [
+    {
+      "type": 0,
+      "value": "1) Choose a Service Model for this scenario"
+    }
+  ],
+  "part5.service.iaas.blurb": [
+    {
+      "type": 0,
+      "value": "You manage OS/runtime and scaling. Highest control and flexibility; slower to ship; more ops work."
+    }
+  ],
+  "part5.service.iaas.label": [
+    {
+      "type": 0,
+      "value": "IaaS (build & run VMs/containers)"
+    }
+  ],
+  "part5.service.iaas.shortLabel": [
+    {
+      "type": 0,
+      "value": "IaaS"
+    }
+  ],
+  "part5.service.paas.blurb": [
+    {
+      "type": 0,
+      "value": "You push code; platform handles runtime, scaling, and much of ops. Good balance of speed and control."
+    }
+  ],
+  "part5.service.paas.label": [
+    {
+      "type": 0,
+      "value": "PaaS (managed app platform)"
+    }
+  ],
+  "part5.service.paas.shortLabel": [
+    {
+      "type": 0,
+      "value": "PaaS"
+    }
+  ],
+  "part5.service.pill.lockin": [
+    {
+      "type": 0,
+      "value": "Lock‑in: "
+    },
+    {
+      "type": 1,
+      "value": "risk"
+    }
+  ],
+  "part5.service.pill.ops": [
+    {
+      "type": 0,
+      "value": "Ops overhead: "
+    },
+    {
+      "type": 1,
+      "value": "cost"
+    }
+  ],
+  "part5.service.saas.blurb": [
+    {
+      "type": 0,
+      "value": "You subscribe to software someone else runs. Fastest time‑to‑value; least control/customization."
+    }
+  ],
+  "part5.service.saas.label": [
+    {
+      "type": 0,
+      "value": "SaaS (use an existing product)"
+    }
+  ],
+  "part5.service.saas.shortLabel": [
+    {
+      "type": 0,
+      "value": "SaaS"
+    }
+  ],
+  "part5.service.subtitle": [
+    {
+      "type": 0,
+      "value": "(what you buy)"
+    }
+  ],
+  "part5.step1.subtitle": [
+    {
+      "type": 0,
+      "value": "What you buy"
+    }
+  ],
+  "part5.step1.title": [
+    {
+      "type": 0,
+      "value": "Choose a Service Model"
+    }
+  ],
+  "part5.step2.subtitle": [
+    {
+      "type": 0,
+      "value": "Where it runs"
+    }
+  ],
+  "part5.step2.title": [
+    {
+      "type": 0,
+      "value": "Choose a Deployment Model"
+    }
+  ],
+  "part5.step3.subtitle": [
+    {
+      "type": 0,
+      "value": "Review your design"
+    }
+  ],
+  "part5.step3.title": [
+    {
+      "type": 0,
+      "value": "See Trade-offs & Evaluate"
+    }
+  ],
+  "part5.steps.1": [
+    {
+      "type": 0,
+      "value": "Read the scenario."
+    }
+  ],
+  "part5.steps.2": [
+    {
+      "type": 0,
+      "value": "Choose one Service Model for this scenario (what you buy)."
+    }
+  ],
+  "part5.steps.3": [
+    {
+      "type": 0,
+      "value": "Choose one Deployment Model for this scenario (where it runs)."
+    }
+  ],
+  "part5.steps.4": [
+    {
+      "type": 0,
+      "value": "Adjust Active Users to explore trade-offs, then Evaluate your pick."
+    }
+  ],
+  "part5.table.compliance": [
+    {
+      "type": 0,
+      "value": "Compliance"
+    }
+  ],
+  "part5.table.cost": [
+    {
+      "type": 0,
+      "value": "Cost"
+    }
+  ],
+  "part5.table.ease": [
+    {
+      "type": 0,
+      "value": "Ease"
+    }
+  ],
+  "part5.table.fit": [
+    {
+      "type": 0,
+      "value": "Fit"
+    }
+  ],
+  "part5.table.note": [
+    {
+      "type": 0,
+      "value": "Fit = weighted combination of affordability (cheaper is better), performance, compliance/control, and ease of operations, using scenario weights above."
+    }
+  ],
+  "part5.table.option": [
+    {
+      "type": 0,
+      "value": "Option"
+    }
+  ],
+  "part5.table.perf": [
+    {
+      "type": 0,
+      "value": "Perf"
+    }
+  ],
+  "part5.table.rank": [
+    {
+      "type": 0,
+      "value": "Rank"
+    }
+  ],
+  "part5.tip": [
+    {
+      "type": 0,
+      "value": "Tip for teachers: Encourage learners to toggle \"Compare‑all\" and move the user slider to see how rankings change as scale grows. Ask: \"When would you pick Hybrid over Public? Why is SaaS ideal for internal CRM?\""
+    }
+  ],
+  "part5.title": [
+    {
+      "type": 0,
+      "value": "Cloud Design Activity"
+    }
+  ],
+  "part5.tooltip.compliance": [
+    {
+      "type": 0,
+      "value": "How well it fits strict rules and data protections. Weight: "
+    },
+    {
+      "type": 1,
+      "value": "weight"
+    },
+    {
+      "type": 0,
+      "value": "%"
+    }
+  ],
+  "part5.tooltip.cost": [
+    {
+      "type": 0,
+      "value": "Approximate monthly cost of running this choice. Weight: "
+    },
+    {
+      "type": 1,
+      "value": "weight"
+    },
+    {
+      "type": 0,
+      "value": "%"
+    }
+  ],
+  "part5.tooltip.effort": [
+    {
+      "type": 0,
+      "value": "How much ongoing work your team must do. Weight: "
+    },
+    {
+      "type": 1,
+      "value": "weight"
+    },
+    {
+      "type": 0,
+      "value": "%"
+    }
+  ],
+  "part5.tooltip.elasticity": [
+    {
+      "type": 0,
+      "value": "How easily it scales up/down across data centers."
+    }
+  ],
+  "part5.tooltip.fixed": [
+    {
+      "type": 0,
+      "value": "Base monthly infrastructure cost."
+    }
+  ],
+  "part5.tooltip.lockin": [
+    {
+      "type": 0,
+      "value": "How hard it is to switch providers later."
+    }
+  ],
+  "part5.tooltip.ops": [
+    {
+      "type": 0,
+      "value": "Extra monthly platform/operations cost beyond infrastructure."
+    }
+  ],
+  "part5.tooltip.perf": [
+    {
+      "type": 0,
+      "value": "How well it handles load and stays responsive. Weight: "
+    },
+    {
+      "type": 1,
+      "value": "weight"
+    },
+    {
+      "type": 0,
+      "value": "%"
+    }
+  ],
+  "part5.tooltip.variable": [
+    {
+      "type": 0,
+      "value": "Extra cost for each 1,000 active users."
+    }
+  ],
+  "part5.top.badge": [
+    {
+      "type": 0,
+      "value": "Highest Fit Score"
+    }
+  ],
+  "part5.top.cost.label": [
+    {
+      "type": 0,
+      "value": "Cost:"
+    }
+  ],
+  "part5.top.fit.label": [
+    {
+      "type": 0,
+      "value": "Fit:"
+    }
+  ],
+  "part5.top.heading": [
+    {
+      "type": 0,
+      "value": "Top recommended option"
+    }
+  ],
+  "part5.top.reveal": [
+    {
+      "type": 0,
+      "value": "Reveal top recommendation"
+    }
+  ],
+  "part5.tradeoffs.button.hide": [
+    {
+      "type": 0,
+      "value": "Hide compare‑all table"
+    }
+  ],
+  "part5.tradeoffs.button.show": [
+    {
+      "type": 0,
+      "value": "Show compare‑all table"
+    }
+  ],
+  "part5.tradeoffs.cost.label": [
+    {
+      "type": 0,
+      "value": "Estimated monthly cost:"
+    }
+  ],
+  "part5.tradeoffs.explain.heading": [
+    {
+      "type": 0,
+      "value": "Why it scores this way:"
+    }
+  ],
+  "part5.tradeoffs.fit.label": [
+    {
+      "type": 0,
+      "value": "Fit Score (weighted for this scenario):"
+    }
+  ],
+  "part5.tradeoffs.heading": [
+    {
+      "type": 0,
+      "value": "4) See Trade‑offs"
+    }
+  ],
+  "part5.tradeoffs.metric.compliance": [
+    {
+      "type": 0,
+      "value": "Compliance & Control"
+    }
+  ],
+  "part5.tradeoffs.metric.ease": [
+    {
+      "type": 0,
+      "value": "Operational Effort (higher = less work)"
+    }
+  ],
+  "part5.tradeoffs.metric.performance": [
+    {
+      "type": 0,
+      "value": "Speed & Scale (performance)"
+    }
+  ],
+  "part5.tradeoffs.noselection": [
+    {
+      "type": 0,
+      "value": "Choose a service model and a deployment model to see detailed trade‑offs."
+    }
+  ],
+  "part5.tradeoffs.selection.label": [
+    {
+      "type": 0,
+      "value": "Your selection:"
+    }
+  ],
+  "part5.tradeoffs.summary": [
+    {
+      "type": 0,
+      "value": "Your pick: "
+    },
+    {
+      "type": 1,
+      "value": "service"
+    },
+    {
+      "type": 0,
+      "value": " + "
+    },
+    {
+      "type": 1,
+      "value": "deployment"
+    },
+    {
+      "type": 0,
+      "value": " · Cost: "
+    },
+    {
+      "type": 1,
+      "value": "cost"
+    },
+    {
+      "type": 0,
+      "value": " · Fit: "
+    },
+    {
+      "type": 1,
+      "value": "score"
+    },
+    {
+      "type": 0,
+      "value": "/100"
+    }
+  ],
+  "part5.tradeoffs.why": [
+    {
+      "type": 0,
+      "value": "Why this score?"
+    }
+  ],
+  "progress.introduction.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Introduction"
+    }
+  ],
+  "progress.introduction.subtitle": [
+    {
+      "type": 0,
+      "value": "Getting Started"
+    }
+  ],
+  "progress.introduction.title": [
+    {
+      "type": 0,
+      "value": "Intro"
+    }
+  ],
+  "progress.label": [
+    {
+      "type": 0,
+      "value": "Learning journey navigation"
+    }
+  ],
+  "progress.part1.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Part 1: Foundations"
+    }
+  ],
+  "progress.part1.subtitle": [
+    {
+      "type": 0,
+      "value": "Foundations"
+    }
+  ],
+  "progress.part1.title": [
+    {
+      "type": 0,
+      "value": "Part 1"
+    }
+  ],
+  "progress.part2.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Part 2: Service Models"
+    }
+  ],
+  "progress.part2.subtitle": [
+    {
+      "type": 0,
+      "value": "Service Models"
+    }
+  ],
+  "progress.part2.title": [
+    {
+      "type": 0,
+      "value": "Part 2"
+    }
+  ],
+  "progress.part3.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Part 3: Deployment Models"
+    }
+  ],
+  "progress.part3.subtitle": [
+    {
+      "type": 0,
+      "value": "Deployment Models"
+    }
+  ],
+  "progress.part3.title": [
+    {
+      "type": 0,
+      "value": "Part 3"
+    }
+  ],
+  "progress.part4.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Part 4: Perspective Matters"
+    }
+  ],
+  "progress.part4.subtitle": [
+    {
+      "type": 0,
+      "value": "Perspective Matters"
+    }
+  ],
+  "progress.part4.title": [
+    {
+      "type": 0,
+      "value": "Part 4"
+    }
+  ],
+  "progress.part5.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Part 5: Cloud Solution Designer"
+    }
+  ],
+  "progress.part5.subtitle": [
+    {
+      "type": 0,
+      "value": "Cloud Designer"
+    }
+  ],
+  "progress.part5.title": [
+    {
+      "type": 0,
+      "value": "Part 5"
+    }
+  ],
+  "progress.summary.label": [
+    {
+      "type": 0,
+      "value": "Navigate to Summary and Results"
+    }
+  ],
+  "progress.summary.subtitle": [
+    {
+      "type": 0,
+      "value": "Your Results"
+    }
+  ],
+  "progress.summary.title": [
+    {
+      "type": 0,
+      "value": "Summary"
+    }
+  ],
+  "servicemodel.iaas": [
+    {
+      "type": 0,
+      "value": "Infrastructure as a Service (IaaS)"
+    }
+  ],
+  "servicemodel.paas": [
+    {
+      "type": 0,
+      "value": "Platform as a Service (PaaS)"
+    }
+  ],
+  "servicemodel.saas": [
+    {
+      "type": 0,
+      "value": "Software as a Service (SaaS)"
+    }
+  ],
+  "summary.button.restart": [
+    {
+      "type": 0,
+      "value": "Try Again"
+    }
+  ],
+  "summary.description": [
+    {
+      "type": 0,
+      "value": "You've completed the introduction to how cloud computing works. Here's a quick recap of what you learned."
+    }
+  ],
+  "summary.recap.application.text": [
+    {
+      "type": 0,
+      "value": "When designing cloud solutions, consider security needs, cost constraints, and how usage might change over time."
+    }
+  ],
+  "summary.recap.application.title": [
+    {
+      "type": 0,
+      "value": "Real-World Application:"
+    }
+  ],
+  "summary.recap.deploymentmodels.title": [
+    {
+      "type": 0,
+      "value": "Deployment Models:"
+    }
+  ],
+  "summary.recap.foundations.text": [
+    {
+      "type": 0,
+      "value": "The cloud is a physical network of servers in data centers, accessed remotely."
+    }
+  ],
+  "summary.recap.foundations.title": [
+    {
+      "type": 0,
+      "value": "Foundations:"
+    }
+  ],
+  "summary.recap.hybrid": [
+    {
+      "type": 0,
+      "value": "- Hybrid combines public and private clouds for flexibility."
+    }
+  ],
+  "summary.recap.iaas": [
+    {
+      "type": 0,
+      "value": "- IaaS is renting a provider's cloud infrastructure (servers, storage)."
+    }
+  ],
+  "summary.recap.paas": [
+    {
+      "type": 0,
+      "value": "- PaaS is a platform to operate your own software on, where the provider handles the servers."
+    }
+  ],
+  "summary.recap.perspective.text": [
+    {
+      "type": 0,
+      "value": "The same infrastructure can be different service models depending on your role (Netflix uses PaaS, subscribers use SaaS)."
+    }
+  ],
+  "summary.recap.perspective.title": [
+    {
+      "type": 0,
+      "value": "Perspective Matters:"
+    }
+  ],
+  "summary.recap.private": [
+    {
+      "type": 0,
+      "value": "- Private is dedicated to a single customer for greater security and control."
+    }
+  ],
+  "summary.recap.public": [
+    {
+      "type": 0,
+      "value": "- Public is shared, cost-effective, and easily accessible."
+    }
+  ],
+  "summary.recap.saas": [
+    {
+      "type": 0,
+      "value": "- SaaS is paying to access another organization's ready-to-use software."
+    }
+  ],
+  "summary.recap.servicemodels.title": [
+    {
+      "type": 0,
+      "value": "Service Models:"
+    }
+  ],
+  "summary.score": [
+    {
+      "type": 0,
+      "value": "Your Score: "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "totalScore"
+    },
+    {
+      "type": 0,
+      "value": " / "
+    },
+    {
+      "style": null,
+      "type": 2,
+      "value": "maxScore"
+    }
+  ],
+  "summary.title": [
+    {
+      "type": 0,
+      "value": "Great Job!"
+    }
+  ],
+  "venn.aria.label": [
+    {
+      "type": 0,
+      "value": "Venn diagram showing relationship between Public, Private, and Hybrid cloud deployment models"
+    }
+  ],
+  "venn.hybrid.label": [
+    {
+      "type": 0,
+      "value": "Hybrid Cloud"
+    }
+  ],
+  "venn.private.label": [
+    {
+      "type": 0,
+      "value": "Private Cloud"
+    }
+  ],
+  "venn.public.label": [
+    {
+      "type": 0,
+      "value": "Public Cloud"
+    }
+  ]
+}
