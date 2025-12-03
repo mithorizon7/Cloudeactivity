@@ -16,9 +16,10 @@ import { ServerStackIcon, CubeIcon, CloudIcon, GlobeIcon, LockIcon, ArrowsIcon, 
 
 interface Part5CloudDesignerProps {
   onComplete: (score: number) => void;
+  setActionBar?: (content: React.ReactNode) => void;
 }
 
-export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerProps) {
+export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5CloudDesignerProps) {
   const intl = useIntl();
   const [scenarioIdx, setScenarioIdx] = useState(0);
   const [service, setService] = useState<ServiceModelKey | null>(null);
@@ -199,6 +200,68 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
       onComplete(totalScore);
     }
   };
+
+  useEffect(() => {
+    if (!setActionBar) return;
+    
+    const actionBarContent = (
+      <div className="flex items-center justify-between gap-3 sm:gap-4">
+        <div className="hidden sm:block text-slate-200 text-sm">
+          {selected ? (
+            <div className="flex items-center gap-2">
+              <span className="text-slate-400">Selected:</span>
+              <span className="font-medium text-cyan-300">
+                {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+              </span>
+              {evaluated && (
+                <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full border border-emerald-500/30">
+                  +{lastPointsEarned} pts
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="text-slate-400">
+              <FormattedMessage id="part5.sticky.none" defaultMessage="Make your selections above" />
+            </span>
+          )}
+        </div>
+        <div className="sm:hidden flex-1 text-center">
+          {selected && !evaluated && (
+            <span className="text-xs text-cyan-300 font-medium">
+              {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+            </span>
+          )}
+          {evaluated && (
+            <span className="text-xs text-emerald-400 font-medium">+{lastPointsEarned} points earned!</span>
+          )}
+        </div>
+        {!evaluated ? (
+          <button
+            onClick={handleEvaluate}
+            disabled={!selected}
+            className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
+          >
+            <FormattedMessage id="part5.button.evaluate" />
+          </button>
+        ) : (
+          <button
+            onClick={handleNext}
+            className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
+          >
+            <FormattedMessage
+              id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
+            />
+          </button>
+        )}
+      </div>
+    );
+
+    setActionBar(actionBarContent);
+
+    return () => {
+      setActionBar(null);
+    };
+  }, [setActionBar, selected, evaluated, lastPointsEarned, scenarioIdx, serviceMeta, deploymentMeta, handleEvaluate, handleNext]);
 
   const getFeedback = () => {
     if (!selected) return null;
@@ -912,58 +975,6 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             </SectionCard>
           </div>
         )}
-
-        <div className="fixed bottom-[100px] sm:bottom-[120px] left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4 z-40">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
-            <div className="hidden sm:block text-slate-200 text-sm">
-              {selected ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-slate-400">Selected:</span>
-                  <span className="font-medium text-cyan-300">
-                    {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
-                  </span>
-                  {evaluated && (
-                    <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full border border-emerald-500/30">
-                      +{lastPointsEarned} pts
-                    </span>
-                  )}
-                </div>
-              ) : (
-                <span className="text-slate-400">
-                  <FormattedMessage id="part5.sticky.none" defaultMessage="Make your selections above" />
-                </span>
-              )}
-            </div>
-            <div className="sm:hidden flex-1 text-center">
-              {selected && !evaluated && (
-                <span className="text-xs text-cyan-300 font-medium">
-                  {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
-                </span>
-              )}
-              {evaluated && (
-                <span className="text-xs text-emerald-400 font-medium">+{lastPointsEarned} points earned!</span>
-              )}
-            </div>
-            {!evaluated ? (
-              <button
-                onClick={handleEvaluate}
-                disabled={!selected}
-                className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
-              >
-                <FormattedMessage id="part5.button.evaluate" />
-              </button>
-            ) : (
-              <button
-                onClick={handleNext}
-                className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
-              >
-                <FormattedMessage
-                  id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
-                />
-              </button>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   );
