@@ -63,7 +63,7 @@ export const StepCard: React.FC<StepCardProps> = ({
       <button
         onClick={onToggle}
         aria-expanded={expanded}
-        className={`w-full text-left p-5 flex items-center gap-4 hover:bg-slate-800/30 motion-safe:transition-colors rounded-t-xl ${
+        className={`w-full text-left p-5 min-h-[56px] flex items-center gap-4 hover:bg-slate-800/30 active:bg-slate-800/50 motion-safe:transition-colors rounded-t-xl touch-manipulation ${
           expanded ? '' : 'rounded-b-xl'
         }`}
       >

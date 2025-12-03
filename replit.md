@@ -14,6 +14,15 @@ The application is built using React, TypeScript, and Vite, with styling managed
 - Features smooth transitions, animated service badges, responsive scaling, and a mobile-first design.
 - Desktop layouts for the Cloud Solution Designer utilize a two-column responsive design with a sticky sidebar.
 - Adheres to WCAG 2.2 AA compliance for accessibility, including ARIA roles, focus rings, and semantic HTML.
+- **Mobile Accessibility (EU Law Compliant):**
+    - All touch targets meet WCAG 2.5.5 minimum 44×44px with `min-h-[44px]` or larger.
+    - Touch-manipulation CSS for improved mobile responsiveness.
+    - Active states (`active:scale-95`, `active:bg-*`) for visual feedback.
+    - Safe-area-inset support for iOS notches (viewport-fit=cover).
+    - Lazy loading for lesson components improves mobile performance.
+    - Responsive padding pattern: `p-4 sm:p-6 lg:p-8`.
+    - Modal max-height with scroll for small screens.
+    - Dual interaction mode in Part 2: tap-to-select on mobile, drag-and-drop on desktop.
 - A 7-stage progress bar provides free navigation with distinct visual states.
 
 **Technical Implementations:**

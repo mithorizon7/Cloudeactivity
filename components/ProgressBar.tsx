@@ -27,12 +27,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
 
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 shadow-2xl z-50 overflow-visible"
+      className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 shadow-2xl z-50 overflow-visible pb-[env(safe-area-inset-bottom)]"
       role="navigation"
       aria-label={intl.formatMessage({ id: 'progress.label' })}
     >
-      <div className="max-w-7xl mx-auto px-4 py-6 sm:py-8">
-        <div className="flex items-start justify-between gap-2 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[52px] sm:min-h-[60px]">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+        <div className="flex items-start justify-between gap-1 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[56px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage);
             const isCompleted = status === 'completed';
@@ -46,11 +46,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     className={`
                       relative rounded-full transition-all duration-300 transform
                       focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-slate-900
+                      min-w-[44px] min-h-[44px]
                       ${isCurrent 
                         ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#750014] to-[#973f4e] shadow-lg shadow-[#750014]/50 scale-105 focus:ring-[#ba7f89]/60' 
                         : isCompleted
-                        ? 'w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-[#22c55e] to-[#15803d] shadow-md hover:scale-105 focus:ring-[#22c55e]/50'
-                        : 'w-10 h-10 sm:w-11 sm:h-11 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
+                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#22c55e] to-[#15803d] shadow-md hover:scale-105 focus:ring-[#22c55e]/50'
+                        : 'w-11 h-11 sm:w-12 sm:h-12 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
                       }
                     `}
                     aria-label={intl.formatMessage({ id: `progress.${stage}.label` })}
@@ -104,7 +105,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                 {index < STAGES.length - 1 && (
                   <div 
                     className={`
-                      h-0.5 flex-1 min-w-[20px] sm:min-w-[40px] transition-all duration-500 relative z-0 mt-5 sm:mt-6
+                      h-0.5 flex-1 min-w-[12px] sm:min-w-[40px] transition-all duration-500 relative z-0 mt-[22px] sm:mt-6
                       ${index < currentIndex
                         ? 'bg-gradient-to-r from-[#22c55e] to-[#15803d]'
                         : 'bg-slate-700'

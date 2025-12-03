@@ -14,28 +14,28 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ type, message, onClose })
   const intl = useIntl();
   const isCorrect = type === 'correct';
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]" onClick={onClose}>
       <div 
-        className="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-md animate-fade-in-up"
+        className="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 w-full max-w-md max-h-[85vh] overflow-y-auto animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`p-6 rounded-t-2xl ${isCorrect ? 'bg-green-500/20' : 'bg-red-500/20'} flex items-center gap-4`}>
+        <div className={`p-4 sm:p-6 rounded-t-2xl ${isCorrect ? 'bg-green-500/20' : 'bg-red-500/20'} flex items-center gap-3 sm:gap-4`}>
           <div className={`flex-shrink-0 ${isCorrect ? 'text-green-400' : 'text-red-400'}`}>
             {isCorrect ? <CheckCircleIcon size={32} /> : <XCircleIcon size={32} />}
           </div>
           <div>
-            <h3 className={`text-2xl font-bold ${isCorrect ? 'text-green-300' : 'text-red-300'}`}>
+            <h3 className={`text-xl sm:text-2xl font-bold ${isCorrect ? 'text-green-300' : 'text-red-300'}`}>
               <FormattedMessage id={isCorrect ? 'part2.feedback.correct.title' : 'part2.feedback.incorrect.title'} />
             </h3>
           </div>
         </div>
-        <div className="p-6">
-            <p className="text-slate-300 text-lg" dir="auto"><bdi>{message}</bdi></p>
+        <div className="p-4 sm:p-6">
+            <p className="text-slate-300 text-base sm:text-lg" dir="auto"><bdi>{message}</bdi></p>
         </div>
         <div className="p-4 bg-slate-900/50 rounded-b-2xl text-end">
              <button 
                onClick={onClose} 
-               className="px-6 py-2 bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
+               className="px-6 py-3 min-h-[44px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
                aria-label={intl.formatMessage({ id: 'part2.feedback.button.gotit' })}
              >
                 <FormattedMessage id="part2.feedback.button.gotit" />
@@ -156,7 +156,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 md:p-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
+    <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700 animate-fade-in">
        {feedback && (
         <FeedbackModal
           type={feedback.type}
@@ -179,9 +179,9 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, model)}
               onClick={() => handleCategoryClick(model)}
-              className={`bg-slate-900/50 p-4 rounded-lg flex flex-col items-center min-h-[200px] border-2 border-dashed transition-all ${
+              className={`bg-slate-900/50 p-3 sm:p-4 rounded-lg flex flex-col items-center min-h-[180px] sm:min-h-[200px] border-2 border-dashed transition-all touch-manipulation ${
                 selectedExample 
-                  ? 'border-[#8b959e] cursor-pointer hover:bg-slate-800/50 hover:scale-105' 
+                  ? 'border-[#8b959e] cursor-pointer hover:bg-slate-800/50 active:bg-slate-700/50 sm:hover:scale-105' 
                   : 'border-slate-600 hover:border-[#8b959e]'
               }`}
             >
@@ -216,10 +216,10 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
                   draggable
                   onDragStart={(e) => handleDragStart(e, ex)}
                   onClick={() => handleCardClick(ex)}
-                  className={`p-3 rounded-md cursor-pointer transition-all ${
+                  className={`p-3 sm:p-4 min-h-[44px] rounded-md cursor-pointer transition-all touch-manipulation select-none ${
                     selectedExample?.id === ex.id
-                      ? 'bg-[#750014] ring-2 ring-[#973f4e] scale-105 shadow-lg'
-                      : 'bg-slate-700 hover:bg-slate-600 md:cursor-grab md:active:cursor-grabbing'
+                      ? 'bg-[#750014] ring-2 ring-[#973f4e] sm:scale-105 shadow-lg'
+                      : 'bg-slate-700 hover:bg-slate-600 active:bg-slate-500 md:cursor-grab md:active:cursor-grabbing'
                   }`}
                 >
                   <FormattedMessage id={ex.textKey} />
@@ -236,7 +236,7 @@ const Part2ServiceModels: React.FC<Part2ServiceModelsProps> = ({ onComplete }) =
        {allCorrect && (
           <button 
             onClick={() => onComplete(Math.round(score))} 
-            className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold py-3 px-4 rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform animate-fade-in focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
+            className="mt-6 w-full max-w-xs mx-auto block bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold py-3 px-4 min-h-[48px] rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform animate-fade-in focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
             aria-label={intl.formatMessage({ id: 'part2.button.continue' })}
           >
             <FormattedMessage id="part2.button.continue" />

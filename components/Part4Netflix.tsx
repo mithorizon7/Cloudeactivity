@@ -129,11 +129,11 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('aws')}
               onKeyDown={handleKeyDown}
               className={`
-                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-orange-500/50
                 ${view === 'aws'
                   ? 'bg-gradient-to-br from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-600/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -154,11 +154,11 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('netflix')}
               onKeyDown={handleKeyDown}
               className={`
-                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#973f4e]/50
                 ${view === 'netflix'
                   ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] text-white shadow-lg shadow-[#750014]/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -179,11 +179,11 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               onClick={() => handleViewChange('subscriber')}
               onKeyDown={handleKeyDown}
               className={`
-                relative px-4 sm:px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial
+                relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#8b959e]/50
                 ${view === 'subscriber'
                   ? 'bg-gradient-to-br from-slate-900 via-[#1f2937] to-[#8b959e] text-white shadow-lg shadow-slate-900/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -537,11 +537,11 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
             }}
             disabled={!allViewed}
             className={`
-              px-8 py-4 rounded-xl font-bold text-base sm:text-lg shadow-2xl
-              transition-all duration-300 transform
+              px-8 py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg shadow-2xl
+              transition-all duration-300 transform touch-manipulation
               focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 focus:ring-offset-2 focus:ring-offset-slate-900
               ${allViewed
-                ? 'bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 hover:scale-105 hover:shadow-[#750014]/50 cursor-pointer'
+                ? 'bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 hover:scale-105 active:scale-95 hover:shadow-[#750014]/50 cursor-pointer'
                 : 'bg-slate-700 text-slate-400 cursor-not-allowed opacity-60'
               }
             `}

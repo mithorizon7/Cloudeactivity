@@ -335,7 +335,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               value={users}
               onChange={(e) => setUsers(Number(e.target.value))}
               aria-label={intl.formatMessage({ id: 'part5.scale.users' }, { count: users })}
-              className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-2"
+              className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-12 cursor-pointer touch-manipulation [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-500 [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-cyan-500 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:cursor-pointer"
             />
             <div className="mt-1 flex justify-between text-xs text-slate-400">
               <span>
@@ -356,7 +356,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               </h2>
               <button
                 onClick={() => setShowPrimer(false)}
-                className="text-xs text-slate-400 hover:text-white motion-safe:transition"
+                className="min-w-[44px] min-h-[44px] px-3 py-2 text-xs text-slate-400 hover:text-white active:text-slate-200 motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/50"
               >
                 <FormattedMessage id="part5.primer.hide" />
               </button>
@@ -400,8 +400,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     aria-disabled={disabled || undefined}
                     aria-describedby={disabled ? 'saas-note' : undefined}
                     onClick={() => !disabled && handleServiceSelect(m)}
-                    className={`w-full text-left rounded-lg border-2 p-3 lg:p-4 xl:p-5 motion-safe:transition relative
-                      ${selectedState ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600'}
+                    className={`w-full text-left rounded-lg border-2 p-3 lg:p-4 xl:p-5 min-h-[60px] motion-safe:transition relative touch-manipulation
+                      ${selectedState ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600 active:bg-slate-700'}
                       ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
                   >
                     {selectedState && (
@@ -467,8 +467,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     role="radio"
                     aria-checked={sel}
                     onClick={() => handleDeploymentSelect(m)}
-                    className={`w-full text-left rounded-lg border-2 p-4 lg:p-5 xl:p-6 motion-safe:transition relative
-                      ${sel ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600'}`}
+                    className={`w-full text-left rounded-lg border-2 p-4 lg:p-5 xl:p-6 min-h-[80px] motion-safe:transition relative touch-manipulation
+                      ${sel ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600 active:bg-slate-700'}`}
                   >
                     {sel && (
                       <div className="absolute top-3 right-3 flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white font-bold text-sm">
@@ -514,7 +514,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             </div>
             <button
               onClick={() => setShowSustainability((s) => !s)}
-              className="mt-3 text-xs text-slate-400 hover:text-slate-200 underline motion-safe:transition"
+              className="mt-3 min-h-[44px] px-3 py-2 text-xs text-slate-400 hover:text-slate-200 underline motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/30"
             >
               <FormattedMessage id="part5.deployment.sustainability.learn" />
             </button>
@@ -559,7 +559,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                     </p>
                     <button
                       onClick={() => setShowTradeoffDetails(true)}
-                      className="mt-2 text-sm text-[#8b959e] hover:text-white underline motion-safe:transition"
+                      className="mt-2 min-h-[44px] px-3 py-2 text-sm text-[#8b959e] hover:text-white underline motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/30"
                     >
                       <FormattedMessage id="part5.tradeoffs.why" />
                     </button>
@@ -604,7 +604,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                         <div className="absolute inset-0 bg-slate-800/60 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg">
                           <button
                             onClick={() => setTopRevealed(true)}
-                            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                            className="min-h-[48px] px-4 py-2 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 touch-manipulation"
                             aria-live="polite"
                           >
                             <FormattedMessage id="part5.top.reveal" />
@@ -663,16 +663,16 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                   <div className="inline-flex rounded-lg border border-slate-600 bg-slate-800/60 p-1">
                     <button
                       onClick={() => setComparisonView('summary')}
-                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
-                        comparisonView === 'summary' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white'
+                      className={`min-h-[44px] px-4 py-2 text-sm rounded-md motion-safe:transition touch-manipulation ${
+                        comparisonView === 'summary' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white active:bg-slate-700'
                       }`}
                     >
                       <FormattedMessage id="part5.compare.summary" />
                     </button>
                     <button
                       onClick={() => setComparisonView('all')}
-                      className={`px-3 py-1 text-sm rounded-md motion-safe:transition ${
-                        comparisonView === 'all' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white'
+                      className={`min-h-[44px] px-4 py-2 text-sm rounded-md motion-safe:transition touch-manipulation ${
+                        comparisonView === 'all' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white active:bg-slate-700'
                       }`}
                     >
                       <FormattedMessage id="part5.compare.all" />
@@ -796,14 +796,14 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               <button
                 onClick={handleEvaluate}
                 disabled={!selected}
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
+                className="w-full sm:w-auto px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
               >
                 <FormattedMessage id="part5.button.evaluate" />
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60"
+                className="w-full sm:w-auto px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
               >
                 <FormattedMessage
                   id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}

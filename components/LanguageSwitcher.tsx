@@ -43,7 +43,7 @@ const LanguageSwitcher: React.FC = () => {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/50 hover:border-slate-500/50 transition-all duration-200 text-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#a31f34]/50"
+        className="flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-2 min-h-[44px] rounded-lg bg-slate-800/70 hover:bg-slate-700/70 border border-slate-600/50 hover:border-slate-500/50 transition-all duration-200 text-slate-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#a31f34]/50 touch-manipulation"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-label={intl.formatMessage({ id: 'language.switcher.label', defaultMessage: 'Language selection' })}
@@ -82,7 +82,7 @@ const LanguageSwitcher: React.FC = () => {
         <ul
           role="listbox"
           aria-label={intl.formatMessage({ id: 'language.switcher.label', defaultMessage: 'Language selection' })}
-          className="absolute top-full right-0 mt-2 py-1 min-w-[140px] bg-slate-800 border border-slate-600/50 rounded-lg shadow-xl z-50 overflow-hidden"
+          className="absolute top-full right-0 mt-2 py-1 min-w-[160px] bg-slate-800 border border-slate-600/50 rounded-lg shadow-xl z-50 overflow-hidden"
         >
           {displayLocales.map((loc) => {
             const isSelected = loc === locale;
@@ -94,10 +94,10 @@ const LanguageSwitcher: React.FC = () => {
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(loc)}
-                  className={`w-full px-4 py-2 text-left text-sm transition-colors duration-150 flex items-center justify-between
+                  className={`w-full px-4 py-3 min-h-[44px] text-left text-sm transition-colors duration-150 flex items-center justify-between touch-manipulation
                     ${isSelected 
                       ? 'bg-[#a31f34]/20 text-white' 
-                      : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
+                      : 'text-slate-300 hover:bg-slate-700/50 hover:text-white active:bg-slate-600/50'
                     }`}
                 >
                   <span>{name}</span>
