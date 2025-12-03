@@ -121,22 +121,16 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               </svg>
             </div>
             <div className="flex-1">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">
-                <FormattedMessage 
-                  id="part4.intro.heading" 
-                  defaultMessage="Ever wondered what happens when you press play?" 
-                />
-              </h2>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
                 <FormattedMessage 
                   id="part4.intro.description" 
-                  defaultMessage="You know Netflix - you open the app, browse shows, and start watching. It feels simple. But behind that familiar experience is a complex cloud computing system involving multiple layers of technology and different companies working together." 
+                  defaultMessage="To the user Netflix is an intentionally simple app. You open it, browse shows, and start watching. Behind that experience is a complex cloud computing system involving multiple layers of technology and different companies working together." 
                 />
               </p>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
                 <FormattedMessage 
                   id="part4.intro.purpose" 
-                  defaultMessage="In this activity, you'll explore the same streaming service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you - the subscriber. Each sees and manages something completely different." 
+                  defaultMessage="In this activity, you'll explore Netflix service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you, the subscriber." 
                 />
               </p>
               <div className="flex items-center gap-3 p-3 sm:p-4 bg-slate-900/50 rounded-xl border border-slate-700/40">
