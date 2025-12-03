@@ -165,23 +165,23 @@ export const SliderMilestones: React.FC<SliderMilestoneProps> = ({ min, max, val
   };
   
   return (
-    <div className="relative mt-1">
-      <div className="absolute top-0 left-0 right-0 h-0">
+    <div className="mt-4">
+      <div className="relative h-6 mb-2">
         {milestones.map(({ label, threshold }) => (
           <div 
             key={label}
-            className="absolute -translate-x-1/2"
+            className="absolute -translate-x-1/2 flex flex-col items-center"
             style={{ left: `${getPosition(threshold)}%` }}
           >
-            <div className={`w-1 h-2 ${value >= threshold ? 'bg-cyan-400' : 'bg-slate-500'} mx-auto`} />
-            <span className={`text-[10px] ${value >= threshold ? 'text-cyan-400' : 'text-slate-500'} whitespace-nowrap`}>
+            <div className={`w-0.5 h-3 ${value >= threshold ? 'bg-cyan-400' : 'bg-slate-500'}`} />
+            <span className={`text-[10px] mt-0.5 ${value >= threshold ? 'text-cyan-400' : 'text-slate-500'} whitespace-nowrap`}>
               {label}
             </span>
           </div>
         ))}
       </div>
-      <div className="pt-5 text-center">
-        <span className="inline-block px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30">
+      <div className="text-center">
+        <span className="inline-block px-3 py-1.5 bg-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30">
           Stage: {getCurrentStage()}
         </span>
       </div>

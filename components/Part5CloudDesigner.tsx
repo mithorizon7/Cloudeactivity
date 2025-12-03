@@ -365,8 +365,10 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               </h2>
               <button
                 onClick={() => setShowPrimer(false)}
-                className="min-w-[44px] min-h-[44px] px-3 py-2 text-xs text-slate-400 hover:text-white active:text-slate-200 motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/50"
+                className="min-w-[44px] min-h-[44px] px-3 py-2 text-xs text-slate-400 hover:text-white active:text-slate-200 motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/50 flex items-center gap-1"
+                aria-label={intl.formatMessage({ id: 'part5.primer.minimize', defaultMessage: 'Minimize refresher' })}
               >
+                <span>↓</span>
                 <FormattedMessage id="part5.primer.hide" />
               </button>
             </div>
@@ -882,6 +884,34 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
         </div>
 
         {evaluated && getFeedback()}
+
+        {!showPrimer && (
+          <div className="mt-8 mb-6">
+            <SectionCard className="bg-gradient-to-br from-[#750014]/10 to-[#8b959e]/10 border-[#973f4e]/20">
+              <button
+                onClick={() => setShowPrimer(true)}
+                className="w-full flex items-center justify-between gap-3 min-h-[44px] text-left touch-manipulation group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex-shrink-0 p-2 bg-[#750014]/20 rounded-lg group-hover:bg-[#750014]/30 transition-colors">
+                    <svg className="w-5 h-5 text-[#d5b2b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium text-[#d5b2b8] group-hover:text-white transition-colors">
+                    <FormattedMessage id="part5.primer.title" />
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-400 group-hover:text-white transition-colors">
+                  <span className="text-xs">
+                    <FormattedMessage id="part5.primer.expand" defaultMessage="Expand" />
+                  </span>
+                  <span>↑</span>
+                </div>
+              </button>
+            </SectionCard>
+          </div>
+        )}
 
         <div className="fixed bottom-20 sm:bottom-24 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4 z-40 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:pb-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
