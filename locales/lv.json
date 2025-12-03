@@ -1,0 +1,1014 @@
+{
+  "introduction.title": "Kā darbojas mākoņdatošana",
+  "@introduction.title": {
+    "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
+  },
+  "introduction.description": "Šī īsā interaktīvā nodarbība iepazīstinās jūs ar mākoņdatošanas metodēm un tehnoloģijām — no pamatiem līdz izvietošanai.",
+  "@introduction.description": {
+    "description": "Brief description of what the user will learn in this activity"
+  },
+  "introduction.part1.title": "1. daļa: Pamati.",
+  "@introduction.part1.title": {
+    "description": "Title for the first learning section about cloud computing basics"
+  },
+  "introduction.part1.description": "Atbildiet uz jautājumiem «Mīts vai fakts» par to, kas patiesībā ir mākonis.",
+  "@introduction.part1.description": {
+    "description": "Description of the first activity - a quiz format about cloud fundamentals"
+  },
+  "introduction.part2.title": "2. daļa: Pakalpojumu modeļi.",
+  "@introduction.part2.title": {
+    "description": "Title for the second learning section about cloud service types"
+  },
+  "introduction.part2.description": "Spēlējiet vilkšanas un nomešanas spēli, lai sakārtotu IaaS, PaaS un SaaS.",
+  "@introduction.part2.description": {
+    "description": "Description of the second activity - interactive sorting game. IaaS, PaaS, and SaaS are technical acronyms that should not be translated"
+  },
+  "introduction.part3.title": "3. daļa: Izvietošanas modeļi.",
+  "@introduction.part3.title": {
+    "description": "Title for the third learning section about cloud deployment types"
+  },
+  "introduction.part3.description": "Risiniet reālās dzīves scenārijus, lai izprastu publisko, privāto un hibrīdo mākoņu.",
+  "@introduction.part3.description": {
+    "description": "Description of the third activity - scenario-based learning about deployment types"
+  },
+  "introduction.button.start": "Sāksim!",
+  "@introduction.button.start": {
+    "description": "Call-to-action button to begin the learning activity"
+  },
+  "part1.title": "1. daļa: Pamati",
+  "@part1.title": {
+    "description": "Header for the foundation quiz section"
+  },
+  "part1.subtitle": "Vai šis apgalvojums ir mīts vai fakts?",
+  "@part1.subtitle": {
+    "description": "Instruction text explaining the quiz format to users"
+  },
+  "part1.button.fact": "Fakts",
+  "@part1.button.fact": {
+    "description": "Button label for selecting that a statement is true/factual"
+  },
+  "part1.button.myth": "Mīts",
+  "@part1.button.myth": {
+    "description": "Button label for selecting that a statement is false/myth"
+  },
+  "part1.feedback.correct.title": "Pareizi!",
+  "@part1.feedback.correct.title": {
+    "description": "Positive feedback shown when user selects the right answer"
+  },
+  "part1.feedback.incorrect.title": "Ne gluži!",
+  "@part1.feedback.incorrect.title": {
+    "description": "Gentle feedback shown when user selects the wrong answer"
+  },
+  "part1.button.next": "Nākamais jautājums",
+  "@part1.button.next": {
+    "description": "Button to proceed to the next quiz question"
+  },
+  "part1.button.continue": "Turpināt",
+  "@part1.button.continue": {
+    "description": "Button to proceed to next section after completing all questions"
+  },
+  "part1.question1.statement": "Mākoņdatošanas pamatu veido jaudīgi datori — serveri, kas atrodas īpašās telpās — datu centros.",
+  "@part1.question1.statement": {
+    "description": "Quiz statement about the physical infrastructure of cloud computing"
+  },
+  "part1.question1.explanation": "Pilnīgi pareizi! Mākoņa galvenā inovācija ir liela skaita serveru izvietošana datu centros, kas parasti atrodas tālu no cilvēkiem un organizācijām, kas tiem piekļūst.",
+  "@part1.question1.explanation": {
+    "description": "Educational explanation shown after answering the question correctly or incorrectly"
+  },
+  "part1.question2.statement": "Mākoņdatošana prasa organizācijām iegādāties un uzturēt savu datortehnikas aprīkojumu savās telpās.",
+  "@part1.question2.statement": {
+    "description": "Quiz statement about cloud vs on-premises computing"
+  },
+  "part1.question2.explanation": "Tieši tā. Vēsturiski organizācijas izmantoja savu lokālo aprīkojumu. Mākoņdatošana ļauj tām attālināti piekļūt mākoņpakalpojumu sniedzēja resursiem.",
+  "@part1.question2.explanation": {
+    "description": "Educational explanation about the evolution from on-premises to cloud computing"
+  },
+  "part2.title": "2. daļa: Pakalpojumu modeļi",
+  "@part2.title": {
+    "description": "Header for the service models sorting game section"
+  },
+  "part2.subtitle": "Velciet katru piemēru uz pareizo pakalpojumu modeļa kategoriju.",
+  "@part2.subtitle": {
+    "description": "Instruction for the drag-and-drop interaction"
+  },
+  "part2.examples.title": "Piemēri",
+  "@part2.examples.title": {
+    "description": "Label for the list of examples that users will drag and drop"
+  },
+  "part2.feedback.correct.title": "Pareizi!",
+  "@part2.feedback.correct.title": {
+    "description": "Positive feedback when user places example in correct category"
+  },
+  "part2.feedback.incorrect.title": "Ne gluži...",
+  "@part2.feedback.incorrect.title": {
+    "description": "Gentle feedback when user places example in wrong category"
+  },
+  "part2.feedback.button.gotit": "Sapratu",
+  "@part2.feedback.button.gotit": {
+    "description": "Button to dismiss feedback modal and try again"
+  },
+  "part2.allsorted.message": "Visi elementi sakārtoti pareizi!",
+  "@part2.allsorted.message": {
+    "description": "Success message shown when all examples are correctly categorized"
+  },
+  "part2.button.continue": "Turpināt",
+  "@part2.button.continue": {
+    "description": "Button to proceed to next section after completing sorting"
+  },
+  "part2.example1.text": "Samaksa par datu glabātuves vietu, kas automātiski pielāgojas izmantojamo datu apjomam.",
+  "@part2.example1.text": {
+    "description": "Example of cloud storage service for categorization exercise"
+  },
+  "part2.example1.correct": "Pareizi. Mērogojama glabātuve ir infrastruktūras galvenā sastāvdaļa, ko jūs īrējat no pakalpojumu sniedzēja. Šis ir klasisks IaaS piemērs.",
+  "@part2.example1.correct": {
+    "description": "Explanation when correctly categorized as IaaS (Infrastructure as a Service)"
+  },
+  "part2.example1.hint.paas": "Lai gan PaaS lietojumprogramma *izmantotu* glabātuvi, pati glabātuves pakalpojums ir fundamentālāks būvniecības bloks. Tas ir daļa no pamata infrastruktūras.",
+  "@part2.example1.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of IaaS"
+  },
+  "part2.example1.hint.saas": "Šī nav gatava lietojumprogramma, bet gan neapstrādāta sastāvdaļa, ko izmantotu, lai to izveidotu. Kurš modelis nodrošina šādus fundamentālos būvniecības blokus?",
+  "@part2.example1.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of IaaS"
+  },
+  "part2.example2.text": "Zoom izmantošana videozvaniem vai Slack ziņojumapmaiņai.",
+  "@part2.example2.text": {
+    "description": "Example of ready-to-use software applications. Zoom and Slack are product names that should not be translated"
+  },
+  "part2.example2.correct": "Tieši tā! Šie ir gatavu programmatūras produktu piemēri, kuriem piekļūstat, parasti maksājot abonēšanas maksu. Šis ir «Programmatūra kā pakalpojums».",
+  "@part2.example2.correct": {
+    "description": "Explanation when correctly categorized as SaaS (Software as a Service)"
+  },
+  "part2.example2.hint.iaas": "Izmantojot Zoom vai Slack — vai jūs pārvaldāt serverus vai vienkārši lietojat lietotni? IaaS ir serveru īre. Šis ir līmenis augstāk.",
+  "@part2.example2.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of SaaS. Zoom and Slack should not be translated"
+  },
+  "part2.example2.hint.paas": "PaaS ir platforma izstrādātājiem *veidot* lietotnes. Zoom ir lietotne, kas jau izveidota jūsu lietošanai. Kurš modelis atbilst šim aprakstam?",
+  "@part2.example2.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of SaaS. Zoom should not be translated"
+  },
+  "part2.example3.text": "Savas programmatūras darbināšana mākonī, kamēr pakalpojumu sniedzējs apkalpo un uztur serverus.",
+  "@part2.example3.text": {
+    "description": "Example of platform service for running custom applications"
+  },
+  "part2.example3.correct": "Lieliski! Ar PaaS jūs koncentrējaties uz savu lietojumprogrammas kodu, kamēr pakalpojumu sniedzējs nodrošina pamata infrastruktūru un tehniskos pienākumus, piemēram, serveru uzturēšanu.",
+  "@part2.example3.correct": {
+    "description": "Explanation when correctly categorized as PaaS (Platform as a Service)"
+  },
+  "part2.example3.hint.iaas": "Jūs esat tuvu! IaaS dotu jums serveri, bet jūs būtu atbildīgs par tā uzturēšanu. Šis pakalpojums uzņemas šo uzturēšanu jūsu vietā.",
+  "@part2.example3.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of PaaS"
+  },
+  "part2.example3.hint.saas": "Šis ir modelis savas programmatūras *darbināšanai*, nevis citas *lietošanai*. Kura kategorija nodrošina šāda veida platformu?",
+  "@part2.example3.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of PaaS"
+  },
+  "part2.example4.text": "Piekļuve failu koplietošanas pakalpojumam sadarbībai ar komandu.",
+  "@part2.example4.text": {
+    "description": "Example of collaboration software for teams"
+  },
+  "part2.example4.correct": "Pareizi! Failu koplietošanas pakalpojums ir gatava lietojumprogramma galalietotājiem, kas atbilst SaaS definīcijai.",
+  "@part2.example4.correct": {
+    "description": "Explanation when correctly categorized as SaaS"
+  },
+  "part2.example4.hint.iaas": "Failu koplietošana ir gatava programmatūras produkta funkcija. IaaS būtu neapstrādātas glabātuves īre, kur šie faili tiek glabāti.",
+  "@part2.example4.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of SaaS"
+  },
+  "part2.example4.hint.paas": "Jūs *lietojat* gatavu pakalpojumu, nevis *veidojat* to. PaaS ir vide veidošanai. Kurš ir lietošanas modelis?",
+  "@part2.example4.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of SaaS"
+  },
+  "part2.example5.text": "Pakalpojumu sniedzēja infrastruktūras izmantošana liela mēroga datu apstrādei un analītikai.",
+  "@part2.example5.text": {
+    "description": "Example of infrastructure service for data processing"
+  },
+  "part2.example5.correct": "Tieši tā! Jūs īrējat pakalpojumu sniedzēja fundamentālos skaitļošanas resursus (viņu infrastruktūru), lai veiktu sarežģītus uzdevumus. Šis ir IaaS.",
+  "@part2.example5.correct": {
+    "description": "Explanation when correctly categorized as IaaS"
+  },
+  "part2.example5.hint.paas": "PaaS nodrošina pārvaldītu platformu, bet, kad jūs tieši izmantojat neapstrādātu skaitļošanas jaudu un glabātuvi pielāgotai analītikai, jūs izmantojat pamata infrastruktūru.",
+  "@part2.example5.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of IaaS"
+  },
+  "part2.example5.hint.saas": "Šeit ir aprakstīta pamata skaitļošanas jaudas izmantošana, nevis konkrēta, iepriekš izveidota programmatūras lietojumprogramma. Kurš modelis ir par neapstrādātu resursu īri?",
+  "@part2.example5.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of IaaS"
+  },
+  "part2.example6.text": "Jūsu uzņēmuma pielāgotas lietojumprogrammas un tās biznesa analītikas rīku mitināšana.",
+  "@part2.example6.text": {
+    "description": "Example of platform for hosting custom business applications"
+  },
+  "part2.example6.correct": "Pareizi. Kad jūs izvietojat un darbināt savu programmatūru un rīkus mākoņpakalpojumu sniedzēja pārvaldītā vidē — tas ir «Platforma kā pakalpojums».",
+  "@part2.example6.correct": {
+    "description": "Explanation when correctly categorized as PaaS"
+  },
+  "part2.example6.hint.iaas": "Jūs to varētu izdarīt ar IaaS, bet tad jums arī būtu jāpārvalda operētājsistēmas un serveri. PaaS to pārņem jūsu vietā, lai jūs varētu koncentrēties uz savu lietotni.",
+  "@part2.example6.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of PaaS"
+  },
+  "part2.example6.hint.saas": "Runa ir par *savas* pielāgotas lietojumprogrammas darbināšanu, nevis par abonēšanu cita izveidotai. Kurš modelis nodrošina platformu jūsu programmatūrai?",
+  "@part2.example6.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of PaaS"
+  },
+  "part2.hint.default": "Šķiet, ka tas nav īsti piemērots. Padomājiet par pakalpojuma nodrošināto pārvaldības līmeni.",
+  "@part2.hint.default": {
+    "description": "Generic fallback hint for any incorrect categorization"
+  },
+  "part2.tap.place": "Pieskarieties, lai novietotu",
+  "@part2.tap.place": {
+    "description": "Instruction shown in category boxes when a card is selected (for touch/mobile users)"
+  },
+  "part3.title": "3. daļa: Izvietošanas modeļi",
+  "@part3.title": {
+    "description": "Header for the deployment models scenario section"
+  },
+  "part3.subtitle": "Izlasiet scenāriju un izvēlieties vispiemērotāko mākoņa modeli.",
+  "@part3.subtitle": {
+    "description": "Instruction for the scenario-based questions"
+  },
+  "part3.feedback.correct.title": "Pareizi!",
+  "@part3.feedback.correct.title": {
+    "description": "Positive feedback for selecting the right deployment model"
+  },
+  "part3.feedback.incorrect.title": "Labs mēģinājums!",
+  "@part3.feedback.incorrect.title": {
+    "description": "Encouraging feedback for incorrect answer"
+  },
+  "part3.button.next": "Nākamais scenārijs",
+  "@part3.button.next": {
+    "description": "Button to proceed to next scenario question"
+  },
+  "part3.button.finish": "Pabeigt aktivitāti",
+  "@part3.button.finish": {
+    "description": "Button to complete the final section and view results"
+  },
+  "part3.scenario1.text": "Finanšu uzņēmumam jāglabā konfidenciāli pētījumi ar paaugstinātu drošību, pieprasot darbiniekiem šifrētu VPN savienojumu piekļuvei.",
+  "@part3.scenario1.text": {
+    "description": "Business scenario about secure financial data storage. VPN is a technical acronym (Virtual Private Network)"
+  },
+  "part3.scenario1.explanation": "Šeit ideāli piemērots privātais mākonis. Tas piedāvā vislielāko drošību, uzliekot stingrākus piekļuves ierobežojumus, padarot to piemērotu sensitīvai informācijai, piemēram, finanšu ierakstiem vai konfidenciāliem pētījumiem.",
+  "@part3.scenario1.explanation": {
+    "description": "Explanation of why Private Cloud is the correct choice for this security-focused scenario"
+  },
+  "part3.scenario2.text": "Programmatūras uzņēmums vēlas izvietot savu lietotni gandrīz jebkura klienta lietošanai ar vieglu piekļuvi caur standarta interneta savienojumu un zemākām izmaksām.",
+  "@part3.scenario2.text": {
+    "description": "Business scenario about wide public accessibility and cost efficiency"
+  },
+  "part3.scenario2.explanation": "Publiskais mākonis ir perfekta izvēle. Tos sauc par «publiskiem», jo gandrīz jebkurš klients var maksāt par viņu serveru izmantošanu, padarot tos lētākus un piedāvājot vieglu piekļuvi.",
+  "@part3.scenario2.explanation": {
+    "description": "Explanation of why Public Cloud suits mass accessibility and cost considerations"
+  },
+  "part3.scenario3.text": "Uzņēmums darbina savu videokonferenču programmatūru publiskajā mākonī, bet glabā savus sensitīvos klientu apkalpošanas ierakstus atsevišķā, drošākā vidē.",
+  "@part3.scenario3.text": {
+    "description": "Business scenario about splitting workloads between different cloud types"
+  },
+  "part3.scenario3.explanation": "Šis ir klasisks hibrīdā mākoņa piemērs. Šis modelis ietver datu un lietojumprogrammu sadalīšanu starp publisko un privāto mākoni, lai apvienotu abu priekšrocības.",
+  "@part3.scenario3.explanation": {
+    "description": "Explanation of Hybrid Cloud's ability to combine public and private infrastructures"
+  },
+  "part3.explanation.default": "Laba doma, bet ir labāka izvēle. Pievērsiet uzmanību scenārija galvenajām prasībām.",
+  "@part3.explanation.default": {
+    "description": "Generic feedback for incorrect deployment model selection"
+  },
+  "part3.venn.caption": "Vizuāls attēlojums: hibrīdais mākonis apvieno publisko un privāto mākoni",
+  "@part3.venn.caption": {
+    "description": "Caption explaining the Venn diagram visual aid showing how deployment models relate spatially"
+  },
+  "summary.title": "Lielisks darbs!",
+  "@summary.title": {
+    "description": "Congratulatory heading on completion screen"
+  },
+  "summary.description": "Jūs esat pabeidzis ievadu mākoņdatošanas darbībā. Šeit ir īss apkopojums par apgūto.",
+  "@summary.description": {
+    "description": "Introduction to the summary/recap section"
+  },
+  "summary.recap.foundations.title": "Pamati:",
+  "@summary.recap.foundations.title": {
+    "description": "Section header for cloud computing basics recap"
+  },
+  "summary.recap.foundations.text": "Mākonis ir fizisks serveru tīkls datu centros ar attālinātu piekļuvi.",
+  "@summary.recap.foundations.text": {
+    "description": "Summary of cloud computing fundamentals"
+  },
+  "summary.recap.servicemodels.title": "Pakalpojumu modeļi:",
+  "@summary.recap.servicemodels.title": {
+    "description": "Section header for service models recap"
+  },
+  "summary.recap.iaas": "- IaaS ir pakalpojumu sniedzēja mākoņinfrastruktūras (serveri, glabātuve) īre.",
+  "@summary.recap.iaas": {
+    "description": "Full recap item for IaaS including bullet marker. IaaS is an acronym for Infrastructure as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.paas": "- PaaS ir platforma savas programmatūras darbināšanai, kur pakalpojumu sniedzējs pārvalda serverus.",
+  "@summary.recap.paas": {
+    "description": "Full recap item for PaaS including bullet marker. PaaS is an acronym for Platform as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.saas": "- SaaS ir samaksa par piekļuvi citas organizācijas gatavai programmatūrai.",
+  "@summary.recap.saas": {
+    "description": "Full recap item for SaaS including bullet marker. SaaS is an acronym for Software as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.deploymentmodels.title": "Izvietošanas modeļi:",
+  "@summary.recap.deploymentmodels.title": {
+    "description": "Section header for deployment models recap"
+  },
+  "summary.recap.public": "- Publiskais ir koplietots, rentabls un viegli pieejams.",
+  "@summary.recap.public": {
+    "description": "Full recap item for Public cloud including bullet marker"
+  },
+  "summary.recap.private": "- Privātais ir veltīts vienam klientam lielākai drošībai un kontrolei.",
+  "@summary.recap.private": {
+    "description": "Full recap item for Private cloud including bullet marker"
+  },
+  "summary.recap.hybrid": "- Hibrīdais apvieno publisko un privāto mākoni elastīgumam.",
+  "@summary.recap.hybrid": {
+    "description": "Full recap item for Hybrid cloud including bullet marker"
+  },
+  "summary.recap.perspective.title": "Perspektīvas nozīme:",
+  "@summary.recap.perspective.title": {
+    "description": "Section header for perspective insight recap"
+  },
+  "summary.recap.perspective.text": "Viena un tā pati infrastruktūra var būt dažādi pakalpojumu modeļi atkarībā no jūsu lomas (Netflix izmanto PaaS, abonenti izmanto SaaS).",
+  "@summary.recap.perspective.text": {
+    "description": "Summary of the perspective insight from Part 4"
+  },
+  "summary.recap.application.title": "Praktiska pielietošana:",
+  "@summary.recap.application.title": {
+    "description": "Section header for application skills recap"
+  },
+  "summary.recap.application.text": "Projektējot mākoņrisinājumus, ņemiet vērā drošības prasības, budžeta ierobežojumus un to, kā lietošana var mainīties laika gaitā.",
+  "@summary.recap.application.text": {
+    "description": "Summary of practical application skills from Part 5"
+  },
+  "summary.score": "Jūsu rezultāts: {totalScore, number} / {maxScore, number}",
+  "@summary.score": {
+    "description": "Display of user's total score. totalScore and maxScore are numeric values showing points earned out of total possible"
+  },
+  "summary.button.restart": "Mēģināt vēlreiz",
+  "@summary.button.restart": {
+    "description": "Button to restart the activity from the beginning"
+  },
+  "servicemodel.iaas": "Infrastruktūra kā pakalpojums (IaaS)",
+  "@servicemodel.iaas": {
+    "description": "Full name of IaaS service model category. This is a technical term - translate the words but keep the acronym IaaS"
+  },
+  "servicemodel.paas": "Platforma kā pakalpojums (PaaS)",
+  "@servicemodel.paas": {
+    "description": "Full name of PaaS service model category. This is a technical term - translate the words but keep the acronym PaaS"
+  },
+  "servicemodel.saas": "Programmatūra kā pakalpojums (SaaS)",
+  "@servicemodel.saas": {
+    "description": "Full name of SaaS service model category. This is a technical term - translate the words but keep the acronym SaaS"
+  },
+  "deploymentmodel.public": "Publiskais mākonis",
+  "@deploymentmodel.public": {
+    "description": "Name of public cloud deployment model"
+  },
+  "deploymentmodel.private": "Privātais mākonis",
+  "@deploymentmodel.private": {
+    "description": "Name of private cloud deployment model"
+  },
+  "deploymentmodel.hybrid": "Hibrīdais mākonis",
+  "@deploymentmodel.hybrid": {
+    "description": "Name of hybrid cloud deployment model"
+  },
+  "part4.title": "4. daļa: Perspektīvas nozīme",
+  "@part4.title": {
+    "description": "Header for the Netflix perspective-switching section"
+  },
+  "part4.subtitle": "Viena un tā pati mākoņinfrastruktūra var būt dažādi pakalpojumu modeļi atkarībā no jūsu lomas. Izpētiet visus trīs steka līmeņus.",
+  "@part4.subtitle": {
+    "description": "Educational explanation of perspective in service models with three-layer stack reference"
+  },
+  "part4.instructions": "Noklikšķiniet uz pogām zemāk, lai pārslēgtos starp AWS infrastruktūras līmeni, Netflix platformas līmeni un abonenta lietojumprogrammas līmeni:",
+  "@part4.instructions": {
+    "description": "Instructions for the interactive three-perspective switcher showing IaaS->PaaS->SaaS vertical stack"
+  },
+  "part4.button.aws": "AWS/Nodrošinātāja skats",
+  "@part4.button.aws": {
+    "description": "Button to switch to AWS cloud provider perspective (IaaS layer)"
+  },
+  "part4.button.netflix": "Netflix skats",
+  "@part4.button.netflix": {
+    "description": "Button to switch to Netflix company perspective (PaaS layer)"
+  },
+  "part4.button.subscriber": "Abonenta skats",
+  "@part4.button.subscriber": {
+    "description": "Button to switch to subscriber/user perspective (SaaS layer)"
+  },
+  "part4.aws.role": "Loma: infrastruktūras nodrošinātājs",
+  "@part4.aws.role": {
+    "description": "Label showing AWS's business role as cloud infrastructure provider"
+  },
+  "part4.aws.service": "Pakalpojumu modelis: Infrastruktūra kā pakalpojums (IaaS)",
+  "@part4.aws.service": {
+    "description": "Service model from AWS provider's perspective - IaaS"
+  },
+  "part4.aws.model.label": "AWS nodrošina neapstrādātu infrastruktūru kā «Infrastruktūra kā pakalpojums» (IaaS)",
+  "@part4.aws.model.label": {
+    "description": "Explicit label showing AWS's perspective provides IaaS layer - the foundation beneath Netflix's PaaS"
+  },
+  "part4.aws.provides": "AWS nodrošina:",
+  "@part4.aws.provides": {
+    "description": "Header for what AWS infrastructure provider offers to customers like Netflix"
+  },
+  "part4.aws.provide1": "Fiziskos serverus, glabātuvi un tīkla aparatūru",
+  "@part4.aws.provide1": {
+    "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
+  },
+  "part4.aws.provide2": "Virtualizāciju un skaitļošanas jaudu (EC2, S3)",
+  "@part4.aws.provide2": {
+    "description": "Second item AWS provides - virtualized resources with examples"
+  },
+  "part4.aws.provide3": "Globālus datu centrus ar dublēšanu un augstu pieejamību",
+  "@part4.aws.provide3": {
+    "description": "Third item AWS provides - physical infrastructure reliability"
+  },
+  "part4.aws.manages": "AWS pārvalda:",
+  "@part4.aws.manages": {
+    "description": "Header for what AWS infrastructure provider manages"
+  },
+  "part4.aws.manage1": "Fizisko aparatūru (serveri, statīvi, dzesēšana)",
+  "@part4.aws.manage1": {
+    "description": "First item AWS manages - physical data center equipment"
+  },
+  "part4.aws.manage2": "Tīkla infrastruktūru un savienojamību",
+  "@part4.aws.manage2": {
+    "description": "Second item AWS manages - networking layer"
+  },
+  "part4.aws.manage3": "Virtualizācijas platformu un resursu sadali",
+  "@part4.aws.manage3": {
+    "description": "Third item AWS manages - virtualization platform and resource allocation"
+  },
+  "part4.aws.insight": "Galvenā atziņa:",
+  "@part4.aws.insight": {
+    "description": "Label introducing the key takeaway for AWS perspective"
+  },
+  "part4.aws.insight.text": "AWS ir infrastruktūras nodrošinātājs, kas piedāvā IaaS. Netflix īrē šo infrastruktūru, lai izveidotu savu straumēšanas pakalpojumu. AWS neveido saturu — viņi iznomā tam nepieciešamos datorus.",
+  "@part4.aws.insight.text": {
+    "description": "Key insight explaining AWS's role as the IaaS foundation beneath Netflix"
+  },
+  "part4.netflix.role": "Loma: straumēšanas platforma",
+  "@part4.netflix.role": {
+    "description": "Label showing Netflix's business role as content streaming platform"
+  },
+  "part4.netflix.service": "Pakalpojumu modelis: Platforma kā pakalpojums (PaaS)",
+  "@part4.netflix.service": {
+    "description": "Service model from Netflix's perspective - PaaS"
+  },
+  "part4.netflix.model.label": "Netflix izmanto AWS, lai izveidotu savu straumēšanas programmatūru — «Platforma kā pakalpojums» (PaaS)",
+  "@part4.netflix.model.label": {
+    "description": "Explicit label showing Netflix's perspective uses PaaS layer on top of AWS IaaS"
+  },
+  "part4.netflix.uses": "Netflix izmanto:",
+  "@part4.netflix.uses": {
+    "description": "Header for what Netflix company uses as a customer"
+  },
+  "part4.netflix.use1": "EC2 skaitļošanas jaudai un lietotņu darbināšanai",
+  "@part4.netflix.use1": {
+    "description": "First item Netflix uses - compute power from AWS"
+  },
+  "part4.netflix.use2": "S3 video satura glabāšanai",
+  "@part4.netflix.use2": {
+    "description": "Second item Netflix uses - storage from AWS"
+  },
+  "part4.netflix.use3": "AWS mašīnmācīšanās rīkus rekomendācijām",
+  "@part4.netflix.use3": {
+    "description": "Third item Netflix uses - ML tools from AWS"
+  },
+  "part4.netflix.manages": "Netflix pārvalda:",
+  "@part4.netflix.manages": {
+    "description": "Header for what Netflix manages on top of AWS infrastructure"
+  },
+  "part4.netflix.manage1": "Straumēšanas lietojumprogrammas un kodu",
+  "@part4.netflix.manage1": {
+    "description": "First item Netflix manages - their streaming apps"
+  },
+  "part4.netflix.manage2": "Satura bibliotēku un licencēšanu",
+  "@part4.netflix.manage2": {
+    "description": "Second item Netflix manages - their content library"
+  },
+  "part4.netflix.manage3": "Lietotāju kontus un norēķinus",
+  "@part4.netflix.manage3": {
+    "description": "Third item Netflix manages - their subscriber system"
+  },
+  "part4.netflix.insight": "Galvenā atziņa:",
+  "@part4.netflix.insight": {
+    "description": "Label introducing the key takeaway for Netflix perspective"
+  },
+  "part4.netflix.insight.text": "Netflix izmanto AWS kā «Platformu kā pakalpojumu», īrējot serverus un glabātuvi, lai izveidotu savu straumēšanas pakalpojumu. Viņi koncentrējas uz satura un programmatūras izveidi, kamēr AWS nodarbojas ar aparatūru.",
+  "@part4.netflix.insight.text": {
+    "description": "Key insight explaining how Netflix uses cloud as PaaS"
+  },
+  "part4.subscriber.role": "Loma: satura patērētājs",
+  "@part4.subscriber.role": {
+    "description": "Label showing subscriber's role as end user"
+  },
+  "part4.subscriber.service": "Pakalpojumu modelis: Programmatūra kā pakalpojums (SaaS)",
+  "@part4.subscriber.service": {
+    "description": "Service model from subscriber's perspective - SaaS"
+  },
+  "part4.subscriber.model.label": "Abonenti lieto gatavo Netflix lietotni — «Programmatūra kā pakalpojums» (SaaS)",
+  "@part4.subscriber.model.label": {
+    "description": "Explicit label showing subscriber's perspective sees SaaS on top of Netflix's PaaS"
+  },
+  "part4.subscriber.gets": "Abonents saņem:",
+  "@part4.subscriber.gets": {
+    "description": "Header for what subscriber receives as end user"
+  },
+  "part4.subscriber.get1": "Tūlītēju filmu un seriālu straumēšanu",
+  "@part4.subscriber.get1": {
+    "description": "First benefit subscriber gets - streaming access"
+  },
+  "part4.subscriber.get2": "Personalizētas rekomendācijas",
+  "@part4.subscriber.get2": {
+    "description": "Second benefit subscriber gets - personalized recommendations"
+  },
+  "part4.subscriber.get3": "Piekļuvi no vairākām ierīcēm (TV, tālrunis, planšete)",
+  "@part4.subscriber.get3": {
+    "description": "Third benefit subscriber gets - cross-device access"
+  },
+  "part4.subscriber.manages": "Abonents pārvalda:",
+  "@part4.subscriber.manages": {
+    "description": "Header for what little the subscriber needs to manage"
+  },
+  "part4.subscriber.manage1": "Savu abonementu un maksājumus",
+  "@part4.subscriber.manage1": {
+    "description": "First thing subscriber manages - their subscription"
+  },
+  "part4.subscriber.manage2": "Profila iestatījumus un preferences",
+  "@part4.subscriber.manage2": {
+    "description": "Second thing subscriber manages - their preferences"
+  },
+  "part4.subscriber.manage3": "Savu skatīšanās sarakstu",
+  "@part4.subscriber.manage3": {
+    "description": "Third thing subscriber manages - their watchlist"
+  },
+  "part4.subscriber.insight": "Galvenā atziņa:",
+  "@part4.subscriber.insight": {
+    "description": "Label introducing the key takeaway for subscriber perspective"
+  },
+  "part4.subscriber.insight.text": "Kā abonents jūs izmantojat Netflix kā SaaS. Jūs maksājat par piekļuvi gatavai programmatūrai — nav jāinstalē, nav jāpārvalda serveri vai pat jāzina, kā tas darbojas. Vienkārši straumējiet!",
+  "@part4.subscriber.insight.text": {
+    "description": "Key insight explaining how subscribers experience cloud as SaaS"
+  },
+  "part4.button.continue": "Turpināt",
+  "@part4.button.continue": {
+    "description": "Button to proceed to Part 5 after exploring all perspectives"
+  },
+  "part4.explore.prompt": "Izpētiet visas trīs perspektīvas, lai saprastu, kā vienu mākoņa steku var uzskatīt par IaaS, PaaS vai SaaS atkarībā no jūsu lomas.",
+  "@part4.explore.prompt": {
+    "description": "Prompt encouraging users to click all three tabs before continuing to next section"
+  },
+  "part4.tab.aria.aws": "Skatīt no AWS perspektīvas kā infrastruktūras nodrošinātājs",
+  "@part4.tab.aria.aws": {
+    "description": "ARIA label for AWS tab button for screen readers"
+  },
+  "part4.tab.aria.netflix": "Skatīt no Netflix perspektīvas kā platforma",
+  "@part4.tab.aria.netflix": {
+    "description": "ARIA label for Netflix tab button for screen readers"
+  },
+  "part4.tab.aria.subscriber": "Skatīt no abonenta perspektīvas kā galalietotājs",
+  "@part4.tab.aria.subscriber": {
+    "description": "ARIA label for subscriber tab button for screen readers"
+  },
+  "part5.title": "5. daļa: Mākoņrisinājumu projektētājs",
+  "@part5.title": {
+    "description": "Header for the Cloud Solution Designer interactive section"
+  },
+  "part5.subtitle": "Pielietojiet zināšanas reālos biznesa scenārijos",
+  "@part5.subtitle": {
+    "description": "Subtitle explaining the purpose of Part 5"
+  },
+  "part5.instructions": "Izvēlieties pakalpojumu modeli un izvietošanas modeli šim biznesa scenārijam. Pielāgojiet parametrus, tad novērtējiet savu izvēli.",
+  "@part5.instructions": {
+    "description": "Detailed instructions for the Cloud Solution Designer interaction"
+  },
+  "part5.scenario.label": "Scenārijs {current, number} no {total, number}",
+  "@part5.scenario.label": {
+    "description": "Label showing current scenario progress. current and total are numbers"
+  },
+  "part5.scenario1.title": "Jaunuzņēmuma palaišana",
+  "@part5.scenario1.title": {
+    "description": "Title for first scenario about launching a startup"
+  },
+  "part5.scenario1.description": "Tehnoloģiju jaunuzņēmums palaiž jaunu patērētāju lietotni. Viņiem nepieciešama ātra iterācija, viņi sagaida strauju lietotāju pieaugumu un viņiem ir ierobežots budžets. Kādu mākoņpakalpojumu kombināciju jūs ieteiktu?",
+  "@part5.scenario1.description": {
+    "description": "Description of startup launch scenario with business requirements"
+  },
+  "part5.scenario2.title": "Bankas sistēma",
+  "@part5.scenario2.title": {
+    "description": "Title for second scenario about banking compliance"
+  },
+  "part5.scenario2.description": "Reģionāla banka modernizē IT sistēmas. Viņiem jāatbilst stingrām finanšu regulām, jābūt pilnīgai kontrolei pār datiem un jāuztur paredzama veiktspēja iekšējām operācijām.",
+  "@part5.scenario2.description": {
+    "description": "Description of banking scenario with compliance requirements"
+  },
+  "part5.scenario3.title": "Mazumtirdzniecības e-komercija",
+  "@part5.scenario3.title": {
+    "description": "Title for third scenario about retail e-commerce"
+  },
+  "part5.scenario3.description": "Mazumtirdzniecības ķēde veido e-komercijas platformu. Viņiem jātiek galā ar sezonāliem datplūsmas pieprasījumiem (svētku izpārdošanas), jāintegrējas ar esošajām inventāra sistēmām un ātri jāmērogojas.",
+  "@part5.scenario3.description": {
+    "description": "Description of retail scenario with scalability needs"
+  },
+  "part5.priorities.title": "Scenārija prioritātes",
+  "@part5.priorities.title": {
+    "description": "Section header showing scenario priority weights"
+  },
+  "part5.priority.performance": "Veiktspēja",
+  "@part5.priority.performance": {
+    "description": "Label for performance priority metric"
+  },
+  "part5.priority.compliance": "Atbilstība",
+  "@part5.priority.compliance": {
+    "description": "Label for compliance/control priority metric"
+  },
+  "part5.priority.budget": "Budžets",
+  "@part5.priority.budget": {
+    "description": "Label for budget/cost priority metric"
+  },
+  "part5.priority.effort": "Vienkāršība",
+  "@part5.priority.effort": {
+    "description": "Label for operational ease priority metric. Short form of operational ease"
+  },
+  "part5.priority.high": "Augsta",
+  "@part5.priority.high": {
+    "description": "High priority badge text"
+  },
+  "part5.priority.medium": "Vidēja",
+  "@part5.priority.medium": {
+    "description": "Medium priority badge text"
+  },
+  "part5.priority.low": "Zema",
+  "@part5.priority.low": {
+    "description": "Low priority badge text"
+  },
+  "part5.users.label": "Lietotāji: {count, number}",
+  "@part5.users.label": {
+    "description": "Label showing user count with slider value. count is a number"
+  },
+  "part5.users.peak": "Paredzamie lietotāji (maksimums): {count, number}",
+  "@part5.users.peak": {
+    "description": "Label for expected peak users slider. count is a number"
+  },
+  "part5.results.title": "Jūsu konfigurācija",
+  "@part5.results.title": {
+    "description": "Header for results section showing selected configuration"
+  },
+  "part5.results.service": "Pakalpojumu modelis: {model}",
+  "@part5.results.service": {
+    "description": "Label showing selected service model. model is text like 'PaaS'"
+  },
+  "part5.results.deployment": "Izvietošanas modelis: {model}",
+  "@part5.results.deployment": {
+    "description": "Label showing selected deployment model. model is text like 'Public Cloud'"
+  },
+  "part5.results.cost": "Aptuvenas izmaksas: ${amount, number}/mēn.",
+  "@part5.results.cost": {
+    "description": "Monthly cost estimate. amount is a number representing USD"
+  },
+  "part5.results.performance": "Veiktspējas novērtējums: {score, number}/100",
+  "@part5.results.performance": {
+    "description": "Performance rating out of 100. score is a number"
+  },
+  "part5.results.compliance": "Atbilstības novērtējums: {score, number}/100",
+  "@part5.results.compliance": {
+    "description": "Compliance rating out of 100. score is a number"
+  },
+  "part5.results.effort": "Operacionālās pūles: {level}",
+  "@part5.results.effort": {
+    "description": "Operational effort level. level is text like 'Low', 'Medium', 'High'"
+  },
+  "part5.effort.low": "Zemas",
+  "@part5.effort.low": {
+    "description": "Low effort level text"
+  },
+  "part5.effort.medium": "Vidējas",
+  "@part5.effort.medium": {
+    "description": "Medium effort level text"
+  },
+  "part5.effort.high": "Augstas",
+  "@part5.effort.high": {
+    "description": "High effort level text"
+  },
+  "part5.tooltip.iaas": "Infrastruktūra kā pakalpojums: jūs īrējat skaitļošanas resursus (serverus, glabātuvi, tīklus). Jūs pārvaldāt OS, programmatūru un datus. Vislielākā kontrole, bet arī vislielākās pūles.",
+  "@part5.tooltip.iaas": {
+    "description": "Detailed tooltip explaining IaaS model for learners"
+  },
+  "part5.tooltip.paas": "Platforma kā pakalpojums: jūs saņemat gatavu platformu lietojumprogrammu izvietošanai. Nodrošinātājs pārvalda infrastruktūru. Līdzsvarota kontrole un vienkāršība.",
+  "@part5.tooltip.paas": {
+    "description": "Detailed tooltip explaining PaaS model for learners"
+  },
+  "part5.tooltip.saas": "Programmatūra kā pakalpojums: jūs lietojat gatavu lietojumprogrammu. Nodrošinātājs pārvalda visu. Vismazākās pūles, bet arī vismazākā kontrole.",
+  "@part5.tooltip.saas": {
+    "description": "Detailed tooltip explaining SaaS model for learners"
+  },
+  "part5.tooltip.public": "Publiskais mākonis: koplietoti resursi internetā no nodrošinātājiem kā AWS vai Azure. Rentabls un mērogojams, bet mazāka kontrole.",
+  "@part5.tooltip.public": {
+    "description": "Detailed tooltip explaining Public cloud deployment"
+  },
+  "part5.tooltip.private": "Privātais mākonis: atvēlēti resursi vienai organizācijai. Lielāka kontrole un drošība, bet augstākas izmaksas.",
+  "@part5.tooltip.private": {
+    "description": "Detailed tooltip explaining Private cloud deployment"
+  },
+  "part5.tooltip.hybrid": "Hibrīdais mākonis: publiskā un privātā mākoņa kombinācija. Elastīgums izvietot darba slodzes tur, kur tās vislabāk atbilst.",
+  "@part5.tooltip.hybrid": {
+    "description": "Detailed tooltip explaining Hybrid cloud deployment"
+  },
+  "part5.toggle.compare": "Salīdzināt visas opcijas",
+  "@part5.toggle.compare": {
+    "description": "Label for toggle that shows comparison table of all options"
+  },
+  "part5.table.rank": "Nr.",
+  "@part5.table.rank": {
+    "description": "Table header for ranking column (1st, 2nd, 3rd, etc.)"
+  },
+  "part5.table.option": "Opcija",
+  "@part5.table.option": {
+    "description": "Table header for service/deployment combination column"
+  },
+  "part5.table.cost": "Izmaks.",
+  "@part5.table.cost": {
+    "description": "Table header for monthly cost column"
+  },
+  "part5.table.perf": "Veiktsp.",
+  "@part5.table.perf": {
+    "description": "Table header for performance metric column. Short for Performance to save space"
+  },
+  "part5.table.compliance": "Atbilst.",
+  "@part5.table.compliance": {
+    "description": "Table header for compliance/control metric column"
+  },
+  "part5.table.ease": "Vienk.",
+  "@part5.table.ease": {
+    "description": "Table header for operational ease metric column"
+  },
+  "part5.table.fit": "Piem.",
+  "@part5.table.fit": {
+    "description": "Table header for overall fit score column"
+  },
+  "part5.table.note": "Piemērotība = svērta kombinācija no pieejamības (lētāk ir labāk), veiktspējas, atbilstības/kontroles un operacionālās vienkāršības, izmantojot iepriekš minētos scenārija svarus.",
+  "@part5.table.note": {
+    "description": "Explanatory note below comparison table explaining how the fit score is calculated from weighted metrics"
+  },
+  "part5.button.evaluate": "Novērtēt manu izvēli",
+  "@part5.button.evaluate": {
+    "description": "Button to submit selection and receive feedback on how well it fits the scenario"
+  },
+  "part5.button.next": "Nākamais scenārijs",
+  "@part5.button.next": {
+    "description": "Button to proceed to next business scenario after evaluation"
+  },
+  "part5.button.finish": "Pabeigt",
+  "@part5.button.finish": {
+    "description": "Button to complete Part 5 and view final summary after last scenario"
+  },
+  "part5.explanation.cost": "Izmaksas sastāv no {deploymentLabel} infrastruktūras {infraCost} + {serviceLabel} platformas/operāciju {platformCost}.",
+  "@part5.explanation.cost": {
+    "description": "Explanation of how total cost is calculated from infrastructure and platform/ops costs. deploymentLabel=deployment type, infraCost=monthly infra cost, serviceLabel=service type, platformCost=monthly ops cost"
+  },
+  "part5.explanation.performance.private": "{deploymentLabel} elastīgums ({elasticity}/100) samazinās vairāk pie maksimālās slodzes bez kapacitātes plānošanas, tāpēc pie {loadPercent}% maksimuma jūsu veiktspējas novērtējums ir {perfScore}.",
+  "@part5.explanation.performance.private": {
+    "description": "Explanation of performance score for Private cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.performance.public": "{deploymentLabel} elastīgums ({elasticity}/100) labāk tiek galā ar pieprasījuma pikiem, tāpēc pie {loadPercent}% maksimuma jūsu veiktspējas novērtējums ir {perfScore}.",
+  "@part5.explanation.performance.public": {
+    "description": "Explanation of performance score for Public/Hybrid cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.compliance": "Atbilstību/kontroli ietekmē {deploymentLabel} ({baseCompliance}/100) un {serviceLabel} kontroles bonuss ({controlBonus, number, :: sign-always}).",
+  "@part5.explanation.compliance": {
+    "description": "Explanation of compliance/control score calculation. deploymentLabel=deployment type, baseCompliance=base compliance rating, serviceLabel=service type, controlBonus=signed number. The :: sign-always ICU syntax forces sign display for translators to control formatting"
+  },
+  "part5.explanation.effort": "Operacionālās pūles galvenokārt nosaka pakalpojumu modelis; {serviceLabel} nozīmē {effortScore}/100 pūles (mazāka vienkāršība).",
+  "@part5.explanation.effort": {
+    "description": "Explanation of operational effort score for non-hybrid deployments. serviceLabel=service type, effortScore=effort level"
+  },
+  "part5.explanation.effort.hybrid": "Operacionālās pūles galvenokārt nosaka pakalpojumu modelis; {serviceLabel} nozīmē {effortScore}/100 pūles (mazāka vienkāršība). Hibrīds pievieno integrācijas izmaksas.",
+  "@part5.explanation.effort.hybrid": {
+    "description": "Explanation of operational effort score for hybrid deployment. serviceLabel=service type, effortScore=effort level. Includes note about hybrid integration overhead. Translators control full sentence structure"
+  },
+  "part5.feedback.excellent": "✅ Izcili — jūs izvēlējāties labāko opciju šim scenārijam.",
+  "@part5.feedback.excellent": {
+    "description": "Positive feedback when learner selects the #1 ranked option with highest fit score"
+  },
+  "part5.feedback.solid": "👍 Labi — jūsu izvēle ir starp labākajām trim šim scenārijam.",
+  "@part5.feedback.solid": {
+    "description": "Positive feedback when learner selects one of the top 3 ranked options"
+  },
+  "part5.feedback.reasonable": "💡 Saprātīgi, bet ir opcijas, kas labāk atbilst šim scenārijam.",
+  "@part5.feedback.reasonable": {
+    "description": "Constructive feedback when learner selects a lower-ranked option that could be improved"
+  },
+  "part5.feedback.details": "Jūsu piemērotības novērtējums: {yourFit, number}/100. Labākā opcija: {topService} + {topDeployment} ({topFit, number}/100).",
+  "@part5.feedback.details": {
+    "description": "Detailed feedback showing learner's fit score compared to the top option. yourFit and topFit are numeric scores, topService and topDeployment are text like 'PaaS' and 'Public Cloud'"
+  },
+  "part5.feedback.helping.label": "Faktori, kas palīdz jūsu izvēlei:",
+  "@part5.feedback.helping.label": {
+    "description": "Label for list of strengths in the selected solution"
+  },
+  "part5.feedback.helping.none": "nav izcelti",
+  "@part5.feedback.helping.none": {
+    "description": "Text shown when no specific factors are strong enough to highlight as helping"
+  },
+  "part5.feedback.helping.performance": "veiktspēja",
+  "@part5.feedback.helping.performance": {
+    "description": "Factor name: performance/scalability is a strength of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.helping.compliance": "atbilstība",
+  "@part5.feedback.helping.compliance": {
+    "description": "Factor name: compliance/control is a strength of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.helping.effort": "zemas pūles",
+  "@part5.feedback.helping.effort": {
+    "description": "Factor name: low operational effort is a strength of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.feedback.hurting.label": "Faktori, kas kaitē jūsu izvēlei:",
+  "@part5.feedback.hurting.label": {
+    "description": "Label for list of weaknesses in the selected solution"
+  },
+  "part5.feedback.hurting.none": "nav izcelti",
+  "@part5.feedback.hurting.none": {
+    "description": "Text shown when no specific factors are weak enough to highlight as hurting"
+  },
+  "part5.feedback.hurting.performance": "veiktspēja",
+  "@part5.feedback.hurting.performance": {
+    "description": "Factor name: performance/scalability is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.compliance": "atbilstība",
+  "@part5.feedback.hurting.compliance": {
+    "description": "Factor name: compliance/control is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.effort": "pūles",
+  "@part5.feedback.hurting.effort": {
+    "description": "Factor name: high operational effort is a weakness of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.tip": "Padoms skolotājiem: mudiniet audzēkņus pārslēgt «Salīdzināt visas» un pārvietot lietotāju slīdni, lai redzētu, kā mainās ranžējums, pieaugot mērogam. Jautājiet: «Kad jūs izvēlētos hibrīdo, nevis publisko? Kāpēc SaaS ir ideāls iekšējai CRM?»",
+  "@part5.tip": {
+    "description": "Pedagogical tip for educators on how to facilitate deeper learning. CRM = Customer Relationship Management. This tip encourages exploration and critical thinking questions"
+  },
+  "progress.label": "Mācību ceļojuma navigācija",
+  "@progress.label": {
+    "description": "ARIA label for the progress navigation bar"
+  },
+  "progress.introduction.title": "Ievads",
+  "@progress.introduction.title": {
+    "description": "Short title for introduction stage in progress bar"
+  },
+  "progress.introduction.label": "Doties uz Ievadu",
+  "@progress.introduction.label": {
+    "description": "ARIA label for introduction navigation button"
+  },
+  "progress.part1.title": "1. daļa",
+  "@progress.part1.title": {
+    "description": "Short title for Part 1: Foundations in progress bar"
+  },
+  "progress.part1.label": "Doties uz 1. daļu: Pamati",
+  "@progress.part1.label": {
+    "description": "ARIA label for Part 1 navigation button"
+  },
+  "progress.part2.title": "2. daļa",
+  "@progress.part2.title": {
+    "description": "Short title for Part 2: Service Models in progress bar"
+  },
+  "progress.part2.label": "Doties uz 2. daļu: Pakalpojumu modeļi",
+  "@progress.part2.label": {
+    "description": "ARIA label for Part 2 navigation button"
+  },
+  "progress.part3.title": "3. daļa",
+  "@progress.part3.title": {
+    "description": "Short title for Part 3: Deployment Models in progress bar"
+  },
+  "progress.part3.label": "Doties uz 3. daļu: Izvietošanas modeļi",
+  "@progress.part3.label": {
+    "description": "ARIA label for Part 3 navigation button"
+  },
+  "progress.part4.title": "4. daļa",
+  "@progress.part4.title": {
+    "description": "Short title for Part 4: Perspective Matters in progress bar"
+  },
+  "progress.part4.label": "Doties uz 4. daļu: Perspektīvas nozīme",
+  "@progress.part4.label": {
+    "description": "ARIA label for Part 4 navigation button"
+  },
+  "progress.part5.title": "5. daļa",
+  "@progress.part5.title": {
+    "description": "Short title for Part 5: Cloud Designer in progress bar"
+  },
+  "progress.part5.label": "Doties uz 5. daļu: Mākoņrisinājumu projektētājs",
+  "@progress.part5.label": {
+    "description": "ARIA label for Part 5 navigation button"
+  },
+  "progress.summary.title": "Kopsavilkums",
+  "@progress.summary.title": {
+    "description": "Short title for summary/results stage in progress bar"
+  },
+  "progress.summary.label": "Doties uz Kopsavilkumu un rezultātiem",
+  "@progress.summary.label": {
+    "description": "ARIA label for summary navigation button"
+  },
+  "progress.introduction.subtitle": "Darba sākums",
+  "@progress.introduction.subtitle": {
+    "description": "Subtitle shown under the Intro progress stage"
+  },
+  "progress.part1.subtitle": "Pamati",
+  "@progress.part1.subtitle": {
+    "description": "Subtitle shown under the Part 1 progress stage - about cloud computing basics"
+  },
+  "progress.part2.subtitle": "Pakalpojumu modeļi",
+  "@progress.part2.subtitle": {
+    "description": "Subtitle shown under the Part 2 progress stage - about IaaS, PaaS, SaaS"
+  },
+  "progress.part3.subtitle": "Izvietošanas modeļi",
+  "@progress.part3.subtitle": {
+    "description": "Subtitle shown under the Part 3 progress stage - about Public, Private, Hybrid"
+  },
+  "progress.part4.subtitle": "Perspektīvas nozīme",
+  "@progress.part4.subtitle": {
+    "description": "Subtitle shown under the Part 4 progress stage - about Netflix case study"
+  },
+  "progress.part5.subtitle": "Mākoņa projektētājs",
+  "@progress.part5.subtitle": {
+    "description": "Subtitle shown under the Part 5 progress stage - about applying knowledge to scenarios"
+  },
+  "progress.summary.subtitle": "Jūsu rezultāti",
+  "@progress.summary.subtitle": {
+    "description": "Subtitle shown under the Summary progress stage - final score and recap"
+  },
+  "part5.step1.title": "Izvēlieties pakalpojumu modeli",
+  "@part5.step1.title": {
+    "description": "Step 1 heading in the stepper - service model selection"
+  },
+  "part5.step1.subtitle": "Ko jūs pērkat",
+  "@part5.step1.subtitle": {
+    "description": "Step 1 subtitle explaining service model concept"
+  },
+  "part5.step2.title": "Izvēlieties izvietošanas modeli",
+  "@part5.step2.title": {
+    "description": "Step 2 heading in the stepper - deployment model selection"
+  },
+  "part5.step2.subtitle": "Kur tas darbojas",
+  "@part5.step2.subtitle": {
+    "description": "Step 2 subtitle explaining deployment model concept"
+  },
+  "part5.step3.title": "Skatiet kompromisus un novērtējiet",
+  "@part5.step3.title": {
+    "description": "Step 3 heading in the stepper - view results and compare"
+  },
+  "part5.step3.subtitle": "Pārskatiet savu dizainu",
+  "@part5.step3.subtitle": {
+    "description": "Step 3 subtitle explaining the results review step"
+  },
+  "part5.compare.title": "Salīdziniet visas pakalpojumu un izvietošanas opcijas",
+  "@part5.compare.title": {
+    "description": "Title for the comparison table showing all combinations"
+  },
+  "part5.compare.show": "Rādīt:",
+  "@part5.compare.show": {
+    "description": "Label before the summary/all toggle buttons"
+  },
+  "part5.compare.summary": "Kopsavilkums",
+  "@part5.compare.summary": {
+    "description": "Button to show summarized comparison (top 3 options)"
+  },
+  "part5.compare.all": "Visas opcijas",
+  "@part5.compare.all": {
+    "description": "Button to show all 9 service/deployment combinations"
+  },
+  "venn.public.label": "Publiskais mākonis",
+  "@venn.public.label": {
+    "description": "Label for Public Cloud in the Venn diagram"
+  },
+  "venn.private.label": "Privātais mākonis",
+  "@venn.private.label": {
+    "description": "Label for Private Cloud in the Venn diagram"
+  },
+  "venn.hybrid.label": "Hibrīdais mākonis",
+  "@venn.hybrid.label": {
+    "description": "Label for Hybrid Cloud intersection in the Venn diagram"
+  },
+  "venn.aria.label": "Venna diagramma, kas parāda saistību starp publiskā, privātā un hibrīdā mākoņa izvietošanas modeļiem",
+  "@venn.aria.label": {
+    "description": "Accessible description of the Venn diagram for screen readers"
+  },
+  "common.tooltip.moreInfo": "Vairāk informācijas par {label}",
+  "@common.tooltip.moreInfo": {
+    "description": "Accessible label for tooltip buttons that provide additional information about a topic"
+  },
+  "language.switcher.label": "Valodas izvēle",
+  "@language.switcher.label": {
+    "description": "Accessible label for the language switcher dropdown"
+  },
+  "language.en": "English",
+  "@language.en": {
+    "description": "English language name"
+  },
+  "language.ru": "Русский",
+  "@language.ru": {
+    "description": "Russian language name"
+  },
+  "language.lv": "Latviešu",
+  "@language.lv": {
+    "description": "Latvian language name"
+  }
+}

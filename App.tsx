@@ -7,6 +7,7 @@ import Part4Netflix from './components/Part4Netflix';
 import Part5CloudDesigner from './components/Part5CloudDesigner';
 import Summary from './components/Summary';
 import ProgressBar from './components/ProgressBar';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import { Stage, STAGES } from './types';
 
 const App: React.FC = () => {
@@ -84,6 +85,9 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#19020b] to-slate-900 flex flex-col items-center justify-center p-4 font-sans relative overflow-hidden pb-24 sm:pb-28">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-slate-700/[0.2] [mask-image:linear-gradient(to_bottom,white_20%,transparent_100%)]"></div>
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
       <div className="w-full max-w-4xl mx-auto z-10">
         <div className="mt-8">
            {renderStage()}

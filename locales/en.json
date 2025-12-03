@@ -1246,5 +1246,21 @@
   "common.tooltip.moreInfo": "More information about {label}",
   "@common.tooltip.moreInfo": {
     "description": "Accessible label for tooltip buttons that provide additional information about a topic"
+  },
+  "language.switcher.label": "Language selection",
+  "@language.switcher.label": {
+    "description": "Accessible label for the language switcher dropdown"
+  },
+  "language.en": "English",
+  "@language.en": {
+    "description": "English language name"
+  },
+  "language.ru": "Русский",
+  "@language.ru": {
+    "description": "Russian language name"
+  },
+  "language.lv": "Latviešu",
+  "@language.lv": {
+    "description": "Latvian language name"
   }
 }

@@ -4,7 +4,15 @@ import enMessages from '../locales/en.json';
 
 const DEFAULT_LOCALE = 'en';
 const FALLBACK_LOCALE = 'en';
-const SUPPORTED_LOCALES = ['en', 'ar', 'de', 'pseudo'] as const;
+const SUPPORTED_LOCALES = ['en', 'ru', 'lv', 'ar', 'de', 'pseudo'] as const;
+
+export const LOCALE_NAMES: Record<string, string> = {
+  en: 'English',
+  ru: 'Русский',
+  lv: 'Latviešu',
+  ar: 'العربية',
+  de: 'Deutsch',
+};
 
 type RawLocaleMessages = Record<string, string | { description: string }>;
 
