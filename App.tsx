@@ -21,6 +21,7 @@ const App: React.FC = () => {
   const [currentStage, setCurrentStage] = useState<Stage>('introduction');
   const [furthestStage, setFurthestStage] = useState<Stage>('introduction');
   const [scores, setScores] = useState<Record<string, number>>({ part1: 0, part2: 0, part3: 0, part4: 0, part5: 0 });
+  const [actionBar, setActionBar] = useState<React.ReactNode>(null);
 
   const getCompletedStages = (): Set<Stage> => {
     const currentIndex = STAGES.indexOf(currentStage);
@@ -81,7 +82,7 @@ const App: React.FC = () => {
       case 'part4':
         return <Part4Netflix onComplete={(score) => handleNext('part4', score)} />;
       case 'part5':
-        return <Part5CloudDesigner onComplete={(score) => handleNext('part5', score)} />;
+        return <Part5CloudDesigner onComplete={(score) => handleNext('part5', score)} setActionBar={setActionBar} />;
       case 'summary':
         return <Summary scores={scores} onRestart={handleRestart} />;
       default:
@@ -106,6 +107,7 @@ const App: React.FC = () => {
         currentStage={currentStage} 
         completedStages={getCompletedStages()}
         onNavigate={handleNavigate}
+        actionBar={actionBar}
       />
     </div>
   );
