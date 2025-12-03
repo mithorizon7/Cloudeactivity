@@ -1,4 +1,14 @@
 {
+  "common.tooltip.moreInfo": [
+    {
+      "type": 0,
+      "value": "More information about "
+    },
+    {
+      "type": 1,
+      "value": "label"
+    }
+  ],
   "deploymentmodel.hybrid": [
     {
       "type": 0,

@@ -1,0 +1,1250 @@
+{
+  "introduction.title": "[Ĥòŵ Çĺòùð Çòɱþùţìñĝ Ŵòŕķš~~~~~~~~~]",
+  "@introduction.title": {
+    "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
+  },
+  "introduction.description": "[Ţĥìš šĥòŕţ, ìñţèŕàçţìṽè àçţìṽìţý ŵìĺĺ ĝùìðè ýòù ţĥŕòùĝĥ ţĥè ɱèţĥòðš àñð ţèçĥñìǫùèš òƒ ţĥè çĺòùð, ƒŕòɱ ìţš ƒòùñðàţìòñš ţò ìţš ðèþĺòýɱèñţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@introduction.description": {
+    "description": "Brief description of what the user will learn in this activity"
+  },
+  "introduction.part1.title": "[Þàŕţ 1: Ƒòùñðàţìòñš.~~~~~~~]",
+  "@introduction.part1.title": {
+    "description": "Title for the first learning section about cloud computing basics"
+  },
+  "introduction.part1.description": "[Ţàçķĺè 'Ṁýţĥ ṽš. Ƒàçţ' ǫùèšţìòñš àƀòùţ ŵĥàţ ţĥè çĺòùð ŕèàĺĺý ìš.~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@introduction.part1.description": {
+    "description": "Description of the first activity - a quiz format about cloud fundamentals"
+  },
+  "introduction.part2.title": "[Þàŕţ 2: Šèŕṽìçè Ṁòðèĺš.~~~~~~~~~]",
+  "@introduction.part2.title": {
+    "description": "Title for the second learning section about cloud service types"
+  },
+  "introduction.part2.description": "[Þĺàý à ðŕàĝ-àñð-ðŕòþ ĝàɱè ţò šòŕţ ÌààŠ, ÞààŠ, àñð ŠààŠ.~~~~~~~~~~~~~~~~~~~~]",
+  "@introduction.part2.description": {
+    "description": "Description of the second activity - interactive sorting game. IaaS, PaaS, and SaaS are technical acronyms that should not be translated"
+  },
+  "introduction.part3.title": "[Þàŕţ 3: Ðèþĺòýɱèñţ Ṁòðèĺš.~~~~~~~~~~]",
+  "@introduction.part3.title": {
+    "description": "Title for the third learning section about cloud deployment types"
+  },
+  "introduction.part3.description": "[Šòĺṽè ŕèàĺ-ŵòŕĺð šçèñàŕìòš ţò ùñðèŕšţàñð Þùƀĺìç, Þŕìṽàţè, àñð Ĥýƀŕìð çĺòùðš.~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@introduction.part3.description": {
+    "description": "Description of the third activity - scenario-based learning about deployment types"
+  },
+  "introduction.button.start": "[Ĺèţ'š Ĝèţ Šţàŕţèð~~~~~~]",
+  "@introduction.button.start": {
+    "description": "Call-to-action button to begin the learning activity"
+  },
+  "part1.title": "[Þàŕţ 1: Ţĥè Ƒòùñðàţìòñ~~~~~~~~]",
+  "@part1.title": {
+    "description": "Header for the foundation quiz section"
+  },
+  "part1.subtitle": "[Ìš ţĥè ƒòĺĺòŵìñĝ šţàţèɱèñţ à ɱýţĥ òŕ à ƒàçţ?~~~~~~~~~~~~~~~~]",
+  "@part1.subtitle": {
+    "description": "Instruction text explaining the quiz format to users"
+  },
+  "part1.button.fact": "[Ƒàçţ~~]",
+  "@part1.button.fact": {
+    "description": "Button label for selecting that a statement is true/factual"
+  },
+  "part1.button.myth": "[Ṁýţĥ~~]",
+  "@part1.button.myth": {
+    "description": "Button label for selecting that a statement is false/myth"
+  },
+  "part1.feedback.correct.title": "[Çòŕŕèçţ!~~~]",
+  "@part1.feedback.correct.title": {
+    "description": "Positive feedback shown when user selects the right answer"
+  },
+  "part1.feedback.incorrect.title": "[Ñòţ Ǫùìţè!~~~~]",
+  "@part1.feedback.incorrect.title": {
+    "description": "Gentle feedback shown when user selects the wrong answer"
+  },
+  "part1.button.next": "[Ñèẋţ Ǫùèšţìòñ~~~~~]",
+  "@part1.button.next": {
+    "description": "Button to proceed to the next quiz question"
+  },
+  "part1.button.continue": "[Çòñţìñùè~~~]",
+  "@part1.button.continue": {
+    "description": "Button to proceed to next section after completing all questions"
+  },
+  "part1.question1.statement": "[Ţĥè ƒòùñðàţìòñš òƒ çĺòùð çòɱþùţìñĝ àŕè ĥìĝĥ-þòŵèŕèð çòɱþùţèŕš çàĺĺèð šèŕṽèŕš, ĺòçàţèð ìñ ƒàçìĺìţìèš çàĺĺèð ðàţà çèñţèŕš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part1.question1.statement": {
+    "description": "Quiz statement about the physical infrastructure of cloud computing"
+  },
+  "part1.question1.explanation": "[Ţĥàţ'š ŕìĝĥţ! Ţĥè çĺòùð'š çèñţŕàĺ ìññòṽàţìòñ ìš þĺàçìñĝ ĺàŕĝè ñùɱƀèŕš òƒ šèŕṽèŕš ìñ ðàţà çèñţèŕš, ţýþìçàĺĺý ĺòçàţèð ƒàŕ ƒŕòɱ ţĥè ìñðìṽìðùàĺš àñð òŕĝàñìžàţìòñš ţĥàţ àççèšš ţĥèɱ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part1.question1.explanation": {
+    "description": "Educational explanation shown after answering the question correctly or incorrectly"
+  },
+  "part1.question2.statement": "[Çĺòùð çòɱþùţìñĝ ŕèǫùìŕèš òŕĝàñìžàţìòñš ţò ƀùý àñð òþèŕàţè ţĥèìŕ òŵñ çòɱþùţèŕ èǫùìþɱèñţ òñ-þŕèɱìšèš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part1.question2.statement": {
+    "description": "Quiz statement about cloud vs on-premises computing"
+  },
+  "part1.question2.explanation": "[Èẋàçţĺý. Ĥìšţòŕìçàĺĺý, òŕĝàñìžàţìòñš òþèŕàţèð ţĥèìŕ òŵñ òñ-þŕèɱìšèš èǫùìþɱèñţ. Çĺòùð çòɱþùţìñĝ àĺĺòŵš ţĥèɱ ţò àççèšš ŕèšòùŕçèš ŕèɱòţèĺý ƒŕòɱ à çĺòùð þŕòṽìðèŕ ìñšţèàð.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part1.question2.explanation": {
+    "description": "Educational explanation about the evolution from on-premises to cloud computing"
+  },
+  "part2.title": "[Þàŕţ 2: Šèŕṽìçè Ṁòðèĺš~~~~~~~~]",
+  "@part2.title": {
+    "description": "Header for the service models sorting game section"
+  },
+  "part2.subtitle": "[Ðŕàĝ èàçĥ èẋàɱþĺè ţò ţĥè çòŕŕèçţ šèŕṽìçè ɱòðèĺ çàţèĝòŕý.~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.subtitle": {
+    "description": "Instruction for the drag-and-drop interaction"
+  },
+  "part2.examples.title": "[Èẋàɱþĺèš~~~]",
+  "@part2.examples.title": {
+    "description": "Label for the list of examples that users will drag and drop"
+  },
+  "part2.feedback.correct.title": "[Çòŕŕèçţ!~~~]",
+  "@part2.feedback.correct.title": {
+    "description": "Positive feedback when user places example in correct category"
+  },
+  "part2.feedback.incorrect.title": "[Ñòţ Ǫùìţè...~~~~~]",
+  "@part2.feedback.incorrect.title": {
+    "description": "Gentle feedback when user places example in wrong category"
+  },
+  "part2.feedback.button.gotit": "[Ĝòţ ìţ~~~]",
+  "@part2.feedback.button.gotit": {
+    "description": "Button to dismiss feedback modal and try again"
+  },
+  "part2.allsorted.message": "[Àĺĺ ìţèɱš šòŕţèð çòŕŕèçţĺý!~~~~~~~~~~]",
+  "@part2.allsorted.message": {
+    "description": "Success message shown when all examples are correctly categorized"
+  },
+  "part2.button.continue": "[Çòñţìñùè~~~]",
+  "@part2.button.continue": {
+    "description": "Button to proceed to next section after completing sorting"
+  },
+  "part2.example1.text": "[Þàýìñĝ ƒòŕ šţòŕàĝè šþàçè ţĥàţ àùţòɱàţìçàĺĺý šçàĺèš ţò ɱàţçĥ ţĥè àɱòùñţ òƒ ðàţà ìñ ùšè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example1.text": {
+    "description": "Example of cloud storage service for categorization exercise"
+  },
+  "part2.example1.correct": "[Ýòù ĝòţ ìţ. Šçàĺàƀĺè šţòŕàĝè ìš à çòŕè çòɱþòñèñţ òƒ ìñƒŕàšţŕùçţùŕè ţĥàţ ýòù ŕèñţ ƒŕòɱ à þŕòṽìðèŕ. Ţĥìš ìš à çĺàššìç ÌààŠ òƒƒèŕìñĝ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example1.correct": {
+    "description": "Explanation when correctly categorized as IaaS (Infrastructure as a Service)"
+  },
+  "part2.example1.hint.paas": "[Ŵĥìĺè à ÞààŠ àþþĺìçàţìòñ ŵòùĺð *ùšè* šţòŕàĝè, ţĥè šţòŕàĝè šèŕṽìçè ìţšèĺƒ ìš à ɱòŕè ƒùñðàɱèñţàĺ ƀùìĺðìñĝ ƀĺòçķ. Ìţ'š þàŕţ òƒ ţĥè çòŕè ìñƒŕàšţŕùçţùŕè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example1.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of IaaS"
+  },
+  "part2.example1.hint.saas": "[Ţĥìš ìšñ'ţ à çòɱþĺèţè àþþĺìçàţìòñ, ƀùţ à ŕàŵ çòɱþòñèñţ ýòù'ð ùšè ţò ƀùìĺð òñè. Ŵĥìçĥ ɱòðèĺ þŕòṽìðèš ţĥèšè ƒùñðàɱèñţàĺ ƀùìĺðìñĝ ƀĺòçķš?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example1.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of IaaS"
+  },
+  "part2.example2.text": "[Ùšìñĝ Žòòɱ ƒòŕ ṽìðèò çàĺĺš òŕ Šĺàçķ ƒòŕ ɱèššàĝìñĝ.~~~~~~~~~~~~~~~~~~]",
+  "@part2.example2.text": {
+    "description": "Example of ready-to-use software applications. Zoom and Slack are product names that should not be translated"
+  },
+  "part2.example2.correct": "[Ţĥàţ'š ìţ! Ţĥèšè àŕè èẋàɱþĺèš òƒ çòɱþĺèţè šòƒţŵàŕè þŕòðùçţš ţĥàţ ýòù àççèšš, ţýþìçàĺĺý ƀý þàýìñĝ à šùƀšçŕìþţìòñ. Ţĥìš ìš Šòƒţŵàŕè àš à Šèŕṽìçè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example2.correct": {
+    "description": "Explanation when correctly categorized as SaaS (Software as a Service)"
+  },
+  "part2.example2.hint.iaas": "[Ŵìţĥ Žòòɱ òŕ Šĺàçķ, àŕè ýòù ɱàñàĝìñĝ šèŕṽèŕš òŕ ĵùšţ ùšìñĝ àñ àþþ? ÌààŠ ìš àƀòùţ ŕèñţìñĝ ţĥè šèŕṽèŕš ţĥèɱšèĺṽèš. Ţĥìš ìš à ĺèṽèĺ àƀòṽè ţĥàţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example2.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of SaaS. Zoom and Slack should not be translated"
+  },
+  "part2.example2.hint.paas": "[ÞààŠ ìš à þĺàţƒòŕɱ ƒòŕ ðèṽèĺòþèŕš ţò *çŕèàţè* àþþš. Žòòɱ ìš àñ àþþ ţĥàţ ĥàš àĺŕèàðý ƀèèñ çŕèàţèð ƒòŕ ýòù ţò ùšè. Ŵĥìçĥ ɱòðèĺ ƒìţš ţĥàţ ðèšçŕìþţìòñ?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example2.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of SaaS. Zoom should not be translated"
+  },
+  "part2.example3.text": "[Òþèŕàţìñĝ ýòùŕ òŵñ šòƒţŵàŕè ìñ ţĥè çĺòùð ŵĥìĺè à þŕòṽìðèŕ ĥàñðĺèš àñð ɱàìñţàìñš ţĥè šèŕṽèŕš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example3.text": {
+    "description": "Example of platform service for running custom applications"
+  },
+  "part2.example3.correct": "[Þèŕƒèçţ! Ŵìţĥ ÞààŠ, ýòù ƒòçùš òñ ýòùŕ àþþĺìçàţìòñ çòðè, ŵĥìĺè ţĥè þŕòṽìðèŕ ĥàñðĺèš ţĥè ùñðèŕĺýìñĝ ìñƒŕàšţŕùçţùŕè àñð ţèçĥñìçàĺ ŕèšþòñšìƀìĺìţìèš, ĺìķè šèŕṽèŕ ɱàìñţèñàñçè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example3.correct": {
+    "description": "Explanation when correctly categorized as PaaS (Platform as a Service)"
+  },
+  "part2.example3.hint.iaas": "[Ýòù'ŕè ĝèţţìñĝ ŵàŕɱèŕ! ÌààŠ ŵòùĺð ĝìṽè ýòù ţĥè šèŕṽèŕ, ƀùţ ýòù ŵòùĺð ƀè ŕèšþòñšìƀĺè ƒòŕ ɱàìñţàìñìñĝ ìţ. Ţĥìš šèŕṽìçè ĥàñðĺèš ţĥàţ ɱàìñţèñàñçè ƒòŕ ýòù.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example3.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of PaaS"
+  },
+  "part2.example3.hint.saas": "[Ţĥìš ìš à ɱòðèĺ ƒòŕ *ŕùññìñĝ* ýòùŕ òŵñ šòƒţŵàŕè, ñòţ ƒòŕ *ùšìñĝ* šòɱèòñè èĺšè'š. Ŵĥìçĥ çàţèĝòŕý þŕòṽìðèš ţĥàţ ķìñð òƒ þĺàţƒòŕɱ?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example3.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of PaaS"
+  },
+  "part2.example4.text": "[Àççèššìñĝ à ƒìĺè šĥàŕìñĝ šèŕṽìçè ţò çòĺĺàƀòŕàţè ŵìţĥ à ţèàɱ.~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example4.text": {
+    "description": "Example of collaboration software for teams"
+  },
+  "part2.example4.correct": "[Çòŕŕèçţ! À ƒìĺè šĥàŕìñĝ šèŕṽìçè ìš à ŕèàðý-ţò-ùšè àþþĺìçàţìòñ þŕòṽìðèð ƒòŕ èñð-ùšèŕš, ŵĥìçĥ ìš ţĥè ðèƒìñìţìòñ òƒ ŠààŠ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example4.correct": {
+    "description": "Explanation when correctly categorized as SaaS"
+  },
+  "part2.example4.hint.iaas": "[Ƒìĺè šĥàŕìñĝ ìš à ƒèàţùŕè òƒ à çòɱþĺèţè šòƒţŵàŕè þŕòðùçţ. ÌààŠ ŵòùĺð ƀè ŕèñţìñĝ ţĥè ŕàŵ šţòŕàĝè ŵĥèŕè ţĥòšè ƒìĺèš àŕè ķèþţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example4.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of SaaS"
+  },
+  "part2.example4.hint.paas": "[Ýòù àŕè *ùšìñĝ* à ƒìñìšĥèð šèŕṽìçè, ñòţ *ƀùìĺðìñĝ* òñè. ÞààŠ ìš ţĥè èñṽìŕòñɱèñţ ƒòŕ ƀùìĺðìñĝ. Ŵĥàţ'š ţĥè ɱòðèĺ ƒòŕ ùšìñĝ?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example4.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of SaaS"
+  },
+  "part2.example5.text": "[Ùšìñĝ à þŕòṽìðèŕ'š ìñƒŕàšţŕùçţùŕè ƒòŕ ĺàŕĝè-šçàĺè ðàţà þŕòçèššìñĝ àñð àñàĺýţìçš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example5.text": {
+    "description": "Example of infrastructure service for data processing"
+  },
+  "part2.example5.correct": "[Èẋàçţĺý! Ýòù àŕè ŕèñţìñĝ ţĥè þŕòṽìðèŕ'š ƒùñðàɱèñţàĺ çòɱþùţìñĝ ŕèšòùŕçèš (ţĥèìŕ ìñƒŕàšţŕùçţùŕè) ţò þèŕƒòŕɱ çòɱþĺèẋ ţàšķš. Ţĥìš ìš ÌààŠ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example5.correct": {
+    "description": "Explanation when correctly categorized as IaaS"
+  },
+  "part2.example5.hint.paas": "[ÞààŠ þŕòṽìðèš à ɱàñàĝèð þĺàţƒòŕɱ, ƀùţ ŵĥèñ ýòù'ŕè ðìŕèçţĺý ùţìĺìžìñĝ ŕàŵ þŕòçèššìñĝ þòŵèŕ àñð šţòŕàĝè ƒòŕ çùšţòɱ àñàĺýţìçš, ýòù'ŕè ùšìñĝ ţĥè ùñðèŕĺýìñĝ ìñƒŕàšţŕùçţùŕè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example5.hint.paas": {
+    "description": "Hint shown when user incorrectly categorizes as PaaS instead of IaaS"
+  },
+  "part2.example5.hint.saas": "[Ţĥìš ðèšçŕìƀèš ùšìñĝ çòŕè çòɱþùţìñĝ þòŵèŕ, ñòţ à šþèçìƒìç, þŕè-ƀùìĺţ šòƒţŵàŕè àþþĺìçàţìòñ. Ŵĥìçĥ ɱòðèĺ ìš àƀòùţ ŕèñţìñĝ ŕàŵ ŕèšòùŕçèš?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example5.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of IaaS"
+  },
+  "part2.example6.text": "[Ĥòšţìñĝ ýòùŕ çòɱþàñý'š çùšţòɱ àþþĺìçàţìòñ àñð ìţš ƀùšìñèšš àñàĺýţìçš ţòòĺš.~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example6.text": {
+    "description": "Example of platform for hosting custom business applications"
+  },
+  "part2.example6.correct": "[Ţĥàţ'š ŕìĝĥţ. Ŵĥèñ ýòù ðèþĺòý àñð ŕùñ ýòùŕ òŵñ šòƒţŵàŕè àñð ţòòĺš òñ à ɱàñàĝèð èñṽìŕòñɱèñţ ƒŕòɱ à çĺòùð þŕòṽìðèŕ, ţĥàţ'š Þĺàţƒòŕɱ àš à Šèŕṽìçè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example6.correct": {
+    "description": "Explanation when correctly categorized as PaaS"
+  },
+  "part2.example6.hint.iaas": "[Ýòù çòùĺð ðò ţĥìš ŵìţĥ ÌààŠ, ƀùţ ýòù'ð àĺšò ĥàṽè ţò ɱàñàĝè ţĥè òþèŕàţìñĝ šýšţèɱš àñð šèŕṽèŕš. ÞààŠ ĥàñðĺèš ţĥàţ ƒòŕ ýòù šò ýòù çàñ ƒòçùš òñ ýòùŕ àþþ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example6.hint.iaas": {
+    "description": "Hint shown when user incorrectly categorizes as IaaS instead of PaaS"
+  },
+  "part2.example6.hint.saas": "[Ţĥìš ìš àƀòùţ ŕùññìñĝ ýòùŕ *òŵñ* çùšţòɱ àþþĺìçàţìòñ, ñòţ šùƀšçŕìƀìñĝ ţò òñè ɱàðè ƀý šòɱèòñè èĺšè. Ŵĥìçĥ ɱòðèĺ þŕòṽìðèš à þĺàţƒòŕɱ ƒòŕ ýòùŕ òŵñ šòƒţŵàŕè?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.example6.hint.saas": {
+    "description": "Hint shown when user incorrectly categorizes as SaaS instead of PaaS"
+  },
+  "part2.hint.default": "[Ţĥàţ ðòèšñ'ţ šèèɱ ţò ƀè ţĥè ŕìĝĥţ ƒìţ. Ţĥìñķ àƀòùţ ţĥè ĺèṽèĺ òƒ ɱàñàĝèɱèñţ þŕòṽìðèð ƀý ţĥè šèŕṽìçè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part2.hint.default": {
+    "description": "Generic fallback hint for any incorrect categorization"
+  },
+  "part2.tap.place": "[Ţàþ ĥèŕè ţò þĺàçè~~~~~~]",
+  "@part2.tap.place": {
+    "description": "Instruction shown in category boxes when a card is selected (for touch/mobile users)"
+  },
+  "part3.title": "[Þàŕţ 3: Ðèþĺòýɱèñţ Ṁòðèĺš~~~~~~~~~]",
+  "@part3.title": {
+    "description": "Header for the deployment models scenario section"
+  },
+  "part3.subtitle": "[Ŕèàð ţĥè šçèñàŕìò àñð çĥòòšè ţĥè ɱòšţ àþþŕòþŕìàţè çĺòùð ɱòðèĺ.~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.subtitle": {
+    "description": "Instruction for the scenario-based questions"
+  },
+  "part3.feedback.correct.title": "[Çòŕŕèçţ!~~~]",
+  "@part3.feedback.correct.title": {
+    "description": "Positive feedback for selecting the right deployment model"
+  },
+  "part3.feedback.incorrect.title": "[Ĝòòð Ţŕý!~~~~]",
+  "@part3.feedback.incorrect.title": {
+    "description": "Encouraging feedback for incorrect answer"
+  },
+  "part3.button.next": "[Ñèẋţ Šçèñàŕìò~~~~~]",
+  "@part3.button.next": {
+    "description": "Button to proceed to next scenario question"
+  },
+  "part3.button.finish": "[Ƒìñìšĥ Àçţìṽìţý~~~~~~]",
+  "@part3.button.finish": {
+    "description": "Button to complete the final section and view results"
+  },
+  "part3.scenario1.text": "[À ƒìñàñçìàĺ ƒìŕɱ ñèèðš ţò šţòŕè þŕòþŕìèţàŕý ŕèšèàŕçĥ ŵìţĥ ĝŕèàţèŕ šèçùŕìţý, ŕèǫùìŕìñĝ àñ èñçŕýþţèð ṼÞÑ çòññèçţìòñ ƒòŕ ìţš èɱþĺòýèèš ţò àççèšš ìţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario1.text": {
+    "description": "Business scenario about secure financial data storage. VPN is a technical acronym (Virtual Private Network)"
+  },
+  "part3.scenario1.explanation": "[À Þŕìṽàţè Çĺòùð ìš ìðèàĺ ĥèŕè. Ìţ òƒƒèŕš ţĥè ĝŕèàţèšţ šèçùŕìţý ƀý ìɱþòšìñĝ ɱòŕè ŕèšţŕìçţìòñš òñ àççèšš, ɱàķìñĝ ìţ šùìţàƀĺè ƒòŕ šèñšìţìṽè ìñƒòŕɱàţìòñ ĺìķè ƒìñàñçìàĺ ŕèçòŕðš òŕ þŕòþŕìèţàŕý ŕèšèàŕçĥ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario1.explanation": {
+    "description": "Explanation of why Private Cloud is the correct choice for this security-focused scenario"
+  },
+  "part3.scenario2.text": "[À šòƒţŵàŕè çòɱþàñý ŵàñţš ţò ðèþĺòý ìţš àþþ ƒòŕ ñèàŕĺý àñý çùšţòɱèŕ ţò ùšè, ŵìţĥ èàšý àççèšš òṽèŕ šţàñðàŕð ìñţèŕñèţ çòññèçţìòñš àñð ĺòŵèŕ çòšţš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario2.text": {
+    "description": "Business scenario about wide public accessibility and cost efficiency"
+  },
+  "part3.scenario2.explanation": "[À Þùƀĺìç Çĺòùð ìš ţĥè þèŕƒèçţ çĥòìçè. Ţĥèý àŕè çàĺĺèð 'þùƀĺìç' ƀèçàùšè ñèàŕĺý àñý çùšţòɱèŕ çàñ þàý ţò ùšè ţĥèìŕ šèŕṽèŕš, ɱàķìñĝ ţĥèɱ çĥèàþèŕ àñð òƒƒèŕìñĝ èàšý àççèšš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario2.explanation": {
+    "description": "Explanation of why Public Cloud suits mass accessibility and cost considerations"
+  },
+  "part3.scenario3.text": "[À çòɱþàñý ŕùñš ìţš ṽìðèòçòñƒèŕèñçìñĝ šòƒţŵàŕè òñ à þùƀĺìç çĺòùð ƀùţ šţòŕèš ìţš šèñšìţìṽè çùšţòɱèŕ šèŕṽìçè ŕèçòŕðš ìñ à šèþàŕàţè, ɱòŕè šèçùŕè èñṽìŕòñɱèñţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario3.text": {
+    "description": "Business scenario about splitting workloads between different cloud types"
+  },
+  "part3.scenario3.explanation": "[Ţĥìš ìš à çĺàššìç Ĥýƀŕìð Çĺòùð. Ţĥìš ɱòðèĺ ìñṽòĺṽèš šþĺìţţìñĝ ðàţà àñð àþþĺìçàţìòñš àçŕòšš þùƀĺìç àñð þŕìṽàţè çĺòùðš ţò çòɱƀìñè ţĥè ƀèñèƒìţš òƒ ƀòţĥ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.scenario3.explanation": {
+    "description": "Explanation of Hybrid Cloud's ability to combine public and private infrastructures"
+  },
+  "part3.explanation.default": "[Ţĥàţ'š à ĝòòð ţĥòùĝĥţ, ƀùţ ţĥèŕè'š à ƀèţţèŕ ƒìţ. Çòñšìðèŕ ţĥè ķèý ŕèǫùìŕèɱèñţš òƒ ţĥè šçèñàŕìò.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.explanation.default": {
+    "description": "Generic feedback for incorrect deployment model selection"
+  },
+  "part3.venn.caption": "[Ṽìšùàĺ ŕèþŕèšèñţàţìòñ: Ĥýƀŕìð Çĺòùð çòɱƀìñèš Þùƀĺìç àñð Þŕìṽàţè çĺòùðš~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part3.venn.caption": {
+    "description": "Caption explaining the Venn diagram visual aid showing how deployment models relate spatially"
+  },
+  "summary.title": "[Ĝŕèàţ Ĵòƀ!~~~~]",
+  "@summary.title": {
+    "description": "Congratulatory heading on completion screen"
+  },
+  "summary.description": "[Ýòù'ṽè çòɱþĺèţèð ţĥè ìñţŕòðùçţìòñ ţò ĥòŵ çĺòùð çòɱþùţìñĝ ŵòŕķš. Ĥèŕè'š à ǫùìçķ ŕèçàþ òƒ ŵĥàţ ýòù ĺèàŕñèð.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.description": {
+    "description": "Introduction to the summary/recap section"
+  },
+  "summary.recap.foundations.title": "[Ƒòùñðàţìòñš:~~~~~]",
+  "@summary.recap.foundations.title": {
+    "description": "Section header for cloud computing basics recap"
+  },
+  "summary.recap.foundations.text": "[Ţĥè çĺòùð ìš à þĥýšìçàĺ ñèţŵòŕķ òƒ šèŕṽèŕš ìñ ðàţà çèñţèŕš, àççèššèð ŕèɱòţèĺý.~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.foundations.text": {
+    "description": "Summary of cloud computing fundamentals"
+  },
+  "summary.recap.servicemodels.title": "[Šèŕṽìçè Ṁòðèĺš:~~~~~~]",
+  "@summary.recap.servicemodels.title": {
+    "description": "Section header for service models recap"
+  },
+  "summary.recap.iaas": "[- ÌààŠ ìš ŕèñţìñĝ à þŕòṽìðèŕ'š çĺòùð ìñƒŕàšţŕùçţùŕè (šèŕṽèŕš, šţòŕàĝè).~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.iaas": {
+    "description": "Full recap item for IaaS including bullet marker. IaaS is an acronym for Infrastructure as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.paas": "[- ÞààŠ ìš à þĺàţƒòŕɱ ţò òþèŕàţè ýòùŕ òŵñ šòƒţŵàŕè òñ, ŵĥèŕè ţĥè þŕòṽìðèŕ ĥàñðĺèš ţĥè šèŕṽèŕš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.paas": {
+    "description": "Full recap item for PaaS including bullet marker. PaaS is an acronym for Platform as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.saas": "[- ŠààŠ ìš þàýìñĝ ţò àççèšš àñòţĥèŕ òŕĝàñìžàţìòñ'š ŕèàðý-ţò-ùšè šòƒţŵàŕè.~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.saas": {
+    "description": "Full recap item for SaaS including bullet marker. SaaS is an acronym for Software as a Service - translate the words but keep the acronym"
+  },
+  "summary.recap.deploymentmodels.title": "[Ðèþĺòýɱèñţ Ṁòðèĺš:~~~~~~~]",
+  "@summary.recap.deploymentmodels.title": {
+    "description": "Section header for deployment models recap"
+  },
+  "summary.recap.public": "[- Þùƀĺìç ìš šĥàŕèð, çòšţ-èƒƒèçţìṽè, àñð èàšìĺý àççèššìƀĺè.~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.public": {
+    "description": "Full recap item for Public cloud including bullet marker"
+  },
+  "summary.recap.private": "[- Þŕìṽàţè ìš ðèðìçàţèð ţò à šìñĝĺè çùšţòɱèŕ ƒòŕ ĝŕèàţèŕ šèçùŕìţý àñð çòñţŕòĺ.~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.private": {
+    "description": "Full recap item for Private cloud including bullet marker"
+  },
+  "summary.recap.hybrid": "[- Ĥýƀŕìð çòɱƀìñèš þùƀĺìç àñð þŕìṽàţè çĺòùðš ƒòŕ ƒĺèẋìƀìĺìţý.~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.hybrid": {
+    "description": "Full recap item for Hybrid cloud including bullet marker"
+  },
+  "summary.recap.perspective.title": "[Þèŕšþèçţìṽè Ṁàţţèŕš:~~~~~~~]",
+  "@summary.recap.perspective.title": {
+    "description": "Section header for perspective insight recap"
+  },
+  "summary.recap.perspective.text": "[Ţĥè šàɱè ìñƒŕàšţŕùçţùŕè çàñ ƀè ðìƒƒèŕèñţ šèŕṽìçè ɱòðèĺš ðèþèñðìñĝ òñ ýòùŕ ŕòĺè (Ñèţƒĺìẋ ùšèš ÞààŠ, šùƀšçŕìƀèŕš ùšè ŠààŠ).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.perspective.text": {
+    "description": "Summary of the perspective insight from Part 4"
+  },
+  "summary.recap.application.title": "[Ŕèàĺ-Ŵòŕĺð Àþþĺìçàţìòñ:~~~~~~~~~]",
+  "@summary.recap.application.title": {
+    "description": "Section header for application skills recap"
+  },
+  "summary.recap.application.text": "[Ŵĥèñ ðèšìĝñìñĝ çĺòùð šòĺùţìòñš, çòñšìðèŕ šèçùŕìţý ñèèðš, çòšţ çòñšţŕàìñţš, àñð ĥòŵ ùšàĝè ɱìĝĥţ çĥàñĝè òṽèŕ ţìɱè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@summary.recap.application.text": {
+    "description": "Summary of practical application skills from Part 5"
+  },
+  "summary.score": "[Ýòùŕ Šçòŕè: {totalScore, number} / {maxScore, number}~~~~~~~~~~~~~~~~~~~]",
+  "@summary.score": {
+    "description": "Display of user's total score. totalScore and maxScore are numeric values showing points earned out of total possible"
+  },
+  "summary.button.restart": "[Ţŕý Àĝàìñ~~~~]",
+  "@summary.button.restart": {
+    "description": "Button to restart the activity from the beginning"
+  },
+  "servicemodel.iaas": "[Ìñƒŕàšţŕùçţùŕè àš à Šèŕṽìçè (ÌààŠ)~~~~~~~~~~~~]",
+  "@servicemodel.iaas": {
+    "description": "Full name of IaaS service model category. This is a technical term - translate the words but keep the acronym IaaS"
+  },
+  "servicemodel.paas": "[Þĺàţƒòŕɱ àš à Šèŕṽìçè (ÞààŠ)~~~~~~~~~~]",
+  "@servicemodel.paas": {
+    "description": "Full name of PaaS service model category. This is a technical term - translate the words but keep the acronym PaaS"
+  },
+  "servicemodel.saas": "[Šòƒţŵàŕè àš à Šèŕṽìçè (ŠààŠ)~~~~~~~~~~]",
+  "@servicemodel.saas": {
+    "description": "Full name of SaaS service model category. This is a technical term - translate the words but keep the acronym SaaS"
+  },
+  "deploymentmodel.public": "[Þùƀĺìç Çĺòùð~~~~~]",
+  "@deploymentmodel.public": {
+    "description": "Name of public cloud deployment model"
+  },
+  "deploymentmodel.private": "[Þŕìṽàţè Çĺòùð~~~~~]",
+  "@deploymentmodel.private": {
+    "description": "Name of private cloud deployment model"
+  },
+  "deploymentmodel.hybrid": "[Ĥýƀŕìð Çĺòùð~~~~~]",
+  "@deploymentmodel.hybrid": {
+    "description": "Name of hybrid cloud deployment model"
+  },
+  "part4.title": "[Þàŕţ 4: Þèŕšþèçţìṽè Ṁàţţèŕš~~~~~~~~~~]",
+  "@part4.title": {
+    "description": "Header for the Netflix perspective-switching section"
+  },
+  "part4.subtitle": "[Ţĥè šàɱè çĺòùð ìñƒŕàšţŕùçţùŕè çàñ ƀè ðìƒƒèŕèñţ šèŕṽìçè ɱòðèĺš ðèþèñðìñĝ òñ ýòùŕ ŕòĺè. Èẋþĺòŕè àĺĺ ţĥŕèè ĺàýèŕš òƒ ţĥè šţàçķ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.subtitle": {
+    "description": "Educational explanation of perspective in service models with three-layer stack reference"
+  },
+  "part4.instructions": "[Çĺìçķ ţĥè ƀùţţòñš ƀèĺòŵ ţò šŵìţçĥ ƀèţŵèèñ ÀŴŠ'š ìñƒŕàšţŕùçţùŕè ĺàýèŕ, Ñèţƒĺìẋ'š þĺàţƒòŕɱ ĺàýèŕ, àñð ţĥè šùƀšçŕìƀèŕ'š àþþĺìçàţìòñ ĺàýèŕ:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.instructions": {
+    "description": "Instructions for the interactive three-perspective switcher showing IaaS->PaaS->SaaS vertical stack"
+  },
+  "part4.button.aws": "[ÀŴŠ/Þŕòṽìðèŕ Ṽìèŵ~~~~~~]",
+  "@part4.button.aws": {
+    "description": "Button to switch to AWS cloud provider perspective (IaaS layer)"
+  },
+  "part4.button.netflix": "[Ñèţƒĺìẋ'š Ṽìèŵ~~~~~]",
+  "@part4.button.netflix": {
+    "description": "Button to switch to Netflix company perspective (PaaS layer)"
+  },
+  "part4.button.subscriber": "[Šùƀšçŕìƀèŕ'š Ṽìèŵ~~~~~~]",
+  "@part4.button.subscriber": {
+    "description": "Button to switch to subscriber/user perspective (SaaS layer)"
+  },
+  "part4.aws.role": "[Ŕòĺè: Ìñƒŕàšţŕùçţùŕè Þŕòṽìðèŕ~~~~~~~~~~~]",
+  "@part4.aws.role": {
+    "description": "Label showing AWS's business role as cloud infrastructure provider"
+  },
+  "part4.aws.service": "[Šèŕṽìçè Ṁòðèĺ: Ìñƒŕàšţŕùçţùŕè àš à Šèŕṽìçè (ÌààŠ)~~~~~~~~~~~~~~~~~~]",
+  "@part4.aws.service": {
+    "description": "Service model from AWS provider's perspective - IaaS"
+  },
+  "part4.aws.model.label": "[ÀŴŠ þŕòṽìðèš ŕàŵ ìñƒŕàšţŕùçţùŕè àš Ìñƒŕàšţŕùçţùŕè-àš-à-Šèŕṽìçè (ÌààŠ)~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.aws.model.label": {
+    "description": "Explicit label showing AWS's perspective provides IaaS layer - the foundation beneath Netflix's PaaS"
+  },
+  "part4.aws.provides": "[ÀŴŠ Þŕòṽìðèš:~~~~~]",
+  "@part4.aws.provides": {
+    "description": "Header for what AWS infrastructure provider offers to customers like Netflix"
+  },
+  "part4.aws.provide1": "[Þĥýšìçàĺ šèŕṽèŕš, šţòŕàĝè, àñð ñèţŵòŕķìñĝ ĥàŕðŵàŕè~~~~~~~~~~~~~~~~~~]",
+  "@part4.aws.provide1": {
+    "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
+  },
+  "part4.aws.provide2": "[Ṽìŕţùàĺìžàţìòñ àñð çòɱþùţè çàþàçìţý (ÈÇ2, Š3)~~~~~~~~~~~~~~~~]",
+  "@part4.aws.provide2": {
+    "description": "Second item AWS provides - virtualized resources with examples"
+  },
+  "part4.aws.provide3": "[Ĝĺòƀàĺ ðàţà çèñţèŕš ŵìţĥ ŕèðùñðàñçý àñð ùþţìɱè~~~~~~~~~~~~~~~~~]",
+  "@part4.aws.provide3": {
+    "description": "Third item AWS provides - physical infrastructure reliability"
+  },
+  "part4.aws.manages": "[ÀŴŠ Ṁàñàĝèš:~~~~~]",
+  "@part4.aws.manages": {
+    "description": "Header for what AWS infrastructure provider manages"
+  },
+  "part4.aws.manage1": "[Þĥýšìçàĺ ĥàŕðŵàŕè (šèŕṽèŕš, ŕàçķš, çòòĺìñĝ)~~~~~~~~~~~~~~~~]",
+  "@part4.aws.manage1": {
+    "description": "First item AWS manages - physical data center equipment"
+  },
+  "part4.aws.manage2": "[Ñèţŵòŕķ ìñƒŕàšţŕùçţùŕè àñð çòññèçţìṽìţý~~~~~~~~~~~~~~]",
+  "@part4.aws.manage2": {
+    "description": "Second item AWS manages - networking layer"
+  },
+  "part4.aws.manage3": "[Ṽìŕţùàĺìžàţìòñ þĺàţƒòŕɱ àñð ŕèšòùŕçè àĺĺòçàţìòñ~~~~~~~~~~~~~~~~~]",
+  "@part4.aws.manage3": {
+    "description": "Third item AWS manages - hypervisor and resource scheduling"
+  },
+  "part4.aws.customer": "[Çùšţòɱèŕš (ĺìķè Ñèţƒĺìẋ) Ṁàñàĝè:~~~~~~~~~~~~]",
+  "@part4.aws.customer": {
+    "description": "Header for what AWS customers must handle themselves with IaaS"
+  },
+  "part4.aws.customer1": "[Òþèŕàţìñĝ šýšţèɱš àñð ŕùñţìɱè èñṽìŕòñɱèñţš~~~~~~~~~~~~~~~]",
+  "@part4.aws.customer1": {
+    "description": "First item customers manage - OS and middleware (Netflix's responsibility)"
+  },
+  "part4.aws.customer2": "[Àþþĺìçàţìòñš, ðàţà, àñð ùšèŕ ɱàñàĝèɱèñţ~~~~~~~~~~~~~~]",
+  "@part4.aws.customer2": {
+    "description": "Second item customers manage - application layer and business logic"
+  },
+  "part4.netflix.role": "[Ŕòĺè: Çòñţèñţ Þŕòṽìðèŕ~~~~~~~~]",
+  "@part4.netflix.role": {
+    "description": "Label showing Netflix's business role"
+  },
+  "part4.netflix.service": "[Šèŕṽìçè Ṁòðèĺ: Þĺàţƒòŕɱ àš à Šèŕṽìçè (ÞààŠ)~~~~~~~~~~~~~~~~]",
+  "@part4.netflix.service": {
+    "description": "Service model from Netflix company's perspective - PaaS"
+  },
+  "part4.netflix.pays": "[Ñèţƒĺìẋ Þàýš Ƒòŕ:~~~~~~]",
+  "@part4.netflix.pays": {
+    "description": "Header for what Netflix company pays for"
+  },
+  "part4.netflix.pay1": "[Ĥòšţìñĝ ţĥèìŕ šţŕèàɱìñĝ àþþĺìçàţìòñ~~~~~~~~~~~~~]",
+  "@part4.netflix.pay1": {
+    "description": "First item Netflix pays for - application hosting"
+  },
+  "part4.netflix.pay2": "[Šţòŕàĝè ƒòŕ ţĥèìŕ ṽìðèò ĺìƀŕàŕý~~~~~~~~~~~]",
+  "@part4.netflix.pay2": {
+    "description": "Second item Netflix pays for - content storage"
+  },
+  "part4.netflix.pay3": "[Ɓàñðŵìðţĥ ƒòŕ šţŕèàɱìñĝ ţò ɱìĺĺìòñš~~~~~~~~~~~~~]",
+  "@part4.netflix.pay3": {
+    "description": "Third item Netflix pays for - network bandwidth"
+  },
+  "part4.netflix.manages": "[Ñèţƒĺìẋ Ṁàñàĝèš:~~~~~~]",
+  "@part4.netflix.manages": {
+    "description": "Header for what Netflix company manages"
+  },
+  "part4.netflix.manage1": "[Ţĥèìŕ šţŕèàɱìñĝ šòƒţŵàŕè~~~~~~~~~]",
+  "@part4.netflix.manage1": {
+    "description": "First item Netflix manages - their own software"
+  },
+  "part4.netflix.manage2": "[Çòñţèñţ ĺìƀŕàŕý àñð ŕèçòɱɱèñðàţìòñš~~~~~~~~~~~~~]",
+  "@part4.netflix.manage2": {
+    "description": "Second item Netflix manages - content and algorithms"
+  },
+  "part4.netflix.manage3": "[Ùšèŕ àççòùñţš àñð ƀìĺĺìñĝ~~~~~~~~~]",
+  "@part4.netflix.manage3": {
+    "description": "Third item Netflix manages - user management"
+  },
+  "part4.netflix.provider": "[Çĺòùð Þŕòṽìðèŕ Ṁàñàĝèš:~~~~~~~~~]",
+  "@part4.netflix.provider": {
+    "description": "Header for what cloud provider manages for Netflix"
+  },
+  "part4.netflix.provider1": "[Šèŕṽèŕš àñð ìñƒŕàšţŕùçţùŕè~~~~~~~~~~]",
+  "@part4.netflix.provider1": {
+    "description": "First item cloud provider manages - servers"
+  },
+  "part4.netflix.provider2": "[Šèçùŕìţý àñð ùþðàţèš~~~~~~~]",
+  "@part4.netflix.provider2": {
+    "description": "Second item cloud provider manages - security"
+  },
+  "part4.subscriber.role": "[Ŕòĺè: Èñð Ùšèŕ~~~~~]",
+  "@part4.subscriber.role": {
+    "description": "Label showing subscriber's role as end user"
+  },
+  "part4.subscriber.service": "[Šèŕṽìçè Ṁòðèĺ: Šòƒţŵàŕè àš à Šèŕṽìçè (ŠààŠ)~~~~~~~~~~~~~~~~]",
+  "@part4.subscriber.service": {
+    "description": "Service model from subscriber's perspective - SaaS"
+  },
+  "part4.subscriber.pays": "[Ýòù Þàý Ƒòŕ:~~~~~]",
+  "@part4.subscriber.pays": {
+    "description": "Header for what subscriber pays for"
+  },
+  "part4.subscriber.pay1": "[Ṁòñţĥĺý šùƀšçŕìþţìòñ ţò àççèšš Ñèţƒĺìẋ~~~~~~~~~~~~~~]",
+  "@part4.subscriber.pay1": {
+    "description": "What subscriber pays for - subscription access"
+  },
+  "part4.subscriber.gets": "[Ýòù Ĝèţ:~~~]",
+  "@part4.subscriber.gets": {
+    "description": "Header for what subscriber receives"
+  },
+  "part4.subscriber.get1": "[Ìñšţàñţ àççèšš ţò šţŕèàɱ çòñţèñţ~~~~~~~~~~~~]",
+  "@part4.subscriber.get1": {
+    "description": "First benefit - instant streaming"
+  },
+  "part4.subscriber.get2": "[Ñò šòƒţŵàŕè ţò ìñšţàĺĺ òŕ ɱàìñţàìñ~~~~~~~~~~~~]",
+  "@part4.subscriber.get2": {
+    "description": "Second benefit - no installation needed"
+  },
+  "part4.subscriber.get3": "[Ŵòŕķš òñ àñý ðèṽìçè ŵìţĥ ìñţèŕñèţ~~~~~~~~~~~~]",
+  "@part4.subscriber.get3": {
+    "description": "Third benefit - multi-device access"
+  },
+  "part4.subscriber.notneed": "[Ýòù Ðòñ'ţ Ñèèð ţò Ķñòŵ Àƀòùţ:~~~~~~~~~~~]",
+  "@part4.subscriber.notneed": {
+    "description": "Header for complexity hidden from subscriber"
+  },
+  "part4.subscriber.notneed1": "[Ŵĥèŕè ţĥè šèŕṽèŕš àŕè ĺòçàţèð~~~~~~~~~~~]",
+  "@part4.subscriber.notneed1": {
+    "description": "First hidden complexity - server location"
+  },
+  "part4.subscriber.notneed2": "[Ĥòŵ ţĥè ìñƒŕàšţŕùçţùŕè ŵòŕķš~~~~~~~~~~]",
+  "@part4.subscriber.notneed2": {
+    "description": "Second hidden complexity - infrastructure details"
+  },
+  "part4.insight": "[Ķèý Ìñšìĝĥţ: ÀŴŠ þŕòṽìðèš ÌààŠ (šèŕṽèŕš àñð ìñƒŕàšţŕùçţùŕè) → Ñèţƒĺìẋ ùšèš ţĥàţ àš ÞààŠ (þĺàţƒòŕɱ ţò ƀùìĺð ţĥèìŕ šèŕṽìçè) → Ýòù èẋþèŕìèñçè ìţ àš ŠààŠ (ŕèàðý-ţò-ùšè šòƒţŵàŕè). Ţĥè šàɱè þĥýšìçàĺ ìñƒŕàšţŕùçţùŕè šèŕṽèš ţĥŕèè ðìƒƒèŕèñţ ŕòĺèš!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.insight": {
+    "description": "Educational insight explaining the three-layer vertical stack from IaaS to PaaS to SaaS"
+  },
+  "part4.insight.label": "[Ķèý Ìñšìĝĥţ~~~~]",
+  "@part4.insight.label": {
+    "description": "Label for the educational insight callout box"
+  },
+  "part4.progress.label": "[Èẋþĺòŕè àĺĺ ţĥŕèè þèŕšþèçţìṽèš~~~~~~~~~~~]",
+  "@part4.progress.label": {
+    "description": "Instruction to view all three perspectives (AWS, Netflix, Subscriber) to understand the vertical stack"
+  },
+  "part4.progress.viewed": "[Ṽìèŵèð: {count} òƒ 3~~~~~~~]",
+  "@part4.progress.viewed": {
+    "description": "Progress counter showing how many perspectives have been explored. {count} is a number (1, 2, or 3)"
+  },
+  "part4.netflix.model.label": "[Ñèţƒĺìẋ ùšèš ţĥìš ìñƒŕàšţŕùçţùŕè àš Þĺàţƒòŕɱ-àš-à-Šèŕṽìçè (ÞààŠ)~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.netflix.model.label": {
+    "description": "Explicit label showing Netflix's perspective uses PaaS. Helps novices understand the service model classification."
+  },
+  "part4.subscriber.model.label": "[Ýòù ùšè Ñèţƒĺìẋ àš Šòƒţŵàŕè-àš-à-Šèŕṽìçè (ŠààŠ)~~~~~~~~~~~~~~~~~]",
+  "@part4.subscriber.model.label": {
+    "description": "Explicit label showing subscriber's perspective uses SaaS. Helps novices understand the service model classification."
+  },
+  "part4.misconceptions.label": "[Çòɱɱòñ Ṁìšçòñçèþţìòñš~~~~~~~~]",
+  "@part4.misconceptions.label": {
+    "description": "Header for callout box addressing typical beginner confusions about service models"
+  },
+  "part4.misconceptions.item1": "[ÞààŠ àñð ŠààŠ àŕèñ'ţ ðìƒƒèŕèñţ þŕòðùçţš—ţĥèý'ŕè ðìƒƒèŕèñţ þèŕšþèçţìṽèš òñ ĥòŵ ţĥè šàɱè ìñƒŕàšţŕùçţùŕè ìš ùšèð.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.misconceptions.item1": {
+    "description": "First misconception: clarifies that service models are viewpoint-dependent, not separate systems"
+  },
+  "part4.misconceptions.item2": "[Ţĥè çĺòùð þŕòṽìðèŕ (ĺìķè ÀŴŠ) þŕòṽìðèš ÌààŠ ţò Ñèţƒĺìẋ, ŵĥò ƀùìĺðš ÞààŠ òñ ţòþ òƒ ìţ, ţĥèñ òƒƒèŕš ŠààŠ ţò ýòù.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.misconceptions.item2": {
+    "description": "Second misconception: explains the layered nature of cloud services from provider to end user"
+  },
+  "part4.misconceptions.item3": "[Ýòù ðòñ'ţ ñèèð ţò ķñòŵ ţĥè ĺàýèŕš ƀèĺòŵ ýòùŕ ŕòĺè—šùƀšçŕìƀèŕš ðòñ'ţ ñèèð ţò ùñðèŕšţàñð ÞààŠ òŕ ÌààŠ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.misconceptions.item3": {
+    "description": "Third misconception: emphasizes abstraction and that users only need to understand their layer"
+  },
+  "part4.misconceptions.item4": "[Ţĥè šàɱè ìñƒŕàšţŕùçţùŕè çàñ ƀè ÌààŠ, ÞààŠ, àñð ŠààŠ šìɱùĺţàñèòùšĺý, ðèþèñðìñĝ òñ ŵĥò ìš ùšìñĝ ìţ àñð ĥòŵ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.misconceptions.item4": {
+    "description": "Fourth misconception: reinforces that service models are about perspective and usage, not physical differences"
+  },
+  "part4.button.continue": "[Çòñţìñùè ţò Çĺòùð Ðèšìĝñèŕ~~~~~~~~~~]",
+  "@part4.button.continue": {
+    "description": "Button to proceed to Part 5"
+  },
+  "part5.title": "[Çĺòùð Ðèšìĝñ Àçţìṽìţý~~~~~~~~]",
+  "@part5.title": {
+    "description": "Header for the interactive cloud solution designer section where learners apply their knowledge"
+  },
+  "part5.steps.1": "[Ŕèàð ţĥè šçèñàŕìò.~~~~~~~]",
+  "@part5.steps.1": {
+    "description": "Step 1 of 4 in the activity instructions - tells learner to start by reading the business scenario"
+  },
+  "part5.steps.2": "[Çĥòòšè òñè Šèŕṽìçè Ṁòðèĺ ƒòŕ ţĥìš šçèñàŕìò (ŵĥàţ ýòù ƀùý).~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.steps.2": {
+    "description": "Step 2 of 4 - select a service model with plain language framing 'what you buy'. Anchored to the scenario."
+  },
+  "part5.steps.3": "[Çĥòòšè òñè Ðèþĺòýɱèñţ Ṁòðèĺ ƒòŕ ţĥìš šçèñàŕìò (ŵĥèŕè ìţ ŕùñš).~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.steps.3": {
+    "description": "Step 3 of 4 - select a deployment model with plain language framing 'where it runs'. Anchored to the scenario."
+  },
+  "part5.steps.4": "[Àðĵùšţ Àçţìṽè Ùšèŕš ţò èẋþĺòŕè ţŕàðè-òƒƒš, ţĥèñ Èṽàĺùàţè ýòùŕ þìçķ.~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.steps.4": {
+    "description": "Step 4 of 4 - adjust scale slider and click Evaluate button to see results"
+  },
+  "part5.primer.title": "[Ǫùìçķ Ŕèƒŕèšĥèŕ~~~~~~]",
+  "@part5.primer.title": {
+    "description": "Header for collapsible mental model primer that reviews cloud computing fundamentals before the activity"
+  },
+  "part5.primer.hide": "[Ĥìðè~~]",
+  "@part5.primer.hide": {
+    "description": "Button text to collapse/hide the mental model primer box"
+  },
+  "part5.primer.point1": "[Çĺòùð çòɱþùţìñĝ ɱèàñš ŕèɱòţè šèŕṽèŕš ìñ ðàţà çèñţèŕš ĥàñðĺè šţòŕàĝè àñð þŕòçèššìñĝ. Ýòù àççèšš ţĥòšè ŕèšòùŕçèš òṽèŕ ţĥè ìñţèŕñèţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.primer.point1": {
+    "description": "First primer point: defines cloud computing as remote data center resources. Aligns with article framing about servers and remote access."
+  },
+  "part5.primer.point2": "[Šèŕṽìçè ɱòðèĺš ðìƒƒèŕ ƀý ŵĥò ŕùñš ŵĥàţ: ÌààŠ (ŕèñţ šèŕṽèŕš), ÞààŠ (ŕùñ ýòùŕ àþþ òñ ţĥè þŕòṽìðèŕ'š þĺàţƒòŕɱ), ŠààŠ (ùšè ţĥèìŕ àþþ).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.primer.point2": {
+    "description": "Second primer point: explains service model distinctions. IaaS = Infrastructure as a Service, PaaS = Platform as a Service, SaaS = Software as a Service."
+  },
+  "part5.primer.point3": "[Ðèþĺòýɱèñţ ɱòðèĺš: þùƀĺìç (ɱùĺţì-ţèñàñţ ðàţà çèñţèŕš), þŕìṽàţè (šìñĝĺè-ţèñàñţ), ĥýƀŕìð (ɱìẋ òƒ ƀòţĥ).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.primer.point3": {
+    "description": "Third primer point: defines deployment model options. Multi-tenant means shared, single-tenant means dedicated."
+  },
+  "part5.deployment.instructions": "[Çòɱþàŕè ţĥè ţĥŕèè ɱèţŕìçš ƀèĺòŵ (ƒìẋèð çòšţ, çòšţ þèŕ 1Ķ ùšèŕš, èĺàšţìçìţý) ƀèƒòŕè šèĺèçţìñĝ à ðèþĺòýɱèñţ ɱòðèĺ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.instructions": {
+    "description": "Clear instruction for deployment model selection. Tells learners to examine the three circular metric badges before making a choice."
+  },
+  "part5.deployment.sustainability": "[Ĺàŕĝè þùƀĺìç çĺòùðš òƒţèñ ŕùñ ìñ ĥýþèŕšçàĺè ðàţà çèñţèŕš ţĥàţ çòñçèñţŕàţè èƒƒìçìèñçý—ƀùţ àĺĺ ðàţà çèñţèŕš çòñšùɱè šìĝñìƒìçàñţ èĺèçţŕìçìţý àñð çòòĺìñĝ ŵàţèŕ; ìɱþàçţ ðèþèñðš òñ ĝŕìð ɱìẋ àñð çòòĺìñĝ àþþŕòàçĥ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.sustainability": {
+    "description": "Neutral one-sentence sustainability note about data center environmental impact. Appears near deployment model choices. Hyperscale means very large scale."
+  },
+  "part5.deployment.badge.fixed": "[Ƒìẋèð~~]",
+  "@part5.deployment.badge.fixed": {
+    "description": "Label for fixed monthly cost badge in deployment options"
+  },
+  "part5.deployment.badge.variable": "[+/1Ķ~~]",
+  "@part5.deployment.badge.variable": {
+    "description": "Label for variable cost per 1000 users badge in deployment options. Shortened to fit in small circular badge."
+  },
+  "part5.deployment.badge.elasticity": "[Šçàĺè~~]",
+  "@part5.deployment.badge.elasticity": {
+    "description": "Label for elasticity/scalability score badge in deployment options. Short form of 'Elasticity' to fit in circular badge."
+  },
+  "part5.scenario.label": "[Šçèñàŕìò {current, number} òƒ {total, number}~~~~~~~~~~~~~~~~]",
+  "@part5.scenario.label": {
+    "description": "Progress indicator showing which scenario learner is on. current and total are numeric values"
+  },
+  "part5.scenario.pill.users": "[Ùšèŕš: {count, number}~~~~~~~~]",
+  "@part5.scenario.pill.users": {
+    "description": "Pill badge showing current user count. count is a numeric value that should be formatted with thousands separators"
+  },
+  "part5.scenario.pill.weights": "[Ŵèìĝĥţš → Çòšţ {cost, number}%, Þèŕƒ {perf, number}%, Çòɱþĺìàñçè {compliance, number}%, Èƒƒòŕţ {effort, number}%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.scenario.pill.weights": {
+    "description": "Pill badge showing scenario weight distribution across evaluation criteria. All values are percentages. Perf is short for Performance"
+  },
+  "part5.matters.title": "[Ŵĥàţ ɱàţţèŕš ɱòšţ:~~~~~~~]",
+  "@part5.matters.title": {
+    "description": "Label introducing priority chips showing what dimensions matter most for this scenario"
+  },
+  "part5.matters.high": "[Ĥìĝĥ~~]",
+  "@part5.matters.high": {
+    "description": "Badge text indicating high priority (weight >= 30%)"
+  },
+  "part5.matters.med": "[Ṁèð~~]",
+  "@part5.matters.med": {
+    "description": "Badge text indicating medium priority (weight 15-29%)"
+  },
+  "part5.matters.low": "[Ĺòŵ~~]",
+  "@part5.matters.low": {
+    "description": "Badge text indicating low priority (weight < 15%)"
+  },
+  "part5.dim.cost": "[Çòšţ~~]",
+  "@part5.dim.cost": {
+    "description": "Short label for Cost dimension"
+  },
+  "part5.dim.perf": "[Šþèèð & Šçàĺè~~~~~]",
+  "@part5.dim.perf": {
+    "description": "Short label for Speed & Scale (performance) dimension"
+  },
+  "part5.dim.compliance": "[Çòɱþĺìàñçè~~~~]",
+  "@part5.dim.compliance": {
+    "description": "Short label for Compliance dimension"
+  },
+  "part5.dim.effort": "[Òþèŕàţìòñàĺ Èƒƒòŕţ~~~~~~~]",
+  "@part5.dim.effort": {
+    "description": "Short label for Operational Effort dimension"
+  },
+  "part5.tooltip.cost": "[Àþþŕòẋìɱàţè ɱòñţĥĺý çòšţ òƒ ŕùññìñĝ ţĥìš çĥòìçè. Ŵèìĝĥţ: {weight}%~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.cost": {
+    "description": "Tooltip explaining Cost dimension with exact weight percentage"
+  },
+  "part5.tooltip.perf": "[Ĥòŵ ŵèĺĺ ìţ ĥàñðĺèš ĺòàð àñð šţàýš ŕèšþòñšìṽè. Ŵèìĝĥţ: {weight}%~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.perf": {
+    "description": "Tooltip explaining Speed & Scale with exact weight percentage"
+  },
+  "part5.tooltip.compliance": "[Ĥòŵ ŵèĺĺ ìţ ƒìţš šţŕìçţ ŕùĺèš àñð ðàţà þŕòţèçţìòñš. Ŵèìĝĥţ: {weight}%~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.compliance": {
+    "description": "Tooltip explaining Compliance with exact weight percentage"
+  },
+  "part5.tooltip.effort": "[Ĥòŵ ɱùçĥ òñĝòìñĝ ŵòŕķ ýòùŕ ţèàɱ ɱùšţ ðò. Ŵèìĝĥţ: {weight}%~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.effort": {
+    "description": "Tooltip explaining Operational Effort with exact weight percentage"
+  },
+  "part5.tooltip.ops": "[Èẋţŕà ɱòñţĥĺý þĺàţƒòŕɱ/òþèŕàţìòñš çòšţ ƀèýòñð ìñƒŕàšţŕùçţùŕè.~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.ops": {
+    "description": "Tooltip explaining Ops overhead metric"
+  },
+  "part5.tooltip.lockin": "[Ĥòŵ ĥàŕð ìţ ìš ţò šŵìţçĥ þŕòṽìðèŕš ĺàţèŕ.~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.lockin": {
+    "description": "Tooltip explaining Lock-in risk"
+  },
+  "part5.tooltip.fixed": "[Ɓàšè ɱòñţĥĺý ìñƒŕàšţŕùçţùŕè çòšţ.~~~~~~~~~~~~]",
+  "@part5.tooltip.fixed": {
+    "description": "Tooltip explaining Fixed infrastructure cost"
+  },
+  "part5.tooltip.variable": "[Èẋţŕà çòšţ ƒòŕ èàçĥ 1,000 àçţìṽè ùšèŕš.~~~~~~~~~~~~~~]",
+  "@part5.tooltip.variable": {
+    "description": "Tooltip explaining variable $/1k users cost"
+  },
+  "part5.tooltip.elasticity": "[Ĥòŵ èàšìĺý ìţ šçàĺèš ùþ/ðòŵñ àçŕòšš ðàţà çèñţèŕš.~~~~~~~~~~~~~~~~~~]",
+  "@part5.tooltip.elasticity": {
+    "description": "Tooltip explaining Elasticity metric"
+  },
+  "part5.top.reveal": "[Ŕèṽèàĺ ţòþ ŕèçòɱɱèñðàţìòñ~~~~~~~~~]",
+  "@part5.top.reveal": {
+    "description": "Button text to unblur and reveal the highest-ranked solution"
+  },
+  "part5.scenario1.title": "[Ṽìŕàĺ Ṁòƀìĺè Àþþ Ĺàùñçĥ~~~~~~~~~]",
+  "@part5.scenario1.title": {
+    "description": "Title for first scenario: a startup launching a consumer mobile app with uncertain growth"
+  },
+  "part5.scenario1.description": "[Ýòù'ŕè à šɱàĺĺ ţèàɱ ĺàùñçĥìñĝ à ñèŵ çòñšùɱèŕ àþþ. Ùšèŕ ĝŕòŵţĥ ìš ùñçèŕţàìñ àñð þòţèñţìàĺĺý šþìķý. Ýòù ñèèð ţò šĥìþ ƒàšţ àñð ķèèþ çòšţš šèñšìƀĺè àţ ĺòŵ/ɱèðìùɱ šçàĺè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.scenario1.description": {
+    "description": "Business scenario description for mobile app startup emphasizing speed to market, uncertain scaling, and cost consciousness"
+  },
+  "part5.scenario2.title": "[Ĥòšþìţàĺ Þàţìèñţ Þòŕţàĺ (ÞĤÌ)~~~~~~~~~~~]",
+  "@part5.scenario2.title": {
+    "description": "Title for second scenario: healthcare system with strict security requirements. PHI is an acronym for Protected Health Information - a regulatory term"
+  },
+  "part5.scenario2.description": "[À ĥèàĺţĥçàŕè þŕòṽìðèŕ ñèèðš ţò šţòŕè àñð þŕòçèšš ÞĤÌ. Çòɱþĺìàñçè àñð çòñţŕòĺ ɱàţţèŕ ɱòšţ, ƀùţ ţĥè þòŕţàĺ ɱùšţ šţìĺĺ šçàĺè ðùŕìñĝ šèàšòñàĺ šùŕĝèš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.scenario2.description": {
+    "description": "Business scenario description for healthcare emphasizing regulatory compliance, security, and controlled scaling. PHI (Protected Health Information) is sensitive medical data"
+  },
+  "part5.scenario3.title": "[Çùšţòɱèŕ-ţŕàçķìñĝ ţòòĺ ƒòŕ à šàĺèš ţèàɱ (à 'ÇŔṀ')~~~~~~~~~~~~~~~~~~]",
+  "@part5.scenario3.title": {
+    "description": "Title for third scenario: internal business system for sales team. CRM (Customer Relationship Management) explained parenthetically for novices"
+  },
+  "part5.scenario3.description": "[À šìɱþĺè àþþ ţĥàţ ĺèţš šàĺèšþèòþĺè ĺòĝ çùšţòɱèŕš, ñòţèš, àñð ðèàĺš šò ɱàñàĝèŕš çàñ šèè þŕòĝŕèšš. ~500–5,000 èɱþĺòýèèš ŵìĺĺ ùšè ìţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.scenario3.description": {
+    "description": "Plain language description of CRM scenario: customer tracking app for sales teams, no jargon"
+  },
+  "part5.service.heading": "[1) Çĥòòšè à Šèŕṽìçè Ṁòðèĺ ƒòŕ ţĥìš šçèñàŕìò~~~~~~~~~~~~~~~~]",
+  "@part5.service.heading": {
+    "description": "Step 1 heading for service model selection (IaaS/PaaS/SaaS), explicitly anchored to the scenario"
+  },
+  "part5.service.subtitle": "[(ŵĥàţ ýòù ƀùý)~~~~~]",
+  "@part5.service.subtitle": {
+    "description": "Plain language framing for service model - clarifies it's about what service you purchase"
+  },
+  "part5.service.iaas.label": "[ÌààŠ (ƀùìĺð & ŕùñ ṼṀš/çòñţàìñèŕš)~~~~~~~~~~~~]",
+  "@part5.service.iaas.label": {
+    "description": "Label for Infrastructure as a Service option. IaaS is a technical acronym - translate the words but keep IaaS. VMs = Virtual Machines (do not translate). Containers refers to containerized applications"
+  },
+  "part5.service.iaas.blurb": "[Ýòù ɱàñàĝè ÒŠ/ŕùñţìɱè àñð šçàĺìñĝ. Ĥìĝĥèšţ çòñţŕòĺ àñð ƒĺèẋìƀìĺìţý; šĺòŵèŕ ţò šĥìþ; ɱòŕè òþš ŵòŕķ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.service.iaas.blurb": {
+    "description": "Description of IaaS: emphasizes user responsibility for management, high control/flexibility, longer time to market, and increased operational overhead. OS = Operating System, ops = operations"
+  },
+  "part5.service.iaas.shortLabel": "[ÌààŠ~~]",
+  "@part5.service.iaas.shortLabel": {
+    "description": "Short label for IaaS used in explanations and comparisons. Keep as IaaS (the acronym)"
+  },
+  "part5.service.paas.label": "[ÞààŠ (ɱàñàĝèð àþþ þĺàţƒòŕɱ)~~~~~~~~~~]",
+  "@part5.service.paas.label": {
+    "description": "Label for Platform as a Service option. PaaS is a technical acronym - translate the words but keep PaaS"
+  },
+  "part5.service.paas.blurb": "[Ýòù þùšĥ çòðè; þĺàţƒòŕɱ ĥàñðĺèš ŕùñţìɱè, šçàĺìñĝ, àñð ɱùçĥ òƒ òþš. Ĝòòð ƀàĺàñçè òƒ šþèèð àñð çòñţŕòĺ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.service.paas.blurb": {
+    "description": "Description of PaaS: emphasizes developer convenience, automatic scaling, and balanced trade-offs. ops = operations"
+  },
+  "part5.service.paas.shortLabel": "[ÞààŠ~~]",
+  "@part5.service.paas.shortLabel": {
+    "description": "Short label for PaaS used in explanations and comparisons. Keep as PaaS (the acronym)"
+  },
+  "part5.service.saas.label": "[ŠààŠ (ùšè àñ èẋìšţìñĝ þŕòðùçţ)~~~~~~~~~~~]",
+  "@part5.service.saas.label": {
+    "description": "Label for Software as a Service option. SaaS is a technical acronym - translate the words but keep SaaS"
+  },
+  "part5.service.saas.blurb": "[Ýòù šùƀšçŕìƀè ţò šòƒţŵàŕè šòɱèòñè èĺšè ŕùñš. Ƒàšţèšţ ţìɱè‑ţò‑ṽàĺùè; ĺèàšţ çòñţŕòĺ/çùšţòɱìžàţìòñ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.service.saas.blurb": {
+    "description": "Description of SaaS: emphasizes subscription model, quickest deployment, minimal control and customization options"
+  },
+  "part5.saas.disabled": "[ŠààŠ ìš ñòţ àṽàìĺàƀĺè ƒòŕ ţĥìš šçèñàŕìò ƀèçàùšè ţĥè ŕèǫùìŕèɱèñţš šþèçìƒý çùšţòɱ šòƒţŵàŕè ðèṽèĺòþɱèñţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.saas.disabled": {
+    "description": "Accessibility text explaining why SaaS option is disabled for certain scenarios that require custom development. Read by screen readers when SaaS card is disabled."
+  },
+  "part5.service.saas.shortLabel": "[ŠààŠ~~]",
+  "@part5.service.saas.shortLabel": {
+    "description": "Short label for SaaS used in explanations and comparisons. Keep as SaaS (the acronym)"
+  },
+  "part5.service.pill.ops": "[Òþš òṽèŕĥèàð: {cost}~~~~~~~]",
+  "@part5.service.pill.ops": {
+    "description": "Pill badge showing operational overhead cost. cost is already formatted as currency (e.g., '$6,000/mo'). ops = operations"
+  },
+  "part5.service.pill.lockin": "[Ĺòçķ‑ìñ: {risk}~~~~~~]",
+  "@part5.service.pill.lockin": {
+    "description": "Pill badge showing vendor lock-in risk level. The risk variable is already translated. Lock-in refers to difficulty switching providers"
+  },
+  "part5.risk.low": "[ĺòŵ~~]",
+  "@part5.risk.low": {
+    "description": "Label for low vendor lock-in risk level"
+  },
+  "part5.risk.med": "[ɱèð~~]",
+  "@part5.risk.med": {
+    "description": "Label for medium vendor lock-in risk level. Use appropriate abbreviation or word for 'medium' in your language"
+  },
+  "part5.risk.high": "[ĥìĝĥ~~]",
+  "@part5.risk.high": {
+    "description": "Label for high vendor lock-in risk level"
+  },
+  "part5.currency.monthly": "[${amount, number}/ɱò~~~~~~~]",
+  "@part5.currency.monthly": {
+    "description": "Format for displaying monthly cost. The amount variable is a raw number that will be formatted according to your locale. Adapt currency symbol and '/mo' (per month) to your locale"
+  },
+  "part5.deployment.heading": "[2) Çĥòòšè à Ðèþĺòýɱèñţ Ṁòðèĺ ƒòŕ ţĥìš šçèñàŕìò~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.heading": {
+    "description": "Step 2 heading for deployment model selection (Public/Private/Hybrid), explicitly anchored to the scenario"
+  },
+  "part5.deployment.subtitle": "[(ŵĥèŕè ìţ ŕùñš)~~~~~~]",
+  "@part5.deployment.subtitle": {
+    "description": "Plain language framing for deployment model - clarifies it's about where the infrastructure runs"
+  },
+  "part5.deployment.sustainability.learn": "[Ĺèàŕñ àƀòùţ èñṽìŕòñɱèñţàĺ ìɱþàçţ~~~~~~~~~~~~]",
+  "@part5.deployment.sustainability.learn": {
+    "description": "Link text to reveal optional sustainability information about data centers"
+  },
+  "part5.deployment.public.label": "[Þùƀĺìç Çĺòùð~~~~~]",
+  "@part5.deployment.public.label": {
+    "description": "Label for Public Cloud deployment option - shared infrastructure accessible over internet"
+  },
+  "part5.deployment.public.blurb": "[Èĺàšţìç çàþàçìţý ŵìţĥ þàý‑àš‑ýòù‑ĝò. Ĝŕèàţ ƒòŕ šþìķý ŵòŕķĺòàðš àñð ƒàšţèŕ ĝĺòƀàĺ ŕèàçĥ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.public.blurb": {
+    "description": "Description of Public Cloud: emphasizes scalability, usage-based pricing, handling traffic spikes, and worldwide availability"
+  },
+  "part5.deployment.public.shortLabel": "[þùƀĺìç çĺòùð~~~~~]",
+  "@part5.deployment.public.shortLabel": {
+    "description": "Short lowercase label for Public Cloud used in explanations. Translate to lowercase form appropriate for your language"
+  },
+  "part5.deployment.private.label": "[Þŕìṽàţè Çĺòùð / Òñ‑Þŕèɱ~~~~~~~~~]",
+  "@part5.deployment.private.label": {
+    "description": "Label for Private Cloud deployment option. On‑Prem is short for On-Premises - infrastructure in your own data center"
+  },
+  "part5.deployment.private.blurb": "[Ðèðìçàţèð ŕèšòùŕçèš àñð ĥìĝĥèŕ çòñţŕòĺ. Ĝòòð ƒòŕ šţŕìçţ çòɱþĺìàñçè; çàþàçìţý ɱùšţ ƀè þĺàññèð.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.private.blurb": {
+    "description": "Description of Private Cloud: emphasizes dedicated infrastructure, security/compliance benefits, and need for capacity planning"
+  },
+  "part5.deployment.private.shortLabel": "[þŕìṽàţè çĺòùð~~~~~]",
+  "@part5.deployment.private.shortLabel": {
+    "description": "Short lowercase label for Private Cloud used in explanations. Translate to lowercase form appropriate for your language"
+  },
+  "part5.deployment.hybrid.label": "[Ĥýƀŕìð~~~]",
+  "@part5.deployment.hybrid.label": {
+    "description": "Label for Hybrid Cloud deployment option - combination of public and private infrastructure"
+  },
+  "part5.deployment.hybrid.blurb": "[Ṁìẋ òƒ þŕìṽàţè þĺùš þùƀĺìç ƀùŕšţ. Šţŕìķèš à ƀàĺàñçè: çòñţŕòĺ ŵĥèŕè ñèèðèð, èĺàšţìçìţý ƒòŕ þèàķš.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.deployment.hybrid.blurb": {
+    "description": "Description of Hybrid Cloud: emphasizes combining private infrastructure for baseline with public cloud for peak demand"
+  },
+  "part5.deployment.hybrid.shortLabel": "[ĥýƀŕìð çĺòùð~~~~~]",
+  "@part5.deployment.hybrid.shortLabel": {
+    "description": "Short lowercase label for Hybrid Cloud used in explanations. Translate to lowercase form appropriate for your language"
+  },
+  "part5.deployment.pill.fixed": "[Ƒìẋèð: {cost}~~~~~]",
+  "@part5.deployment.pill.fixed": {
+    "description": "Pill badge showing fixed infrastructure costs. cost is already formatted as currency (e.g., '$12,000/mo')"
+  },
+  "part5.deployment.pill.variable": "[+ ${cost}/1ķ ùšèŕš~~~~~~~]",
+  "@part5.deployment.pill.variable": {
+    "description": "Pill badge showing variable cost per thousand users. cost is a number that should be formatted (e.g., '180' becomes '+ $180/1k users')"
+  },
+  "part5.deployment.pill.elasticity": "[Èĺàšţìçìţý {score}/100~~~~~~~~]",
+  "@part5.deployment.pill.elasticity": {
+    "description": "Pill badge showing elasticity score (ability to scale dynamically). score is a number from 0-100, higher is better"
+  },
+  "part5.scale.heading": "[3) Àðĵùšţ Àçţìṽè Ùšèŕš~~~~~~~~]",
+  "@part5.scale.heading": {
+    "description": "Step 3 heading for active user count slider to explore trade-offs"
+  },
+  "part5.scale.users": "[Àçţìṽè ùšèŕš: {count, number}~~~~~~~~~~~]",
+  "@part5.scale.users": {
+    "description": "Label showing selected user count. count is a numeric value that should be formatted with thousands separators"
+  },
+  "part5.tradeoffs.heading": "[4) Šèè Ţŕàðè‑òƒƒš~~~~~~]",
+  "@part5.tradeoffs.heading": {
+    "description": "Step 4 heading for metrics and comparison section"
+  },
+  "part5.tradeoffs.button.hide": "[Ĥìðè çòɱþàŕè‑àĺĺ ţàƀĺè~~~~~~~~]",
+  "@part5.tradeoffs.button.hide": {
+    "description": "Button text to hide the comparison table showing all 9 service/deployment combinations"
+  },
+  "part5.tradeoffs.button.show": "[Šĥòŵ çòɱþàŕè‑àĺĺ ţàƀĺè~~~~~~~~]",
+  "@part5.tradeoffs.button.show": {
+    "description": "Button text to show the comparison table showing all 9 service/deployment combinations"
+  },
+  "part5.tradeoffs.selection.label": "[Ýòùŕ šèĺèçţìòñ:~~~~~~]",
+  "@part5.tradeoffs.selection.label": {
+    "description": "Label introducing the learner's selected service and deployment combination"
+  },
+  "part5.tradeoffs.cost.label": "[Èšţìɱàţèð ɱòñţĥĺý çòšţ:~~~~~~~~~]",
+  "@part5.tradeoffs.cost.label": {
+    "description": "Label for estimated monthly cost display"
+  },
+  "part5.tradeoffs.metric.performance": "[Šþèèð & Šçàĺè (þèŕƒòŕɱàñçè)~~~~~~~~~~]",
+  "@part5.tradeoffs.metric.performance": {
+    "description": "Label for performance/scalability metric - how well it handles load and stays responsive"
+  },
+  "part5.tradeoffs.metric.compliance": "[Çòɱþĺìàñçè & Çòñţŕòĺ~~~~~~~]",
+  "@part5.tradeoffs.metric.compliance": {
+    "description": "Label for compliance/control metric bar - measures security, regulatory compliance, and organizational control"
+  },
+  "part5.tradeoffs.metric.ease": "[Òþèŕàţìòñàĺ Èƒƒòŕţ (ĥìĝĥèŕ = ĺèšš ŵòŕķ)~~~~~~~~~~~~~~]",
+  "@part5.tradeoffs.metric.ease": {
+    "description": "Label for operational effort metric - how much ongoing work your team must do. Higher score means less work."
+  },
+  "part5.tradeoffs.summary": "[Ýòùŕ þìçķ: {service} + {deployment} · Çòšţ: {cost} · Ƒìţ: {score}/100~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tradeoffs.summary": {
+    "description": "Collapsed 3-line summary when details are hidden. Variables are already formatted."
+  },
+  "part5.tradeoffs.why": "[Ŵĥý ţĥìš šçòŕè?~~~~~~]",
+  "@part5.tradeoffs.why": {
+    "description": "Toggle button to reveal/hide detailed bars and explanation"
+  },
+  "part5.tradeoffs.explain.heading": "[Ŵĥý ìţ šçòŕèš ţĥìš ŵàý:~~~~~~~~~]",
+  "@part5.tradeoffs.explain.heading": {
+    "description": "Heading for explanatory bullet points that break down how metrics are calculated"
+  },
+  "part5.tradeoffs.fit.label": "[Ƒìţ Šçòŕè (ŵèìĝĥţèð ƒòŕ ţĥìš šçèñàŕìò):~~~~~~~~~~~~~~]",
+  "@part5.tradeoffs.fit.label": {
+    "description": "Label for overall fit score - a weighted combination of all metrics based on scenario priorities"
+  },
+  "part5.tradeoffs.noselection": "[Çĥòòšè à šèŕṽìçè ɱòðèĺ àñð à ðèþĺòýɱèñţ ɱòðèĺ ţò šèè ðèţàìĺèð ţŕàðè‑òƒƒš.~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tradeoffs.noselection": {
+    "description": "Placeholder message shown when no service/deployment combination is selected yet"
+  },
+  "part5.top.heading": "[Ţòþ ŕèçòɱɱèñðèð òþţìòñ~~~~~~~~]",
+  "@part5.top.heading": {
+    "description": "Heading for the panel showing the highest-ranked solution for the current scenario"
+  },
+  "part5.top.badge": "[Ĥìĝĥèšţ Ƒìţ Šçòŕè~~~~~~]",
+  "@part5.top.badge": {
+    "description": "Badge text indicating this is the top-ranked option based on fit score"
+  },
+  "part5.top.cost.label": "[Çòšţ:~~]",
+  "@part5.top.cost.label": {
+    "description": "Label for cost in the top recommendation panel (shortened for space)"
+  },
+  "part5.top.fit.label": "[Ƒìţ:~~]",
+  "@part5.top.fit.label": {
+    "description": "Label for fit score in the top recommendation panel (shortened for space)"
+  },
+  "part5.table.rank": "[Ŕàñķ~~]",
+  "@part5.table.rank": {
+    "description": "Table header for ranking column (1st, 2nd, 3rd, etc.)"
+  },
+  "part5.table.option": "[Òþţìòñ~~~]",
+  "@part5.table.option": {
+    "description": "Table header for service/deployment combination column"
+  },
+  "part5.table.cost": "[Çòšţ~~]",
+  "@part5.table.cost": {
+    "description": "Table header for monthly cost column"
+  },
+  "part5.table.perf": "[Þèŕƒ~~]",
+  "@part5.table.perf": {
+    "description": "Table header for performance metric column. Short for Performance to save space"
+  },
+  "part5.table.compliance": "[Çòɱþĺìàñçè~~~~]",
+  "@part5.table.compliance": {
+    "description": "Table header for compliance/control metric column"
+  },
+  "part5.table.ease": "[Èàšè~~]",
+  "@part5.table.ease": {
+    "description": "Table header for operational ease metric column"
+  },
+  "part5.table.fit": "[Ƒìţ~~]",
+  "@part5.table.fit": {
+    "description": "Table header for overall fit score column"
+  },
+  "part5.table.note": "[Ƒìţ = ŵèìĝĥţèð çòɱƀìñàţìòñ òƒ àƒƒòŕðàƀìĺìţý (çĥèàþèŕ ìš ƀèţţèŕ), þèŕƒòŕɱàñçè, çòɱþĺìàñçè/çòñţŕòĺ, àñð èàšè òƒ òþèŕàţìòñš, ùšìñĝ šçèñàŕìò ŵèìĝĥţš àƀòṽè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.table.note": {
+    "description": "Explanatory note below comparison table explaining how the fit score is calculated from weighted metrics"
+  },
+  "part5.button.evaluate": "[Èṽàĺùàţè ɱý çĥòìçè~~~~~~~]",
+  "@part5.button.evaluate": {
+    "description": "Button to submit selection and receive feedback on how well it fits the scenario"
+  },
+  "part5.button.next": "[Ñèẋţ šçèñàŕìò~~~~~]",
+  "@part5.button.next": {
+    "description": "Button to proceed to next business scenario after evaluation"
+  },
+  "part5.button.finish": "[Ƒìñìšĥ~~~]",
+  "@part5.button.finish": {
+    "description": "Button to complete Part 5 and view final summary after last scenario"
+  },
+  "part5.explanation.cost": "[Çòšţ çòɱƀìñèš {deploymentLabel} ìñƒŕà {infraCost} + {serviceLabel} þĺàţƒòŕɱ/òþš {platformCost}.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.cost": {
+    "description": "Explanation of how total cost is calculated from infrastructure and platform/ops costs. deploymentLabel=deployment type, infraCost=monthly infra cost, serviceLabel=service type, platformCost=monthly ops cost"
+  },
+  "part5.explanation.performance.private": "[{deploymentLabel} èĺàšţìçìţý ({elasticity}/100) ðŕòþš ɱòŕè ñèàŕ þèàķ ŵìţĥòùţ çàþàçìţý þĺàññìñĝ, šò àţ {loadPercent}% òƒ þèàķ ýòùŕ þèŕƒòŕɱàñçè šçòŕè ìš {perfScore}.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.performance.private": {
+    "description": "Explanation of performance score for Private cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.performance.public": "[{deploymentLabel} èĺàšţìçìţý ({elasticity}/100) ĥàñðĺèš šþìķèš ƀèţţèŕ, šò àţ {loadPercent}% òƒ þèàķ ýòùŕ þèŕƒòŕɱàñçè šçòŕè ìš {perfScore}.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.performance.public": {
+    "description": "Explanation of performance score for Public/Hybrid cloud deployment. elasticity=elasticity rating, loadPercent=current load as percentage of max, perfScore=calculated performance score"
+  },
+  "part5.explanation.compliance": "[Çòɱþĺìàñçè/çòñţŕòĺ ìš ìñƒĺùèñçèð ƀý {deploymentLabel} ({baseCompliance}/100) àñð {serviceLabel} çòñţŕòĺ ƀòñùš ({controlBonus, number, :: sign-always}).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.compliance": {
+    "description": "Explanation of compliance/control score calculation. deploymentLabel=deployment type, baseCompliance=base compliance rating, serviceLabel=service type, controlBonus=signed number. The :: sign-always ICU syntax forces sign display for translators to control formatting"
+  },
+  "part5.explanation.effort": "[Òþèŕàţìòñàĺ èƒƒòŕţ ìš ɱòšţĺý ðŕìṽèñ ƀý ţĥè šèŕṽìçè ɱòðèĺ; {serviceLabel} ìɱþĺìèš {effortScore}/100 èƒƒòŕţ (ĺòŵèŕ èàšè).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.effort": {
+    "description": "Explanation of operational effort score for non-hybrid deployments. serviceLabel=service type, effortScore=effort level"
+  },
+  "part5.explanation.effort.hybrid": "[Òþèŕàţìòñàĺ èƒƒòŕţ ìš ɱòšţĺý ðŕìṽèñ ƀý ţĥè šèŕṽìçè ɱòðèĺ; {serviceLabel} ìɱþĺìèš {effortScore}/100 èƒƒòŕţ (ĺòŵèŕ èàšè). Ĥýƀŕìð àððš šòɱè ìñţèĝŕàţìòñ òṽèŕĥèàð.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.explanation.effort.hybrid": {
+    "description": "Explanation of operational effort score for hybrid deployment. serviceLabel=service type, effortScore=effort level. Includes note about hybrid integration overhead. Translators control full sentence structure"
+  },
+  "part5.feedback.excellent": "[✅ Èẋçèĺĺèñţ — ýòù çĥòšè ţĥè ţòþ‑ŕàñķèð òþţìòñ ƒòŕ ţĥìš šçèñàŕìò.~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.feedback.excellent": {
+    "description": "Positive feedback when learner selects the #1 ranked option with highest fit score"
+  },
+  "part5.feedback.solid": "[👍 Šòĺìð — ýòùŕ þìçķ ìš àɱòñĝ ţĥè ţòþ ţĥŕèè ƒòŕ ţĥìš šçèñàŕìò.~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.feedback.solid": {
+    "description": "Positive feedback when learner selects one of the top 3 ranked options"
+  },
+  "part5.feedback.reasonable": "[💡 Ŕèàšòñàƀĺè, ƀùţ ţĥèŕè àŕè òþţìòñš ţĥàţ ƒìţ ƀèţţèŕ ƒòŕ ţĥìš šçèñàŕìò.~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.feedback.reasonable": {
+    "description": "Constructive feedback when learner selects a lower-ranked option that could be improved"
+  },
+  "part5.feedback.details": "[Ýòùŕ Ƒìţ Šçòŕè: {yourFit, number}/100. Ţòþ òþţìòñ: {topService} + {topDeployment} ({topFit, number}/100).~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.feedback.details": {
+    "description": "Detailed feedback showing learner's fit score compared to the top option. yourFit and topFit are numeric scores, topService and topDeployment are text like 'PaaS' and 'Public Cloud'"
+  },
+  "part5.feedback.helping.label": "[Ƒàçţòŕš ĥèĺþìñĝ ýòùŕ çĥòìçè:~~~~~~~~~~]",
+  "@part5.feedback.helping.label": {
+    "description": "Label for list of strengths in the selected solution"
+  },
+  "part5.feedback.helping.none": "[ñòñè ĥìĝĥĺìĝĥţèð~~~~~~]",
+  "@part5.feedback.helping.none": {
+    "description": "Text shown when no specific factors are strong enough to highlight as helping"
+  },
+  "part5.feedback.helping.performance": "[þèŕƒòŕɱàñçè~~~~]",
+  "@part5.feedback.helping.performance": {
+    "description": "Factor name: performance/scalability is a strength of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.helping.compliance": "[çòɱþĺìàñçè~~~~]",
+  "@part5.feedback.helping.compliance": {
+    "description": "Factor name: compliance/control is a strength of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.helping.effort": "[ĺòŵ òþš èƒƒòŕţ~~~~~]",
+  "@part5.feedback.helping.effort": {
+    "description": "Factor name: low operational effort is a strength of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.feedback.hurting.label": "[Ƒàçţòŕš ĥùŕţìñĝ ýòùŕ çĥòìçè:~~~~~~~~~~]",
+  "@part5.feedback.hurting.label": {
+    "description": "Label for list of weaknesses in the selected solution"
+  },
+  "part5.feedback.hurting.none": "[ñòñè ĥìĝĥĺìĝĥţèð~~~~~~]",
+  "@part5.feedback.hurting.none": {
+    "description": "Text shown when no specific factors are weak enough to highlight as hurting"
+  },
+  "part5.feedback.hurting.performance": "[þèŕƒòŕɱàñçè~~~~]",
+  "@part5.feedback.hurting.performance": {
+    "description": "Factor name: performance/scalability is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.compliance": "[çòɱþĺìàñçè~~~~]",
+  "@part5.feedback.hurting.compliance": {
+    "description": "Factor name: compliance/control is a weakness of this choice (used in comma-separated list)"
+  },
+  "part5.feedback.hurting.effort": "[òþš èƒƒòŕţ~~~~]",
+  "@part5.feedback.hurting.effort": {
+    "description": "Factor name: high operational effort is a weakness of this choice (used in comma-separated list). ops = operations"
+  },
+  "part5.tip": "[Ţìþ ƒòŕ ţèàçĥèŕš: Èñçòùŕàĝè ĺèàŕñèŕš ţò ţòĝĝĺè \"Çòɱþàŕè‑àĺĺ\" àñð ɱòṽè ţĥè ùšèŕ šĺìðèŕ ţò šèè ĥòŵ ŕàñķìñĝš çĥàñĝè àš šçàĺè ĝŕòŵš. Àšķ: \"Ŵĥèñ ŵòùĺð ýòù þìçķ Ĥýƀŕìð òṽèŕ Þùƀĺìç? Ŵĥý ìš ŠààŠ ìðèàĺ ƒòŕ ìñţèŕñàĺ ÇŔṀ?\"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.tip": {
+    "description": "Pedagogical tip for educators on how to facilitate deeper learning. CRM = Customer Relationship Management. This tip encourages exploration and critical thinking questions"
+  },
+  "progress.label": "[Ĺèàŕñìñĝ ĵòùŕñèý ñàṽìĝàţìòñ~~~~~~~~~~]",
+  "@progress.label": {
+    "description": "ARIA label for the progress navigation bar"
+  },
+  "progress.introduction.title": "[Ìñţŕò~~]",
+  "@progress.introduction.title": {
+    "description": "Short title for introduction stage in progress bar"
+  },
+  "progress.introduction.label": "[Ñàṽìĝàţè ţò Ìñţŕòðùçţìòñ~~~~~~~~~]",
+  "@progress.introduction.label": {
+    "description": "ARIA label for introduction navigation button"
+  },
+  "progress.part1.title": "[Þàŕţ 1~~~]",
+  "@progress.part1.title": {
+    "description": "Short title for Part 1: Foundations in progress bar"
+  },
+  "progress.part1.label": "[Ñàṽìĝàţè ţò Þàŕţ 1: Ƒòùñðàţìòñš~~~~~~~~~~~]",
+  "@progress.part1.label": {
+    "description": "ARIA label for Part 1 navigation button"
+  },
+  "progress.part2.title": "[Þàŕţ 2~~~]",
+  "@progress.part2.title": {
+    "description": "Short title for Part 2: Service Models in progress bar"
+  },
+  "progress.part2.label": "[Ñàṽìĝàţè ţò Þàŕţ 2: Šèŕṽìçè Ṁòðèĺš~~~~~~~~~~~~]",
+  "@progress.part2.label": {
+    "description": "ARIA label for Part 2 navigation button"
+  },
+  "progress.part3.title": "[Þàŕţ 3~~~]",
+  "@progress.part3.title": {
+    "description": "Short title for Part 3: Deployment Models in progress bar"
+  },
+  "progress.part3.label": "[Ñàṽìĝàţè ţò Þàŕţ 3: Ðèþĺòýɱèñţ Ṁòðèĺš~~~~~~~~~~~~~]",
+  "@progress.part3.label": {
+    "description": "ARIA label for Part 3 navigation button"
+  },
+  "progress.part4.title": "[Þàŕţ 4~~~]",
+  "@progress.part4.title": {
+    "description": "Short title for Part 4: Perspective Matters in progress bar"
+  },
+  "progress.part4.label": "[Ñàṽìĝàţè ţò Þàŕţ 4: Þèŕšþèçţìṽè Ṁàţţèŕš~~~~~~~~~~~~~~]",
+  "@progress.part4.label": {
+    "description": "ARIA label for Part 4 navigation button"
+  },
+  "progress.part5.title": "[Þàŕţ 5~~~]",
+  "@progress.part5.title": {
+    "description": "Short title for Part 5: Cloud Designer in progress bar"
+  },
+  "progress.part5.label": "[Ñàṽìĝàţè ţò Þàŕţ 5: Çĺòùð Šòĺùţìòñ Ðèšìĝñèŕ~~~~~~~~~~~~~~~~]",
+  "@progress.part5.label": {
+    "description": "ARIA label for Part 5 navigation button"
+  },
+  "progress.summary.title": "[Šùɱɱàŕý~~~]",
+  "@progress.summary.title": {
+    "description": "Short title for summary/results stage in progress bar"
+  },
+  "progress.summary.label": "[Ñàṽìĝàţè ţò Šùɱɱàŕý àñð Ŕèšùĺţš~~~~~~~~~~~]",
+  "@progress.summary.label": {
+    "description": "ARIA label for summary navigation button"
+  },
+  "progress.introduction.subtitle": "[Ĝèţţìñĝ Šţàŕţèð~~~~~~]",
+  "@progress.introduction.subtitle": {
+    "description": "Subtitle shown under the Intro progress stage"
+  },
+  "progress.part1.subtitle": "[Ƒòùñðàţìòñš~~~~]",
+  "@progress.part1.subtitle": {
+    "description": "Subtitle shown under the Part 1 progress stage - about cloud computing basics"
+  },
+  "progress.part2.subtitle": "[Šèŕṽìçè Ṁòðèĺš~~~~~]",
+  "@progress.part2.subtitle": {
+    "description": "Subtitle shown under the Part 2 progress stage - about IaaS, PaaS, SaaS"
+  },
+  "progress.part3.subtitle": "[Ðèþĺòýɱèñţ Ṁòðèĺš~~~~~~]",
+  "@progress.part3.subtitle": {
+    "description": "Subtitle shown under the Part 3 progress stage - about Public, Private, Hybrid"
+  },
+  "progress.part4.subtitle": "[Þèŕšþèçţìṽè Ṁàţţèŕš~~~~~~~]",
+  "@progress.part4.subtitle": {
+    "description": "Subtitle shown under the Part 4 progress stage - about Netflix case study"
+  },
+  "progress.part5.subtitle": "[Çĺòùð Ðèšìĝñèŕ~~~~~]",
+  "@progress.part5.subtitle": {
+    "description": "Subtitle shown under the Part 5 progress stage - about applying knowledge to scenarios"
+  },
+  "progress.summary.subtitle": "[Ýòùŕ Ŕèšùĺţš~~~~~]",
+  "@progress.summary.subtitle": {
+    "description": "Subtitle shown under the Summary progress stage - final score and recap"
+  },
+  "part5.step1.title": "[Çĥòòšè à Šèŕṽìçè Ṁòðèĺ~~~~~~~~]",
+  "@part5.step1.title": {
+    "description": "Step 1 heading in the stepper - service model selection"
+  },
+  "part5.step1.subtitle": "[Ŵĥàţ ýòù ƀùý~~~~~]",
+  "@part5.step1.subtitle": {
+    "description": "Step 1 subtitle explaining service model concept"
+  },
+  "part5.step2.title": "[Çĥòòšè à Ðèþĺòýɱèñţ Ṁòðèĺ~~~~~~~~~]",
+  "@part5.step2.title": {
+    "description": "Step 2 heading in the stepper - deployment model selection"
+  },
+  "part5.step2.subtitle": "[Ŵĥèŕè ìţ ŕùñš~~~~~]",
+  "@part5.step2.subtitle": {
+    "description": "Step 2 subtitle explaining deployment model concept"
+  },
+  "part5.step3.title": "[Šèè Ţŕàðè-òƒƒš & Èṽàĺùàţè~~~~~~~~~]",
+  "@part5.step3.title": {
+    "description": "Step 3 heading in the stepper - view results and compare"
+  },
+  "part5.step3.subtitle": "[Ŕèṽìèŵ ýòùŕ ðèšìĝñ~~~~~~~]",
+  "@part5.step3.subtitle": {
+    "description": "Step 3 subtitle explaining the results review step"
+  },
+  "part5.compare.title": "[Çòɱþàŕè Àĺĺ Šèŕṽìçè & Ðèþĺòýɱèñţ Òþţìòñš~~~~~~~~~~~~~~]",
+  "@part5.compare.title": {
+    "description": "Title for the comparison table showing all combinations"
+  },
+  "part5.compare.show": "[Šĥòŵ:~~]",
+  "@part5.compare.show": {
+    "description": "Label before the summary/all toggle buttons"
+  },
+  "part5.compare.summary": "[Šùɱɱàŕý~~~]",
+  "@part5.compare.summary": {
+    "description": "Button to show summarized comparison (top 3 options)"
+  },
+  "part5.compare.all": "[Àĺĺ Òþţìòñš~~~~]",
+  "@part5.compare.all": {
+    "description": "Button to show all 9 service/deployment combinations"
+  },
+  "venn.public.label": "[Þùƀĺìç Çĺòùð~~~~~]",
+  "@venn.public.label": {
+    "description": "Label for Public Cloud in the Venn diagram"
+  },
+  "venn.private.label": "[Þŕìṽàţè Çĺòùð~~~~~]",
+  "@venn.private.label": {
+    "description": "Label for Private Cloud in the Venn diagram"
+  },
+  "venn.hybrid.label": "[Ĥýƀŕìð Çĺòùð~~~~~]",
+  "@venn.hybrid.label": {
+    "description": "Label for Hybrid Cloud intersection in the Venn diagram"
+  },
+  "venn.aria.label": "[Ṽèññ ðìàĝŕàɱ šĥòŵìñĝ ŕèĺàţìòñšĥìþ ƀèţŵèèñ Þùƀĺìç, Þŕìṽàţè, àñð Ĥýƀŕìð çĺòùð ðèþĺòýɱèñţ ɱòðèĺš~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@venn.aria.label": {
+    "description": "Accessible description of the Venn diagram for screen readers"
+  },
+  "common.tooltip.moreInfo": "[Ṁòŕè ìñƒòŕɱàţìòñ àƀòùţ {label}~~~~~~~~~~~]",
+  "@common.tooltip.moreInfo": {
+    "description": "Accessible label for tooltip buttons that provide additional information about a topic"
+  }
+}

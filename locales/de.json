@@ -1,0 +1,106 @@
+{
+  "introduction.title": "Wie Cloud Computing funktioniert",
+  "@introduction.title": {
+    "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
+  },
+  "introduction.description": "Diese kurze, interaktive Aktivität führt Sie durch die Methoden und Techniken der Cloud, von ihren Grundlagen bis zu ihrer Bereitstellung.",
+  "@introduction.description": {
+    "description": "Brief description of what the user will learn in this activity"
+  },
+  "introduction.part1.title": "Teil 1: Grundlagen.",
+  "@introduction.part1.title": {
+    "description": "Title for the first learning section about cloud computing basics"
+  },
+  "introduction.part1.description": "Beantworten Sie \"Mythos oder Wahrheit\"-Fragen darüber, was die Cloud wirklich ist.",
+  "@introduction.part1.description": {
+    "description": "Description of the first activity - a quiz format about cloud fundamentals"
+  },
+  "introduction.part2.title": "Teil 2: Servicemodelle.",
+  "@introduction.part2.title": {
+    "description": "Title for the second learning section about cloud service types"
+  },
+  "introduction.part2.description": "Spielen Sie ein Drag-and-Drop-Spiel, um IaaS, PaaS und SaaS zu sortieren.",
+  "@introduction.part2.description": {
+    "description": "Description of the second activity - interactive sorting game"
+  },
+  "introduction.part3.title": "Teil 3: Bereitstellungsmodelle.",
+  "@introduction.part3.title": {
+    "description": "Title for the third learning section about cloud deployment types"
+  },
+  "introduction.part3.description": "Lösen Sie reale Szenarien, um öffentliche, private und hybride Clouds zu verstehen.",
+  "@introduction.part3.description": {
+    "description": "Description of the third activity - scenario-based learning"
+  },
+  "introduction.button.start": "Los geht's",
+  "@introduction.button.start": {
+    "description": "Call-to-action button to begin the learning activity"
+  },
+  "part1.title": "Teil 1: Das Fundament",
+  "@part1.title": {
+    "description": "Header for the foundation quiz section"
+  },
+  "part1.subtitle": "Ist die folgende Aussage ein Mythos oder eine Tatsache?",
+  "@part1.subtitle": {
+    "description": "Instruction text explaining the quiz format to users"
+  },
+  "part1.button.fact": "Tatsache",
+  "@part1.button.fact": {
+    "description": "Button label for selecting that a statement is true/factual"
+  },
+  "part1.button.myth": "Mythos",
+  "@part1.button.myth": {
+    "description": "Button label for selecting that a statement is false/myth"
+  },
+  "part1.feedback.correct.title": "Richtig!",
+  "@part1.feedback.correct.title": {
+    "description": "Positive feedback shown when user selects the right answer"
+  },
+  "part1.feedback.incorrect.title": "Nicht ganz!",
+  "@part1.feedback.incorrect.title": {
+    "description": "Gentle feedback shown when user selects the wrong answer"
+  },
+  "part1.button.next": "Nächste Frage",
+  "@part1.button.next": {
+    "description": "Button to proceed to the next quiz question"
+  },
+  "part1.button.continue": "Weiter",
+  "@part1.button.continue": {
+    "description": "Button to proceed to next section after completing all questions"
+  },
+  "progress.label": "Aktivitätsfortschritt",
+  "@progress.label": {
+    "description": "Accessible label for the progress navigation"
+  },
+  "summary.button.restart": "Neustart",
+  "@summary.button.restart": {
+    "description": "Button to restart the entire activity"
+  },
+  "common.tooltip.moreInfo": "Weitere Informationen über {label}",
+  "@common.tooltip.moreInfo": {
+    "description": "Accessible label for tooltip buttons"
+  },
+  "deploymentmodel.public": "Öffentliche Cloud",
+  "@deploymentmodel.public": {
+    "description": "Label for Public Cloud deployment model"
+  },
+  "deploymentmodel.private": "Private Cloud",
+  "@deploymentmodel.private": {
+    "description": "Label for Private Cloud deployment model"
+  },
+  "deploymentmodel.hybrid": "Hybride Cloud",
+  "@deploymentmodel.hybrid": {
+    "description": "Label for Hybrid Cloud deployment model"
+  },
+  "servicemodel.iaas": "Infrastruktur als Dienstleistung",
+  "@servicemodel.iaas": {
+    "description": "Infrastructure as a Service label"
+  },
+  "servicemodel.paas": "Plattform als Dienstleistung",
+  "@servicemodel.paas": {
+    "description": "Platform as a Service label"
+  },
+  "servicemodel.saas": "Software als Dienstleistung",
+  "@servicemodel.saas": {
+    "description": "Software as a Service label"
+  }
+}

@@ -9,6 +9,9 @@
     "preview": "vite preview",
     "i18n:extract": "formatjs extract './**/*.tsx' --ignore './node_modules/**' --out-file locales/extracted.json --format simple",
     "i18n:compile": "node scripts/compile-messages.js",
+    "i18n:pseudo": "node scripts/pseudo-localize.js",
+    "i18n:unused": "node scripts/find-unused-keys.js",
+    "i18n:check": "npm run i18n:compile && npm run lint",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {

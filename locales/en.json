@@ -1242,5 +1242,9 @@
   "venn.aria.label": "Venn diagram showing relationship between Public, Private, and Hybrid cloud deployment models",
   "@venn.aria.label": {
     "description": "Accessible description of the Venn diagram for screen readers"
+  },
+  "common.tooltip.moreInfo": "More information about {label}",
+  "@common.tooltip.moreInfo": {
+    "description": "Accessible label for tooltip buttons that provide additional information about a topic"
   }
 }

@@ -1,0 +1,106 @@
+{
+  "introduction.title": "كيف تعمل الحوسبة السحابية",
+  "@introduction.title": {
+    "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
+  },
+  "introduction.description": "هذا النشاط التفاعلي القصير سيرشدك عبر أساليب وتقنيات السحابة، من أساسياتها إلى نشرها.",
+  "@introduction.description": {
+    "description": "Brief description of what the user will learn in this activity"
+  },
+  "introduction.part1.title": "الجزء الأول: الأساسيات.",
+  "@introduction.part1.title": {
+    "description": "Title for the first learning section about cloud computing basics"
+  },
+  "introduction.part1.description": "أجب على أسئلة \"خرافة أم حقيقة\" حول ماهية السحابة الحقيقية.",
+  "@introduction.part1.description": {
+    "description": "Description of the first activity - a quiz format about cloud fundamentals"
+  },
+  "introduction.part2.title": "الجزء الثاني: نماذج الخدمة.",
+  "@introduction.part2.title": {
+    "description": "Title for the second learning section about cloud service types"
+  },
+  "introduction.part2.description": "العب لعبة السحب والإفلات لفرز IaaS وPaaS وSaaS.",
+  "@introduction.part2.description": {
+    "description": "Description of the second activity - interactive sorting game"
+  },
+  "introduction.part3.title": "الجزء الثالث: نماذج النشر.",
+  "@introduction.part3.title": {
+    "description": "Title for the third learning section about cloud deployment types"
+  },
+  "introduction.part3.description": "حل سيناريوهات واقعية لفهم السحابات العامة والخاصة والهجينة.",
+  "@introduction.part3.description": {
+    "description": "Description of the third activity - scenario-based learning"
+  },
+  "introduction.button.start": "هيا نبدأ",
+  "@introduction.button.start": {
+    "description": "Call-to-action button to begin the learning activity"
+  },
+  "part1.title": "الجزء الأول: الأساس",
+  "@part1.title": {
+    "description": "Header for the foundation quiz section"
+  },
+  "part1.subtitle": "هل العبارة التالية خرافة أم حقيقة؟",
+  "@part1.subtitle": {
+    "description": "Instruction text explaining the quiz format to users"
+  },
+  "part1.button.fact": "حقيقة",
+  "@part1.button.fact": {
+    "description": "Button label for selecting that a statement is true/factual"
+  },
+  "part1.button.myth": "خرافة",
+  "@part1.button.myth": {
+    "description": "Button label for selecting that a statement is false/myth"
+  },
+  "part1.feedback.correct.title": "صحيح!",
+  "@part1.feedback.correct.title": {
+    "description": "Positive feedback shown when user selects the right answer"
+  },
+  "part1.feedback.incorrect.title": "ليس تماماً!",
+  "@part1.feedback.incorrect.title": {
+    "description": "Gentle feedback shown when user selects the wrong answer"
+  },
+  "part1.button.next": "السؤال التالي",
+  "@part1.button.next": {
+    "description": "Button to proceed to the next quiz question"
+  },
+  "part1.button.continue": "متابعة",
+  "@part1.button.continue": {
+    "description": "Button to proceed to next section after completing all questions"
+  },
+  "progress.label": "تقدم النشاط",
+  "@progress.label": {
+    "description": "Accessible label for the progress navigation"
+  },
+  "summary.button.restart": "ابدأ من جديد",
+  "@summary.button.restart": {
+    "description": "Button to restart the entire activity"
+  },
+  "common.tooltip.moreInfo": "مزيد من المعلومات حول {label}",
+  "@common.tooltip.moreInfo": {
+    "description": "Accessible label for tooltip buttons"
+  },
+  "deploymentmodel.public": "السحابة العامة",
+  "@deploymentmodel.public": {
+    "description": "Label for Public Cloud deployment model"
+  },
+  "deploymentmodel.private": "السحابة الخاصة",
+  "@deploymentmodel.private": {
+    "description": "Label for Private Cloud deployment model"
+  },
+  "deploymentmodel.hybrid": "السحابة الهجينة",
+  "@deploymentmodel.hybrid": {
+    "description": "Label for Hybrid Cloud deployment model"
+  },
+  "servicemodel.iaas": "البنية التحتية كخدمة",
+  "@servicemodel.iaas": {
+    "description": "Infrastructure as a Service label"
+  },
+  "servicemodel.paas": "المنصة كخدمة",
+  "@servicemodel.paas": {
+    "description": "Platform as a Service label"
+  },
+  "servicemodel.saas": "البرمجيات كخدمة",
+  "@servicemodel.saas": {
+    "description": "Software as a Service label"
+  }
+}

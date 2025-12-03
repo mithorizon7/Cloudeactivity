@@ -174,7 +174,14 @@ locales/
 1. Copy `locales/en.json` to `locales/{locale}.json`
 2. Translate all values (keep keys unchanged)
 3. Keep all `@` description entries
-4. Register the locale in `i18n/IntlProvider.tsx`
+4. Add locale to `SUPPORTED_LOCALES` in `i18n/IntlProvider.tsx`
+
+See [Workflow Roles](./i18n-workflow-roles.md) for the full process and responsibilities.
+
+## Related Documentation
+
+- [Cloud Computing Glossary](./cloud-glossary.md) - Technical terms for translators
+- [Workflow Roles](./i18n-workflow-roles.md) - Team responsibilities and processes
 
 ## Quick Reference
 

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useIntl } from '../i18n';
 
 interface InfoTooltipProps {
   label: string;
@@ -7,6 +8,7 @@ interface InfoTooltipProps {
 }
 
 export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
+  const intl = useIntl();
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -62,7 +64,7 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
         aria-describedby={isOpen ? uniqueId : undefined}
         aria-expanded={isOpen}
         className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2 touch-manipulation text-xs rounded-full bg-slate-600 text-white hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8b959e]/70 transition-colors -my-2"
-        aria-label={`More information about ${label}`}
+        aria-label={intl.formatMessage({ id: 'common.tooltip.moreInfo' }, { label })}
       >
         <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-700 border border-slate-500">?</span>
       </button>
