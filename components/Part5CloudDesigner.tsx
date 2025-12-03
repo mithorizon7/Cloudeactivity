@@ -11,7 +11,8 @@ import {
 import { clamp, formatMonthlyCost, weightToPriority, computeMetrics, weightedFit } from './Part5/helpers';
 import { stepperReducer, initialStepperState } from './Part5/stepperReducer';
 import { BASE_SCENARIOS } from './Part5/scenarios';
-import { SectionCard, Token, StepCard, Bar } from './Part5/UIComponents';
+import { SectionCard, Token, StepCard, Bar, PriorityMeter, ScenarioIntro, PointsAnimation, ScoreIndicator, SliderMilestones } from './Part5/UIComponents';
+import { ServerStackIcon, CubeIcon, CloudIcon, GlobeIcon, LockIcon, ArrowsIcon, ArchitectIcon, ChartBarIcon } from './Part5/Icons';
 
 interface Part5CloudDesignerProps {
   onComplete: (score: number) => void;
@@ -31,6 +32,8 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   const [showSustainability, setShowSustainability] = useState(false);
   const [showTradeoffDetails, setShowTradeoffDetails] = useState(true);
   const [topRevealed, setTopRevealed] = useState(false);
+  const [showPointsAnimation, setShowPointsAnimation] = useState(false);
+  const [lastPointsEarned, setLastPointsEarned] = useState(0);
   const liveRef = useRef<HTMLDivElement | null>(null);
 
   const [stepperState, dispatchStepper] = useReducer(stepperReducer, initialStepperState);
@@ -175,7 +178,10 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
       (x) => x.service === selected.service && x.deployment === selected.deployment
     );
     const points = basePoints + (matchesIdeal ? 1 : 0);
+    setLastPointsEarned(points);
+    setShowPointsAnimation(true);
     setTotalScore((p) => p + points);
+    setTimeout(() => setShowPointsAnimation(false), 1500);
     requestAnimationFrame(() => {
       liveRef.current?.focus();
     });
@@ -248,84 +254,90 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
     );
   };
 
+  const estimatedCost = useMemo(() => {
+    if (!service || !deployment) return null;
+    const combo = allCombos.find((c) => c.service === service && c.deployment === deployment);
+    return combo ? combo.metrics.cost : null;
+  }, [service, deployment, allCombos]);
+
+  const priorityData = useMemo(() => [
+    { key: 'cost', label: intl.formatMessage({ id: 'part5.dim.cost' }), weight: scenario.weights.cost, priority: weightToPriority(scenario.weights.cost) },
+    { key: 'perf', label: intl.formatMessage({ id: 'part5.dim.perf' }), weight: scenario.weights.performance, priority: weightToPriority(scenario.weights.performance) },
+    { key: 'compliance', label: intl.formatMessage({ id: 'part5.dim.compliance' }), weight: scenario.weights.compliance, priority: weightToPriority(scenario.weights.compliance) },
+    { key: 'effort', label: intl.formatMessage({ id: 'part5.dim.effort' }), weight: scenario.weights.effort, priority: weightToPriority(scenario.weights.effort) },
+  ], [scenario.weights, intl]);
+
+  const getScenarioIcon = () => {
+    switch (scenario.id) {
+      case 1: return <CubeIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      case 2: return <LockIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      case 3: return <CloudIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      default: return <ArchitectIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-28 md:pb-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-44 sm:pb-40 md:pb-36">
+      <PointsAnimation points={lastPointsEarned} show={showPointsAnimation} />
+      
       <div className="mx-auto w-full max-w-7xl">
-        <header className="mb-6 md:mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            <FormattedMessage id="part5.title" />
-          </h1>
-          <ol className="max-w-2xl mx-auto text-left space-y-2 mb-6">
-            <li className="flex items-start gap-2 text-slate-300">
-              <span className="font-bold text-[#8b959e]">1.</span>
-              <FormattedMessage id="part5.steps.1" />
-            </li>
-            <li className="flex items-start gap-2 text-slate-300">
-              <span className="font-bold text-[#8b959e]">2.</span>
-              <FormattedMessage id="part5.steps.2" />
-            </li>
-            <li className="flex items-start gap-2 text-slate-300">
-              <span className="font-bold text-[#8b959e]">3.</span>
-              <FormattedMessage id="part5.steps.3" />
-            </li>
-            <li className="flex items-start gap-2 text-slate-300">
-              <span className="font-bold text-[#8b959e]">4.</span>
-              <FormattedMessage id="part5.steps.4" />
-            </li>
-          </ol>
+        <header className="mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center sm:text-left">
+              <FormattedMessage id="part5.title" />
+            </h1>
+            <ScoreIndicator 
+              currentScore={totalScore} 
+              maxScore={20} 
+              scenarioNumber={scenarioIdx + 1} 
+              totalScenarios={BASE_SCENARIOS.length} 
+            />
+          </div>
         </header>
 
+        <ScenarioIntro
+          scenarioNumber={scenarioIdx + 1}
+          totalScenarios={BASE_SCENARIOS.length}
+          icon={getScenarioIcon()}
+          roleText={intl.formatMessage({ id: 'part5.role.text', defaultMessage: "You're the cloud architect. Design the best solution for this client." })}
+          contextText={intl.formatMessage({ id: scenario.descriptionKey })}
+        />
+
         <SectionCard className="mb-6">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="font-semibold text-cyan-400">
-              <FormattedMessage id="part5.scenario.label" values={{ current: scenarioIdx + 1, total: BASE_SCENARIOS.length }} />
-            </p>
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
+              <FormattedMessage id={scenario.titleKey} />
+            </h2>
             <div className="flex flex-wrap gap-2">
               <Token>
                 <FormattedMessage id="part5.scenario.pill.users" values={{ count: users }} />
               </Token>
+              {estimatedCost && (
+                <Token>
+                  <span className="text-cyan-300">{formatMonthlyCost(estimatedCost, intl)}</span>
+                </Token>
+              )}
             </div>
           </div>
-          <div className="mt-3">
-            <p className="text-sm text-slate-400 mb-2">
-              <FormattedMessage id="part5.matters.title" />
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                { key: 'cost', weight: scenario.weights.cost },
-                { key: 'perf', weight: scenario.weights.performance },
-                { key: 'compliance', weight: scenario.weights.compliance },
-                { key: 'effort', weight: scenario.weights.effort },
-              ].map(({ key, weight }) => {
-                const priority = weightToPriority(weight);
-                const priorityColors = {
-                  high: 'bg-emerald-600 text-white',
-                  med: 'bg-blue-600 text-white',
-                  low: 'bg-slate-600 text-slate-200',
-                };
-                return (
-                  <div key={key} className="inline-flex items-center gap-1">
-                    <InfoTooltip label={intl.formatMessage({ id: `part5.dim.${key}` })} id={`weight-${key}`}>
-                      <FormattedMessage id={`part5.tooltip.${key}`} values={{ weight: Math.round(weight * 100) }} />
-                    </InfoTooltip>
-                    <span className={`px-2 py-0.5 rounded text-xs font-medium ${priorityColors[priority]}`}>
-                      <FormattedMessage id={`part5.matters.${priority}`} />
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <h2 className="mt-2 text-2xl font-bold text-white">
-            <FormattedMessage id={scenario.titleKey} />
-          </h2>
-          <p className="mt-1 text-slate-300">
-            <FormattedMessage id={scenario.descriptionKey} />
-          </p>
 
-          <div className="mt-4 pt-4 border-t border-slate-700/40">
-            <div className="mb-2 text-slate-300">
-              <FormattedMessage id="part5.scale.users" values={{ count: users }} />
+          <div className="mb-6 p-4 bg-slate-800/50 rounded-xl border border-slate-700/30">
+            <PriorityMeter priorities={priorityData} />
+          </div>
+
+          <div className="pt-4 border-t border-slate-700/40">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+              <div className="text-slate-300 font-medium">
+                <FormattedMessage id="part5.scale.users" values={{ count: users }} />
+              </div>
+              {estimatedCost && (
+                <div className="text-sm text-cyan-300">
+                  <FormattedMessage 
+                    id="part5.cost.preview" 
+                    defaultMessage="Est. monthly cost: {cost}"
+                    values={{ cost: formatMonthlyCost(estimatedCost, intl) }}
+                  />
+                </div>
+              )}
             </div>
             <input
               type="range"
@@ -337,14 +349,11 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
               aria-label={intl.formatMessage({ id: 'part5.scale.users' }, { count: users })}
               className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-12 cursor-pointer touch-manipulation [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-500 [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-cyan-500 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:cursor-pointer"
             />
-            <div className="mt-1 flex justify-between text-xs text-slate-400">
-              <span>
-                <FormattedNumber value={scenario.minUsers} />
-              </span>
-              <span>
-                <FormattedNumber value={scenario.maxUsers} />
-              </span>
+            <div className="flex justify-between text-xs text-slate-400 mt-1">
+              <span><FormattedNumber value={scenario.minUsers} /></span>
+              <span><FormattedNumber value={scenario.maxUsers} /></span>
             </div>
+            <SliderMilestones min={scenario.minUsers} max={scenario.maxUsers} value={users} />
           </div>
         </SectionCard>
 
@@ -387,31 +396,59 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             }
             stepRef={(el) => (stepRefs.current['service'] = el)}
           >
-            <div role="radiogroup" className="space-y-2">
+            <div role="radiogroup" className="space-y-3">
               {(['iaas', 'paas', 'saas'] as ServiceModelKey[]).map((m) => {
                 const meta = serviceMeta[m];
                 const disabled = m === 'saas' && scenario.saasApplicable === false;
                 const selectedState = service === m;
+                const serviceIcons: Record<ServiceModelKey, React.ReactNode> = {
+                  iaas: <ServerStackIcon className="w-8 h-8" />,
+                  paas: <CubeIcon className="w-8 h-8" />,
+                  saas: <CloudIcon className="w-8 h-8" />,
+                };
+                const serviceColors: Record<ServiceModelKey, string> = {
+                  iaas: 'from-orange-500/20 to-orange-600/10 border-orange-500/30',
+                  paas: 'from-purple-500/20 to-purple-600/10 border-purple-500/30',
+                  saas: 'from-blue-500/20 to-blue-600/10 border-blue-500/30',
+                };
                 return (
-                  <button
+                  <div
                     key={m}
-                    role="radio"
-                    aria-checked={selectedState}
-                    aria-disabled={disabled || undefined}
-                    aria-describedby={disabled ? 'saas-note' : undefined}
-                    onClick={() => !disabled && handleServiceSelect(m)}
-                    className={`w-full text-left rounded-lg border-2 p-3 lg:p-4 xl:p-5 min-h-[60px] motion-safe:transition relative touch-manipulation
-                      ${selectedState ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600 active:bg-slate-700'}
-                      ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
+                    className={`rounded-xl border-2 transition-all duration-300 relative
+                      ${selectedState 
+                        ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20' 
+                        : `border-slate-600 bg-gradient-to-br ${serviceColors[m]}`}
+                      ${disabled ? 'opacity-50' : ''}`}
                   >
-                    {selectedState && (
-                      <div className="absolute top-2 right-2 flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white font-bold text-sm">
-                        ✓
+                    <button
+                      role="radio"
+                      aria-checked={selectedState}
+                      aria-disabled={disabled || undefined}
+                      aria-describedby={disabled ? 'saas-note' : undefined}
+                      onClick={() => !disabled && handleServiceSelect(m)}
+                      className={`w-full text-left p-4 lg:p-5 min-h-[80px] touch-manipulation group rounded-t-xl
+                        ${disabled ? 'cursor-not-allowed' : 'hover:bg-slate-800/20 active:bg-slate-800/30'}`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
+                          selectedState ? 'bg-cyan-500/30 text-cyan-300' : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
+                        }`}>
+                          {serviceIcons[m]}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="font-bold text-lg text-slate-100">{meta.label}</div>
+                            {selectedState && (
+                              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-cyan-500 text-white font-bold text-sm animate-pulse">
+                                ✓
+                              </div>
+                            )}
+                          </div>
+                          <div className="text-sm text-slate-400 mt-1">{meta.blurb}</div>
+                        </div>
                       </div>
-                    )}
-                    <div className="font-semibold text-slate-100">{meta.label}</div>
-                    <div className="text-sm text-slate-400">{meta.blurb}</div>
-                    <div className="mt-2 flex gap-2">
+                    </button>
+                    <div className="px-4 pb-4 lg:px-5 lg:pb-5 flex flex-wrap gap-2">
                       <Token>
                         <InfoTooltip
                           label={intl.formatMessage(
@@ -433,7 +470,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                         </InfoTooltip>
                       </Token>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -457,58 +494,87 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
             }
             stepRef={(el) => (stepRefs.current['deployment'] = el)}
           >
-            <div role="radiogroup" className="space-y-2">
+            <div role="radiogroup" className="space-y-3">
               {(['public', 'private', 'hybrid'] as DeploymentModelKey[]).map((m) => {
                 const meta = deploymentMeta[m];
                 const sel = deployment === m;
+                const deploymentIcons: Record<DeploymentModelKey, React.ReactNode> = {
+                  public: <GlobeIcon className="w-8 h-8" />,
+                  private: <LockIcon className="w-8 h-8" />,
+                  hybrid: <ArrowsIcon className="w-8 h-8" />,
+                };
+                const deploymentColors: Record<DeploymentModelKey, string> = {
+                  public: 'from-green-500/20 to-green-600/10 border-green-500/30',
+                  private: 'from-red-500/20 to-red-600/10 border-red-500/30',
+                  hybrid: 'from-amber-500/20 to-amber-600/10 border-amber-500/30',
+                };
                 return (
-                  <button
+                  <div
                     key={m}
-                    role="radio"
-                    aria-checked={sel}
-                    onClick={() => handleDeploymentSelect(m)}
-                    className={`w-full text-left rounded-lg border-2 p-4 lg:p-5 xl:p-6 min-h-[80px] motion-safe:transition relative touch-manipulation
-                      ${sel ? 'border-cyan-500 bg-slate-800 ring-2 ring-cyan-500/20' : 'border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-slate-600 active:bg-slate-700'}`}
+                    className={`rounded-xl border-2 transition-all duration-300 relative
+                      ${sel 
+                        ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20' 
+                        : `border-slate-600 bg-gradient-to-br ${deploymentColors[m]}`}`}
                   >
-                    {sel && (
-                      <div className="absolute top-3 right-3 flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-white font-bold text-sm">
-                        ✓
-                      </div>
-                    )}
-                    <div className="mb-1 font-semibold text-slate-100">{meta.label}</div>
-                    <div className="mb-3 text-sm text-slate-400">{meta.blurb}</div>
-                    <div className="flex items-center justify-around gap-3">
-                      <div className="text-center">
-                        <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.fixed' })}>
-                          <FormattedMessage id="part5.tooltip.fixed" />
-                        </InfoTooltip>
-                        <div className="text-lg font-bold text-cyan-300">{formatMonthlyCost(meta.fixedInfra, intl)}</div>
-                      </div>
-                      <div className="text-center">
-                        <InfoTooltip
-                          label={
-                            intl.formatNumber(meta.variablePerKUsers, {
-                              style: 'currency',
-                              currency: 'USD',
-                              minimumFractionDigits: 0,
-                            }) + '/1k'
-                          }
-                        >
-                          <FormattedMessage id="part5.tooltip.variable" />
-                        </InfoTooltip>
-                        <div className="text-lg font-bold text-cyan-300">
-                          <FormattedNumber value={meta.variablePerKUsers} style="currency" currency="USD" minimumFractionDigits={0} />
-                          /1k
+                    <button
+                      role="radio"
+                      aria-checked={sel}
+                      onClick={() => handleDeploymentSelect(m)}
+                      className="w-full text-left p-4 lg:p-5 min-h-[80px] touch-manipulation group rounded-t-xl hover:bg-slate-800/20 active:bg-slate-800/30"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
+                          sel ? 'bg-cyan-500/30 text-cyan-300' : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
+                        }`}>
+                          {deploymentIcons[m]}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2 mb-1">
+                            <div className="font-bold text-lg text-slate-100">{meta.label}</div>
+                            {sel && (
+                              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-cyan-500 text-white font-bold text-sm animate-pulse">
+                                ✓
+                              </div>
+                            )}
+                          </div>
+                          <div className="text-sm text-slate-400">{meta.blurb}</div>
                         </div>
                       </div>
-                      <div className="text-center">
-                        <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.elasticity' })}>
-                          <FormattedMessage id="part5.tooltip.elasticity" />
-                        </InfoTooltip>
-                        <div className="text-lg font-bold text-cyan-300">{meta.elasticity}/100</div>
+                    </button>
+                    <div className="px-4 pb-4 lg:px-5 lg:pb-5">
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        <div className="p-2 bg-slate-800/50 rounded-lg">
+                          <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.fixed' })}>
+                            <FormattedMessage id="part5.tooltip.fixed" />
+                          </InfoTooltip>
+                          <div className="text-base sm:text-lg font-bold text-cyan-300">{formatMonthlyCost(meta.fixedInfra, intl)}</div>
+                        </div>
+                        <div className="p-2 bg-slate-800/50 rounded-lg">
+                          <InfoTooltip
+                            label={
+                              intl.formatNumber(meta.variablePerKUsers, {
+                                style: 'currency',
+                                currency: 'USD',
+                                minimumFractionDigits: 0,
+                              }) + '/1k'
+                            }
+                          >
+                            <FormattedMessage id="part5.tooltip.variable" />
+                          </InfoTooltip>
+                          <div className="text-base sm:text-lg font-bold text-cyan-300">
+                            <FormattedNumber value={meta.variablePerKUsers} style="currency" currency="USD" minimumFractionDigits={0} />
+                            /1k
+                          </div>
+                        </div>
+                        <div className="p-2 bg-slate-800/50 rounded-lg">
+                          <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.elasticity' })}>
+                            <FormattedMessage id="part5.tooltip.elasticity" />
+                          </InfoTooltip>
+                          <div className="text-base sm:text-lg font-bold text-cyan-300">{meta.elasticity}/100</div>
+                        </div>
                       </div>
                     </div>
-                  </button>
+                  </div>
                 );
               })}
             </div>
@@ -544,24 +610,35 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
 
             {selected ? (
               <>
+                <div className="mb-4 p-4 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 rounded-xl border border-cyan-500/20">
+                  <div className="flex items-center justify-between flex-wrap gap-3">
+                    <div>
+                      <span className="text-slate-400 text-sm">Your Selection:</span>
+                      <div className="text-lg font-bold text-white">
+                        {serviceMeta[selected.service].label} + {deploymentMeta[selected.deployment].label}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <div className="text-xs text-slate-400">Cost</div>
+                        <div className="text-lg font-bold text-cyan-300">{formatMonthlyCost(selected.metrics.cost, intl)}</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xs text-slate-400">Fit Score</div>
+                        <div className="text-2xl font-bold text-emerald-400">{selected.metrics.fit}/100</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {!showTradeoffDetails && (
                   <div className="mb-4">
-                    <p className="text-slate-200">
-                      <FormattedMessage
-                        id="part5.tradeoffs.summary"
-                        values={{
-                          service: serviceMeta[selected.service].label,
-                          deployment: deploymentMeta[selected.deployment].label,
-                          cost: formatMonthlyCost(selected.metrics.cost, intl),
-                          score: Math.round(selected.metrics.fit),
-                        }}
-                      />
-                    </p>
                     <button
                       onClick={() => setShowTradeoffDetails(true)}
-                      className="mt-2 min-h-[44px] px-3 py-2 text-sm text-[#8b959e] hover:text-white underline motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/30"
+                      className="w-full min-h-[48px] px-4 py-3 text-sm font-medium text-cyan-300 hover:text-white bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600 hover:border-cyan-500/50 rounded-lg motion-safe:transition touch-manipulation flex items-center justify-center gap-2"
                     >
-                      <FormattedMessage id="part5.tradeoffs.why" />
+                      <span>📊</span>
+                      <FormattedMessage id="part5.tradeoffs.why" defaultMessage="Show detailed breakdown" />
                     </button>
                   </div>
                 )}
@@ -645,9 +722,38 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
                 )}
               </>
             ) : (
-              <p className="text-slate-300">
-                <FormattedMessage id="part5.tradeoffs.noselection" />
-              </p>
+              <div className="space-y-4">
+                <div className="p-6 bg-slate-800/30 rounded-xl border-2 border-dashed border-slate-600/50">
+                  <div className="text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-700/50 rounded-full mb-4">
+                      <ChartBarIcon className="w-8 h-8 text-slate-500" />
+                    </div>
+                    <p className="text-slate-400 mb-2">
+                      <FormattedMessage id="part5.tradeoffs.noselection" defaultMessage="Your results will appear here" />
+                    </p>
+                    <p className="text-sm text-slate-500">
+                      <FormattedMessage 
+                        id="part5.tradeoffs.noselection.hint" 
+                        defaultMessage="Complete Steps 1 and 2 above to see your metrics"
+                      />
+                    </p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-3 opacity-40">
+                  <div className="p-3 bg-slate-800/50 rounded-lg">
+                    <div className="h-2 bg-slate-700 rounded w-20 mb-2" />
+                    <div className="h-4 bg-slate-700 rounded w-12" />
+                  </div>
+                  <div className="p-3 bg-slate-800/50 rounded-lg">
+                    <div className="h-2 bg-slate-700 rounded w-16 mb-2" />
+                    <div className="h-4 bg-slate-700 rounded w-10" />
+                  </div>
+                  <div className="p-3 bg-slate-800/50 rounded-lg">
+                    <div className="h-2 bg-slate-700 rounded w-14 mb-2" />
+                    <div className="h-4 bg-slate-700 rounded w-8" />
+                  </div>
+                </div>
+              </div>
             )}
 
             {topRevealed && selected && (
@@ -777,33 +883,49 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
 
         {evaluated && getFeedback()}
 
-        <div className="fixed bottom-20 sm:bottom-24 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-slate-700/50 p-4 z-40">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-slate-200 text-center sm:text-left">
+        <div className="fixed bottom-20 sm:bottom-24 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4 z-40 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:pb-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
+            <div className="hidden sm:block text-slate-200 text-sm">
               {selected ? (
-                <FormattedMessage
-                  id="part5.sticky.selected"
-                  values={{
-                    service: serviceMeta[selected.service].shortLabel,
-                    deployment: deploymentMeta[selected.deployment].shortLabel,
-                  }}
-                />
+                <div className="flex items-center gap-2">
+                  <span className="text-slate-400">Selected:</span>
+                  <span className="font-medium text-cyan-300">
+                    {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+                  </span>
+                  {evaluated && (
+                    <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full border border-emerald-500/30">
+                      +{lastPointsEarned} pts
+                    </span>
+                  )}
+                </div>
               ) : (
-                <FormattedMessage id="part5.sticky.none" />
+                <span className="text-slate-400">
+                  <FormattedMessage id="part5.sticky.none" defaultMessage="Make your selections above" />
+                </span>
+              )}
+            </div>
+            <div className="sm:hidden flex-1 text-center">
+              {selected && !evaluated && (
+                <span className="text-xs text-cyan-300 font-medium">
+                  {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+                </span>
+              )}
+              {evaluated && (
+                <span className="text-xs text-emerald-400 font-medium">+{lastPointsEarned} points earned!</span>
               )}
             </div>
             {!evaluated ? (
               <button
                 onClick={handleEvaluate}
                 disabled={!selected}
-                className="w-full sm:w-auto px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
+                className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
               >
                 <FormattedMessage id="part5.button.evaluate" />
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="w-full sm:w-auto px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation"
+                className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
               >
                 <FormattedMessage
                   id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}

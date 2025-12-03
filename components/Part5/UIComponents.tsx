@@ -16,6 +16,179 @@ export const SectionCard: React.FC<SectionCardProps> = ({ children, className = 
   </section>
 );
 
+interface PriorityMeterProps {
+  priorities: Array<{ key: string; label: string; weight: number; priority: 'high' | 'med' | 'low' }>;
+}
+
+export const PriorityMeter: React.FC<PriorityMeterProps> = ({ priorities }) => {
+  const sortedPriorities = [...priorities].sort((a, b) => b.weight - a.weight);
+  
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-sm font-semibold text-white">Focus on these priorities:</span>
+      </div>
+      <div className="grid gap-2">
+        {sortedPriorities.map(({ key, label, weight, priority }) => {
+          const widthPercent = Math.round(weight * 100);
+          const colors = {
+            high: { bar: 'bg-emerald-500', text: 'text-emerald-400', label: 'High Priority' },
+            med: { bar: 'bg-blue-500', text: 'text-blue-400', label: 'Medium' },
+            low: { bar: 'bg-slate-500', text: 'text-slate-400', label: 'Low' },
+          };
+          const color = colors[priority];
+          
+          return (
+            <div key={key} className="flex items-center gap-3">
+              <div className="w-24 sm:w-28 text-sm text-slate-300 truncate">{label}</div>
+              <div className="flex-1 h-3 bg-slate-700 rounded-full overflow-hidden">
+                <div 
+                  className={`h-full ${color.bar} rounded-full transition-all duration-500`}
+                  style={{ width: `${widthPercent}%` }}
+                />
+              </div>
+              <div className={`w-20 text-xs font-medium ${color.text} text-right`}>
+                {color.label}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+interface ScenarioIntroProps {
+  scenarioNumber: number;
+  totalScenarios: number;
+  icon: React.ReactNode;
+  roleText: string;
+  contextText: string;
+}
+
+export const ScenarioIntro: React.FC<ScenarioIntroProps> = ({ 
+  scenarioNumber, 
+  totalScenarios, 
+  icon, 
+  roleText, 
+  contextText 
+}) => (
+  <div className="mb-6 bg-gradient-to-br from-indigo-900/40 to-slate-900/60 rounded-2xl p-5 sm:p-6 border border-indigo-500/30 shadow-xl">
+    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+      <div className="flex-shrink-0 p-3 sm:p-4 bg-indigo-500/20 rounded-xl border border-indigo-400/30">
+        {icon}
+      </div>
+      <div className="flex-1">
+        <div className="flex items-center gap-3 mb-2">
+          <span className="px-3 py-1 bg-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-full">
+            Scenario {scenarioNumber} of {totalScenarios}
+          </span>
+        </div>
+        <h2 className="text-lg sm:text-xl font-bold text-white mb-2">{roleText}</h2>
+        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">{contextText}</p>
+      </div>
+    </div>
+  </div>
+);
+
+interface PointsAnimationProps {
+  points: number;
+  show: boolean;
+}
+
+export const PointsAnimation: React.FC<PointsAnimationProps> = ({ points, show }) => {
+  if (!show) return null;
+  
+  return (
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none animate-bounce">
+      <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl shadow-emerald-500/50 flex items-center gap-3">
+        <span className="text-3xl font-bold">+{points}</span>
+        <span className="text-lg">points!</span>
+      </div>
+    </div>
+  );
+};
+
+interface ScoreIndicatorProps {
+  currentScore: number;
+  maxScore: number;
+  scenarioNumber: number;
+  totalScenarios: number;
+}
+
+export const ScoreIndicator: React.FC<ScoreIndicatorProps> = ({ 
+  currentScore, 
+  scenarioNumber, 
+  totalScenarios 
+}) => (
+  <div className="flex items-center gap-4 px-4 py-2 bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-700/50">
+    <div className="flex items-center gap-2">
+      <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+        <span className="text-white text-sm font-bold">{currentScore}</span>
+      </div>
+      <span className="text-xs text-slate-400">pts</span>
+    </div>
+    <div className="h-6 w-px bg-slate-600" />
+    <div className="flex gap-1">
+      {Array.from({ length: totalScenarios }).map((_, i) => (
+        <div 
+          key={i}
+          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            i < scenarioNumber ? 'bg-emerald-500' : i === scenarioNumber - 1 ? 'bg-cyan-500 animate-pulse' : 'bg-slate-600'
+          }`}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+interface SliderMilestoneProps {
+  min: number;
+  max: number;
+  value: number;
+}
+
+export const SliderMilestones: React.FC<SliderMilestoneProps> = ({ min, max, value }) => {
+  const milestones = [
+    { label: 'Startup', threshold: 5000 },
+    { label: 'Growth', threshold: 25000 },
+    { label: 'Enterprise', threshold: 100000 },
+  ].filter(m => m.threshold >= min && m.threshold <= max);
+  
+  const getPosition = (val: number) => ((val - min) / (max - min)) * 100;
+  
+  const getCurrentStage = () => {
+    if (value >= 100000) return 'Enterprise';
+    if (value >= 25000) return 'Growth';
+    if (value >= 5000) return 'Startup';
+    return 'Early';
+  };
+  
+  return (
+    <div className="relative mt-1">
+      <div className="absolute top-0 left-0 right-0 h-0">
+        {milestones.map(({ label, threshold }) => (
+          <div 
+            key={label}
+            className="absolute -translate-x-1/2"
+            style={{ left: `${getPosition(threshold)}%` }}
+          >
+            <div className={`w-1 h-2 ${value >= threshold ? 'bg-cyan-400' : 'bg-slate-500'} mx-auto`} />
+            <span className={`text-[10px] ${value >= threshold ? 'text-cyan-400' : 'text-slate-500'} whitespace-nowrap`}>
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+      <div className="pt-5 text-center">
+        <span className="inline-block px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full border border-cyan-500/30">
+          Stage: {getCurrentStage()}
+        </span>
+      </div>
+    </div>
+  );
+};
+
 interface TokenProps {
   children: React.ReactNode;
 }
