@@ -40,8 +40,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
         role="navigation"
         aria-label={intl.formatMessage({ id: 'progress.label' })}
       >
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
-        <div className="flex items-start justify-between gap-1 sm:gap-4 overflow-x-auto overflow-y-visible min-h-[56px] sm:min-h-[60px]">
+        <div className="max-w-7xl mx-auto px-1 sm:px-4 py-3 sm:py-6">
+        <div className="flex items-start justify-between gap-0 min-h-[56px] sm:min-h-[60px]">
           {STAGES.map((stage, index) => {
             const status = getStageStatus(stage);
             const isCompleted = status === 'completed';
@@ -49,18 +49,18 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
             
             return (
               <React.Fragment key={stage}>
-                <div className="flex flex-col items-center gap-1 sm:gap-2 flex-shrink-0 relative z-10">
+                <div className="flex flex-col items-center gap-0.5 sm:gap-2 flex-1 min-w-0 relative z-10">
                   <button
                     onClick={() => onNavigate(stage)}
                     className={`
                       relative rounded-full transition-all duration-300 transform
                       focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-slate-900
-                      min-w-[44px] min-h-[44px]
+                      min-w-[36px] min-h-[36px] w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12
                       ${isCurrent 
-                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#750014] to-[#973f4e] shadow-lg shadow-[#750014]/50 scale-105 focus:ring-[#ba7f89]/60' 
+                        ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] shadow-lg shadow-[#750014]/50 scale-105 focus:ring-[#ba7f89]/60' 
                         : isCompleted
-                        ? 'w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#22c55e] to-[#15803d] shadow-md hover:scale-105 focus:ring-[#22c55e]/50'
-                        : 'w-11 h-11 sm:w-12 sm:h-12 border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
+                        ? 'bg-gradient-to-br from-[#22c55e] to-[#15803d] shadow-md hover:scale-105 focus:ring-[#22c55e]/50'
+                        : 'border-2 border-slate-600 hover:border-slate-500 hover:scale-105 focus:ring-slate-500/50'
                       }
                     `}
                     aria-label={intl.formatMessage({ id: `progress.${stage}.label` })}
@@ -70,21 +70,21 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                       {isCompleted ? (
                         <CheckIcon />
                       ) : stage.startsWith('part') ? (
-                        <span className={`text-xs sm:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
+                        <span className={`text-[10px] sm:text-xs md:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
                           {stage.replace('part', '')}
                         </span>
                       ) : (
-                        <span className={`text-xs sm:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
+                        <span className={`text-[10px] sm:text-xs md:text-sm font-bold ${isCurrent ? 'text-white' : 'text-slate-500'}`}>
                           {index === 0 ? '→' : '✓'}
                         </span>
                       )}
                     </div>
                   </button>
                   
-                  <div className="flex flex-col items-center gap-0.5 text-center max-w-[80px] sm:max-w-[100px]">
+                  <div className="flex flex-col items-center gap-0 text-center w-full px-0.5">
                     <span 
                       className={`
-                        text-xs sm:text-sm font-medium whitespace-nowrap transition-colors duration-200
+                        text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-200 truncate w-full
                         ${isCurrent 
                           ? 'text-white' 
                           : isCompleted
@@ -97,7 +97,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                     </span>
                     <span 
                       className={`
-                        text-[10px] sm:text-xs font-normal transition-colors duration-200 leading-tight
+                        hidden sm:block text-[10px] md:text-xs font-normal transition-colors duration-200 leading-tight truncate w-full
                         ${isCurrent 
                           ? 'text-[#adb4bb]' 
                           : isCompleted
@@ -114,7 +114,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStage, completedStages
                 {index < STAGES.length - 1 && (
                   <div 
                     className={`
-                      h-0.5 flex-1 min-w-[12px] sm:min-w-[40px] transition-all duration-500 relative z-0 mt-[22px] sm:mt-6
+                      h-0.5 flex-shrink min-w-[4px] w-2 sm:w-6 md:w-10 transition-all duration-500 relative z-0 mt-[18px] sm:mt-[22px] md:mt-6
                       ${index < currentIndex
                         ? 'bg-gradient-to-r from-[#22c55e] to-[#15803d]'
                         : 'bg-slate-700'
