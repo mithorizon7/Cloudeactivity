@@ -6,20 +6,26 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n:extract": "formatjs extract './**/*.tsx' --ignore './node_modules/**' --out-file locales/extracted.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format simple",
+    "i18n:compile": "formatjs compile locales/en.json --out-file locales/en.compiled.json",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
+    "@eslint/js": "^9.39.1",
     "@formatjs/cli": "^6.7.4",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.22",
+    "eslint": "^9.39.1",
     "eslint-plugin-formatjs": "^5.4.2",
     "postcss": "^8.5.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-intl": "^7.1.14",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "typescript-eslint": "^8.48.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
