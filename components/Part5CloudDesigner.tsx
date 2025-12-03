@@ -277,7 +277,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-44 sm:pb-40 md:pb-36">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-52 sm:pb-48 md:pb-44">
       <PointsAnimation points={lastPointsEarned} show={showPointsAnimation} />
       
       <div className="mx-auto w-full max-w-7xl">
@@ -913,7 +913,7 @@ export default function Part5CloudDesigner({ onComplete }: Part5CloudDesignerPro
           </div>
         )}
 
-        <div className="fixed bottom-20 sm:bottom-24 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4 z-40 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:pb-4">
+        <div className="fixed bottom-28 sm:bottom-32 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-700/50 p-3 sm:p-4 z-40">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
             <div className="hidden sm:block text-slate-200 text-sm">
               {selected ? (
