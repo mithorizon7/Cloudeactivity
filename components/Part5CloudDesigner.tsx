@@ -39,6 +39,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
 
   const [stepperState, dispatchStepper] = useReducer(stepperReducer, initialStepperState);
   const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const isInitialMount = useRef(true);
 
   const scenario = BASE_SCENARIOS[scenarioIdx];
 
@@ -109,6 +110,10 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setShowCompare(true);
@@ -125,6 +130,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   }, [scenarioIdx, scenario.defaultUsers]);
 
   useLayoutEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+    
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
