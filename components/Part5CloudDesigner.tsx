@@ -459,27 +459,6 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
           </SectionCard>
         )}
 
-        <div className="mb-6 flex justify-center">
-          {!evaluated ? (
-            <button
-              onClick={handleEvaluate}
-              disabled={!selected}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
-            >
-              <FormattedMessage id="part5.button.evaluate" />
-            </button>
-          ) : (
-            <button
-              onClick={handleNext}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
-            >
-              <FormattedMessage
-                id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
-              />
-            </button>
-          )}
-        </div>
-
         <div className="space-y-6">
           <StepCard
             stepNumber={1}
@@ -1004,6 +983,27 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                 </div>
               </button>
             </SectionCard>
+            
+            <div className="mt-4 flex justify-center">
+              {!evaluated ? (
+                <button
+                  onClick={handleEvaluate}
+                  disabled={!selected}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
+                >
+                  <FormattedMessage id="part5.button.evaluate" />
+                </button>
+              ) : (
+                <button
+                  onClick={handleNext}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
+                >
+                  <FormattedMessage
+                    id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
+                  />
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
