@@ -415,7 +415,7 @@
   "@part4.aws.provide1": {
     "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
   },
-  "part4.aws.provide2": "Виртуализацию и вычислительные мощности (EC2, S3)",
+  "part4.aws.provide2": "Вычислительные мощности и хранение данных по запросу",
   "@part4.aws.provide2": {
     "description": "Second item AWS provides - virtualized resources with examples"
   },
@@ -439,14 +439,6 @@
   "@part4.aws.manage3": {
     "description": "Third item AWS manages - virtualization platform and resource allocation"
   },
-  "part4.aws.insight": "Ключевой вывод:",
-  "@part4.aws.insight": {
-    "description": "Label introducing the key takeaway for AWS perspective"
-  },
-  "part4.aws.insight.text": "AWS — это поставщик инфраструктуры, предоставляющий IaaS. Netflix арендует эту инфраструктуру для создания собственного стримингового сервиса. AWS не создаёт контент — они сдают в аренду необходимые для этого компьютеры.",
-  "@part4.aws.insight.text": {
-    "description": "Key insight explaining AWS's role as the IaaS foundation beneath Netflix"
-  },
   "part4.netflix.role": "Роль: стриминговая платформа",
   "@part4.netflix.role": {
     "description": "Label showing Netflix's business role as content streaming platform"
@@ -458,22 +450,6 @@
   "part4.netflix.model.label": "Netflix использует AWS для создания своего стримингового ПО — «Платформа как услуга» (PaaS)",
   "@part4.netflix.model.label": {
     "description": "Explicit label showing Netflix's perspective uses PaaS layer on top of AWS IaaS"
-  },
-  "part4.netflix.uses": "Netflix использует:",
-  "@part4.netflix.uses": {
-    "description": "Header for what Netflix company uses as a customer"
-  },
-  "part4.netflix.use1": "EC2 для вычислительных мощностей и запуска приложений",
-  "@part4.netflix.use1": {
-    "description": "First item Netflix uses - compute power from AWS"
-  },
-  "part4.netflix.use2": "S3 для хранения видеоконтента",
-  "@part4.netflix.use2": {
-    "description": "Second item Netflix uses - storage from AWS"
-  },
-  "part4.netflix.use3": "Инструменты машинного обучения AWS для рекомендаций",
-  "@part4.netflix.use3": {
-    "description": "Third item Netflix uses - ML tools from AWS"
   },
   "part4.netflix.manages": "Netflix управляет:",
   "@part4.netflix.manages": {
@@ -490,14 +466,6 @@
   "part4.netflix.manage3": "Пользовательскими аккаунтами и биллингом",
   "@part4.netflix.manage3": {
     "description": "Third item Netflix manages - their subscriber system"
-  },
-  "part4.netflix.insight": "Ключевой вывод:",
-  "@part4.netflix.insight": {
-    "description": "Label introducing the key takeaway for Netflix perspective"
-  },
-  "part4.netflix.insight.text": "Netflix использует AWS как «Платформу как услугу», арендуя серверы и хранилище для создания собственного стримингового сервиса. Они сосредоточены на создании контента и ПО, а AWS занимается оборудованием.",
-  "@part4.netflix.insight.text": {
-    "description": "Key insight explaining how Netflix uses cloud as PaaS"
   },
   "part4.subscriber.role": "Роль: потребитель контента",
   "@part4.subscriber.role": {
@@ -527,61 +495,13 @@
   "@part4.subscriber.get3": {
     "description": "Third benefit subscriber gets - cross-device access"
   },
-  "part4.subscriber.manages": "Подписчик управляет:",
-  "@part4.subscriber.manages": {
-    "description": "Header for what little the subscriber needs to manage"
-  },
-  "part4.subscriber.manage1": "Своей подпиской и платежами",
-  "@part4.subscriber.manage1": {
-    "description": "First thing subscriber manages - their subscription"
-  },
-  "part4.subscriber.manage2": "Настройками профиля и предпочтениями",
-  "@part4.subscriber.manage2": {
-    "description": "Second thing subscriber manages - their preferences"
-  },
-  "part4.subscriber.manage3": "Своим списком просмотра",
-  "@part4.subscriber.manage3": {
-    "description": "Third thing subscriber manages - their watchlist"
-  },
-  "part4.subscriber.insight": "Ключевой вывод:",
-  "@part4.subscriber.insight": {
-    "description": "Label introducing the key takeaway for subscriber perspective"
-  },
-  "part4.subscriber.insight.text": "Как подписчик, вы используете Netflix как SaaS. Вы платите за доступ к готовому ПО — не нужно ничего устанавливать, управлять серверами или даже знать, как оно работает. Просто транслируйте!",
-  "@part4.subscriber.insight.text": {
-    "description": "Key insight explaining how subscribers experience cloud as SaaS"
-  },
   "part4.button.continue": "Продолжить",
   "@part4.button.continue": {
     "description": "Button to proceed to Part 5 after exploring all perspectives"
   },
-  "part4.explore.prompt": "Изучите все три перспективы, чтобы понять, как один облачный стек можно рассматривать как IaaS, PaaS или SaaS в зависимости от вашей роли.",
-  "@part4.explore.prompt": {
-    "description": "Prompt encouraging users to click all three tabs before continuing to next section"
-  },
-  "part4.tab.aria.aws": "Просмотр с перспективы AWS как поставщика инфраструктуры",
-  "@part4.tab.aria.aws": {
-    "description": "ARIA label for AWS tab button for screen readers"
-  },
-  "part4.tab.aria.netflix": "Просмотр с перспективы Netflix как платформы",
-  "@part4.tab.aria.netflix": {
-    "description": "ARIA label for Netflix tab button for screen readers"
-  },
-  "part4.tab.aria.subscriber": "Просмотр с перспективы подписчика как конечного пользователя",
-  "@part4.tab.aria.subscriber": {
-    "description": "ARIA label for subscriber tab button for screen readers"
-  },
   "part5.title": "Часть 5: Дизайнер облачных решений",
   "@part5.title": {
     "description": "Header for the Cloud Solution Designer interactive section"
-  },
-  "part5.subtitle": "Применяйте знания к реальным бизнес-сценариям",
-  "@part5.subtitle": {
-    "description": "Subtitle explaining the purpose of Part 5"
-  },
-  "part5.instructions": "Выберите модель обслуживания и модель развёртывания для следующего бизнес-сценария. Настройте параметры, затем оцените свой выбор.",
-  "@part5.instructions": {
-    "description": "Detailed instructions for the Cloud Solution Designer interaction"
   },
   "part5.scenario.label": "Сценарий {current, number} из {total, number}",
   "@part5.scenario.label": {
@@ -611,113 +531,13 @@
   "@part5.scenario3.description": {
     "description": "Description of retail scenario with scalability needs"
   },
-  "part5.priorities.title": "Приоритеты сценария",
-  "@part5.priorities.title": {
-    "description": "Section header showing scenario priority weights"
-  },
-  "part5.priority.performance": "Производительность",
-  "@part5.priority.performance": {
-    "description": "Label for performance priority metric"
-  },
-  "part5.priority.compliance": "Соответствие",
-  "@part5.priority.compliance": {
-    "description": "Label for compliance/control priority metric"
-  },
-  "part5.priority.budget": "Бюджет",
-  "@part5.priority.budget": {
-    "description": "Label for budget/cost priority metric"
-  },
-  "part5.priority.effort": "Простота",
-  "@part5.priority.effort": {
-    "description": "Label for operational ease priority metric. Short form of operational ease"
-  },
   "part5.priority.high": "Высокий",
   "@part5.priority.high": {
     "description": "High priority badge text"
   },
-  "part5.priority.medium": "Средний",
-  "@part5.priority.medium": {
-    "description": "Medium priority badge text"
-  },
   "part5.priority.low": "Низкий",
   "@part5.priority.low": {
     "description": "Low priority badge text"
-  },
-  "part5.users.label": "Пользователей: {count, number}",
-  "@part5.users.label": {
-    "description": "Label showing user count with slider value. count is a number"
-  },
-  "part5.users.peak": "Ожидаемых пользователей (пик): {count, number}",
-  "@part5.users.peak": {
-    "description": "Label for expected peak users slider. count is a number"
-  },
-  "part5.results.title": "Ваша конфигурация",
-  "@part5.results.title": {
-    "description": "Header for results section showing selected configuration"
-  },
-  "part5.results.service": "Модель обслуживания: {model}",
-  "@part5.results.service": {
-    "description": "Label showing selected service model. model is text like 'PaaS'"
-  },
-  "part5.results.deployment": "Модель развёртывания: {model}",
-  "@part5.results.deployment": {
-    "description": "Label showing selected deployment model. model is text like 'Public Cloud'"
-  },
-  "part5.results.cost": "Примерная стоимость: ${amount, number}/мес",
-  "@part5.results.cost": {
-    "description": "Monthly cost estimate. amount is a number representing USD"
-  },
-  "part5.results.performance": "Оценка производительности: {score, number}/100",
-  "@part5.results.performance": {
-    "description": "Performance rating out of 100. score is a number"
-  },
-  "part5.results.compliance": "Оценка соответствия: {score, number}/100",
-  "@part5.results.compliance": {
-    "description": "Compliance rating out of 100. score is a number"
-  },
-  "part5.results.effort": "Операционные усилия: {level}",
-  "@part5.results.effort": {
-    "description": "Operational effort level. level is text like 'Low', 'Medium', 'High'"
-  },
-  "part5.effort.low": "Низкие",
-  "@part5.effort.low": {
-    "description": "Low effort level text"
-  },
-  "part5.effort.medium": "Средние",
-  "@part5.effort.medium": {
-    "description": "Medium effort level text"
-  },
-  "part5.effort.high": "Высокие",
-  "@part5.effort.high": {
-    "description": "High effort level text"
-  },
-  "part5.tooltip.iaas": "Инфраструктура как услуга: вы арендуете вычислительные ресурсы (серверы, хранилище, сети). Вы управляете ОС, ПО и данными. Наибольший контроль, но и наибольшие усилия.",
-  "@part5.tooltip.iaas": {
-    "description": "Detailed tooltip explaining IaaS model for learners"
-  },
-  "part5.tooltip.paas": "Платформа как услуга: вы получаете готовую платформу для развёртывания приложений. Провайдер управляет инфраструктурой. Сбалансированный контроль и простота.",
-  "@part5.tooltip.paas": {
-    "description": "Detailed tooltip explaining PaaS model for learners"
-  },
-  "part5.tooltip.saas": "Программное обеспечение как услуга: вы используете готовое приложение. Провайдер управляет всем. Наименьшие усилия, но и наименьший контроль.",
-  "@part5.tooltip.saas": {
-    "description": "Detailed tooltip explaining SaaS model for learners"
-  },
-  "part5.tooltip.public": "Публичное облако: общие ресурсы через интернет от таких провайдеров, как AWS или Azure. Экономично и масштабируемо, но меньше контроля.",
-  "@part5.tooltip.public": {
-    "description": "Detailed tooltip explaining Public cloud deployment"
-  },
-  "part5.tooltip.private": "Частное облако: выделенные ресурсы для одной организации. Больший контроль и безопасность, но более высокая стоимость.",
-  "@part5.tooltip.private": {
-    "description": "Detailed tooltip explaining Private cloud deployment"
-  },
-  "part5.tooltip.hybrid": "Гибридное облако: сочетание публичного и частного облаков. Гибкость для размещения рабочих нагрузок там, где они лучше всего подходят.",
-  "@part5.tooltip.hybrid": {
-    "description": "Detailed tooltip explaining Hybrid cloud deployment"
-  },
-  "part5.toggle.compare": "Сравнить все варианты",
-  "@part5.toggle.compare": {
-    "description": "Label for toggle that shows comparison table of all options"
   },
   "part5.table.rank": "№",
   "@part5.table.rank": {
@@ -1010,5 +830,138 @@
   "language.lv": "Latviešu",
   "@language.lv": {
     "description": "Latvian language name"
-  }
+  },
+  "app.title": "Интерактивное введение в облачные вычисления",
+  "part4.intro.description": "Для пользователя Netflix — намеренно простое приложение. Вы открываете его, листаете шоу и начинаете смотреть. За этим опытом стоит сложная система облачных вычислений с несколькими слоями технологий и разными компаниями.",
+  "part4.intro.purpose": "В этой активности вы рассмотрите сервис Netflix с трёх перспектив: провайдер облачной инфраструктуры (AWS), оператор платформы (Netflix) и вы, подписчик.",
+  "part4.intro.instruction": "Нажмите каждую вкладку ниже, чтобы увидеть закулисный взгляд с каждой стороны. Чтобы продолжить, нужно изучить все три.",
+  "part4.aws.customer": "Клиенты (например, Netflix) управляют:",
+  "part4.aws.customer1": "Операционными системами и средами выполнения",
+  "part4.aws.customer2": "Приложениями, данными и управлением пользователями",
+  "part4.netflix.pays": "Netflix платит за:",
+  "part4.netflix.pay1": "Хостинг своей стриминговой платформы",
+  "part4.netflix.pay2": "Хранение библиотеки видео",
+  "part4.netflix.pay3": "Пропускную способность для потоковой передачи миллионам",
+  "part4.netflix.provider": "Облачный провайдер управляет:",
+  "part4.netflix.provider1": "Серверами и инфраструктурой",
+  "part4.netflix.provider2": "Безопасностью и обновлениями",
+  "part4.subscriber.pays": "Вы платите за:",
+  "part4.subscriber.pay1": "Ежемесячную подписку на доступ к Netflix",
+  "part4.subscriber.notneed": "Вам не нужно знать о:",
+  "part4.subscriber.notneed1": "Где находятся серверы",
+  "part4.subscriber.notneed2": "Как работает инфраструктура",
+  "part4.insight": "Ключевая идея: AWS предоставляет IaaS (серверы и инфраструктуру) → Netflix использует это как PaaS (платформу для построения сервиса) → Вы воспринимаете это как SaaS (готовое ПО). Одна и та же физическая инфраструктура выполняет три разные роли!",
+  "part4.insight.label": "Ключевая идея",
+  "part4.progress.label": "Изучите все три перспективы",
+  "part4.progress.viewed": "Просмотрено: {count} из 3",
+  "part4.misconceptions.label": "Распространённые заблуждения",
+  "part4.misconceptions.item1": "PaaS и SaaS — это не разные продукты, а разные точки зрения на использование одной и той же инфраструктуры.",
+  "part4.misconceptions.item2": "Облачный провайдер (например, AWS) предоставляет IaaS Netflix, тот строит на нём PaaS, а затем предлагает SaaS вам.",
+  "part4.misconceptions.item3": "Вам не нужно знать слои ниже вашей роли — подписчикам не обязательно понимать PaaS или IaaS.",
+  "part4.misconceptions.item4": "Одна и та же инфраструктура может быть IaaS, PaaS и SaaS одновременно — в зависимости от того, кто и как её использует.",
+  "part5.role.text": "Вы — облачный архитектор. Спроектируйте лучшее решение для этого клиента.",
+  "part5.sticky.selected": "Выбрано:",
+  "part5.sticky.none": "Сделайте выбор выше",
+  "part5.points.short": "+{points} очк.",
+  "part5.points.earned": "+{points} очков получено!",
+  "part5.points.exclaim": "очков!",
+  "part5.points.abbrev": "очк.",
+  "part5.steps.1": "Прочитайте сценарий.",
+  "part5.steps.2": "Выберите одну модель сервиса для этого сценария (что вы покупаете).",
+  "part5.steps.3": "Выберите одну модель размещения для этого сценария (где это работает).",
+  "part5.steps.4": "Измените число активных пользователей, чтобы увидеть компромиссы, затем оцените свой выбор.",
+  "part5.primer.title": "Краткое напоминание",
+  "part5.primer.hide": "Скрыть",
+  "part5.primer.minimize": "Свернуть напоминание",
+  "part5.primer.expand": "Развернуть",
+  "part5.primer.point1": "Облачные вычисления — это удалённые серверы в дата-центрах, которые выполняют хранение и обработку данных. Вы получаете доступ к этим ресурсам через интернет.",
+  "part5.primer.point2": "Модели сервиса различаются тем, кто чем управляет: IaaS (аренда серверов), PaaS (ваше приложение на платформе провайдера), SaaS (используете их приложение).",
+  "part5.primer.point3": "Модели размещения: публичная (мультиарендные дата-центры), частная (один арендатор), гибридная (сочетание обоих).",
+  "part5.deployment.instructions": "Перед выбором сравните три метрики ниже (фиксированная стоимость, стоимость на 1К пользователей, эластичность).",
+  "part5.deployment.sustainability": "Крупные публичные облака часто работают в гипермасштабных дата-центрах, где сосредоточена эффективность, но все дата-центры потребляют много электричества и охлаждающей воды; воздействие зависит от состава энергосети и подхода к охлаждению.",
+  "part5.deployment.badge.fixed": "Фикс.",
+  "part5.deployment.badge.variable": "+/1К",
+  "part5.units.per1k": "{value}/1к",
+  "part5.deployment.badge.elasticity": "Масштаб",
+  "part5.scenario.pill.users": "Пользователи: {count, number}",
+  "part5.scenario.pill.weights": "Вес → Стоимость {cost, number}%, Производит. {perf, number}%, Соответствие {compliance, number}%, Усилия {effort, number}%",
+  "part5.matters.title": "Что важнее всего:",
+  "part5.matters.high": "Высокий",
+  "part5.matters.med": "Средний",
+  "part5.matters.low": "Низкий",
+  "part5.priority.focus": "Сфокусируйтесь на этих приоритетах:",
+  "part5.priority.med": "Средний",
+  "part5.dim.cost": "Стоимость",
+  "part5.dim.perf": "Скорость и масштаб",
+  "part5.dim.compliance": "Соответствие",
+  "part5.dim.effort": "Операционные усилия",
+  "part5.tooltip.cost": "Примерная месячная стоимость этого выбора. Вес: {weight}%",
+  "part5.tooltip.perf": "Насколько хорошо справляется с нагрузкой и остаётся отзывчивым. Вес: {weight}%",
+  "part5.tooltip.compliance": "Насколько хорошо соответствует строгим требованиям и защите данных. Вес: {weight}%",
+  "part5.tooltip.effort": "Сколько постоянной работы потребуется вашей команде. Вес: {weight}%",
+  "part5.tooltip.ops": "Дополнительные ежемесячные расходы на платформу/операции сверх инфраструктуры.",
+  "part5.tooltip.lockin": "Насколько трудно потом сменить провайдера.",
+  "part5.tooltip.fixed": "Базовая ежемесячная стоимость инфраструктуры.",
+  "part5.tooltip.variable": "Дополнительная стоимость за каждую 1 000 активных пользователей.",
+  "part5.tooltip.elasticity": "Насколько легко масштабируется вверх/вниз между дата-центрами.",
+  "part5.top.reveal": "Показать лучшую рекомендацию",
+  "part5.service.heading": "1) Выберите модель сервиса для этого сценария",
+  "part5.service.subtitle": "(что вы покупаете)",
+  "part5.service.iaas.label": "IaaS (сборка и запуск VM/контейнеров)",
+  "part5.service.iaas.blurb": "Вы управляете ОС/средой выполнения и масштабированием. Максимальный контроль и гибкость; дольше внедрение; больше операционной работы.",
+  "part5.service.iaas.shortLabel": "IaaS",
+  "part5.service.paas.label": "PaaS (управляемая платформа приложений)",
+  "part5.service.paas.blurb": "Вы отправляете код; платформа берёт на себя среду выполнения, масштабирование и большую часть ops. Хороший баланс скорости и контроля.",
+  "part5.service.paas.shortLabel": "PaaS",
+  "part5.service.saas.label": "SaaS (использование готового продукта)",
+  "part5.service.saas.blurb": "Вы подписываетесь на ПО, которое поддерживает другой. Быстрейшее получение ценности; минимальный контроль/настройка.",
+  "part5.saas.disabled": "SaaS недоступен для этого сценария, потому что требования предполагают разработку индивидуального ПО.",
+  "part5.service.saas.shortLabel": "SaaS",
+  "part5.service.pill.ops": "Ops‑нагрузка: {cost}",
+  "part5.service.pill.lockin": "Привязка: {risk}",
+  "part5.risk.low": "низкая",
+  "part5.risk.med": "средняя",
+  "part5.risk.high": "высокая",
+  "part5.currency.monthly": "${amount, number}/мес.",
+  "part5.deployment.heading": "2) Выберите модель размещения для этого сценария",
+  "part5.deployment.subtitle": "(где это работает)",
+  "part5.deployment.sustainability.learn": "Узнать об экологическом воздействии",
+  "part5.deployment.public.label": "Публичное облако",
+  "part5.deployment.public.blurb": "Эластичная мощность с оплатой по факту использования. Отлично для пиков и быстрого глобального охвата.",
+  "part5.deployment.public.shortLabel": "публичное облако",
+  "part5.deployment.private.label": "Частное облако / On‑Prem",
+  "part5.deployment.private.blurb": "Выделенные ресурсы и больше контроля. Хорошо для строгого соответствия; ёмкость нужно планировать.",
+  "part5.deployment.private.shortLabel": "частное облако",
+  "part5.deployment.hybrid.label": "Гибрид",
+  "part5.deployment.hybrid.blurb": "Сочетание частного и публичного для пиков. Баланс: контроль где нужно, эластичность для нагрузок.",
+  "part5.deployment.hybrid.shortLabel": "гибридное облако",
+  "part5.deployment.pill.fixed": "Фикс.: {cost}",
+  "part5.deployment.pill.variable": "+ ${cost}/1к пользователей",
+  "part5.deployment.pill.elasticity": "Эластичность {score}/100",
+  "part5.scale.heading": "3) Настройте число активных пользователей",
+  "part5.scale.users": "Активные пользователи: {count, number}",
+  "part5.cost.preview": "Оценка месячной стоимости: {cost}",
+  "part5.stage.label": "Стадия: {stage}",
+  "part5.stage.early": "Ранний этап",
+  "part5.stage.startup": "Стартап",
+  "part5.stage.growth": "Рост",
+  "part5.stage.enterprise": "Корпоративный масштаб",
+  "part5.tradeoffs.heading": "4) Посмотрите компромиссы",
+  "part5.tradeoffs.button.hide": "Скрыть таблицу сравнения всех вариантов",
+  "part5.tradeoffs.button.show": "Показать таблицу сравнения всех вариантов",
+  "part5.tradeoffs.selection.label": "Ваш выбор:",
+  "part5.tradeoffs.cost.label": "Оценка месячной стоимости:",
+  "part5.tradeoffs.metric.performance": "Скорость и масштаб (производительность)",
+  "part5.tradeoffs.metric.compliance": "Соответствие и контроль",
+  "part5.tradeoffs.metric.ease": "Операционные усилия (выше = меньше работы)",
+  "part5.tradeoffs.summary": "Ваш выбор: {service} + {deployment} · Стоимость: {cost} · Соответствие: {score}/100",
+  "part5.tradeoffs.why": "Показать подробный разбор",
+  "part5.tradeoffs.explain.heading": "Почему оценка такая:",
+  "part5.tradeoffs.fit.label": "Оценка соответствия (взвешена для этого сценария):",
+  "part5.tradeoffs.noselection": "Выберите модель сервиса и размещения, чтобы увидеть подробные компромиссы.",
+  "part5.tradeoffs.noselection.hint": "Сначала выполните шаги 1 и 2 выше, чтобы увидеть метрики",
+  "part5.top.heading": "Лучшая рекомендованная опция",
+  "part5.top.badge": "Наивысшая оценка соответствия",
+  "part5.top.cost.label": "Стоимость:",
+  "part5.top.fit.label": "Соответствие:"
 }

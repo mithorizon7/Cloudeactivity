@@ -1,4 +1,8 @@
 {
+  "app.title": "[Çĺòùð Çòɱþùţìñĝ Ìñţèŕàçţìṽè Ìñţŕò~~~~~~~~~~~~]",
+  "@app.title": {
+    "description": "Document title for the web app"
+  },
   "introduction.title": "[Ĥòŵ Çĺòùð Çòɱþùţìñĝ Ŵòŕķš~~~~~~~~~]",
   "@introduction.title": {
     "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
@@ -379,6 +383,18 @@
   "@part4.subtitle": {
     "description": "Educational explanation of perspective in service models with three-layer stack reference"
   },
+  "part4.intro.description": "[Ţò ţĥè ùšèŕ Ñèţƒĺìẋ ìš àñ ìñţèñţìòñàĺĺý šìɱþĺè àþþ. Ýòù òþèñ ìţ, ƀŕòŵšè šĥòŵš, àñð šţàŕţ ŵàţçĥìñĝ. Ɓèĥìñð ţĥàţ èẋþèŕìèñçè ìš à çòɱþĺèẋ çĺòùð çòɱþùţìñĝ šýšţèɱ ìñṽòĺṽìñĝ ɱùĺţìþĺè ĺàýèŕš òƒ ţèçĥñòĺòĝý àñð ðìƒƒèŕèñţ çòɱþàñìèš ŵòŕķìñĝ ţòĝèţĥèŕ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.intro.description": {
+    "description": "Intro paragraph explaining the contrast between simple user experience and complex cloud system"
+  },
+  "part4.intro.purpose": "[Ìñ ţĥìš àçţìṽìţý, ýòù'ĺĺ èẋþĺòŕè Ñèţƒĺìẋ šèŕṽìçè ƒŕòɱ ţĥŕèè ðìƒƒèŕèñţ þèŕšþèçţìṽèš: ţĥè çĺòùð ìñƒŕàšţŕùçţùŕè þŕòṽìðèŕ (ÀŴŠ), ţĥè þĺàţƒòŕɱ òþèŕàţòŕ (Ñèţƒĺìẋ), àñð ýòù, ţĥè šùƀšçŕìƀèŕ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.intro.purpose": {
+    "description": "Intro paragraph describing the three perspectives explored in the activity"
+  },
+  "part4.intro.instruction": "[Çĺìçķ èàçĥ ţàƀ ƀèĺòŵ ţò šèè ţĥè ƀèĥìñð-ţĥè-šçèñèš ṽìèŵ ƒŕòɱ èàçĥ þèŕšþèçţìṽè. Ýòù'ĺĺ ñèèð ţò èẋþĺòŕè àĺĺ ţĥŕèè ţò çòñţìñùè.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part4.intro.instruction": {
+    "description": "Instruction telling the learner to click all tabs to continue"
+  },
   "part4.instructions": "[Çĺìçķ ţĥè ƀùţţòñš ƀèĺòŵ ţò šŵìţçĥ ƀèţŵèèñ ÀŴŠ'š ìñƒŕàšţŕùçţùŕè ĺàýèŕ, Ñèţƒĺìẋ'š þĺàţƒòŕɱ ĺàýèŕ, àñð ţĥè šùƀšçŕìƀèŕ'š àþþĺìçàţìòñ ĺàýèŕ:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
   "@part4.instructions": {
     "description": "Instructions for the interactive three-perspective switcher showing IaaS->PaaS->SaaS vertical stack"
@@ -415,9 +431,9 @@
   "@part4.aws.provide1": {
     "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
   },
-  "part4.aws.provide2": "[Ṽìŕţùàĺìžàţìòñ àñð çòɱþùţè çàþàçìţý (ÈÇ2, Š3)~~~~~~~~~~~~~~~~]",
+  "part4.aws.provide2": "[Òñ-ðèɱàñð þŕòçèššìñĝ þòŵèŕ àñð ðàţà šţòŕàĝè~~~~~~~~~~~~~~~~]",
   "@part4.aws.provide2": {
-    "description": "Second item AWS provides - virtualized resources with examples"
+    "description": "Second item AWS provides - on-demand processing power and storage"
   },
   "part4.aws.provide3": "[Ĝĺòƀàĺ ðàţà çèñţèŕš ŵìţĥ ŕèðùñðàñçý àñð ùþţìɱè~~~~~~~~~~~~~~~~~]",
   "@part4.aws.provide3": {
@@ -599,6 +615,34 @@
   "@part5.title": {
     "description": "Header for the interactive cloud solution designer section where learners apply their knowledge"
   },
+  "part5.role.text": "[Ýòù'ŕè ţĥè çĺòùð àŕçĥìţèçţ. Ðèšìĝñ ţĥè ƀèšţ šòĺùţìòñ ƒòŕ ţĥìš çĺìèñţ.~~~~~~~~~~~~~~~~~~~~~~~~~]",
+  "@part5.role.text": {
+    "description": "Role framing text shown at the top of the cloud design activity"
+  },
+  "part5.sticky.selected": "[Šèĺèçţèð:~~~~]",
+  "@part5.sticky.selected": {
+    "description": "Label in the sticky action bar showing the current selection"
+  },
+  "part5.sticky.none": "[Ṁàķè ýòùŕ šèĺèçţìòñš àƀòṽè~~~~~~~~~~]",
+  "@part5.sticky.none": {
+    "description": "Sticky action bar text shown before any selections are made"
+  },
+  "part5.points.short": "[+{points} þţš~~~~~]",
+  "@part5.points.short": {
+    "description": "Short points pill text with number. Include leading + sign."
+  },
+  "part5.points.earned": "[+{points} þòìñţš èàŕñèð!~~~~~~~~~]",
+  "@part5.points.earned": {
+    "description": "Small-screen points earned message with number. Include leading + sign."
+  },
+  "part5.points.exclaim": "[þòìñţš!~~~]",
+  "@part5.points.exclaim": {
+    "description": "Text shown in the points animation after the numeric value"
+  },
+  "part5.points.abbrev": "[þţš~~]",
+  "@part5.points.abbrev": {
+    "description": "Abbreviation for points shown next to the score indicator"
+  },
   "part5.steps.1": "[Ŕèàð ţĥè šçèñàŕìò.~~~~~~~]",
   "@part5.steps.1": {
     "description": "Step 1 of 4 in the activity instructions - tells learner to start by reading the business scenario"
@@ -622,6 +666,14 @@
   "part5.primer.hide": "[Ĥìðè~~]",
   "@part5.primer.hide": {
     "description": "Button text to collapse/hide the mental model primer box"
+  },
+  "part5.primer.minimize": "[Ṁìñìɱìžè ŕèƒŕèšĥèŕ~~~~~~~]",
+  "@part5.primer.minimize": {
+    "description": "ARIA label for the button that hides the refresher panel"
+  },
+  "part5.primer.expand": "[Èẋþàñð~~~]",
+  "@part5.primer.expand": {
+    "description": "Button text to expand the refresher panel"
   },
   "part5.primer.point1": "[Çĺòùð çòɱþùţìñĝ ɱèàñš ŕèɱòţè šèŕṽèŕš ìñ ðàţà çèñţèŕš ĥàñðĺè šţòŕàĝè àñð þŕòçèššìñĝ. Ýòù àççèšš ţĥòšè ŕèšòùŕçèš òṽèŕ ţĥè ìñţèŕñèţ.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]",
   "@part5.primer.point1": {
@@ -650,6 +702,10 @@
   "part5.deployment.badge.variable": "[+/1Ķ~~]",
   "@part5.deployment.badge.variable": {
     "description": "Label for variable cost per 1000 users badge in deployment options. Shortened to fit in small circular badge."
+  },
+  "part5.units.per1k": "[{value}/1ķ~~~~]",
+  "@part5.units.per1k": {
+    "description": "Unit label for per-1,000 users pricing. value is a formatted currency string."
   },
   "part5.deployment.badge.elasticity": "[Šçàĺè~~]",
   "@part5.deployment.badge.elasticity": {
@@ -682,6 +738,22 @@
   "part5.matters.low": "[Ĺòŵ~~]",
   "@part5.matters.low": {
     "description": "Badge text indicating low priority (weight < 15%)"
+  },
+  "part5.priority.focus": "[Ƒòçùš òñ ţĥèšè þŕìòŕìţìèš:~~~~~~~~~~]",
+  "@part5.priority.focus": {
+    "description": "Heading above the priority meter"
+  },
+  "part5.priority.high": "[Ĥìĝĥ Þŕìòŕìţý~~~~~]",
+  "@part5.priority.high": {
+    "description": "Label for high priority in the priority meter"
+  },
+  "part5.priority.med": "[Ṁèðìùɱ~~~]",
+  "@part5.priority.med": {
+    "description": "Label for medium priority in the priority meter"
+  },
+  "part5.priority.low": "[Ĺòŵ~~]",
+  "@part5.priority.low": {
+    "description": "Label for low priority in the priority meter"
   },
   "part5.dim.cost": "[Çòšţ~~]",
   "@part5.dim.cost": {
@@ -903,6 +975,30 @@
   "@part5.scale.users": {
     "description": "Label showing selected user count. count is a numeric value that should be formatted with thousands separators"
   },
+  "part5.cost.preview": "[Èšţ. ɱòñţĥĺý çòšţ: {cost}~~~~~~~~~]",
+  "@part5.cost.preview": {
+    "description": "Inline preview of estimated monthly cost"
+  },
+  "part5.stage.label": "[Šţàĝè: {stage}~~~~~]",
+  "@part5.stage.label": {
+    "description": "Label for the growth stage badge below the user slider"
+  },
+  "part5.stage.early": "[Èàŕĺý~~]",
+  "@part5.stage.early": {
+    "description": "Stage label for early growth"
+  },
+  "part5.stage.startup": "[Šţàŕţùþ~~~]",
+  "@part5.stage.startup": {
+    "description": "Stage label for startup growth"
+  },
+  "part5.stage.growth": "[Ĝŕòŵţĥ~~~]",
+  "@part5.stage.growth": {
+    "description": "Stage label for growth phase"
+  },
+  "part5.stage.enterprise": "[Èñţèŕþŕìšè~~~~]",
+  "@part5.stage.enterprise": {
+    "description": "Stage label for enterprise scale"
+  },
   "part5.tradeoffs.heading": "[4) Šèè Ţŕàðè‑òƒƒš~~~~~~]",
   "@part5.tradeoffs.heading": {
     "description": "Step 4 heading for metrics and comparison section"
@@ -939,9 +1035,9 @@
   "@part5.tradeoffs.summary": {
     "description": "Collapsed 3-line summary when details are hidden. Variables are already formatted."
   },
-  "part5.tradeoffs.why": "[Ŵĥý ţĥìš šçòŕè?~~~~~~]",
+  "part5.tradeoffs.why": "[Šĥòŵ ðèţàìĺèð ƀŕèàķðòŵñ~~~~~~~~~]",
   "@part5.tradeoffs.why": {
-    "description": "Toggle button to reveal/hide detailed bars and explanation"
+    "description": "Button to reveal the detailed breakdown of metrics"
   },
   "part5.tradeoffs.explain.heading": "[Ŵĥý ìţ šçòŕèš ţĥìš ŵàý:~~~~~~~~~]",
   "@part5.tradeoffs.explain.heading": {
@@ -954,6 +1050,10 @@
   "part5.tradeoffs.noselection": "[Çĥòòšè à šèŕṽìçè ɱòðèĺ àñð à ðèþĺòýɱèñţ ɱòðèĺ ţò šèè ðèţàìĺèð ţŕàðè‑òƒƒš.~~~~~~~~~~~~~~~~~~~~~~~~~~]",
   "@part5.tradeoffs.noselection": {
     "description": "Placeholder message shown when no service/deployment combination is selected yet"
+  },
+  "part5.tradeoffs.noselection.hint": "[Çòɱþĺèţè Šţèþš 1 àñð 2 àƀòṽè ţò šèè ýòùŕ ɱèţŕìçš~~~~~~~~~~~~~~~~~]",
+  "@part5.tradeoffs.noselection.hint": {
+    "description": "Secondary helper text shown below the no-selection placeholder"
   },
   "part5.top.heading": "[Ţòþ ŕèçòɱɱèñðèð òþţìòñ~~~~~~~~]",
   "@part5.top.heading": {
@@ -1246,5 +1346,21 @@
   "common.tooltip.moreInfo": "[Ṁòŕè ìñƒòŕɱàţìòñ àƀòùţ {label}~~~~~~~~~~~]",
   "@common.tooltip.moreInfo": {
     "description": "Accessible label for tooltip buttons that provide additional information about a topic"
+  },
+  "language.switcher.label": "[Ĺàñĝùàĝè šèĺèçţìòñ~~~~~~~]",
+  "@language.switcher.label": {
+    "description": "Accessible label for the language switcher dropdown"
+  },
+  "language.en": "[Èñĝĺìšĥ~~~]",
+  "@language.en": {
+    "description": "English language name"
+  },
+  "language.ru": "[Русский~~~]",
+  "@language.ru": {
+    "description": "Russian language name"
+  },
+  "language.lv": "[Ĺàţṽìèšù~~~]",
+  "@language.lv": {
+    "description": "Latvian language name"
   }
 }

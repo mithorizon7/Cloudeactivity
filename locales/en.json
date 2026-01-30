@@ -1,4 +1,8 @@
 {
+  "app.title": "Cloud Computing Interactive Intro",
+  "@app.title": {
+    "description": "Document title for the web app"
+  },
   "introduction.title": "How Cloud Computing Works",
   "@introduction.title": {
     "description": "Main heading for the introduction screen of the interactive cloud computing tutorial"
@@ -379,6 +383,18 @@
   "@part4.subtitle": {
     "description": "Educational explanation of perspective in service models with three-layer stack reference"
   },
+  "part4.intro.description": "To the user Netflix is an intentionally simple app. You open it, browse shows, and start watching. Behind that experience is a complex cloud computing system involving multiple layers of technology and different companies working together.",
+  "@part4.intro.description": {
+    "description": "Intro paragraph explaining the contrast between simple user experience and complex cloud system"
+  },
+  "part4.intro.purpose": "In this activity, you'll explore Netflix service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you, the subscriber.",
+  "@part4.intro.purpose": {
+    "description": "Intro paragraph describing the three perspectives explored in the activity"
+  },
+  "part4.intro.instruction": "Click each tab below to see the behind-the-scenes view from each perspective. You'll need to explore all three to continue.",
+  "@part4.intro.instruction": {
+    "description": "Instruction telling the learner to click all tabs to continue"
+  },
   "part4.instructions": "Click the buttons below to switch between AWS's infrastructure layer, Netflix's platform layer, and the subscriber's application layer:",
   "@part4.instructions": {
     "description": "Instructions for the interactive three-perspective switcher showing IaaS->PaaS->SaaS vertical stack"
@@ -415,9 +431,9 @@
   "@part4.aws.provide1": {
     "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
   },
-  "part4.aws.provide2": "Virtualization and compute capacity (EC2, S3)",
+  "part4.aws.provide2": "On-demand processing power and data storage",
   "@part4.aws.provide2": {
-    "description": "Second item AWS provides - virtualized resources with examples"
+    "description": "Second item AWS provides - on-demand processing power and storage"
   },
   "part4.aws.provide3": "Global data centers with redundancy and uptime",
   "@part4.aws.provide3": {
@@ -599,6 +615,34 @@
   "@part5.title": {
     "description": "Header for the interactive cloud solution designer section where learners apply their knowledge"
   },
+  "part5.role.text": "You're the cloud architect. Design the best solution for this client.",
+  "@part5.role.text": {
+    "description": "Role framing text shown at the top of the cloud design activity"
+  },
+  "part5.sticky.selected": "Selected:",
+  "@part5.sticky.selected": {
+    "description": "Label in the sticky action bar showing the current selection"
+  },
+  "part5.sticky.none": "Make your selections above",
+  "@part5.sticky.none": {
+    "description": "Sticky action bar text shown before any selections are made"
+  },
+  "part5.points.short": "+{points} pts",
+  "@part5.points.short": {
+    "description": "Short points pill text with number. Include leading + sign."
+  },
+  "part5.points.earned": "+{points} points earned!",
+  "@part5.points.earned": {
+    "description": "Small-screen points earned message with number. Include leading + sign."
+  },
+  "part5.points.exclaim": "points!",
+  "@part5.points.exclaim": {
+    "description": "Text shown in the points animation after the numeric value"
+  },
+  "part5.points.abbrev": "pts",
+  "@part5.points.abbrev": {
+    "description": "Abbreviation for points shown next to the score indicator"
+  },
   "part5.steps.1": "Read the scenario.",
   "@part5.steps.1": {
     "description": "Step 1 of 4 in the activity instructions - tells learner to start by reading the business scenario"
@@ -622,6 +666,14 @@
   "part5.primer.hide": "Hide",
   "@part5.primer.hide": {
     "description": "Button text to collapse/hide the mental model primer box"
+  },
+  "part5.primer.minimize": "Minimize refresher",
+  "@part5.primer.minimize": {
+    "description": "ARIA label for the button that hides the refresher panel"
+  },
+  "part5.primer.expand": "Expand",
+  "@part5.primer.expand": {
+    "description": "Button text to expand the refresher panel"
   },
   "part5.primer.point1": "Cloud computing means remote servers in data centers handle storage and processing. You access those resources over the internet.",
   "@part5.primer.point1": {
@@ -650,6 +702,10 @@
   "part5.deployment.badge.variable": "+/1K",
   "@part5.deployment.badge.variable": {
     "description": "Label for variable cost per 1000 users badge in deployment options. Shortened to fit in small circular badge."
+  },
+  "part5.units.per1k": "{value}/1k",
+  "@part5.units.per1k": {
+    "description": "Unit label for per-1,000 users pricing. value is a formatted currency string."
   },
   "part5.deployment.badge.elasticity": "Scale",
   "@part5.deployment.badge.elasticity": {
@@ -682,6 +738,22 @@
   "part5.matters.low": "Low",
   "@part5.matters.low": {
     "description": "Badge text indicating low priority (weight < 15%)"
+  },
+  "part5.priority.focus": "Focus on these priorities:",
+  "@part5.priority.focus": {
+    "description": "Heading above the priority meter"
+  },
+  "part5.priority.high": "High Priority",
+  "@part5.priority.high": {
+    "description": "Label for high priority in the priority meter"
+  },
+  "part5.priority.med": "Medium",
+  "@part5.priority.med": {
+    "description": "Label for medium priority in the priority meter"
+  },
+  "part5.priority.low": "Low",
+  "@part5.priority.low": {
+    "description": "Label for low priority in the priority meter"
   },
   "part5.dim.cost": "Cost",
   "@part5.dim.cost": {
@@ -903,6 +975,30 @@
   "@part5.scale.users": {
     "description": "Label showing selected user count. count is a numeric value that should be formatted with thousands separators"
   },
+  "part5.cost.preview": "Est. monthly cost: {cost}",
+  "@part5.cost.preview": {
+    "description": "Inline preview of estimated monthly cost"
+  },
+  "part5.stage.label": "Stage: {stage}",
+  "@part5.stage.label": {
+    "description": "Label for the growth stage badge below the user slider"
+  },
+  "part5.stage.early": "Early",
+  "@part5.stage.early": {
+    "description": "Stage label for early growth"
+  },
+  "part5.stage.startup": "Startup",
+  "@part5.stage.startup": {
+    "description": "Stage label for startup growth"
+  },
+  "part5.stage.growth": "Growth",
+  "@part5.stage.growth": {
+    "description": "Stage label for growth phase"
+  },
+  "part5.stage.enterprise": "Enterprise",
+  "@part5.stage.enterprise": {
+    "description": "Stage label for enterprise scale"
+  },
   "part5.tradeoffs.heading": "4) See Trade‑offs",
   "@part5.tradeoffs.heading": {
     "description": "Step 4 heading for metrics and comparison section"
@@ -939,9 +1035,9 @@
   "@part5.tradeoffs.summary": {
     "description": "Collapsed 3-line summary when details are hidden. Variables are already formatted."
   },
-  "part5.tradeoffs.why": "Why this score?",
+  "part5.tradeoffs.why": "Show detailed breakdown",
   "@part5.tradeoffs.why": {
-    "description": "Toggle button to reveal/hide detailed bars and explanation"
+    "description": "Button to reveal the detailed breakdown of metrics"
   },
   "part5.tradeoffs.explain.heading": "Why it scores this way:",
   "@part5.tradeoffs.explain.heading": {
@@ -954,6 +1050,10 @@
   "part5.tradeoffs.noselection": "Choose a service model and a deployment model to see detailed trade‑offs.",
   "@part5.tradeoffs.noselection": {
     "description": "Placeholder message shown when no service/deployment combination is selected yet"
+  },
+  "part5.tradeoffs.noselection.hint": "Complete Steps 1 and 2 above to see your metrics",
+  "@part5.tradeoffs.noselection.hint": {
+    "description": "Secondary helper text shown below the no-selection placeholder"
   },
   "part5.top.heading": "Top recommended option",
   "@part5.top.heading": {

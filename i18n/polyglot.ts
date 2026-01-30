@@ -1,18 +1,22 @@
 // A simplified Polyglot implementation for handling nested keys and interpolation.
-class Polyglot {
-  private phrases: Record<string, any>;
+type PhraseValue = string | Record<string, PhraseValue>;
+type PhraseMap = Record<string, PhraseValue>;
+type InterpolationOptions = Record<string, string | number>;
 
-  constructor(phrases: Record<string, any>) {
+class Polyglot {
+  private phrases: PhraseMap;
+
+  constructor(phrases: PhraseMap) {
     this.phrases = phrases;
   }
 
-  t(key: string, options?: any): string {
+  t(key: string, options?: InterpolationOptions): string {
     const keys = key.split('.');
-    let value: any = this.phrases;
+    let value: PhraseValue | undefined = this.phrases;
 
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+        value = (value as PhraseMap)[k];
       } else {
         // Key not found, return the key itself as a fallback
         return key;

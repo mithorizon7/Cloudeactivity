@@ -18,7 +18,7 @@ export function formatMonthlyCost(n: number, intl: IntlShape): string {
 }
 
 export function weightToPriority(weight: number): 'high' | 'med' | 'low' {
-  if (weight >= 0.30) return 'high';
+  if (weight >= 0.3) return 'high';
   if (weight >= 0.15) return 'med';
   return 'low';
 }
@@ -85,7 +85,8 @@ export function computeMetrics(
     ),
     intl.formatMessage(
       {
-        id: deployment === 'hybrid' ? 'part5.explanation.effort.hybrid' : 'part5.explanation.effort',
+        id:
+          deployment === 'hybrid' ? 'part5.explanation.effort.hybrid' : 'part5.explanation.effort',
       },
       {
         serviceLabel: s.shortLabel,

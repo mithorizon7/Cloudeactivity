@@ -6,45 +6,125 @@ interface Part4NetflixProps {
 }
 
 const CheckIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true" focusable="false">
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+    aria-hidden="true"
+    focusable="false"
+  >
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
   </svg>
 );
 
 const ServerIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+    />
   </svg>
 );
 
 const CloudIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+    />
   </svg>
 );
 
 const LockIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    />
   </svg>
 );
 
 const PlayIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+    />
     <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const UserIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+    />
   </svg>
 );
 
 const LightBulbIcon = () => (
-  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true" focusable="false">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+    />
   </svg>
 );
 
@@ -56,7 +136,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
   const awsTabRef = useRef<HTMLButtonElement>(null);
   const netflixTabRef = useRef<HTMLButtonElement>(null);
   const subscriberTabRef = useRef<HTMLButtonElement>(null);
-  
+
   const [view, setView] = useState<'aws' | 'netflix' | 'subscriber'>('aws');
   const [viewedAWS, setViewedAWS] = useState(true);
   const [viewedNetflix, setViewedNetflix] = useState(false);
@@ -65,7 +145,7 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
 
   const handleViewChange = (newView: 'aws' | 'netflix' | 'subscriber') => {
     if (newView === view) return;
-    
+
     setIsTransitioning(true);
     setTimeout(() => {
       setView(newView);
@@ -116,34 +196,41 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
         <div className="mb-8 sm:mb-10 bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 lg:p-8 border border-slate-700/50 shadow-xl">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
             <div className="flex-shrink-0 p-3 sm:p-4 bg-red-600/20 rounded-xl border border-red-500/30 self-center lg:self-start">
-              <svg className="w-10 h-10 sm:w-12 sm:h-12 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z"/>
+              <svg
+                className="w-10 h-10 sm:w-12 sm:h-12 text-red-500"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z" />
               </svg>
             </div>
             <div className="flex-1">
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
-                <FormattedMessage 
-                  id="part4.intro.description" 
-                  defaultMessage="To the user Netflix is an intentionally simple app. You open it, browse shows, and start watching. Behind that experience is a complex cloud computing system involving multiple layers of technology and different companies working together." 
-                />
+                <FormattedMessage id="part4.intro.description" />
               </p>
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-4">
-                <FormattedMessage 
-                  id="part4.intro.purpose" 
-                  defaultMessage="In this activity, you'll explore Netflix service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you, the subscriber." 
-                />
+                <FormattedMessage id="part4.intro.purpose" />
               </p>
               <div className="flex items-center gap-3 p-3 sm:p-4 bg-slate-900/50 rounded-xl border border-slate-700/40">
                 <div className="flex-shrink-0 p-2 bg-[#973f4e]/20 rounded-lg">
-                  <svg className="w-5 h-5 text-[#ba7f89]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5 text-[#ba7f89]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
                 <p className="text-sm sm:text-base text-slate-400">
-                  <FormattedMessage 
-                    id="part4.intro.instruction" 
-                    defaultMessage="Click each tab below to see the behind-the-scenes view from each perspective. You'll need to explore all three to continue." 
-                  />
+                  <FormattedMessage id="part4.intro.instruction" />
                 </p>
               </div>
             </div>
@@ -151,8 +238,8 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
         </div>
 
         <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div 
-            role="tablist" 
+          <div
+            role="tablist"
             aria-label={intl.formatMessage({ id: 'part4.instructions' })}
             className="inline-flex bg-slate-800/60 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-lg w-full sm:w-auto flex-wrap sm:flex-nowrap gap-1.5 sm:gap-0"
           >
@@ -168,9 +255,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               className={`
                 relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-orange-500/50
-                ${view === 'aws'
-                  ? 'bg-gradient-to-br from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-600/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
+                ${
+                  view === 'aws'
+                    ? 'bg-gradient-to-br from-orange-600 to-orange-500 text-white shadow-lg shadow-orange-600/50'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -193,9 +281,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               className={`
                 relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#973f4e]/50
-                ${view === 'netflix'
-                  ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] text-white shadow-lg shadow-[#750014]/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
+                ${
+                  view === 'netflix'
+                    ? 'bg-gradient-to-br from-[#750014] to-[#973f4e] text-white shadow-lg shadow-[#750014]/50'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -218,9 +307,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               className={`
                 relative px-4 sm:px-6 py-3 min-h-[44px] rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 flex-1 sm:flex-initial touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-[#8b959e]/50
-                ${view === 'subscriber'
-                  ? 'bg-gradient-to-br from-slate-900 via-[#1f2937] to-[#8b959e] text-white shadow-lg shadow-slate-900/50'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
+                ${
+                  view === 'subscriber'
+                    ? 'bg-gradient-to-br from-slate-900 via-[#1f2937] to-[#8b959e] text-white shadow-lg shadow-slate-900/50'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700/50 active:bg-slate-600/50'
                 }
               `}
             >
@@ -238,23 +328,31 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               <FormattedMessage id="part4.progress.label" />
             </span>
             <div className="flex gap-1.5">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedAWS ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedNetflix ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedSubscriber ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`} />
+              <div
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedAWS ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`}
+              />
+              <div
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedNetflix ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`}
+              />
+              <div
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${viewedSubscriber ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-600'}`}
+              />
             </div>
             <span className="text-xs font-mono text-slate-300 tabular-nums">
-              <FormattedMessage 
-                id="part4.progress.viewed" 
-                values={{ count: <FormattedNumber value={viewedCount} /> }} 
+              <FormattedMessage
+                id="part4.progress.viewed"
+                values={{ count: <FormattedNumber value={viewedCount} /> }}
               />
             </span>
           </div>
         </div>
 
-        <div 
+        <div
           id={view === 'aws' ? awsPanelId : view === 'netflix' ? netflixPanelId : subscriberPanelId}
           role="tabpanel"
-          aria-labelledby={view === 'aws' ? 'aws-tab' : view === 'netflix' ? 'netflix-tab' : 'subscriber-tab'}
+          aria-labelledby={
+            view === 'aws' ? 'aws-tab' : view === 'netflix' ? 'netflix-tab' : 'subscriber-tab'
+          }
           aria-live="polite"
           className={`
             bg-slate-800/40 backdrop-blur-md rounded-2xl border border-slate-700/50 shadow-2xl
@@ -577,9 +675,10 @@ export default function Part4Netflix({ onComplete }: Part4NetflixProps) {
               px-8 py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg shadow-2xl
               transition-all duration-300 transform touch-manipulation
               focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 focus:ring-offset-2 focus:ring-offset-slate-900
-              ${allViewed
-                ? 'bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 hover:scale-105 active:scale-95 hover:shadow-[#750014]/50 cursor-pointer'
-                : 'bg-slate-700 text-slate-400 cursor-not-allowed opacity-60'
+              ${
+                allViewed
+                  ? 'bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white hover:brightness-110 hover:scale-105 active:scale-95 hover:shadow-[#750014]/50 cursor-pointer'
+                  : 'bg-slate-700 text-slate-400 cursor-not-allowed opacity-60'
               }
             `}
             aria-disabled={!allViewed}

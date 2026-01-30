@@ -415,7 +415,7 @@
   "@part4.aws.provide1": {
     "description": "First item AWS provides - physical infrastructure (IaaS building blocks)"
   },
-  "part4.aws.provide2": "Virtualizāciju un skaitļošanas jaudu (EC2, S3)",
+  "part4.aws.provide2": "Pēc pieprasījuma skaitļošanas jaudu un datu glabāšanu",
   "@part4.aws.provide2": {
     "description": "Second item AWS provides - virtualized resources with examples"
   },
@@ -439,14 +439,6 @@
   "@part4.aws.manage3": {
     "description": "Third item AWS manages - virtualization platform and resource allocation"
   },
-  "part4.aws.insight": "Galvenā atziņa:",
-  "@part4.aws.insight": {
-    "description": "Label introducing the key takeaway for AWS perspective"
-  },
-  "part4.aws.insight.text": "AWS ir infrastruktūras nodrošinātājs, kas piedāvā IaaS. Netflix īrē šo infrastruktūru, lai izveidotu savu straumēšanas pakalpojumu. AWS neveido saturu — viņi iznomā tam nepieciešamos datorus.",
-  "@part4.aws.insight.text": {
-    "description": "Key insight explaining AWS's role as the IaaS foundation beneath Netflix"
-  },
   "part4.netflix.role": "Loma: straumēšanas platforma",
   "@part4.netflix.role": {
     "description": "Label showing Netflix's business role as content streaming platform"
@@ -458,22 +450,6 @@
   "part4.netflix.model.label": "Netflix izmanto AWS, lai izveidotu savu straumēšanas programmatūru — «Platforma kā pakalpojums» (PaaS)",
   "@part4.netflix.model.label": {
     "description": "Explicit label showing Netflix's perspective uses PaaS layer on top of AWS IaaS"
-  },
-  "part4.netflix.uses": "Netflix izmanto:",
-  "@part4.netflix.uses": {
-    "description": "Header for what Netflix company uses as a customer"
-  },
-  "part4.netflix.use1": "EC2 skaitļošanas jaudai un lietotņu darbināšanai",
-  "@part4.netflix.use1": {
-    "description": "First item Netflix uses - compute power from AWS"
-  },
-  "part4.netflix.use2": "S3 video satura glabāšanai",
-  "@part4.netflix.use2": {
-    "description": "Second item Netflix uses - storage from AWS"
-  },
-  "part4.netflix.use3": "AWS mašīnmācīšanās rīkus rekomendācijām",
-  "@part4.netflix.use3": {
-    "description": "Third item Netflix uses - ML tools from AWS"
   },
   "part4.netflix.manages": "Netflix pārvalda:",
   "@part4.netflix.manages": {
@@ -490,14 +466,6 @@
   "part4.netflix.manage3": "Lietotāju kontus un norēķinus",
   "@part4.netflix.manage3": {
     "description": "Third item Netflix manages - their subscriber system"
-  },
-  "part4.netflix.insight": "Galvenā atziņa:",
-  "@part4.netflix.insight": {
-    "description": "Label introducing the key takeaway for Netflix perspective"
-  },
-  "part4.netflix.insight.text": "Netflix izmanto AWS kā «Platformu kā pakalpojumu», īrējot serverus un glabātuvi, lai izveidotu savu straumēšanas pakalpojumu. Viņi koncentrējas uz satura un programmatūras izveidi, kamēr AWS nodarbojas ar aparatūru.",
-  "@part4.netflix.insight.text": {
-    "description": "Key insight explaining how Netflix uses cloud as PaaS"
   },
   "part4.subscriber.role": "Loma: satura patērētājs",
   "@part4.subscriber.role": {
@@ -527,61 +495,13 @@
   "@part4.subscriber.get3": {
     "description": "Third benefit subscriber gets - cross-device access"
   },
-  "part4.subscriber.manages": "Abonents pārvalda:",
-  "@part4.subscriber.manages": {
-    "description": "Header for what little the subscriber needs to manage"
-  },
-  "part4.subscriber.manage1": "Savu abonementu un maksājumus",
-  "@part4.subscriber.manage1": {
-    "description": "First thing subscriber manages - their subscription"
-  },
-  "part4.subscriber.manage2": "Profila iestatījumus un preferences",
-  "@part4.subscriber.manage2": {
-    "description": "Second thing subscriber manages - their preferences"
-  },
-  "part4.subscriber.manage3": "Savu skatīšanās sarakstu",
-  "@part4.subscriber.manage3": {
-    "description": "Third thing subscriber manages - their watchlist"
-  },
-  "part4.subscriber.insight": "Galvenā atziņa:",
-  "@part4.subscriber.insight": {
-    "description": "Label introducing the key takeaway for subscriber perspective"
-  },
-  "part4.subscriber.insight.text": "Kā abonents jūs izmantojat Netflix kā SaaS. Jūs maksājat par piekļuvi gatavai programmatūrai — nav jāinstalē, nav jāpārvalda serveri vai pat jāzina, kā tas darbojas. Vienkārši straumējiet!",
-  "@part4.subscriber.insight.text": {
-    "description": "Key insight explaining how subscribers experience cloud as SaaS"
-  },
   "part4.button.continue": "Turpināt",
   "@part4.button.continue": {
     "description": "Button to proceed to Part 5 after exploring all perspectives"
   },
-  "part4.explore.prompt": "Izpētiet visas trīs perspektīvas, lai saprastu, kā vienu mākoņa steku var uzskatīt par IaaS, PaaS vai SaaS atkarībā no jūsu lomas.",
-  "@part4.explore.prompt": {
-    "description": "Prompt encouraging users to click all three tabs before continuing to next section"
-  },
-  "part4.tab.aria.aws": "Skatīt no AWS perspektīvas kā infrastruktūras nodrošinātājs",
-  "@part4.tab.aria.aws": {
-    "description": "ARIA label for AWS tab button for screen readers"
-  },
-  "part4.tab.aria.netflix": "Skatīt no Netflix perspektīvas kā platforma",
-  "@part4.tab.aria.netflix": {
-    "description": "ARIA label for Netflix tab button for screen readers"
-  },
-  "part4.tab.aria.subscriber": "Skatīt no abonenta perspektīvas kā galalietotājs",
-  "@part4.tab.aria.subscriber": {
-    "description": "ARIA label for subscriber tab button for screen readers"
-  },
   "part5.title": "5. daļa: Mākoņrisinājumu projektētājs",
   "@part5.title": {
     "description": "Header for the Cloud Solution Designer interactive section"
-  },
-  "part5.subtitle": "Pielietojiet zināšanas reālos biznesa scenārijos",
-  "@part5.subtitle": {
-    "description": "Subtitle explaining the purpose of Part 5"
-  },
-  "part5.instructions": "Izvēlieties pakalpojumu modeli un izvietošanas modeli šim biznesa scenārijam. Pielāgojiet parametrus, tad novērtējiet savu izvēli.",
-  "@part5.instructions": {
-    "description": "Detailed instructions for the Cloud Solution Designer interaction"
   },
   "part5.scenario.label": "Scenārijs {current, number} no {total, number}",
   "@part5.scenario.label": {
@@ -611,113 +531,13 @@
   "@part5.scenario3.description": {
     "description": "Description of retail scenario with scalability needs"
   },
-  "part5.priorities.title": "Scenārija prioritātes",
-  "@part5.priorities.title": {
-    "description": "Section header showing scenario priority weights"
-  },
-  "part5.priority.performance": "Veiktspēja",
-  "@part5.priority.performance": {
-    "description": "Label for performance priority metric"
-  },
-  "part5.priority.compliance": "Atbilstība",
-  "@part5.priority.compliance": {
-    "description": "Label for compliance/control priority metric"
-  },
-  "part5.priority.budget": "Budžets",
-  "@part5.priority.budget": {
-    "description": "Label for budget/cost priority metric"
-  },
-  "part5.priority.effort": "Vienkāršība",
-  "@part5.priority.effort": {
-    "description": "Label for operational ease priority metric. Short form of operational ease"
-  },
   "part5.priority.high": "Augsta",
   "@part5.priority.high": {
     "description": "High priority badge text"
   },
-  "part5.priority.medium": "Vidēja",
-  "@part5.priority.medium": {
-    "description": "Medium priority badge text"
-  },
   "part5.priority.low": "Zema",
   "@part5.priority.low": {
     "description": "Low priority badge text"
-  },
-  "part5.users.label": "Lietotāji: {count, number}",
-  "@part5.users.label": {
-    "description": "Label showing user count with slider value. count is a number"
-  },
-  "part5.users.peak": "Paredzamie lietotāji (maksimums): {count, number}",
-  "@part5.users.peak": {
-    "description": "Label for expected peak users slider. count is a number"
-  },
-  "part5.results.title": "Jūsu konfigurācija",
-  "@part5.results.title": {
-    "description": "Header for results section showing selected configuration"
-  },
-  "part5.results.service": "Pakalpojumu modelis: {model}",
-  "@part5.results.service": {
-    "description": "Label showing selected service model. model is text like 'PaaS'"
-  },
-  "part5.results.deployment": "Izvietošanas modelis: {model}",
-  "@part5.results.deployment": {
-    "description": "Label showing selected deployment model. model is text like 'Public Cloud'"
-  },
-  "part5.results.cost": "Aptuvenas izmaksas: ${amount, number}/mēn.",
-  "@part5.results.cost": {
-    "description": "Monthly cost estimate. amount is a number representing USD"
-  },
-  "part5.results.performance": "Veiktspējas novērtējums: {score, number}/100",
-  "@part5.results.performance": {
-    "description": "Performance rating out of 100. score is a number"
-  },
-  "part5.results.compliance": "Atbilstības novērtējums: {score, number}/100",
-  "@part5.results.compliance": {
-    "description": "Compliance rating out of 100. score is a number"
-  },
-  "part5.results.effort": "Operacionālās pūles: {level}",
-  "@part5.results.effort": {
-    "description": "Operational effort level. level is text like 'Low', 'Medium', 'High'"
-  },
-  "part5.effort.low": "Zemas",
-  "@part5.effort.low": {
-    "description": "Low effort level text"
-  },
-  "part5.effort.medium": "Vidējas",
-  "@part5.effort.medium": {
-    "description": "Medium effort level text"
-  },
-  "part5.effort.high": "Augstas",
-  "@part5.effort.high": {
-    "description": "High effort level text"
-  },
-  "part5.tooltip.iaas": "Infrastruktūra kā pakalpojums: jūs īrējat skaitļošanas resursus (serverus, glabātuvi, tīklus). Jūs pārvaldāt OS, programmatūru un datus. Vislielākā kontrole, bet arī vislielākās pūles.",
-  "@part5.tooltip.iaas": {
-    "description": "Detailed tooltip explaining IaaS model for learners"
-  },
-  "part5.tooltip.paas": "Platforma kā pakalpojums: jūs saņemat gatavu platformu lietojumprogrammu izvietošanai. Nodrošinātājs pārvalda infrastruktūru. Līdzsvarota kontrole un vienkāršība.",
-  "@part5.tooltip.paas": {
-    "description": "Detailed tooltip explaining PaaS model for learners"
-  },
-  "part5.tooltip.saas": "Programmatūra kā pakalpojums: jūs lietojat gatavu lietojumprogrammu. Nodrošinātājs pārvalda visu. Vismazākās pūles, bet arī vismazākā kontrole.",
-  "@part5.tooltip.saas": {
-    "description": "Detailed tooltip explaining SaaS model for learners"
-  },
-  "part5.tooltip.public": "Publiskais mākonis: koplietoti resursi internetā no nodrošinātājiem kā AWS vai Azure. Rentabls un mērogojams, bet mazāka kontrole.",
-  "@part5.tooltip.public": {
-    "description": "Detailed tooltip explaining Public cloud deployment"
-  },
-  "part5.tooltip.private": "Privātais mākonis: atvēlēti resursi vienai organizācijai. Lielāka kontrole un drošība, bet augstākas izmaksas.",
-  "@part5.tooltip.private": {
-    "description": "Detailed tooltip explaining Private cloud deployment"
-  },
-  "part5.tooltip.hybrid": "Hibrīdais mākonis: publiskā un privātā mākoņa kombinācija. Elastīgums izvietot darba slodzes tur, kur tās vislabāk atbilst.",
-  "@part5.tooltip.hybrid": {
-    "description": "Detailed tooltip explaining Hybrid cloud deployment"
-  },
-  "part5.toggle.compare": "Salīdzināt visas opcijas",
-  "@part5.toggle.compare": {
-    "description": "Label for toggle that shows comparison table of all options"
   },
   "part5.table.rank": "Nr.",
   "@part5.table.rank": {
@@ -1010,5 +830,138 @@
   "language.lv": "Latviešu",
   "@language.lv": {
     "description": "Latvian language name"
-  }
+  },
+  "app.title": "Mākoņdatošanas interaktīvais ievads",
+  "part4.intro.description": "Lietotājam Netflix ir apzināti vienkārša lietotne. Jūs to atverat, pārlūkojat pārraides un sākat skatīties. Aiz šīs pieredzes slēpjas sarežģīta mākoņdatošanas sistēma ar vairākām tehnoloģiju kārtām un dažādiem uzņēmumiem.",
+  "part4.intro.purpose": "Šajā aktivitātē jūs izpētīsiet Netflix pakalpojumu no trim dažādām perspektīvām: mākoņinfrastruktūras nodrošinātājs (AWS), platformas operators (Netflix) un jūs — abonents.",
+  "part4.intro.instruction": "Noklikšķiniet uz katras cilnes zemāk, lai redzētu aizkulišu skatu no katras perspektīvas. Lai turpinātu, jāizpēta visas trīs.",
+  "part4.aws.customer": "Klienti (piem., Netflix) pārvalda:",
+  "part4.aws.customer1": "Operētājsistēmas un izpildvides",
+  "part4.aws.customer2": "Lietojumprogrammas, datus un lietotāju pārvaldību",
+  "part4.netflix.pays": "Netflix maksā par:",
+  "part4.netflix.pay1": "Savās straumēšanas lietotnes hostēšanu",
+  "part4.netflix.pay2": "Video bibliotēkas glabāšanu",
+  "part4.netflix.pay3": "Joslas platumu straumēšanai miljoniem",
+  "part4.netflix.provider": "Mākoņpakalpojumu sniedzējs pārvalda:",
+  "part4.netflix.provider1": "Serverus un infrastruktūru",
+  "part4.netflix.provider2": "Drošību un atjauninājumus",
+  "part4.subscriber.pays": "Jūs maksājat par:",
+  "part4.subscriber.pay1": "Mēneša abonementu piekļuvei Netflix",
+  "part4.subscriber.notneed": "Jums nav jāzina par:",
+  "part4.subscriber.notneed1": "Kur atrodas serveri",
+  "part4.subscriber.notneed2": "Kā darbojas infrastruktūra",
+  "part4.insight": "Galvenā atziņa: AWS nodrošina IaaS (serverus un infrastruktūru) → Netflix to izmanto kā PaaS (platformu, lai veidotu savu pakalpojumu) → Jūs to pieredzat kā SaaS (gatavu programmatūru). Tā pati fiziskā infrastruktūra pilda trīs dažādas lomas!",
+  "part4.insight.label": "Galvenā atziņa",
+  "part4.progress.label": "Izpētiet visas trīs perspektīvas",
+  "part4.progress.viewed": "Apskatīts: {count} no 3",
+  "part4.misconceptions.label": "Biežākie maldīgie priekšstati",
+  "part4.misconceptions.item1": "PaaS un SaaS nav atsevišķi produkti — tās ir dažādas perspektīvas, kā tiek izmantota viena un tā pati infrastruktūra.",
+  "part4.misconceptions.item2": "Mākoņpakalpojumu sniedzējs (piem., AWS) nodrošina IaaS Netflix, kas uz tā būvē PaaS, un pēc tam piedāvā SaaS jums.",
+  "part4.misconceptions.item3": "Jums nav jāzina slāņi zem jūsu lomas — abonentiem nav jāizprot PaaS vai IaaS.",
+  "part4.misconceptions.item4": "Viena un tā pati infrastruktūra var vienlaikus būt IaaS, PaaS un SaaS, atkarībā no tā, kas un kā to izmanto.",
+  "part5.role.text": "Jūs esat mākoņarhitekts. Izstrādājiet šim klientam labāko risinājumu.",
+  "part5.sticky.selected": "Izvēlēts:",
+  "part5.sticky.none": "Veiciet izvēles augstāk",
+  "part5.points.short": "+{points} pkt.",
+  "part5.points.earned": "+{points} punkti iegūti!",
+  "part5.points.exclaim": "punkti!",
+  "part5.points.abbrev": "pkt.",
+  "part5.steps.1": "Izlasiet scenāriju.",
+  "part5.steps.2": "Izvēlieties vienu pakalpojumu modeli šim scenārijam (ko jūs pērkat).",
+  "part5.steps.3": "Izvēlieties vienu izvietošanas modeli šim scenārijam (kur tas darbojas).",
+  "part5.steps.4": "Mainiet aktīvo lietotāju skaitu, lai izpētītu kompromisus, un pēc tam novērtējiet savu izvēli.",
+  "part5.primer.title": "Īsais atkārtojums",
+  "part5.primer.hide": "Paslēpt",
+  "part5.primer.minimize": "Sakļaut atkārtojumu",
+  "part5.primer.expand": "Izvērst",
+  "part5.primer.point1": "Mākoņdatošana nozīmē, ka attālināti serveri datu centros veic uzglabāšanu un apstrādi. Jūs piekļūstat šiem resursiem internetā.",
+  "part5.primer.point2": "Pakalpojumu modeļi atšķiras pēc tā, kurš ko pārvalda: IaaS (īrē serverus), PaaS (darbini savu lietotni uz pakalpojuma sniedzēja platformas), SaaS (lieto viņu lietotni).",
+  "part5.primer.point3": "Izvietošanas modeļi: publiskais (daudzlietotāju datu centri), privātais (vienas organizācijas), hibrīdais (abu maisījums).",
+  "part5.deployment.instructions": "Pirms izvēles salīdziniet trīs rādītājus zemāk (fiksētās izmaksas, izmaksas uz 1 tūkst. lietotāju, elastība).",
+  "part5.deployment.sustainability": "Lieli publiskie mākoņi bieži darbojas hipermēroga datu centros, kas koncentrē efektivitāti — tomēr visi datu centri patērē ievērojamu elektrību un dzesēšanas ūdeni; ietekme ir atkarīga no elektrotīkla maisījuma un dzesēšanas pieejas.",
+  "part5.deployment.badge.fixed": "Fiks.",
+  "part5.deployment.badge.variable": "+/1k",
+  "part5.units.per1k": "{value}/1k",
+  "part5.deployment.badge.elasticity": "Mērogs",
+  "part5.scenario.pill.users": "Lietotāji: {count, number}",
+  "part5.scenario.pill.weights": "Svari → Izmaksas {cost, number}%, Veiktspēja {perf, number}%, Atbilstība {compliance, number}%, Piepūle {effort, number}%",
+  "part5.matters.title": "Kas ir vissvarīgākais:",
+  "part5.matters.high": "Augsta",
+  "part5.matters.med": "Vidēja",
+  "part5.matters.low": "Zema",
+  "part5.priority.focus": "Koncentrējieties uz šīm prioritātēm:",
+  "part5.priority.med": "Vidēja",
+  "part5.dim.cost": "Izmaksas",
+  "part5.dim.perf": "Ātrums un mērogs",
+  "part5.dim.compliance": "Atbilstība",
+  "part5.dim.effort": "Operatīvā piepūle",
+  "part5.tooltip.cost": "Aptuvenās mēneša izmaksas šim izvēles variantam. Svars: {weight}%",
+  "part5.tooltip.perf": "Cik labi tas tiek galā ar slodzi un saglabā atsaucību. Svars: {weight}%",
+  "part5.tooltip.compliance": "Cik labi tas atbilst stingriem noteikumiem un datu aizsardzībai. Svars: {weight}%",
+  "part5.tooltip.effort": "Cik daudz pastāvīga darba jāveic jūsu komandai. Svars: {weight}%",
+  "part5.tooltip.ops": "Papildu mēneša platformas/operāciju izmaksas virs infrastruktūras.",
+  "part5.tooltip.lockin": "Cik grūti vēlāk nomainīt pakalpojumu sniedzēju.",
+  "part5.tooltip.fixed": "Bāzes mēneša infrastruktūras izmaksas.",
+  "part5.tooltip.variable": "Papildu izmaksas par katriem 1 000 aktīvo lietotāju.",
+  "part5.tooltip.elasticity": "Cik viegli tas mērogojas augšup/leju datu centros.",
+  "part5.top.reveal": "Atklāt labāko ieteikumu",
+  "part5.service.heading": "1) Izvēlieties pakalpojumu modeli šim scenārijam",
+  "part5.service.subtitle": "(ko jūs pērkat)",
+  "part5.service.iaas.label": "IaaS (veido un darbina VM/konteinerus)",
+  "part5.service.iaas.blurb": "Jūs pārvaldāt OS/izpildvidi un mērogošanu. Vislielākā kontrole un elastība; lēnāka ieviešana; vairāk ops darba.",
+  "part5.service.iaas.shortLabel": "IaaS",
+  "part5.service.paas.label": "PaaS (pārvaldīta lietotņu platforma)",
+  "part5.service.paas.blurb": "Jūs ievietojat kodu; platforma rūpējas par izpildvidi, mērogošanu un lielu daļu ops. Laba ātruma un kontroles līdzsvars.",
+  "part5.service.paas.shortLabel": "PaaS",
+  "part5.service.saas.label": "SaaS (lieto esošu produktu)",
+  "part5.service.saas.blurb": "Jūs abonējat programmatūru, ko uztur cits. Ātrākais ceļš līdz vērtībai; vismazāk kontroles/pielāgošanas.",
+  "part5.saas.disabled": "SaaS nav pieejams šim scenārijam, jo prasības paredz pielāgotas programmatūras izstrādi.",
+  "part5.service.saas.shortLabel": "SaaS",
+  "part5.service.pill.ops": "Ops slodze: {cost}",
+  "part5.service.pill.lockin": "Lock‑in: {risk}",
+  "part5.risk.low": "zems",
+  "part5.risk.med": "vidējs",
+  "part5.risk.high": "augsts",
+  "part5.currency.monthly": "${amount, number}/mēn.",
+  "part5.deployment.heading": "2) Izvēlieties izvietošanas modeli šim scenārijam",
+  "part5.deployment.subtitle": "(kur tas darbojas)",
+  "part5.deployment.sustainability.learn": "Uzziniet par ietekmi uz vidi",
+  "part5.deployment.public.label": "Publiskais mākonis",
+  "part5.deployment.public.blurb": "Elastīga jauda ar apmaksu pēc lietojuma. Lieliski pīķiem un ātrākai globālai piekļuvei.",
+  "part5.deployment.public.shortLabel": "publiskais mākonis",
+  "part5.deployment.private.label": "Privātais mākonis / On‑Prem",
+  "part5.deployment.private.blurb": "Iedalīti resursi un lielāka kontrole. Labi stingrai atbilstībai; jauda jāplāno.",
+  "part5.deployment.private.shortLabel": "privātais mākonis",
+  "part5.deployment.hybrid.label": "Hibrīds",
+  "part5.deployment.hybrid.blurb": "Privātā bāze plus publiskais pīķiem. Balanss: kontrole, kur vajag, elastība pīķos.",
+  "part5.deployment.hybrid.shortLabel": "hibrīdais mākonis",
+  "part5.deployment.pill.fixed": "Fiksēts: {cost}",
+  "part5.deployment.pill.variable": "+ ${cost}/1k lietotāji",
+  "part5.deployment.pill.elasticity": "Elastība {score}/100",
+  "part5.scale.heading": "3) Pielāgojiet aktīvo lietotāju skaitu",
+  "part5.scale.users": "Aktīvie lietotāji: {count, number}",
+  "part5.cost.preview": "Aptuvenās mēneša izmaksas: {cost}",
+  "part5.stage.label": "Posms: {stage}",
+  "part5.stage.early": "Sākums",
+  "part5.stage.startup": "Jaunuzņēmums",
+  "part5.stage.growth": "Izaugsme",
+  "part5.stage.enterprise": "Lieluzņēmums",
+  "part5.tradeoffs.heading": "4) Skatiet kompromisus",
+  "part5.tradeoffs.button.hide": "Paslēpt visu salīdzinājuma tabulu",
+  "part5.tradeoffs.button.show": "Rādīt visu salīdzinājuma tabulu",
+  "part5.tradeoffs.selection.label": "Jūsu izvēle:",
+  "part5.tradeoffs.cost.label": "Aptuvenās mēneša izmaksas:",
+  "part5.tradeoffs.metric.performance": "Ātrums un mērogs (veiktspēja)",
+  "part5.tradeoffs.metric.compliance": "Atbilstība un kontrole",
+  "part5.tradeoffs.metric.ease": "Operatīvā piepūle (augstāk = mazāk darba)",
+  "part5.tradeoffs.summary": "Jūsu izvēle: {service} + {deployment} · Izmaksas: {cost} · Atbilstība: {score}/100",
+  "part5.tradeoffs.why": "Rādīt detalizētu sadalījumu",
+  "part5.tradeoffs.explain.heading": "Kāpēc tas tiek vērtēts šādi:",
+  "part5.tradeoffs.fit.label": "Atbilstības rādītājs (svarots šim scenārijam):",
+  "part5.tradeoffs.noselection": "Lai redzētu detalizētus kompromisus, izvēlieties pakalpojuma un izvietošanas modeli.",
+  "part5.tradeoffs.noselection.hint": "Pabeidziet 1. un 2. soli augstāk, lai redzētu savus rādītājus",
+  "part5.top.heading": "Labākais ieteiktais variants",
+  "part5.top.badge": "Augstākais atbilstības rādītājs",
+  "part5.top.cost.label": "Izmaksas:",
+  "part5.top.fit.label": "Atbilstība:"
 }

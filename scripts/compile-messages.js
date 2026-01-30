@@ -18,7 +18,7 @@ const messagesForCompile = {};
 for (const [key, value] of Object.entries(content)) {
   if (!key.startsWith('@') && typeof value === 'string') {
     messagesForCompile[key] = {
-      defaultMessage: value
+      defaultMessage: value,
     };
   }
 }
@@ -30,7 +30,7 @@ console.log(`Validating and compiling ${Object.keys(messagesForCompile).length} 
 try {
   execSync(`npx formatjs compile ${tempFile} --ast --out-file ${outputFile}`, {
     cwd: rootDir,
-    stdio: 'inherit'
+    stdio: 'inherit',
   });
   console.log(`Successfully compiled to ${outputFile}`);
   console.log('All ICU message syntax validated.');
@@ -40,6 +40,5 @@ try {
 } finally {
   try {
     unlinkSync(tempFile);
-  } catch (e) {
-  }
+  } catch (e) {}
 }

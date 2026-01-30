@@ -13,6 +13,6 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, '.'),
       '@assets': path.resolve(__dirname, 'attached_assets'),
-    }
-  }
+    },
+  },
 });

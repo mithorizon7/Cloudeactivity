@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useId } from 'react';
 import { useIntl } from '../i18n';
 
 interface InfoTooltipProps {
@@ -12,7 +12,8 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const uniqueId = id || `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+  const autoId = useId();
+  const uniqueId = id ?? `tooltip-${autoId}`;
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -67,7 +68,15 @@ export function InfoTooltip({ label, children, id }: InfoTooltipProps) {
         aria-label={intl.formatMessage({ id: 'common.tooltip.moreInfo' }, { label })}
       >
         <span className="w-7 h-7 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-600 to-slate-700 border border-slate-500/80 shadow-inner group-hover:from-slate-500 group-hover:to-slate-600 transition-all">
-          <svg className="w-5 h-5 text-slate-100 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            className="w-5 h-5 text-slate-100 group-hover:text-white transition-colors"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M9 9a3 3 0 1 1 4 2.83c-.5.29-1 .84-1 1.42V14" />
             <circle cx="12" cy="18" r="0.5" fill="currentColor" stroke="none" />
           </svg>

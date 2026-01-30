@@ -130,14 +130,31 @@ export default function VennDiagram({ highlightModel }: VennDiagramProps) {
           {hybridLabel}
         </text>
 
-        <g className={`transition-opacity duration-500 delay-600 ${animate ? 'opacity-80' : 'opacity-0'}`}>
+        <g
+          className={`transition-opacity duration-500 delay-600 ${animate ? 'opacity-80' : 'opacity-0'}`}
+        >
           <circle cx="110" cy="120" r="12" fill="none" stroke="#67e8f9" strokeWidth="1.5" />
-          <path d="M 98 120 Q 110 110 122 120 M 98 120 Q 110 130 122 120" stroke="#67e8f9" strokeWidth="1.5" fill="none" />
+          <path
+            d="M 98 120 Q 110 110 122 120 M 98 120 Q 110 130 122 120"
+            stroke="#67e8f9"
+            strokeWidth="1.5"
+            fill="none"
+          />
           <line x1="110" y1="108" x2="110" y2="132" stroke="#67e8f9" strokeWidth="1.5" />
         </g>
 
-        <g className={`transition-opacity duration-500 delay-600 ${animate ? 'opacity-80' : 'opacity-0'}`}>
-          <rect x="282" y="115" width="16" height="18" fill="none" stroke="#6ee7b7" strokeWidth="1.5" />
+        <g
+          className={`transition-opacity duration-500 delay-600 ${animate ? 'opacity-80' : 'opacity-0'}`}
+        >
+          <rect
+            x="282"
+            y="115"
+            width="16"
+            height="18"
+            fill="none"
+            stroke="#6ee7b7"
+            strokeWidth="1.5"
+          />
           <rect x="284" y="118" width="3" height="3" fill="#6ee7b7" />
           <rect x="289" y="118" width="3" height="3" fill="#6ee7b7" />
           <rect x="294" y="118" width="3" height="3" fill="#6ee7b7" />
@@ -146,19 +163,21 @@ export default function VennDiagram({ highlightModel }: VennDiagramProps) {
           <rect x="294" y="123" width="3" height="3" fill="#6ee7b7" />
         </g>
 
-        <g className={`transition-opacity duration-500 delay-800 ${animate ? 'opacity-90' : 'opacity-0'}`}>
-          <path 
-            d="M 190 125 L 210 125 M 207 122 L 210 125 L 207 128" 
-            stroke="#c4b5fd" 
-            strokeWidth="2" 
+        <g
+          className={`transition-opacity duration-500 delay-800 ${animate ? 'opacity-90' : 'opacity-0'}`}
+        >
+          <path
+            d="M 190 125 L 210 125 M 207 122 L 210 125 L 207 128"
+            stroke="#c4b5fd"
+            strokeWidth="2"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <path 
-            d="M 210 135 L 190 135 M 193 132 L 190 135 L 193 138" 
-            stroke="#c4b5fd" 
-            strokeWidth="2" 
+          <path
+            d="M 210 135 L 190 135 M 193 132 L 190 135 L 193 138"
+            stroke="#c4b5fd"
+            strokeWidth="2"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"

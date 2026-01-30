@@ -5,6 +5,7 @@ An engaging, interactive educational web application that teaches fundamental cl
 ## Overview
 
 This application provides a comprehensive learning experience covering:
+
 - **Part 1: Foundations** - Myth vs. fact quiz about cloud computing basics
 - **Part 2: Service Models** - Interactive drag-and-drop game for IaaS, PaaS, and SaaS
 - **Part 3: Deployment Models** - Real-world scenarios for Public, Private, and Hybrid clouds
@@ -21,18 +22,21 @@ Total completion time: Under 10 minutes
 ## Getting Started
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Run the development server:**
+
    ```bash
    npm run dev
    ```
-   
+
    The app will be available at `http://localhost:5000`
 
 3. **Build for production:**
+
    ```bash
    npm run build
    ```
@@ -93,6 +97,7 @@ Total completion time: Under 10 minutes
 ## Contributing
 
 Please maintain the following standards:
+
 - All user-visible text must use `FormattedMessage` for i18n
 - Minimum 44px touch targets for interactive elements
 - Proper ARIA attributes for accessibility

@@ -5,9 +5,11 @@ This document defines the roles, responsibilities, and processes for managing tr
 ## Roles
 
 ### 1. Developer
+
 **Who:** Any engineer adding or modifying user-facing text
 
 **Responsibilities:**
+
 - Add new translation keys following the [style guide](./i18n-style-guide.md)
 - Write clear descriptions for every new key
 - Run `npm run i18n:check` before committing
@@ -15,15 +17,18 @@ This document defines the roles, responsibilities, and processes for managing tr
 - Use ICU MessageFormat for plurals/dates/numbers
 
 **Checklist for new keys:**
+
 - [ ] Key follows naming convention (`section.component.element`)
 - [ ] Description added with `@` prefix in locale file
 - [ ] Used `FormattedMessage` or `intl.formatMessage()`
 - [ ] Ran `npm run lint` to verify syntax
 
 ### 2. Translation Coordinator
+
 **Who:** Project owner or designated team member
 
 **Responsibilities:**
+
 - Export messages for translators (from `locales/en.json`)
 - Review and import completed translations
 - Maintain the [glossary](./cloud-glossary.md)
@@ -32,6 +37,7 @@ This document defines the roles, responsibilities, and processes for managing tr
 - Schedule translation updates with releases
 
 **Workflow:**
+
 1. Before translation round: Run `npm run i18n:unused` to clean up
 2. Export: Provide `en.json` to translators with glossary
 3. Import: Add new locale files (e.g., `fr.json`)
@@ -39,9 +45,11 @@ This document defines the roles, responsibilities, and processes for managing tr
 5. Test: Review UI with pseudo-localization
 
 ### 3. Translator
+
 **Who:** Native speakers or professional translation service
 
 **Responsibilities:**
+
 - Translate all message values accurately
 - Preserve placeholders exactly as written (e.g., `{name}`, `{count, plural, ...}`)
 - Consult glossary for technical terms
@@ -49,6 +57,7 @@ This document defines the roles, responsibilities, and processes for managing tr
 - Keep translations concise for UI elements
 
 **Guidelines:**
+
 - Read the `@` description entries for context
 - Do not translate keys, only values
 - Preserve ICU syntax exactly
@@ -56,9 +65,11 @@ This document defines the roles, responsibilities, and processes for managing tr
 - Ask coordinator if context is unclear
 
 ### 4. QA / Reviewer
+
 **Who:** Native speaker reviewer or dedicated QA
 
 **Responsibilities:**
+
 - Review translations in context (in the running app)
 - Check text fits within UI containers
 - Verify RTL layout for applicable languages
@@ -66,6 +77,7 @@ This document defines the roles, responsibilities, and processes for managing tr
 - Report truncation or layout issues
 
 **Testing checklist:**
+
 - [ ] All UI text is translated (no English showing through)
 - [ ] Buttons/labels fit their containers
 - [ ] Pluralization works correctly
@@ -120,12 +132,12 @@ Developer                    Translation Coordinator
 
 ## Communication Channels
 
-| Purpose | Channel |
-|---------|---------|
-| New key requests | GitHub PR comments |
-| Translation questions | Dedicated Slack/Teams channel |
+| Purpose                   | Channel                         |
+| ------------------------- | ------------------------------- |
+| New key requests          | GitHub PR comments              |
+| Translation questions     | Dedicated Slack/Teams channel   |
 | Bug reports (translation) | GitHub Issues with `i18n` label |
-| Glossary updates | PR to docs/cloud-glossary.md |
+| Glossary updates          | PR to docs/cloud-glossary.md    |
 
 ---
 

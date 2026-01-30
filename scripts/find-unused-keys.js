@@ -12,13 +12,13 @@ const appFile = join(rootDir, 'App.tsx');
 
 function getAllFiles(dir, extensions) {
   const files = [];
-  
+
   function walk(currentDir) {
     const entries = readdirSync(currentDir);
     for (const entry of entries) {
       const fullPath = join(currentDir, entry);
       const stat = statSync(fullPath);
-      
+
       if (stat.isDirectory()) {
         walk(fullPath);
       } else if (extensions.includes(extname(entry))) {
@@ -26,44 +26,39 @@ function getAllFiles(dir, extensions) {
       }
     }
   }
-  
+
   walk(dir);
   return files;
 }
 
 const enMessages = JSON.parse(readFileSync(join(localesDir, 'en.json'), 'utf-8'));
 
-const messageKeys = Object.keys(enMessages).filter(k => !k.startsWith('@'));
+const messageKeys = Object.keys(enMessages).filter((k) => !k.startsWith('@'));
 
-const sourceFiles = [
-  ...getAllFiles(componentsDir, ['.tsx', '.ts']),
-  appFile
-];
+const sourceFiles = [...getAllFiles(componentsDir, ['.tsx', '.ts']), appFile];
 
-const allSourceCode = sourceFiles.map(f => readFileSync(f, 'utf-8')).join('\n');
+const allSourceCode = sourceFiles.map((f) => readFileSync(f, 'utf-8')).join('\n');
 
 const usedKeys = new Set();
 const unusedKeys = [];
 const dynamicPatterns = [];
 
 for (const key of messageKeys) {
-  const patterns = [
-    `"${key}"`,
-    `'${key}'`,
-    `\`${key}\``,
-  ];
-  
-  const isUsed = patterns.some(p => allSourceCode.includes(p));
-  
+  const patterns = [`"${key}"`, `'${key}'`, `\`${key}\``];
+
+  const isUsed = patterns.some((p) => allSourceCode.includes(p));
+
   if (isUsed) {
     usedKeys.add(key);
   } else {
     const keyParts = key.split('.');
     const lastPart = keyParts[keyParts.length - 1];
     const dynamicPattern = key.replace(lastPart, '${');
-    
-    if (allSourceCode.includes(dynamicPattern) || 
-        allSourceCode.includes(`\`${keyParts.slice(0, -1).join('.')}.\${`)) {
+
+    if (
+      allSourceCode.includes(dynamicPattern) ||
+      allSourceCode.includes(`\`${keyParts.slice(0, -1).join('.')}.\${`)
+    ) {
       dynamicPatterns.push(key);
     } else {
       unusedKeys.push(key);
@@ -79,7 +74,7 @@ console.log(`Potentially unused keys: ${unusedKeys.length}`);
 
 if (dynamicPatterns.length > 0) {
   console.log('\n--- Dynamic Keys (verify manually) ---');
-  dynamicPatterns.slice(0, 10).forEach(k => console.log(`  ${k}`));
+  dynamicPatterns.slice(0, 10).forEach((k) => console.log(`  ${k}`));
   if (dynamicPatterns.length > 10) {
     console.log(`  ... and ${dynamicPatterns.length - 10} more`);
   }
@@ -87,7 +82,7 @@ if (dynamicPatterns.length > 0) {
 
 if (unusedKeys.length > 0) {
   console.log('\n--- Potentially Unused Keys ---');
-  unusedKeys.forEach(k => console.log(`  ${k}`));
+  unusedKeys.forEach((k) => console.log(`  ${k}`));
   console.log('\nNote: Some keys may be used dynamically. Review before removing.');
 }
 

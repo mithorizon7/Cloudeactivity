@@ -4,7 +4,7 @@ import enMessages from '../locales/en.json';
 
 const DEFAULT_LOCALE = 'en';
 const FALLBACK_LOCALE = 'en';
-const SUPPORTED_LOCALES = ['en', 'ru', 'lv', 'ar', 'de', 'pseudo'] as const;
+const SUPPORTED_LOCALES = ['en', 'ru', 'lv', 'pseudo'] as const;
 
 export const LOCALE_NAMES: Record<string, string> = {
   en: 'English',
@@ -34,7 +34,7 @@ async function loadMessages(locale: string): Promise<Record<string, string>> {
   if (loadedMessages[locale]) {
     return loadedMessages[locale];
   }
-  
+
   try {
     const messages = await import(`../locales/${locale}.json`);
     loadedMessages[locale] = filterMessages(messages.default as RawLocaleMessages);
@@ -49,13 +49,13 @@ const RTL_LOCALES = new Set(['ar', 'he', 'fa', 'ur']);
 
 function getBrowserLocale(): string | null {
   if (typeof window === 'undefined' || !navigator.languages) return null;
-  
+
   for (const browserLang of navigator.languages) {
     const baseLang = browserLang.split('-')[0];
-    if (SUPPORTED_LOCALES.includes(browserLang as typeof SUPPORTED_LOCALES[number])) {
+    if (SUPPORTED_LOCALES.includes(browserLang as (typeof SUPPORTED_LOCALES)[number])) {
       return browserLang;
     }
-    if (SUPPORTED_LOCALES.includes(baseLang as typeof SUPPORTED_LOCALES[number])) {
+    if (SUPPORTED_LOCALES.includes(baseLang as (typeof SUPPORTED_LOCALES)[number])) {
       return baseLang;
     }
   }
@@ -88,13 +88,13 @@ export const useLocale = () => useContext(LocaleContext);
 function getStoredLocale(): string {
   if (typeof window === 'undefined') return DEFAULT_LOCALE;
   const stored = localStorage.getItem('app_locale');
-  if (stored && SUPPORTED_LOCALES.includes(stored as typeof SUPPORTED_LOCALES[number])) {
+  if (stored && SUPPORTED_LOCALES.includes(stored as (typeof SUPPORTED_LOCALES)[number])) {
     return stored;
   }
-  
+
   const browserLocale = getBrowserLocale();
   if (browserLocale) return browserLocale;
-  
+
   return DEFAULT_LOCALE;
 }
 
@@ -114,32 +114,32 @@ export const IntlProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [messages, setMessages] = useState<Record<string, string>>(loadedMessages[DEFAULT_LOCALE]);
   const [isLoading, setIsLoading] = useState(false);
   const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
-  
+
   const mountedRef = useRef(true);
   const pendingLocaleRef = useRef<string | null>(null);
 
   const setLocale = (newLocale: string) => {
-    if (!SUPPORTED_LOCALES.includes(newLocale as typeof SUPPORTED_LOCALES[number])) {
+    if (!SUPPORTED_LOCALES.includes(newLocale as (typeof SUPPORTED_LOCALES)[number])) {
       console.warn(`[i18n] Locale not supported: ${newLocale}`);
       return;
     }
-    
+
     const newDirection = getDirection(newLocale);
     setDirection(newDirection);
     setLocaleState(newLocale);
     storeLocale(newLocale);
-    
+
     document.documentElement.lang = newLocale;
     document.documentElement.dir = newDirection;
-    
+
     pendingLocaleRef.current = newLocale;
-    
+
     if (loadedMessages[newLocale]) {
       setMessages(loadedMessages[newLocale]);
       setIsLoading(false);
     } else {
       setIsLoading(true);
-      loadMessages(newLocale).then(newMessages => {
+      loadMessages(newLocale).then((newMessages) => {
         if (mountedRef.current && pendingLocaleRef.current === newLocale) {
           setMessages(newMessages);
           setIsLoading(false);
@@ -151,22 +151,22 @@ export const IntlProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     mountedRef.current = true;
     const stored = getStoredLocale();
-    
+
     if (stored !== DEFAULT_LOCALE) {
       const storedDirection = getDirection(stored);
       setDirection(storedDirection);
       setLocaleState(stored);
-      
+
       document.documentElement.lang = stored;
       document.documentElement.dir = storedDirection;
-      
+
       pendingLocaleRef.current = stored;
-      
+
       if (loadedMessages[stored]) {
         setMessages(loadedMessages[stored]);
       } else {
         setIsLoading(true);
-        loadMessages(stored).then(msgs => {
+        loadMessages(stored).then((msgs) => {
           if (mountedRef.current && pendingLocaleRef.current === stored) {
             setMessages(msgs);
             setIsLoading(false);
@@ -174,14 +174,16 @@ export const IntlProvider: React.FC<{ children: React.ReactNode }> = ({ children
         });
       }
     }
-    
+
     return () => {
       mountedRef.current = false;
     };
   }, []);
 
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, direction, supportedLocales: SUPPORTED_LOCALES, isLoading }}>
+    <LocaleContext.Provider
+      value={{ locale, setLocale, direction, supportedLocales: SUPPORTED_LOCALES, isLoading }}
+    >
       <ReactIntlProvider
         messages={messages}
         locale={locale}

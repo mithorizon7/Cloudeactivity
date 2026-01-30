@@ -1,4 +1,10 @@
 {
+  "app.title": [
+    {
+      "type": 0,
+      "value": "Cloud Computing Interactive Intro"
+    }
+  ],
   "common.tooltip.moreInfo": [
     {
       "type": 0,
@@ -79,6 +85,30 @@
     {
       "type": 0,
       "value": "How Cloud Computing Works"
+    }
+  ],
+  "language.en": [
+    {
+      "type": 0,
+      "value": "English"
+    }
+  ],
+  "language.lv": [
+    {
+      "type": 0,
+      "value": "Latviešu"
+    }
+  ],
+  "language.ru": [
+    {
+      "type": 0,
+      "value": "Русский"
+    }
+  ],
+  "language.switcher.label": [
+    {
+      "type": 0,
+      "value": "Language selection"
     }
   ],
   "part1.button.continue": [
@@ -498,7 +528,7 @@
   "part4.aws.provide2": [
     {
       "type": 0,
-      "value": "Virtualization and compute capacity (EC2, S3)"
+      "value": "On-demand processing power and data storage"
     }
   ],
   "part4.aws.provide3": [
@@ -565,6 +595,24 @@
     {
       "type": 0,
       "value": "Click the buttons below to switch between AWS's infrastructure layer, Netflix's platform layer, and the subscriber's application layer:"
+    }
+  ],
+  "part4.intro.description": [
+    {
+      "type": 0,
+      "value": "To the user Netflix is an intentionally simple app. You open it, browse shows, and start watching. Behind that experience is a complex cloud computing system involving multiple layers of technology and different companies working together."
+    }
+  ],
+  "part4.intro.instruction": [
+    {
+      "type": 0,
+      "value": "Click each tab below to see the behind-the-scenes view from each perspective. You'll need to explore all three to continue."
+    }
+  ],
+  "part4.intro.purpose": [
+    {
+      "type": 0,
+      "value": "In this activity, you'll explore Netflix service from three different perspectives: the cloud infrastructure provider (AWS), the platform operator (Netflix), and you, the subscriber."
     }
   ],
   "part4.misconceptions.item1": [
@@ -825,6 +873,16 @@
     {
       "type": 0,
       "value": "Compare All Service & Deployment Options"
+    }
+  ],
+  "part5.cost.preview": [
+    {
+      "type": 0,
+      "value": "Est. monthly cost: "
+    },
+    {
+      "type": 1,
+      "value": "cost"
     }
   ],
   "part5.currency.monthly": [
@@ -1349,10 +1407,62 @@
       "value": "What matters most:"
     }
   ],
+  "part5.points.abbrev": [
+    {
+      "type": 0,
+      "value": "pts"
+    }
+  ],
+  "part5.points.earned": [
+    {
+      "type": 0,
+      "value": "+"
+    },
+    {
+      "type": 1,
+      "value": "points"
+    },
+    {
+      "type": 0,
+      "value": " points earned!"
+    }
+  ],
+  "part5.points.exclaim": [
+    {
+      "type": 0,
+      "value": "points!"
+    }
+  ],
+  "part5.points.short": [
+    {
+      "type": 0,
+      "value": "+"
+    },
+    {
+      "type": 1,
+      "value": "points"
+    },
+    {
+      "type": 0,
+      "value": " pts"
+    }
+  ],
+  "part5.primer.expand": [
+    {
+      "type": 0,
+      "value": "Expand"
+    }
+  ],
   "part5.primer.hide": [
     {
       "type": 0,
       "value": "Hide"
+    }
+  ],
+  "part5.primer.minimize": [
+    {
+      "type": 0,
+      "value": "Minimize refresher"
     }
   ],
   "part5.primer.point1": [
@@ -1379,6 +1489,30 @@
       "value": "Quick Refresher"
     }
   ],
+  "part5.priority.focus": [
+    {
+      "type": 0,
+      "value": "Focus on these priorities:"
+    }
+  ],
+  "part5.priority.high": [
+    {
+      "type": 0,
+      "value": "High Priority"
+    }
+  ],
+  "part5.priority.low": [
+    {
+      "type": 0,
+      "value": "Low"
+    }
+  ],
+  "part5.priority.med": [
+    {
+      "type": 0,
+      "value": "Medium"
+    }
+  ],
   "part5.risk.high": [
     {
       "type": 0,
@@ -1395,6 +1529,12 @@
     {
       "type": 0,
       "value": "med"
+    }
+  ],
+  "part5.role.text": [
+    {
+      "type": 0,
+      "value": "You're the cloud architect. Design the best solution for this client."
     }
   ],
   "part5.saas.disabled": [
@@ -1615,6 +1755,40 @@
       "value": "(what you buy)"
     }
   ],
+  "part5.stage.early": [
+    {
+      "type": 0,
+      "value": "Early"
+    }
+  ],
+  "part5.stage.enterprise": [
+    {
+      "type": 0,
+      "value": "Enterprise"
+    }
+  ],
+  "part5.stage.growth": [
+    {
+      "type": 0,
+      "value": "Growth"
+    }
+  ],
+  "part5.stage.label": [
+    {
+      "type": 0,
+      "value": "Stage: "
+    },
+    {
+      "type": 1,
+      "value": "stage"
+    }
+  ],
+  "part5.stage.startup": [
+    {
+      "type": 0,
+      "value": "Startup"
+    }
+  ],
   "part5.step1.subtitle": [
     {
       "type": 0,
@@ -1673,6 +1847,18 @@
     {
       "type": 0,
       "value": "Adjust Active Users to explore trade-offs, then Evaluate your pick."
+    }
+  ],
+  "part5.sticky.none": [
+    {
+      "type": 0,
+      "value": "Make your selections above"
+    }
+  ],
+  "part5.sticky.selected": [
+    {
+      "type": 0,
+      "value": "Selected:"
     }
   ],
   "part5.table.compliance": [
@@ -1911,6 +2097,12 @@
       "value": "Choose a service model and a deployment model to see detailed trade‑offs."
     }
   ],
+  "part5.tradeoffs.noselection.hint": [
+    {
+      "type": 0,
+      "value": "Complete Steps 1 and 2 above to see your metrics"
+    }
+  ],
   "part5.tradeoffs.selection.label": [
     {
       "type": 0,
@@ -1958,7 +2150,17 @@
   "part5.tradeoffs.why": [
     {
       "type": 0,
-      "value": "Why this score?"
+      "value": "Show detailed breakdown"
+    }
+  ],
+  "part5.units.per1k": [
+    {
+      "type": 1,
+      "value": "value"
+    },
+    {
+      "type": 0,
+      "value": "/1k"
     }
   ],
   "progress.introduction.label": [

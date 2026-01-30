@@ -1,18 +1,40 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 import { FormattedMessage, useIntl, FormattedNumber, FormattedList } from 'react-intl';
 import { InfoTooltip } from './InfoTooltip';
 import { ServiceModelKey, DeploymentModelKey } from '../types';
-import {
-  ServiceMetaMap,
-  DeploymentMetaMap,
-  Metrics,
-  StepId,
-} from './Part5/types';
-import { clamp, formatMonthlyCost, weightToPriority, computeMetrics, weightedFit } from './Part5/helpers';
+import { ServiceMetaMap, DeploymentMetaMap, Metrics } from './Part5/types';
+import { formatMonthlyCost, weightToPriority, computeMetrics, weightedFit } from './Part5/helpers';
 import { stepperReducer, initialStepperState } from './Part5/stepperReducer';
 import { BASE_SCENARIOS } from './Part5/scenarios';
-import { SectionCard, Token, StepCard, Bar, PriorityMeter, ScenarioIntro, PointsAnimation, ScoreIndicator, SliderMilestones } from './Part5/UIComponents';
-import { ServerStackIcon, CubeIcon, CloudIcon, GlobeIcon, LockIcon, ArrowsIcon, ArchitectIcon, ChartBarIcon } from './Part5/Icons';
+import {
+  SectionCard,
+  Token,
+  StepCard,
+  Bar,
+  PriorityMeter,
+  ScenarioIntro,
+  PointsAnimation,
+  ScoreIndicator,
+  SliderMilestones,
+} from './Part5/UIComponents';
+import {
+  ServerStackIcon,
+  CubeIcon,
+  CloudIcon,
+  GlobeIcon,
+  LockIcon,
+  ArrowsIcon,
+  ArchitectIcon,
+  ChartBarIcon,
+} from './Part5/Icons';
 
 interface Part5CloudDesignerProps {
   onComplete: (score: number) => void;
@@ -27,7 +49,6 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   const [users, setUsers] = useState(BASE_SCENARIOS[0].defaultUsers);
   const [evaluated, setEvaluated] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
-  const [showCompare, setShowCompare] = useState(false);
   const [comparisonView, setComparisonView] = useState<'summary' | 'all'>('summary');
   const [showPrimer, setShowPrimer] = useState(true);
   const [showSustainability, setShowSustainability] = useState(false);
@@ -36,6 +57,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   const [showPointsAnimation, setShowPointsAnimation] = useState(false);
   const [lastPointsEarned, setLastPointsEarned] = useState(0);
   const liveRef = useRef<HTMLDivElement | null>(null);
+  const pointsTimeoutRef = useRef<number | null>(null);
 
   const [stepperState, dispatchStepper] = useReducer(stepperReducer, initialStepperState);
   const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -114,27 +136,23 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setShowCompare(true);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    setUsers(scenario.defaultUsers);
+  }, [scenarioIdx, scenario.defaultUsers]);
 
   useEffect(() => {
-    setUsers(scenario.defaultUsers);
-    setShowCompare(window.innerWidth >= 1024);
-  }, [scenarioIdx, scenario.defaultUsers]);
+    return () => {
+      if (pointsTimeoutRef.current !== null) {
+        window.clearTimeout(pointsTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useLayoutEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
     }
-    
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
@@ -165,7 +183,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   }, [users, scenario, serviceMeta, deploymentMeta, intl]);
 
   const selected =
-    service && deployment ? allCombos.find((c) => c.service === service && c.deployment === deployment) : null;
+    service && deployment
+      ? allCombos.find((c) => c.service === service && c.deployment === deployment)
+      : null;
   const topFit = allCombos[0];
 
   const handleServiceSelect = (selectedService: ServiceModelKey) => {
@@ -183,7 +203,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
   const handleEvaluate = useCallback(() => {
     if (!selected) return;
     setEvaluated(true);
-    const rank = allCombos.findIndex((c) => c.service === selected.service && c.deployment === selected.deployment);
+    const rank = allCombos.findIndex(
+      (c) => c.service === selected.service && c.deployment === selected.deployment
+    );
     const basePoints = rank === 0 ? 7 : rank <= 2 ? 5 : 3;
     const matchesIdeal = scenario.idealCombos.some(
       (x) => x.service === selected.service && x.deployment === selected.deployment
@@ -192,7 +214,10 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     setLastPointsEarned(points);
     setShowPointsAnimation(true);
     setTotalScore((p) => p + points);
-    setTimeout(() => setShowPointsAnimation(false), 1500);
+    if (pointsTimeoutRef.current !== null) {
+      window.clearTimeout(pointsTimeoutRef.current);
+    }
+    pointsTimeoutRef.current = window.setTimeout(() => setShowPointsAnimation(false), 1500);
     requestAnimationFrame(() => {
       liveRef.current?.focus();
     });
@@ -213,36 +238,48 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
 
   useEffect(() => {
     if (!setActionBar) return;
-    
+
     const actionBarContent = (
       <div className="flex items-center justify-between gap-3 sm:gap-4">
         <div className="hidden sm:block text-slate-200 text-sm">
           {selected ? (
             <div className="flex items-center gap-2">
-              <span className="text-slate-400">Selected:</span>
+              <span className="text-slate-400">
+                <FormattedMessage id="part5.sticky.selected" />
+              </span>
               <span className="font-medium text-cyan-300">
-                {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+                {serviceMeta[selected.service].shortLabel} +{' '}
+                {deploymentMeta[selected.deployment].shortLabel}
               </span>
               {evaluated && (
                 <span className="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full border border-emerald-500/30">
-                  +{lastPointsEarned} pts
+                  <FormattedMessage
+                    id="part5.points.short"
+                    values={{ points: <FormattedNumber value={lastPointsEarned} /> }}
+                  />
                 </span>
               )}
             </div>
           ) : (
             <span className="text-slate-400">
-              <FormattedMessage id="part5.sticky.none" defaultMessage="Make your selections above" />
+              <FormattedMessage id="part5.sticky.none" />
             </span>
           )}
         </div>
         <div className="sm:hidden flex-1 text-center">
           {selected && !evaluated && (
             <span className="text-xs text-cyan-300 font-medium">
-              {serviceMeta[selected.service].shortLabel} + {deploymentMeta[selected.deployment].shortLabel}
+              {serviceMeta[selected.service].shortLabel} +{' '}
+              {deploymentMeta[selected.deployment].shortLabel}
             </span>
           )}
           {evaluated && (
-            <span className="text-xs text-emerald-400 font-medium">+{lastPointsEarned} points earned!</span>
+            <span className="text-xs text-emerald-400 font-medium">
+              <FormattedMessage
+                id="part5.points.earned"
+                values={{ points: <FormattedNumber value={lastPointsEarned} /> }}
+              />
+            </span>
           )}
         </div>
         {!evaluated ? (
@@ -259,7 +296,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
             className="flex-shrink-0 w-full sm:w-auto px-5 sm:px-6 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
           >
             <FormattedMessage
-              id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
+              id={
+                scenarioIdx < BASE_SCENARIOS.length - 1
+                  ? 'part5.button.next'
+                  : 'part5.button.finish'
+              }
             />
           </button>
         )}
@@ -271,21 +312,44 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     return () => {
       setActionBar(null);
     };
-  }, [setActionBar, selected, evaluated, lastPointsEarned, scenarioIdx, serviceMeta, deploymentMeta, handleEvaluate, handleNext]);
+  }, [
+    setActionBar,
+    selected,
+    evaluated,
+    lastPointsEarned,
+    scenarioIdx,
+    serviceMeta,
+    deploymentMeta,
+    handleEvaluate,
+    handleNext,
+  ]);
 
   const getFeedback = () => {
     if (!selected) return null;
-    const rank = allCombos.findIndex((c) => c.service === selected.service && c.deployment === selected.deployment);
-    const key = rank === 0 ? 'part5.feedback.excellent' : rank <= 2 ? 'part5.feedback.solid' : 'part5.feedback.reasonable';
+    const rank = allCombos.findIndex(
+      (c) => c.service === selected.service && c.deployment === selected.deployment
+    );
+    const key =
+      rank === 0
+        ? 'part5.feedback.excellent'
+        : rank <= 2
+          ? 'part5.feedback.solid'
+          : 'part5.feedback.reasonable';
 
     const helping: string[] = [];
     const hurting: string[] = [];
-    if (selected.metrics.performance >= 75) helping.push(intl.formatMessage({ id: 'part5.feedback.helping.performance' }));
-    else if (selected.metrics.performance < 60) hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.performance' }));
-    if (selected.metrics.compliance >= 80) helping.push(intl.formatMessage({ id: 'part5.feedback.helping.compliance' }));
-    else if (selected.metrics.compliance < 65) hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.compliance' }));
-    if (selected.metrics.ease >= 70) helping.push(intl.formatMessage({ id: 'part5.feedback.helping.effort' }));
-    else if (selected.metrics.ease < 50) hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.effort' }));
+    if (selected.metrics.performance >= 75)
+      helping.push(intl.formatMessage({ id: 'part5.feedback.helping.performance' }));
+    else if (selected.metrics.performance < 60)
+      hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.performance' }));
+    if (selected.metrics.compliance >= 80)
+      helping.push(intl.formatMessage({ id: 'part5.feedback.helping.compliance' }));
+    else if (selected.metrics.compliance < 65)
+      hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.compliance' }));
+    if (selected.metrics.ease >= 70)
+      helping.push(intl.formatMessage({ id: 'part5.feedback.helping.effort' }));
+    else if (selected.metrics.ease < 50)
+      hurting.push(intl.formatMessage({ id: 'part5.feedback.hurting.effort' }));
 
     return (
       <SectionCard className="border-emerald-500/20 bg-slate-900/50">
@@ -310,7 +374,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                 <FormattedMessage id="part5.feedback.helping.label" />
               </div>
               <div className="text-slate-300">
-                {helping.length ? <FormattedList type="conjunction" value={helping} /> : intl.formatMessage({ id: 'part5.feedback.helping.none' })}
+                {helping.length ? (
+                  <FormattedList type="conjunction" value={helping} />
+                ) : (
+                  intl.formatMessage({ id: 'part5.feedback.helping.none' })
+                )}
               </div>
             </div>
             <div className="flex-1">
@@ -318,7 +386,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                 <FormattedMessage id="part5.feedback.hurting.label" />
               </div>
               <div className="text-slate-300">
-                {hurting.length ? <FormattedList type="conjunction" value={hurting} /> : intl.formatMessage({ id: 'part5.feedback.hurting.none' })}
+                {hurting.length ? (
+                  <FormattedList type="conjunction" value={hurting} />
+                ) : (
+                  intl.formatMessage({ id: 'part5.feedback.hurting.none' })
+                )}
               </div>
             </div>
           </div>
@@ -333,37 +405,64 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
     return combo ? combo.metrics.cost : null;
   }, [service, deployment, allCombos]);
 
-  const priorityData = useMemo(() => [
-    { key: 'cost', label: intl.formatMessage({ id: 'part5.dim.cost' }), weight: scenario.weights.cost, priority: weightToPriority(scenario.weights.cost) },
-    { key: 'perf', label: intl.formatMessage({ id: 'part5.dim.perf' }), weight: scenario.weights.performance, priority: weightToPriority(scenario.weights.performance) },
-    { key: 'compliance', label: intl.formatMessage({ id: 'part5.dim.compliance' }), weight: scenario.weights.compliance, priority: weightToPriority(scenario.weights.compliance) },
-    { key: 'effort', label: intl.formatMessage({ id: 'part5.dim.effort' }), weight: scenario.weights.effort, priority: weightToPriority(scenario.weights.effort) },
-  ], [scenario.weights, intl]);
+  const priorityData = useMemo(
+    () => [
+      {
+        key: 'cost',
+        label: intl.formatMessage({ id: 'part5.dim.cost' }),
+        weight: scenario.weights.cost,
+        priority: weightToPriority(scenario.weights.cost),
+      },
+      {
+        key: 'perf',
+        label: intl.formatMessage({ id: 'part5.dim.perf' }),
+        weight: scenario.weights.performance,
+        priority: weightToPriority(scenario.weights.performance),
+      },
+      {
+        key: 'compliance',
+        label: intl.formatMessage({ id: 'part5.dim.compliance' }),
+        weight: scenario.weights.compliance,
+        priority: weightToPriority(scenario.weights.compliance),
+      },
+      {
+        key: 'effort',
+        label: intl.formatMessage({ id: 'part5.dim.effort' }),
+        weight: scenario.weights.effort,
+        priority: weightToPriority(scenario.weights.effort),
+      },
+    ],
+    [scenario.weights, intl]
+  );
 
   const getScenarioIcon = () => {
     switch (scenario.id) {
-      case 1: return <CubeIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
-      case 2: return <LockIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
-      case 3: return <CloudIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
-      default: return <ArchitectIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      case 1:
+        return <CubeIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      case 2:
+        return <LockIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      case 3:
+        return <CloudIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
+      default:
+        return <ArchitectIcon className="w-10 h-10 sm:w-12 sm:h-12 text-indigo-400" />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 p-4 pb-[200px] sm:pb-[220px]">
       <PointsAnimation points={lastPointsEarned} show={showPointsAnimation} />
-      
+
       <div className="mx-auto w-full max-w-7xl">
         <header className="mb-6 md:mb-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center sm:text-left">
               <FormattedMessage id="part5.title" />
             </h1>
-            <ScoreIndicator 
-              currentScore={totalScore} 
-              maxScore={20} 
-              scenarioNumber={scenarioIdx + 1} 
-              totalScenarios={BASE_SCENARIOS.length} 
+            <ScoreIndicator
+              currentScore={totalScore}
+              maxScore={20}
+              scenarioNumber={scenarioIdx + 1}
+              totalScenarios={BASE_SCENARIOS.length}
             />
           </div>
         </header>
@@ -372,7 +471,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
           scenarioNumber={scenarioIdx + 1}
           totalScenarios={BASE_SCENARIOS.length}
           icon={getScenarioIcon()}
-          roleText={intl.formatMessage({ id: 'part5.role.text', defaultMessage: "You're the cloud architect. Design the best solution for this client." })}
+          roleText={intl.formatMessage({ id: 'part5.role.text' })}
           contextText={intl.formatMessage({ id: scenario.descriptionKey })}
         />
 
@@ -404,9 +503,8 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
               </div>
               {estimatedCost && (
                 <div className="text-sm text-cyan-300">
-                  <FormattedMessage 
-                    id="part5.cost.preview" 
-                    defaultMessage="Est. monthly cost: {cost}"
+                  <FormattedMessage
+                    id="part5.cost.preview"
                     values={{ cost: formatMonthlyCost(estimatedCost, intl) }}
                   />
                 </div>
@@ -423,8 +521,12 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
               className="w-full appearance-none rounded-lg bg-slate-700 accent-[#8b959e] h-12 cursor-pointer touch-manipulation [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-500 [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-cyan-500 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:cursor-pointer"
             />
             <div className="flex justify-between text-xs text-slate-400 mt-1">
-              <span><FormattedNumber value={scenario.minUsers} /></span>
-              <span><FormattedNumber value={scenario.maxUsers} /></span>
+              <span>
+                <FormattedNumber value={scenario.minUsers} />
+              </span>
+              <span>
+                <FormattedNumber value={scenario.maxUsers} />
+              </span>
             </div>
             <SliderMilestones min={scenario.minUsers} max={scenario.maxUsers} value={users} />
           </div>
@@ -439,7 +541,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
               <button
                 onClick={() => setShowPrimer(false)}
                 className="min-w-[44px] min-h-[44px] px-3 py-2 text-xs text-slate-400 hover:text-white active:text-slate-200 motion-safe:transition touch-manipulation rounded-lg hover:bg-slate-700/50 flex items-center gap-1"
-                aria-label={intl.formatMessage({ id: 'part5.primer.minimize', defaultMessage: 'Minimize refresher' })}
+                aria-label={intl.formatMessage({ id: 'part5.primer.minimize' })}
               >
                 <span>↓</span>
                 <FormattedMessage id="part5.primer.hide" />
@@ -467,7 +569,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
             status={stepperState.steps.service.status}
             expanded={stepperState.steps.service.expanded}
             onToggle={() =>
-              dispatchStepper({ type: 'SET_EXPANDED', stepId: 'service', expanded: !stepperState.steps.service.expanded })
+              dispatchStepper({
+                type: 'SET_EXPANDED',
+                stepId: 'service',
+                expanded: !stepperState.steps.service.expanded,
+              })
             }
             stepRef={(el) => (stepRefs.current['service'] = el)}
           >
@@ -490,9 +596,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                   <div
                     key={m}
                     className={`rounded-xl border-2 transition-all duration-300 relative
-                      ${selectedState 
-                        ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20' 
-                        : `border-slate-600 bg-gradient-to-br ${serviceColors[m]}`}
+                      ${
+                        selectedState
+                          ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20'
+                          : `border-slate-600 bg-gradient-to-br ${serviceColors[m]}`
+                      }
                       ${disabled ? 'opacity-50' : ''}`}
                   >
                     <button
@@ -505,9 +613,13 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                         ${disabled ? 'cursor-not-allowed' : 'hover:bg-slate-800/20 active:bg-slate-800/30'}`}
                     >
                       <div className="flex items-start gap-4">
-                        <div className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
-                          selectedState ? 'bg-cyan-500/30 text-cyan-300' : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
-                        }`}>
+                        <div
+                          className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
+                            selectedState
+                              ? 'bg-cyan-500/30 text-cyan-300'
+                              : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
+                          }`}
+                        >
                           {serviceIcons[m]}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -587,9 +699,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                   <div
                     key={m}
                     className={`rounded-xl border-2 transition-all duration-300 relative
-                      ${sel 
-                        ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20' 
-                        : `border-slate-600 bg-gradient-to-br ${deploymentColors[m]}`}`}
+                      ${
+                        sel
+                          ? 'border-cyan-400 bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 ring-2 ring-cyan-400/30 scale-[1.02] shadow-lg shadow-cyan-500/20'
+                          : `border-slate-600 bg-gradient-to-br ${deploymentColors[m]}`
+                      }`}
                   >
                     <button
                       role="radio"
@@ -598,9 +712,13 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                       className="w-full text-left p-4 lg:p-5 min-h-[80px] touch-manipulation group rounded-t-xl hover:bg-slate-800/20 active:bg-slate-800/30"
                     >
                       <div className="flex items-start gap-4">
-                        <div className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
-                          sel ? 'bg-cyan-500/30 text-cyan-300' : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
-                        }`}>
+                        <div
+                          className={`flex-shrink-0 p-2 rounded-lg transition-colors duration-300 ${
+                            sel
+                              ? 'bg-cyan-500/30 text-cyan-300'
+                              : 'bg-slate-700/50 text-slate-400 group-hover:text-slate-300'
+                          }`}
+                        >
                           {deploymentIcons[m]}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -619,33 +737,55 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                     <div className="px-4 pb-4 lg:px-5 lg:pb-5">
                       <div className="grid grid-cols-3 gap-2 text-center">
                         <div className="p-2 bg-slate-800/50 rounded-lg">
-                          <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.fixed' })}>
+                          <InfoTooltip
+                            label={intl.formatMessage({ id: 'part5.deployment.badge.fixed' })}
+                          >
                             <FormattedMessage id="part5.tooltip.fixed" />
                           </InfoTooltip>
-                          <div className="text-base sm:text-lg font-bold text-cyan-300">{formatMonthlyCost(meta.fixedInfra, intl)}</div>
+                          <div className="text-base sm:text-lg font-bold text-cyan-300">
+                            {formatMonthlyCost(meta.fixedInfra, intl)}
+                          </div>
                         </div>
                         <div className="p-2 bg-slate-800/50 rounded-lg">
                           <InfoTooltip
-                            label={
-                              intl.formatNumber(meta.variablePerKUsers, {
-                                style: 'currency',
-                                currency: 'USD',
-                                minimumFractionDigits: 0,
-                              }) + '/1k'
-                            }
+                            label={intl.formatMessage(
+                              { id: 'part5.units.per1k' },
+                              {
+                                value: intl.formatNumber(meta.variablePerKUsers, {
+                                  style: 'currency',
+                                  currency: 'USD',
+                                  minimumFractionDigits: 0,
+                                }),
+                              }
+                            )}
                           >
                             <FormattedMessage id="part5.tooltip.variable" />
                           </InfoTooltip>
                           <div className="text-base sm:text-lg font-bold text-cyan-300">
-                            <FormattedNumber value={meta.variablePerKUsers} style="currency" currency="USD" minimumFractionDigits={0} />
-                            /1k
+                            <FormattedMessage
+                              id="part5.units.per1k"
+                              values={{
+                                value: (
+                                  <FormattedNumber
+                                    value={meta.variablePerKUsers}
+                                    style="currency"
+                                    currency="USD"
+                                    minimumFractionDigits={0}
+                                  />
+                                ),
+                              }}
+                            />
                           </div>
                         </div>
                         <div className="p-2 bg-slate-800/50 rounded-lg">
-                          <InfoTooltip label={intl.formatMessage({ id: 'part5.deployment.badge.elasticity' })}>
+                          <InfoTooltip
+                            label={intl.formatMessage({ id: 'part5.deployment.badge.elasticity' })}
+                          >
                             <FormattedMessage id="part5.tooltip.elasticity" />
                           </InfoTooltip>
-                          <div className="text-base sm:text-lg font-bold text-cyan-300">{meta.elasticity}/100</div>
+                          <div className="text-base sm:text-lg font-bold text-cyan-300">
+                            {meta.elasticity}/100
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -673,7 +813,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
             status={stepperState.steps.results.status}
             expanded={stepperState.steps.results.expanded}
             onToggle={() =>
-              dispatchStepper({ type: 'SET_EXPANDED', stepId: 'results', expanded: !stepperState.steps.results.expanded })
+              dispatchStepper({
+                type: 'SET_EXPANDED',
+                stepId: 'results',
+                expanded: !stepperState.steps.results.expanded,
+              })
             }
             stepRef={(el) => (stepRefs.current['results'] = el)}
           >
@@ -688,19 +832,30 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                 <div className="mb-4 p-4 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 rounded-xl border border-cyan-500/20">
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <div>
-                      <span className="text-slate-400 text-sm">Your Selection:</span>
+                      <span className="text-slate-400 text-sm">
+                        <FormattedMessage id="part5.tradeoffs.selection.label" />
+                      </span>
                       <div className="text-lg font-bold text-white">
-                        {serviceMeta[selected.service].label} + {deploymentMeta[selected.deployment].label}
+                        {serviceMeta[selected.service].label} +{' '}
+                        {deploymentMeta[selected.deployment].label}
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-center">
-                        <div className="text-xs text-slate-400">Cost</div>
-                        <div className="text-lg font-bold text-cyan-300">{formatMonthlyCost(selected.metrics.cost, intl)}</div>
+                        <div className="text-xs text-slate-400">
+                          <FormattedMessage id="part5.table.cost" />
+                        </div>
+                        <div className="text-lg font-bold text-cyan-300">
+                          {formatMonthlyCost(selected.metrics.cost, intl)}
+                        </div>
                       </div>
                       <div className="text-center">
-                        <div className="text-xs text-slate-400">Fit Score</div>
-                        <div className="text-2xl font-bold text-emerald-400">{selected.metrics.fit}/100</div>
+                        <div className="text-xs text-slate-400">
+                          <FormattedMessage id="part5.table.fit" />
+                        </div>
+                        <div className="text-2xl font-bold text-emerald-400">
+                          {selected.metrics.fit}/100
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -713,7 +868,7 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                       className="w-full min-h-[48px] px-4 py-3 text-sm font-medium text-cyan-300 hover:text-white bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600 hover:border-cyan-500/50 rounded-lg motion-safe:transition touch-manipulation flex items-center justify-center gap-2"
                     >
                       <span>📊</span>
-                      <FormattedMessage id="part5.tradeoffs.why" defaultMessage="Show detailed breakdown" />
+                      <FormattedMessage id="part5.tradeoffs.why" />
                     </button>
                   </div>
                 )}
@@ -723,16 +878,32 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                     <div>
                       <div className="mb-1 font-semibold text-slate-200">
                         <FormattedMessage id="part5.tradeoffs.selection.label" />{' '}
-                        <span className="text-[#adb4bb]">{serviceMeta[selected.service].label}</span> +{' '}
-                        <span className="text-[#d0d4d8]">{deploymentMeta[selected.deployment].label}</span>
+                        <span className="text-[#adb4bb]">
+                          {serviceMeta[selected.service].label}
+                        </span>{' '}
+                        +{' '}
+                        <span className="text-[#d0d4d8]">
+                          {deploymentMeta[selected.deployment].label}
+                        </span>
                       </div>
                       <div className="mb-2 text-sm text-slate-400">
                         <FormattedMessage id="part5.tradeoffs.cost.label" />{' '}
-                        <b className="text-[#adb4bb]">{formatMonthlyCost(selected.metrics.cost, intl)}</b>
+                        <b className="text-[#adb4bb]">
+                          {formatMonthlyCost(selected.metrics.cost, intl)}
+                        </b>
                       </div>
-                      <Bar value={selected.metrics.performance} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.performance' })} />
-                      <Bar value={selected.metrics.compliance} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.compliance' })} />
-                      <Bar value={selected.metrics.ease} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.ease' })} />
+                      <Bar
+                        value={selected.metrics.performance}
+                        label={intl.formatMessage({ id: 'part5.tradeoffs.metric.performance' })}
+                      />
+                      <Bar
+                        value={selected.metrics.compliance}
+                        label={intl.formatMessage({ id: 'part5.tradeoffs.metric.compliance' })}
+                      />
+                      <Bar
+                        value={selected.metrics.ease}
+                        label={intl.formatMessage({ id: 'part5.tradeoffs.metric.ease' })}
+                      />
                       <div className="mt-3 text-sm text-slate-300">
                         <div className="mb-1 font-semibold">
                           <FormattedMessage id="part5.tradeoffs.explain.heading" />
@@ -746,7 +917,8 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                       <div className="mt-4 text-slate-200">
                         <FormattedMessage id="part5.tradeoffs.fit.label" />{' '}
                         <span className="text-xl font-bold text-emerald-400">
-                          <FormattedNumber value={selected.metrics.fit} />/100
+                          <FormattedNumber value={selected.metrics.fit} />
+                          /100
                         </span>
                       </div>
                     </div>
@@ -763,7 +935,10 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                           </button>
                         </div>
                       )}
-                      <div className={topRevealed ? '' : 'pointer-events-none'} aria-hidden={!topRevealed}>
+                      <div
+                        className={topRevealed ? '' : 'pointer-events-none'}
+                        aria-hidden={!topRevealed}
+                      >
                         <div className="flex items-center justify-between">
                           <div className="font-semibold text-slate-200">
                             <FormattedMessage id="part5.top.heading" />
@@ -774,21 +949,43 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                         </div>
                         <div className="mt-2 text-slate-200">
                           <div>
-                            <span className="text-emerald-300">{serviceMeta[topFit.service].label}</span> +{' '}
-                            <span className="text-emerald-300">{deploymentMeta[topFit.deployment].label}</span>
+                            <span className="text-emerald-300">
+                              {serviceMeta[topFit.service].label}
+                            </span>{' '}
+                            +{' '}
+                            <span className="text-emerald-300">
+                              {deploymentMeta[topFit.deployment].label}
+                            </span>
                           </div>
                           <div className="text-sm text-slate-400">
                             <FormattedMessage id="part5.top.cost.label" />{' '}
-                            <b className="text-cyan-300">{formatMonthlyCost(topFit.metrics.cost, intl)}</b> ·
+                            <b className="text-cyan-300">
+                              {formatMonthlyCost(topFit.metrics.cost, intl)}
+                            </b>{' '}
+                            ·
                             <FormattedMessage id="part5.top.fit.label" />{' '}
                             <b className="text-emerald-300">
-                              <FormattedNumber value={topFit.metrics.fit} />/100
+                              <FormattedNumber value={topFit.metrics.fit} />
+                              /100
                             </b>
                           </div>
                           <div className="mt-2">
-                            <Bar value={topFit.metrics.performance} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.performance' })} />
-                            <Bar value={topFit.metrics.compliance} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.compliance' })} />
-                            <Bar value={topFit.metrics.ease} label={intl.formatMessage({ id: 'part5.tradeoffs.metric.ease' })} />
+                            <Bar
+                              value={topFit.metrics.performance}
+                              label={intl.formatMessage({
+                                id: 'part5.tradeoffs.metric.performance',
+                              })}
+                            />
+                            <Bar
+                              value={topFit.metrics.compliance}
+                              label={intl.formatMessage({
+                                id: 'part5.tradeoffs.metric.compliance',
+                              })}
+                            />
+                            <Bar
+                              value={topFit.metrics.ease}
+                              label={intl.formatMessage({ id: 'part5.tradeoffs.metric.ease' })}
+                            />
                           </div>
                         </div>
                       </div>
@@ -804,13 +1001,10 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                       <ChartBarIcon className="w-8 h-8 text-slate-500" />
                     </div>
                     <p className="text-slate-400 mb-2">
-                      <FormattedMessage id="part5.tradeoffs.noselection" defaultMessage="Your results will appear here" />
+                      <FormattedMessage id="part5.tradeoffs.noselection" />
                     </p>
                     <p className="text-sm text-slate-500">
-                      <FormattedMessage 
-                        id="part5.tradeoffs.noselection.hint" 
-                        defaultMessage="Complete Steps 1 and 2 above to see your metrics"
-                      />
+                      <FormattedMessage id="part5.tradeoffs.noselection.hint" />
                     </p>
                   </div>
                 </div>
@@ -845,7 +1039,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                     <button
                       onClick={() => setComparisonView('summary')}
                       className={`min-h-[44px] px-4 py-2 text-sm rounded-md motion-safe:transition touch-manipulation ${
-                        comparisonView === 'summary' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white active:bg-slate-700'
+                        comparisonView === 'summary'
+                          ? 'bg-cyan-600 text-white font-semibold'
+                          : 'text-slate-300 hover:text-white active:bg-slate-700'
                       }`}
                     >
                       <FormattedMessage id="part5.compare.summary" />
@@ -853,7 +1049,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                     <button
                       onClick={() => setComparisonView('all')}
                       className={`min-h-[44px] px-4 py-2 text-sm rounded-md motion-safe:transition touch-manipulation ${
-                        comparisonView === 'all' ? 'bg-cyan-600 text-white font-semibold' : 'text-slate-300 hover:text-white active:bg-slate-700'
+                        comparisonView === 'all'
+                          ? 'bg-cyan-600 text-white font-semibold'
+                          : 'text-slate-300 hover:text-white active:bg-slate-700'
                       }`}
                     >
                       <FormattedMessage id="part5.compare.all" />
@@ -865,7 +1063,9 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                   <table className="w-full text-sm">
                     <thead className="text-slate-300">
                       <tr className="text-left">
-                        <th className="sticky left-0 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">#</th>
+                        <th className="sticky left-0 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">
+                          #
+                        </th>
                         <th className="sticky left-8 bg-slate-900/50 py-2 pr-3 backdrop-blur-sm">
                           <FormattedMessage id="part5.table.option" />
                         </th>
@@ -892,7 +1092,8 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                         if (comparisonView === 'summary' && selected) {
                           const topRecommendation = allCombos[0];
                           const isTopSelected =
-                            selected.service === topRecommendation.service && selected.deployment === topRecommendation.deployment;
+                            selected.service === topRecommendation.service &&
+                            selected.deployment === topRecommendation.deployment;
 
                           if (isTopSelected) {
                             displayedCombos = allCombos.slice(0, 3);
@@ -900,7 +1101,10 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                             const combosSet = new Set([topRecommendation, selected]);
                             for (let i = 1; i < allCombos.length && combosSet.size < 3; i++) {
                               const combo = allCombos[i];
-                              if (combo.service !== selected.service || combo.deployment !== selected.deployment) {
+                              if (
+                                combo.service !== selected.service ||
+                                combo.deployment !== selected.deployment
+                              ) {
                                 combosSet.add(combo);
                               }
                             }
@@ -912,9 +1116,14 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
 
                         return displayedCombos.map((c) => {
                           const originalRank =
-                            allCombos.findIndex((combo) => combo.service === c.service && combo.deployment === c.deployment) + 1;
+                            allCombos.findIndex(
+                              (combo) =>
+                                combo.service === c.service && combo.deployment === c.deployment
+                            ) + 1;
                           const isCurrentSelection =
-                            selected && c.service === selected.service && c.deployment === selected.deployment;
+                            selected &&
+                            c.service === selected.service &&
+                            c.deployment === selected.deployment;
 
                           return (
                             <tr
@@ -923,15 +1132,23 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                             >
                               <td className="py-2 pr-3 text-slate-400">
                                 {originalRank}
-                                {isCurrentSelection && <span className="ml-1 text-cyan-400">★</span>}
+                                {isCurrentSelection && (
+                                  <span className="ml-1 text-cyan-400">★</span>
+                                )}
                               </td>
                               <td className="py-2 pr-3">
-                                <div className={`font-medium ${isCurrentSelection ? 'text-cyan-300' : ''}`}>
+                                <div
+                                  className={`font-medium ${isCurrentSelection ? 'text-cyan-300' : ''}`}
+                                >
                                   {serviceMeta[c.service].label}
                                 </div>
-                                <div className="text-xs text-slate-400">{deploymentMeta[c.deployment].label}</div>
+                                <div className="text-xs text-slate-400">
+                                  {deploymentMeta[c.deployment].label}
+                                </div>
                               </td>
-                              <td className="py-2 pr-3">{formatMonthlyCost(c.metrics.cost, intl)}</td>
+                              <td className="py-2 pr-3">
+                                {formatMonthlyCost(c.metrics.cost, intl)}
+                              </td>
                               <td className="py-2 pr-3">
                                 <FormattedNumber value={Math.round(c.metrics.performance)} />
                               </td>
@@ -967,8 +1184,18 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
               >
                 <div className="flex items-center gap-3">
                   <div className="flex-shrink-0 p-2 bg-[#750014]/20 rounded-lg group-hover:bg-[#750014]/30 transition-colors">
-                    <svg className="w-5 h-5 text-[#d5b2b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    <svg
+                      className="w-5 h-5 text-[#d5b2b8]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
                     </svg>
                   </div>
                   <span className="text-sm font-medium text-[#d5b2b8] group-hover:text-white transition-colors">
@@ -977,13 +1204,13 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                 </div>
                 <div className="flex items-center gap-2 text-slate-400 group-hover:text-white transition-colors">
                   <span className="text-xs">
-                    <FormattedMessage id="part5.primer.expand" defaultMessage="Expand" />
+                    <FormattedMessage id="part5.primer.expand" />
                   </span>
                   <span>↑</span>
                 </div>
               </button>
             </SectionCard>
-            
+
             <div className="mt-4 flex justify-center">
               {!evaluated ? (
                 <button
@@ -999,7 +1226,11 @@ export default function Part5CloudDesigner({ onComplete, setActionBar }: Part5Cl
                   className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[48px] bg-gradient-to-r from-[#750014] via-[#973f4e] to-[#ba7f89] text-white font-bold rounded-full shadow-lg shadow-[#750014]/45 hover:scale-105 active:scale-95 transform transition-transform focus:outline-none focus:ring-4 focus:ring-[#ba7f89]/60 touch-manipulation text-sm sm:text-base"
                 >
                   <FormattedMessage
-                    id={scenarioIdx < BASE_SCENARIOS.length - 1 ? 'part5.button.next' : 'part5.button.finish'}
+                    id={
+                      scenarioIdx < BASE_SCENARIOS.length - 1
+                        ? 'part5.button.next'
+                        : 'part5.button.finish'
+                    }
                   />
                 </button>
               )}

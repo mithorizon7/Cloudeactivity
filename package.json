@@ -11,8 +11,13 @@
     "i18n:compile": "node scripts/compile-messages.js",
     "i18n:pseudo": "node scripts/pseudo-localize.js",
     "i18n:unused": "node scripts/find-unused-keys.js",
-    "i18n:check": "npm run i18n:compile && npm run lint",
-    "lint": "eslint . --ext .ts,.tsx"
+    "i18n:lint": "node scripts/i18n-parity.js",
+    "i18n:check": "npm run i18n:compile && npm run i18n:lint && npm run lint",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@eslint/js": "^9.39.1",
@@ -33,7 +38,22 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "baseline-browser-mapping": "^2.9.19",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "prettier": "^3.3.3",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vitest": "^2.1.9"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,html}": [
+      "prettier --write"
+    ]
   }
 }

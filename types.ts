@@ -32,11 +32,19 @@ export interface ScenarioQuestion {
 export enum DeploymentModel {
   Public = 'Public Cloud',
   Private = 'Private Cloud',
-  Hybrid = 'Hybrid Cloud'
+  Hybrid = 'Hybrid Cloud',
 }
 
 export type DeploymentModelKey = 'public' | 'private' | 'hybrid';
 
 export type Stage = 'introduction' | 'part1' | 'part2' | 'part3' | 'part4' | 'part5' | 'summary';
 
-export const STAGES: Stage[] = ['introduction', 'part1', 'part2', 'part3', 'part4', 'part5', 'summary'];
+export const STAGES: Stage[] = [
+  'introduction',
+  'part1',
+  'part2',
+  'part3',
+  'part4',
+  'part5',
+  'summary',
+];

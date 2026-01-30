@@ -8,7 +8,7 @@ export const BASE_SCENARIOS: Scenario[] = [
     minUsers: 500,
     maxUsers: 10_000,
     defaultUsers: 3_000,
-    weights: { cost: 0.30, performance: 0.20, compliance: 0.20, effort: 0.30 },
+    weights: { cost: 0.3, performance: 0.2, compliance: 0.2, effort: 0.3 },
     idealCombos: [{ service: 'saas', deployment: 'public' }],
     saasApplicable: true,
   },
@@ -19,7 +19,7 @@ export const BASE_SCENARIOS: Scenario[] = [
     minUsers: 1_000,
     maxUsers: 200_000,
     defaultUsers: 15_000,
-    weights: { cost: 0.30, performance: 0.35, compliance: 0.10, effort: 0.25 },
+    weights: { cost: 0.3, performance: 0.35, compliance: 0.1, effort: 0.25 },
     idealCombos: [
       { service: 'paas', deployment: 'public' },
       { service: 'iaas', deployment: 'public' },
